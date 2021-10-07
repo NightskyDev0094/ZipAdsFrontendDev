@@ -1,0 +1,56 @@
+#logo img{
+    width: 250px;
+    height: 86px;
+}
+
+#header{
+    background-color: white;
+    height: 90px;
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    transition: top 0.6s;
+}
+
+#menu-btn {
+    display: none !important;
+}
+
+.header--hidden {
+    top: -50px;
+}
+
+#header #mainmenu{
+    font-size: 25px;
+    line-height: 60px;
+}
+
+#header #mainmenu li{
+    margin-left: 20px;
+}
+
+/* #header #start-now-button{
+    transform: translateY(15px);
+} */
+
+
+/*
+ Media Queries for logged out NavBar
+*/
+@media screen and (max-width: 1000px) {
+    #header{
+        /* background-color: blue !important; */
+        height: 500px !important;
+        position: relative !important;
+        margin-bottom: 30px;
+
+    }
+    #header #mainmenu {
+        margin-top: 50px;
+    }
+
+    #menu-btn {
+        display: none !important;
+    }
+}

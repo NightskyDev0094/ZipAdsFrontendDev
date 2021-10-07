@@ -1,0 +1,2 @@
+cd into ezsocial
+.\env\Scripts\activate

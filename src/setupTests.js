@@ -1,0 +1,12 @@
+// import { configure } from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+
+// configure({ adapter: new Adapter() });
+import React from "react";
+import Enzyme from "enzyme";
+import EnzymeAdapter from "enzyme-adapter-react-16";
+import 'jest-canvas-mock';
+
+Enzyme.configure({ adapter: new EnzymeAdapter() });
+
+

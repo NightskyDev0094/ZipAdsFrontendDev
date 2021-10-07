@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'SilkaMedium';
+    src: local('SilkaMedium'), url(../fonts/silka_font/silka-medium-webfont.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'SilkaLight';
+    src: local('SilkaLight'), url(../fonts/silka_font/silka-light-webfont.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'SilkaBold';
+    src: local('SilkaBold'), url(../fonts/silka_font/silka-bold-webfont.woff) format('woff');
+}

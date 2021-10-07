@@ -1,0 +1,29 @@
+.text-grey {
+  color: #ccc !important;
+}
+.c-bg-secondary {
+  background-color: #303e9f !important;
+}
+.c-text-secondary {
+  color: #303e9f !important;
+}
+.container-fluid {
+  max-width: 95%;
+}
+
+.ant-table-small .ant-table-thead > tr > th {
+  background-color: #303e9f;
+  color: #fff;
+}
+.navbar-brand {
+  transition-duration: 0.3s;
+}
+.sm-font {
+  font-size: 0.9em;
+}
+.main-layout-container {
+  background: #f7f7f7;
+}
+.over-flow-hidden {
+  overflow: auto;
+}

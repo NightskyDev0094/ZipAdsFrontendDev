@@ -1,0 +1,48 @@
+#section-highlight{
+    background-image: url('../images/background/3b.png');
+}
+
+#section-pricing{
+    background-image: url('../images/background/3c.png') !important;
+}
+
+#section-text{
+    background-image: url('../images/background/3d.png') !important;
+}
+
+#microscope-people-landing{
+    width: 540px !important;
+}
+
+#main-title{
+    font-size: 3.5vw;
+}
+
+#sub-title{
+    font-size: 1.5vw;
+    margin: 50px 0;
+}
+
+#heres-how-it-works-text{
+    color: #1890ff;
+    font-size: 3.5vw;
+}
+
+#heres-how-it-works-sub-text{
+    color: #1890ff;
+    font-size: 2.5vw;
+}
+
+#heres-what-our-customers-are-saying{
+    font-size: 3.3vw;
+    margin-bottom: 25px;
+}
+
+@media screen and (max-width: 800px) {
+    #main-title{
+        font-size: 7vw;
+    } 
+    #sub-title{
+        font-size: 3vw; 
+    }  
+}

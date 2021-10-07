@@ -1,0 +1,130 @@
+import React, { useEffect, useState, Fragment } from "react";
+// import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addGoogleManagerAccounts } from "../../actions/googleManagerAccountActions";
+import config from "../socialAuth/config";
+
+const GoogleManagerAccounts = ({ addGoogleManagerAccounts }) => {
+  const [name, setName] = useState("");
+  const [manager_account_id, setManager_account_id] = useState("");
+
+  useEffect(() => {
+    // Load the required SDK asynchronously for google, google and linkedin
+    (function () {
+      var e = document.createElement("script");
+      e.type = "text/javascript";
+      e.async = true;
+      e.src = "https://apis.google.com/js/client:platform.js?onload=gPOnLoad";
+      var t = document.getElementsByTagName("script")[0];
+      t.parentNode.insertBefore(e, t);
+    })();
+    // eslint-disable-next-line
+  }, []);
+
+  //Triggering login for google
+  const googleLogin = (e) => {
+    e.preventDefault();
+    let response = null;
+    console.log(response);
+
+    console.log("RUNS TO HERE !!!!");
+    window.gapi.auth.signIn({
+      callback: function (authResponse) {
+        googleSignInCallback(authResponse);
+      },
+      clientid: config.google, //Google client Id
+      cookiepolicy: "single_host_origin",
+      requestvisibleactions: "http://schema.org/AddAction",
+      scopes: [
+        "https://www.googleapis.com/auth/adwords",
+        "https://googleads.googleapis.com/v2",
+      ],
+    });
+  };
+  // Handle response from sign in to google
+  const googleSignInCallback = (e) => {
+    // console.log(e);
+
+    if (e["status"]["signed_in"]) {
+      if (e["access_token"]) {
+        let token = e["access_token"];
+        let expires = e["expires_at"];
+        console.log("google token", token);
+        console.log("expires_at", expires);
+        // addGoogleToken(googleAuth);
+        // getUserGoogleClientIds( e["access_token"] )
+      } else if (e["error"]) {
+        console.log("Import error", "No access token");
+      }
+    } else {
+      console.log("Oops... Error occured while signing in");
+    }
+  };
+  // const onSubmit = (e) => {
+  //   // Prevent redirection
+  //   e.preventDefault();
+  //   // Create formData and add fields that are completed
+  //   let formData = new FormData();
+  //   if (name !== "") {
+  //     formData.append("name", name);
+  //   }
+  //   if (manager_account_id !== "") {
+  //     formData.append("manager_account_id", manager_account_id);
+  //   }
+  //   addGoogleManagerAccounts(formData);
+
+  // };
+  return (
+    // Materialize theme
+    <Fragment>
+      <div className="card-panel blue-grey lighten-4 blue-grey-text text-darken-4 z-depth-0">
+        {/* Form */}
+        <h4>Enter Your Ad Manager Account Id.</h4>
+        <form>
+          <div className="input-field">
+            <label htmlFor="file">Ad Manager Account Name</label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              name="manager_name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="file">Ad Manager Account Id</label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              name="manager_account_id"
+              value={manager_account_id}
+              onChange={(e) => setManager_account_id(e.target.value)}
+            />
+          </div>
+          <button
+            className="btn darken-2 white-text btn-large teal btn-extend"
+            onClick={(e) => googleLogin(e)}
+            value="Save Ad Manager Account"
+          >
+            Save Ad Manager Account
+          </button>
+        </form>
+      </div>
+    </Fragment>
+  );
+};
+
+GoogleManagerAccounts.propTypes = {
+  addGoogleManagerAccounts: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  googleManagerAccount: state.googleManagerAccount,
+});
+
+export default connect(mapStateToProps, {
+  addGoogleManagerAccounts,
+})(GoogleManagerAccounts);

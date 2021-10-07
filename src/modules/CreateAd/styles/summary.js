@@ -1,0 +1,3 @@
+const mainLayout = {};
+
+export { mainLayout };
