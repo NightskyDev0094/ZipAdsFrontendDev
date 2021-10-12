@@ -56,9 +56,9 @@ const isValidHttpUrl = (string) => {
 const useStyles = makeStyles((theme) => ({
   iconContainer: {},
   formContainer: {
-    overflowY: 'scroll',
+    // overflowY: 'scroll',
     padding: '0 50px',
-    height: '1200px',
+    // height: '1200px',
     width: '40%',
     paddingBottom: '200px',
     ['@media (max-width:1550px)']: {
