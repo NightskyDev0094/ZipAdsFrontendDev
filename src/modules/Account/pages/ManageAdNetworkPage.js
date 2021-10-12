@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     width: '88vw',
     marginBottom: '100px',
     paddingBottom: '50px',
-    height: '100vh',
     margin: '0 auto',
     overflow: 'auto',
     '@media (max-width:700px)': {
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    height: '100%',
+    margin: '15vw 0',
     '@media (max-width:1200px)': {
       display: 'flex',
       justifyContent: 'space-evenly',
