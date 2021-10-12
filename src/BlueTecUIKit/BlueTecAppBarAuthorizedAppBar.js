@@ -105,9 +105,9 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                 <div className="align-self-center header-col-left">
                   {}
                   <div id="logo">
-                    <a href="index.html">
+                    <Link to="/">
                       <img alt src={ZipAdsLogo} />
-                    </a>
+                    </Link>
                   </div>
                   {}
                 </div>
