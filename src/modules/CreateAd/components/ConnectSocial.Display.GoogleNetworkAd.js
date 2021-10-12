@@ -11,15 +11,16 @@ const DEFAULT_IMAGE =
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: '600px',
+    width: '450px',
     height: 'fit-content',
-    padding: '0 15px',
+    padding: '15px 15px',
     position: 'relative',
-    minHeight: '700px',
+    margin: '0 auto',
+    // minHeight: '700px',
     ['@media (max-width:750px)']: {
       width: '70vw',
-      height: '97vw',
-      minHeight: 0,
+      // height: '97vw',
+      // minHeight: 0,
     },
     ['@media (max-width:500px)']: {
       width: '70vw',
@@ -29,7 +30,7 @@ const useStyles = makeStyles(() => ({
   image: {
     maxWidth: '600px',
     width: '100%',
-    height: '350px',
+    height: '300px',
     ['@media (max-width:750px)']: {
       height: '46.666666666666664vw',
     },
@@ -37,9 +38,9 @@ const useStyles = makeStyles(() => ({
   header: {
     display: 'flex',
     flexDirection: 'row',
-    height: '90px',
-    padding: '15px',
-    marginBottom: '10px',
+    height: '80px',
+    padding: '0 15px 15px 15px',
+    // marginBottom: '10px',
     ['@media (max-width:750px)']: {
       height: '12vw',
     },
@@ -78,8 +79,8 @@ const useStyles = makeStyles(() => ({
   },
   subTitle: {
     fontWeight: 500,
-    marginTop: '5px',
-    paddingLeft: '5px',
+    // marginTop: '5px',
+    // paddingLeft: '5px',
     textOverflow: 'ellipsis',
     fontSize: '23px',
     whiteSpace: 'noWrap',
@@ -87,19 +88,16 @@ const useStyles = makeStyles(() => ({
     maxWidth: '400px',
   },
   lowerContainer: {
-    height: '100px',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    position: 'absolute',
-    bottom: 0,
+    justifyContent: 'end',
     width: '100%',
     ['@media (max-width:750px)']: {
       justifyContent: 'space-around',
     },
     ['@media (max-width:500px)']: {
       height: '19vw',
-      padding: '0 5vw',
+      // padding: '0 5vw',
       justifyContent: 'space-around',
       left: 0,
     },
@@ -215,7 +213,9 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
           className={classes.icon}
         ></Avatar>
         <div className={classes.headerSubTitleContainer}>
-          <div data-test="headline" className={classes.title}>{currentCampaign?.headline}</div>
+          <div data-test="headline" className={classes.title}>
+            {currentCampaign?.headline}
+          </div>
         </div>
       </div>
       <img
@@ -225,16 +225,11 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
         alt="Your Business Image"
       />
       <div className={classes.midContainer}>
-        <p data-test="ad-description" className={classes.description}>{currentCampaign?.ad_description}</p>
+        <p data-test="ad-description" className={classes.description}>
+          {currentCampaign?.ad_description}
+        </p>
       </div>
       <div className={classes.lowerContainer}>
-        <div className={classes.imgContainer}>
-          <div className={classes.facebookFriendNumber}>
-            <AddIcon className={classes.addIcon} size="small" /> 348
-          </div>
-          <img className={classes.profileImages} src={Person1} alt="Facebook Friend 1" />
-          <img className={classes.profileImages} src={Person2} alt="Facebook Friend 2" />
-        </div>
         <div className={classes.buttonContainer}>
           <Button data-test="button" className={classes.button} variant="outlined" size="large">
             {currentCampaign?.cta}

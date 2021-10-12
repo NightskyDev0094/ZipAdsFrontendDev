@@ -21,6 +21,7 @@ import './css/colors/scheme-01.css';
 
 import './css/blueteclogin.css';
 import { SERVER_URL } from '../environmentVariables';
+import { func } from 'prop-types';
 
 const errorParsing = (errorMessage) =>
   errorMessage.length > 100 ? errorMessage.substring(0, 50) : errorMessage;
@@ -34,6 +35,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
     errorMessage: '',
     isErrors: false,
   });
+  const INPUT_MAX_LENGTH = 80;
 
   const handleLoginSubmit = async (data, event) => {
     event.preventDefault();
@@ -105,7 +107,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                       as={<LargeInput placeholder="Username" />}
                       name="username"
                       control={control}
-                      rules={{ required: true }}
+                      rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
                     />
                   </div>
                   <div className="field-set">
@@ -114,7 +116,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                       as={<LargeInput isPasswordMasked="true" placeholder="Password" />}
                       name="password"
                       control={control}
-                      rules={{ required: true }}
+                      rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
                     />
                   </div>
                   <div id="submit" className="pull-left">
@@ -221,5 +223,11 @@ const mapDispatchToProps = (dispatch) => ({
       },
     }),
 });
+
+Login.propTypes = {
+  loginSuccessAndRedirect: func,
+  loginError: func,
+  loginLoading: func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

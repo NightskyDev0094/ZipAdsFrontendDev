@@ -39,7 +39,7 @@ const AccountSelectorComponent = ({
   handleSocialAccountUpdate,
   styles,
 }) => {
-  const [tempSocialTitle, setTempSocialTitle] = useState([{account_id: 5369441074}]);
+  const [tempSocialTitle, setTempSocialTitle] = useState([{ account_id: 5369441074 }]);
   return (
     <Box className={classes.accountSelectorRoot}>
       <Typography className={classes.accountSelectorTitle} component="h6" variant="h6">
@@ -50,32 +50,35 @@ const AccountSelectorComponent = ({
         value={selectedSocialAccount}
         onChange={(e) => handleSocialAccountUpdate(e.target.value)}
       >
-        {socialAccounts.length && socialAccounts.map((socialAccount) => {
-          const fixedBusinessName = parseBusinessNames(socialAccount);
-          return (
-            <MenuItem
-              className={classes.accountSelectorMenuItem}
-              key={socialAccount.account_id || socialAccount.ad_account_id}
-              value={socialAccount.account_id || socialAccount.ad_account_id}
-            >
-              {/* {fixedBusinessName.account_id || fixedBusinessName.account_id} */}
-              {socialAccount.account_id || socialAccount.ad_account_id}
-            </MenuItem>
-          );
-        })}
-        {!socialAccounts.length && title === 'Select a Google Ads Account' && tempSocialTitle.map((socialAccount) => {
-          // const fixedBusinessName = parseBusinessNames(socialAccount);
-          return (
-            <MenuItem
-              className={classes.accountSelectorMenuItem}
-              key={socialAccount.account_id || socialAccount.ad_account_id}
-              value={socialAccount.account_id || socialAccount.ad_account_id}
-            >
-              {/* {fixedBusinessName.account_id || fixedBusinessName.account_id} */}
-              {socialAccount.account_id || socialAccount.ad_account_id}
-            </MenuItem>
-          );
-        })}
+        {socialAccounts.length &&
+          socialAccounts.map((socialAccount) => {
+            const fixedBusinessName = parseBusinessNames(socialAccount);
+            return (
+              <MenuItem
+                className={classes.accountSelectorMenuItem}
+                key={socialAccount.account_id || socialAccount.ad_account_id}
+                value={socialAccount.account_id || socialAccount.ad_account_id}
+              >
+                {/* {fixedBusinessName.account_id || fixedBusinessName.account_id} */}
+                {socialAccount.account_id || socialAccount.ad_account_id}
+              </MenuItem>
+            );
+          })}
+        {!socialAccounts.length &&
+          title === 'Select a Google Ads Account' &&
+          tempSocialTitle.map((socialAccount) => {
+            // const fixedBusinessName = parseBusinessNames(socialAccount);
+            return (
+              <MenuItem
+                className={classes.accountSelectorMenuItem}
+                key={socialAccount.account_id || socialAccount.ad_account_id}
+                value={socialAccount.account_id || socialAccount.ad_account_id}
+              >
+                {/* {fixedBusinessName.account_id || fixedBusinessName.account_id} */}
+                {socialAccount.account_id || socialAccount.ad_account_id}
+              </MenuItem>
+            );
+          })}
       </Select>
     </Box>
   );
@@ -109,12 +112,12 @@ const useStyles = makeStyles(() => ({
       margin: '100px auto',
       width: '80vw',
       marginLeft: '100px',
-      height: 'fit-content'
+      height: 'fit-content',
     },
     '@media (max-width:500px)': {
       width: '100%',
-      marginLeft: 0 
-    }
+      marginLeft: 0,
+    },
   },
   titleContainer: {
     display: 'flex',
@@ -128,8 +131,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-evenly',
     marginTop: '20px',
     '@media (max-width:700px)': {
-      flexDirection: 'column'
-    }
+      flexDirection: 'column',
+    },
   },
 }));
 
@@ -173,9 +176,9 @@ const SelectAccount = ({
   return (
     <Paper
       className={classes.paper}
-      style={{ ...styles?.paper }}
+      style={{ ...styles?.paper, display: socialsToPost.length ? '' : 'none' }}
       elevation={3}
-      style={{ display: socialsToPost.length ? '' : 'none' }}
+      // style={{ display: socialsToPost.length ? '' : 'none' }}
     >
       <div style={{ ...styles?.titleContainer }} className={classes.titleContainer}>
         {socialsToPost.length && (

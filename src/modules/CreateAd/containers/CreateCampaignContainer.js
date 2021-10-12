@@ -283,10 +283,10 @@ const CreateCampaignContainer = ({
     <CreateCampaign
       formInfo={formInfo}
       setFormInfo={setFormInfo}
-      currentCampaign={currentCampaign}
+      currentCampaign={campaigns.current || currentCampaign}
       handleSubmitCampaign={submitCampaign}
       hasCreateCampaignStepBeenCompleted={hasCreateCampaignStepBeenCompleted}
-      currentCampaign={campaigns.current}
+      // currentCampaign={campaigns.current}
       urlVal={urlVal}
       imgOption={imgOption}
       setImgOption={setImgOption}

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '400px',
     maxWidth: '400px',
-    minHeight: '600px',
+    // minHeight: '500px',
     height: 'fit-content',
     margin: '0 auto',
     ['@media (max-width:500px)']: {
@@ -102,12 +102,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '4vw',
     },
   },
-  titleRatingContainer: {
-    marginBottom: '20px',
-    ['@media (max-width:500px)']: {
-      marginBottom: '4vw',
-    },
-  },
 }));
 
 /**
@@ -135,7 +129,12 @@ const FacebookAudienceDisplay = ({ currentCampaign, styles, previewUrl, ...props
   const classes = useStyles();
 
   return (
-    <Paper data-test="facebook-audience" elevation={3} style={styles?.paper} className={classes.paper}>
+    <Paper
+      data-test="facebook-audience"
+      elevation={3}
+      style={styles?.paper}
+      className={classes.paper}
+    >
       <div style={styles?.imgContainer} className={classes.imgContainer}>
         <img
           data-test="image"
@@ -146,33 +145,24 @@ const FacebookAudienceDisplay = ({ currentCampaign, styles, previewUrl, ...props
         />
       </div>
       <div style={styles?.body} className={classes.body}>
-        <div style={styles?.titleRatingContainer} className={classes.titleRatingContainer}>
-          <h2 data-test="headline" style={styles?.title} className={classes.title}>
-            {currentCampaign.headline}
-          </h2>
-          <div style={styles?.rating} className={classes.rating}>
-            <StarIcon htmlColor="#FFD700" />
-            <StarIcon htmlColor="#FFD700" />
-            <StarIcon htmlColor="#FFD700" />
-            <StarIcon htmlColor="#FFD700" />
-            <StarHalfIcon htmlColor="#FFD700" />
-          </div>
-        </div>
-        <div style={styles?.descriptionContainer} className={classes.descriptionContainer}>
-          <p data-test="description" style={styles?.description} className={classes.description}>
-            {currentCampaign.ad_description}
-          </p>
-        </div>
-        <div style={styles?.buttonContainer} className={classes.buttonContainer}>
-          <Button
-            className={classes.button}
-            style={styles?.button}
-            color="primary"
-            variant="outlined"
-          >
-            <GetAppIcon data-test="button" className={classes.buttonIcon} /> {currentCampaign.cta}
-          </Button>
-        </div>
+        <h2 data-test="headline" style={styles?.title} className={classes.title}>
+          {currentCampaign.headline}
+        </h2>
+      </div>
+      <div style={styles?.descriptionContainer} className={classes.descriptionContainer}>
+        <p data-test="description" style={styles?.description} className={classes.description}>
+          {currentCampaign.ad_description}
+        </p>
+      </div>
+      <div style={styles?.buttonContainer} className={classes.buttonContainer}>
+        <Button
+          className={classes.button}
+          style={styles?.button}
+          color="primary"
+          variant="outlined"
+        >
+          <GetAppIcon data-test="button" className={classes.buttonIcon} /> {currentCampaign.cta}
+        </Button>
       </div>
     </Paper>
   );

@@ -29,13 +29,11 @@ import GoogleLogin from './ConnectSocial.GoogleLogin';
 import SuccessCard from './ConnectSocial.HandleUserAccount.SuccessCard.Component';
 import ConnectOrCreateManagedAccountComponent from './ConnectSocial.HandleUserAccount.ConnectOrCreate.Card';
 
-
 export const LoadingSpinner = () => (
   <div>
     <CircularProgress style={{ marginTop: '200px' }} size={120} />
   </div>
 );
-
 
 const baseStyles = makeStyles(() => ({
   connectSocialMenuTitle: {
@@ -110,7 +108,6 @@ const baseStyles = makeStyles(() => ({
   },
 }));
 
-
 /****************************************************************
  * MAIN EXPORT
  * @param {{}} styles: override class styles
@@ -151,7 +148,7 @@ export const ConnectSocialMenu = ({
   useEffect(() => {
     if (isGoogleManagedAccountSubmitted) {
       setTimeout(() => {
-        setComponentState({...componentState, loading: false, error: false });
+        setComponentState({ ...componentState, loading: false, error: false });
       }, 2000);
     }
     if (createGoogleAccountSuccessful) {
@@ -218,12 +215,12 @@ export const ConnectSocialMenu = ({
               defaultValue={'Your Business Name'}
               inputProps={{}}
               LoginComponent={() => <FacebookLogin {...props} />}
-              doesUserHaveAdAccounts={doesUserHaveFacebookManagedAccounts}
+              doesUserHaveAdAccounts={doesUserHaveFacebookManagedAccounts || true}
               LoginIcon={() => <FacebookIcon />}
               // adAccounts={facebookAdAccounts}
               adAccounts={mockFacebookData}
               currentBusinessName={currentBusinessName}
-              doesUserHaveAdAccounts={true}
+              // doesUserHaveAdAccounts={true}
               componentState={componentState}
               token={mockToken}
               setComponentState={setComponentState}

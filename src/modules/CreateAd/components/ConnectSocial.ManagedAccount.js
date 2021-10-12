@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, forwardRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
@@ -19,7 +19,7 @@ import { tokenConfig } from '../../../actions/authActions';
 import { apiStates, LoadingSpinner } from './HelperComponents';
 import { getUserAccountInformation } from './ConnectSocial.ManagedAccountServices';
 
-const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+const Transition = forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
 const ManagedAccountStatusComponent = ({ facebookState, googleState, infoState }) => {
   if (infoState.isLoading) {

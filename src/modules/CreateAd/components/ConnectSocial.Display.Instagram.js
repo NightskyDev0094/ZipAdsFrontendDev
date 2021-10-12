@@ -10,13 +10,10 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
 
 const TEST_IMAGE =
@@ -28,7 +25,7 @@ const useStyles = makeStyles(() => ({
   root: {
     width: '340px',
     height: 'fit-content',
-    padding: '5px',
+    padding: '5px 0',
     margin: '0 auto',
     ['@media (max-width:450px)']: {
       width: '75.55555555555556vw',
@@ -37,8 +34,8 @@ const useStyles = makeStyles(() => ({
   },
   image: {
     height: '302px',
-    width: '312px',
-    margin: '0 auto',
+    width: '100%',
+    // margin: '0',
     ['@media (max-width:450px)']: {
       height: '67.11111111111111vw',
       width: '69.33333333333334vw',
@@ -55,20 +52,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   title: {
-    color: '#4D6D86',
-    ['@media (max-width:450px)']: {
-      fontSize: '4.444444444444445vw',
-    },
+    marginBottom: '1px',
   },
-  action: {
-    maxHeight: '20px',
-    alignSelf: 'unset',
-    flex: 'none',
-    color: '#4D6D86',
-    '&:hover': {
-      cursor: 'pointer',
-      backgroundColor: 'white',
-    },
+  subTitle: {
+    color: '#403f45',
   },
   icon: {
     width: '45px',
@@ -86,7 +73,6 @@ const useStyles = makeStyles(() => ({
   },
   cardActionsContainer: {
     height: '45px',
-    padding: 0,
     marginTop: '5px',
     ['@media (max-width:450px)']: {
       height: '10vw',
@@ -184,22 +170,24 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
             className={classes.icon}
           ></Avatar>
         }
-        action={
-          <IconButton className={classes.action}>
-            <h6 className={classes.title}>Sponsored</h6>
-            <ExpandMoreIcon />
-          </IconButton>
+        title={
+          <>
+            <h5 className={classes.title}>{currentCampaign.headline}</h5>
+            <h6 className={classes.subtitle}>Sponsored</h6>
+          </>
         }
-        title={currentCampaign.headline}
       />
       <CardMedia className={classes.image} image={backgroundImageProp} />
       <CardActions className={classes.cardActionsContainer}>
         <div className={classes.actionIconContainer}>
-          <IconButton classes={{ root: classes.iconButton }} aria-label="add to favorites">
+          <IconButton classes={{ root: classes.iconButton }} aria-label="like">
             <FavoriteBorderIcon className={classes.actionIcons} />
           </IconButton>
-          <IconButton classes={{ root: classes.iconButton }} aria-label="share">
+          <IconButton classes={{ root: classes.iconButton }} aria-label="comment">
             <ChatBubbleOutlineIcon className={classes.actionIcons} />
+          </IconButton>
+          <IconButton classes={{ root: classes.iconButton }} aria-label="send">
+            <SendIcon className={classes.actionIcons} />
           </IconButton>
         </div>
         <div className={classes.learnMoreButtonContainer}>
@@ -214,12 +202,6 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
         </div>
       </CardActions>
       <CardContent>
-        <div className={classes.likesContainer}>
-          <div className={classes.numberOfLikes}>
-            <FavoriteIcon style={{ fontSize: '13px', color: '#1D447B' }} />
-            <div className={classes.likes}>2,589 likes</div>
-          </div>
-        </div>
         <Typography
           className={classes.adDescription}
           variant="body2"
@@ -228,7 +210,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
         >
           <strong style={{ fontSize: '13px', color: '#1D447B' }}>
             {currentCampaign.headline2}
-          </strong>{' '}
+          </strong>
           :{currentCampaign.ad_description}
         </Typography>
       </CardContent>
