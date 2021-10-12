@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     width: '88vw',
     marginBottom: '100px',
     paddingBottom: '50px',
-    height: '100vh',
     margin: '0 auto',
     overflow: 'auto',
   },
