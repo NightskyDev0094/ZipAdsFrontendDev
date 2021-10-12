@@ -23,6 +23,8 @@ const DEFAULT_IMAGE =
 
 const useStyles = makeStyles(() => ({
   root: {
+    boxShadow:
+      '--tw-drop-shadow: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06))',
     width: '340px',
     height: 'fit-content',
     padding: '5px 0',
@@ -33,9 +35,8 @@ const useStyles = makeStyles(() => ({
     },
   },
   image: {
-    height: '302px',
+    height: '200px',
     width: '100%',
-    // margin: '0',
     ['@media (max-width:450px)']: {
       height: '67.11111111111111vw',
       width: '69.33333333333334vw',
@@ -43,19 +44,16 @@ const useStyles = makeStyles(() => ({
   },
   header: {
     alignItems: 'center',
+    justifyContent: 'center',
     height: '50px',
-    maxWidth: '330px',
-    padding: '0 12px',
-    ['@media (max-width:450px)']: {
-      height: '11.11111111111111vw',
-      padding: '0 2.666666666666667vw',
-    },
+    verticalAlign: 'middle',
   },
   title: {
     marginBottom: '1px',
   },
   subTitle: {
     color: '#403f45',
+    marginBottom: 0,
   },
   icon: {
     width: '45px',
@@ -104,18 +102,18 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     width: '100%',
     justifyContent: 'flex-start',
-    paddingLeft: '8px',
-    ['@media (max-width:450px)']: {
-      paddingLeft: '1.7777777777777777vw',
-    },
+    // paddingLeft: '8px',
+    // ['@media (max-width:450px)']: {
+    //   paddingLeft: '1.7777777777777777vw',
+    // },
   },
   iconButton: {
-    padding: '10px',
+    padding: '5px 8px',
     '&:hover': {
       backgroundColor: 'white',
     },
     ['@media (max-width:450px)']: {
-      padding: '2.2222222222222223vw',
+      padding: '5px 3px',
     },
   },
   numberOfLikes: {
@@ -133,6 +131,7 @@ const useStyles = makeStyles(() => ({
   },
   adDescription: {
     padding: '5px',
+    minHeight: '10em',
   },
 }));
 
@@ -173,7 +172,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
         title={
           <>
             <h5 className={classes.title}>{currentCampaign.headline}</h5>
-            <h6 className={classes.subtitle}>Sponsored</h6>
+            <h6 className={classes.subTitle}>Sponsored</h6>
           </>
         }
       />
@@ -211,7 +210,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
           <strong style={{ fontSize: '13px', color: '#1D447B' }}>
             {currentCampaign.headline2}
           </strong>
-          :{currentCampaign.ad_description}
+          : {currentCampaign.ad_description}
         </Typography>
       </CardContent>
     </Card>
