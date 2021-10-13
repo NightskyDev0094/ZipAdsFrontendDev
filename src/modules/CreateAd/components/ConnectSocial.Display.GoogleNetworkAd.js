@@ -45,24 +45,9 @@ const useStyles = makeStyles(() => ({
       height: '12vw',
     },
   },
-  headerSubTitleContainer: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'space-between',
-    flexDirection: 'column',
-    height: '100%',
-    // border: '1px solid black',
-    width: '450px',
-    height: '100%',
-    maxHeight: '90px',
-    padding: '15px 20px',
-    ['@media (max-width:750px)']: {
-      padding: '2vw 2.666666666666667vw',
-    },
-  },
+
   icon: {
     width: '125px',
-    // border: '1px solid black',
     height: '100%',
     ['@media (max-width:750px)']: {
       width: '16.666666666666664vw',
@@ -70,12 +55,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   title: {
-    fontSize: '30px',
+    padding: '5px 0 5px 20px',
+    fontSize: '27px',
     fontWeight: 800,
-    whiteSpace: 'nowrap',
-    ['@media (max-width:750px)']: {
-      fontSize: '4vw',
-    },
+    whiteSpace: 'wrap', // TODO: review actual ad for character limit
   },
   subTitle: {
     fontWeight: 500,
@@ -212,10 +195,8 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
           aria-label="business avatar"
           className={classes.icon}
         ></Avatar>
-        <div className={classes.headerSubTitleContainer}>
-          <div data-test="headline" className={classes.title}>
-            {currentCampaign?.headline}
-          </div>
+        <div data-test="headline" className={classes.title}>
+          {currentCampaign?.headline}
         </div>
       </div>
       <img

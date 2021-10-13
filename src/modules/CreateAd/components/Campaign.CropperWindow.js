@@ -30,7 +30,6 @@ const adChipInfoStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   height: '40px',
-  margin: '15px 15px',
 };
 // Initialize Arrow Function component with hooks, and destructure state.
 const CropperWindow = ({
@@ -144,7 +143,6 @@ const CropperWindow = ({
             Crop your Image for {labelText}
           </label>
           <AdInfoChip adName={labelText} styles={adChipInfoStyle} />
-          {/* {{form.file}} */}
         </div>
         <div>
           <ReactCrop
