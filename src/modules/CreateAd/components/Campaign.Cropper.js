@@ -151,6 +151,99 @@ const Cropper = ({
       setInstagramPreviewUrl(previewUrl);
       setGADisplayPreviewUrl(previewUrl);
       setGASquareDisplayPreviewUrl(previewUrl);
+
+      console.log(previewUrl);
+      let img = new Image();
+
+      img.src = previewUrl;
+      img.onload = (event) => {
+        let loadedImage = event.currentTarget;
+        let w = loadedImage.width;
+        let h = loadedImage.height;
+
+        console.log(w, h);
+        console.log(fbFeedCrop.aspect);
+
+        if (w / fbFeedCrop.aspect < h) {
+          setFBFeedCrop({
+            unit: '%',
+            y: (((h - w / fbFeedCrop.aspect) / 2) * 100) / h,
+            width: 100,
+            aspect: 1.91 / 1,
+          });
+        } else {
+          setFBFeedCrop({
+            unit: '%',
+            x: (((w - h * fbFeedCrop.aspect) / 2) * 100) / w,
+            height: 100,
+            aspect: 1.91 / 1,
+          });
+        }
+
+        if (w / fbAudienceCrop.aspect < h) {
+          setFBAudienceCrop({
+            unit: '%',
+            y: (((h - w / fbAudienceCrop.aspect) / 2) * 100) / h,
+            width: 100,
+            aspect: 9 / 16,
+          });
+        } else {
+          setFBAudienceCrop({
+            unit: '%',
+            x: (((w - h * fbAudienceCrop.aspect) / 2) * 100) / w,
+            height: 100,
+            aspect: 9 / 16,
+          });
+        }
+
+        if (w / instagramCrop.aspect < h) {
+          setInstagramCrop({
+            unit: '%',
+            y: (((h - w / instagramCrop.aspect) / 2) * 100) / h,
+            width: 100,
+            aspect: 1 / 1,
+          });
+        } else {
+          setInstagramCrop({
+            unit: '%',
+            x: (((w - h * instagramCrop.aspect) / 2) * 100) / w,
+            height: 100,
+            aspect: 1 / 1,
+          });
+        }
+
+        if (w / gaSquareDisplayCrop.aspect < h) {
+          setGASquareDisplayCrop({
+            unit: '%',
+            y: (((h - w / gaSquareDisplayCrop.aspect) / 2) * 100) / h,
+            width: 100,
+            aspect: 1 / 1,
+          });
+        } else {
+          setGASquareDisplayCrop({
+            unit: '%',
+            x: (((w - h * gaSquareDisplayCrop.aspect) / 2) * 100) / w,
+            height: 100,
+            aspect: 1 / 1,
+          });
+        }
+
+        if (w / gaDisplayCrop.aspect < h) {
+          setGADisplayCrop({
+            unit: '%',
+            y: (((h - w / gaDisplayCrop.aspect) / 2) * 100) / h,
+            width: 100,
+            aspect: 1.91 / 1,
+          });
+        } else {
+          setGADisplayCrop({
+            unit: '%',
+            x: (((w - h * gaDisplayCrop.aspect) / 2) * 100) / w,
+            height: 100,
+            aspect: 1.91 / 1,
+          });
+        }
+      };
     });
 
     reader.readAsDataURL(file);
