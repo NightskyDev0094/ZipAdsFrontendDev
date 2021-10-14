@@ -165,9 +165,9 @@ const ObjectivePage = ({
   const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
 
   const nextClick = () => {
-    if (hasObjectiveStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasObjectiveStepBeenCompleted === 'STEP_COMPLETED') {
+    //   setIsResubmitModalOpen(true);
+    // } else {
       try {
         handleSubmitObjective({ objective });
         completeStep(6);
@@ -175,7 +175,7 @@ const ObjectivePage = ({
       } catch (e) {
         setError({ isError: true, message: e });
       }
-    }
+    // }
   };
 
   return (
