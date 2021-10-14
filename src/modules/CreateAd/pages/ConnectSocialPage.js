@@ -179,9 +179,11 @@ const ConnectSocialPage = ({
 
   // next button
   const goToNext = async () => {
-    if (hasConnectSocialStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasConnectSocialStepBeenCompleted === 'STEP_COMPLETED') {
+    //   console.log('1');
+    //   setIsResubmitModalOpen(true);
+    // } else {
+    //   console.log('2');
       try {
         const submitSocialsData = new FormData();
         if (googleToken) submitSocialsData.append('google_account_id', googleToken);
@@ -201,7 +203,7 @@ const ConnectSocialPage = ({
       } catch (e) {
         setError({ isError: true, message: e });
       }
-    }
+    // }
   };
 
   return (
@@ -231,9 +233,7 @@ const ConnectSocialPage = ({
                   Next
                 </Button>
               </div>
-              <h2 className={classes.connectSocialMenuTitle}>
-                Select Networks and Accounts
-              </h2>
+              <h2 className={classes.connectSocialMenuTitle}>Select Networks and Accounts</h2>
               <div className={classes.pageBody}>
                 <div className={classes.socialFormContainer}>
                   <ConnectSocialForm
@@ -252,6 +252,5 @@ const ConnectSocialPage = ({
     </>
   );
 };
-
 
 export default ConnectSocialPage;
