@@ -237,7 +237,7 @@ const ObjectivePage = ({
                     <FormControlLabel
                       value="Store Traffic"
                       control={<Radio />}
-                      label="Increase customers visiting at my businesses physical location"
+                      label="Business’s physical location"
                     />
                     <FormControlLabel
                       value="Traffic"
