@@ -26,21 +26,15 @@ const useStyles = makeStyles(() => ({
     boxShadow:
       '--tw-drop-shadow: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06))',
     width: '340px',
+    // height:'680px',
     height: 'fit-content',
     padding: '5px 0',
     margin: '0 auto',
-    ['@media (max-width:450px)']: {
-      width: '75.55555555555556vw',
-      padding: '1.1111111111111112vw',
-    },
   },
   image: {
-    height: '200px',
     width: '100%',
-    ['@media (max-width:450px)']: {
-      height: '67.11111111111111vw',
-      width: '69.33333333333334vw',
-    },
+    height: 'auto',
+    minHeight: '340px',
   },
   header: {
     alignItems: 'center',

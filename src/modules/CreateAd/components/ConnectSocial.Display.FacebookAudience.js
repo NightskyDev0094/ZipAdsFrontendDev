@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '400px',
     maxWidth: '400px',
-    // minHeight: '500px',
     height: 'fit-content',
     margin: '0 auto',
     ['@media (max-width:500px)']: {
@@ -22,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   image: {
-    maxWidth: '400px',
-    maxHeight: '300px',
     zIndex: 0,
     position: 'relative',
     width: '100%',
+    height: 'auto',
+    maxHeight: '400px',
     ['@media (max-width:500px)']: {
       maxWidth: '80vw',
     },

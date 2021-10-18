@@ -12,12 +12,13 @@ class BlueTecLandingFooter extends React.Component {
           <div className="row">
             <div className="col-lg-4">
               <div className="widget">
-                <a href="index.html">
+                <Link to="/">
                   <img alt id="logo" src={ZipAdsLogo} />
-                </a>
+                </Link>
                 <div className="spacer-20" />
                 <p>
-                Easily create digital ads across multiple platforms in just 3 simple steps, in just a few minutes and with no technical knowledge whatsoever!
+                  Easily create digital ads across multiple platforms in just 3 simple steps, in
+                  just a few minutes and with no technical knowledge whatsoever!
                 </p>
               </div>
             </div>
@@ -103,8 +104,7 @@ class BlueTecLandingFooter extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-6 sm-text-center mb-sm-30">
-            </div>
+            <div className="col-md-6 sm-text-center mb-sm-30"></div>
             <div className="col-md-6 text-md-right text-sm-left">
               <div className="social-icons">
                 <a href="#">

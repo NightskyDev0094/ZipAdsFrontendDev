@@ -21,19 +21,16 @@ export default function BlueTecHeader() {
             <div className="col-md-12">
               <div className="d-flex justify-content-between">
                 <div className="align-self-center header-col-left">
-                  {}
                   <div id="logo">
-                    <a href="index.html">
+                    <Link href="index.html">
                       <img alt="true" src={ZipAdsLogo} />
-                    </a>
+                    </Link>
                   </div>
-                  {}
                 </div>
                 <div className="align-self-center ml-auto header-col-mid">
-                  {}
                   <ul id="mainmenu">
                     <li style={{ fontFamily: 'SilkaLight' }}>
-                      <a href="/">Home</a>
+                      <Link href="/">Home</Link>
                     </li>
                     <li>
                       <Link to="/faq">About</Link>
@@ -47,9 +44,9 @@ export default function BlueTecHeader() {
                   </ul>
                 </div>
                 <div id="start-now-button" className="align-self-center ml-auto header-col-right">
-                  <a className="btn-custom" href="/signup/">
+                  <Link className="btn-custom" href="/signup/">
                     <i className="fa fa-arrow-down" /> Start Now
-                  </a>
+                  </Link>
                   <span id="menu-btn" />
                 </div>
                 <div className="clearfix" />

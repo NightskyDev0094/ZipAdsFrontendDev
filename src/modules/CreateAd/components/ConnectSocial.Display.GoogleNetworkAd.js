@@ -3,15 +3,12 @@ import { makeStyles, Paper, Button, Avatar } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import PropTypes from 'prop-types';
 
-import Person1 from '../../../BlueTecUIKit/images/people/3.jpg';
-import Person2 from '../../../BlueTecUIKit/images/people/4.jpg';
-
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: '450px',
+    width: '600px',
     height: 'fit-content',
     padding: '15px 15px',
     position: 'relative',

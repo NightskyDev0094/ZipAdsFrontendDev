@@ -96,7 +96,6 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
 
   return (
     <div id="wrapper">
-      {}
       <header className="header-light transparent scroll-light">
         <div className="container">
           <div style={{ height: '90px' }} className="row">
@@ -105,14 +104,13 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                 <div className="align-self-center header-col-left">
                   {}
                   <div id="logo">
-                    <a href="index.html">
+                    <Link to="/">
                       <img alt src={ZipAdsLogo} />
-                    </a>
+                    </Link>
                   </div>
                   {}
                 </div>
                 <div className="align-self-center ml-auto header-col-mid">
-                  {}
                   <ul id="mainmenu">
                     <li>
                       <div
@@ -176,7 +174,6 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         <MenuItem
                           onClick={async () => {
                             completeStep(8);
-                            // handleClose();
                           }}
                         >
                           <Link className={classes.innerLink} to="/create/connect-social">
@@ -250,7 +247,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
                           <Link className={classes.innerLink} to="/faq">
-                            FAQ 
+                            FAQ
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
