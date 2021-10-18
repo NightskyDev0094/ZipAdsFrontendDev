@@ -63,6 +63,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
     await deleteCampaign(campaignModalInfo?.id);
     setModalOpen(false);
   });
+
   const getImageFromUrl = async (url, imageType, formData) => {
     await fetch(`${url}`)
       .then((res) => res.blob())
@@ -239,7 +240,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
     },
     {
       title: (
-        <Tooltip placement="bottom" title="This is the headline of your campaign.">
+        <Tooltip placement="bottom" title="This is the tagline of your campaign.">
           Tagline
         </Tooltip>
       ),
@@ -281,6 +282,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
 
   return (
     <Box>
+      <button style={{ padding: '2rem' }}>Create Campaign</button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

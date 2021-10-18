@@ -98,7 +98,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
     <div id="wrapper">
       <header className="header-light transparent scroll-light">
         <div className="container">
-          <div style={{ height: '90px' }} className="row">
+          <div style={{ height: '100%' }} className="row">
             <div className="col-md-12">
               <div className="d-flex justify-content-between">
                 <div className="align-self-center header-col-left">
