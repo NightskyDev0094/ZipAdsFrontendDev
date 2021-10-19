@@ -72,7 +72,8 @@ const AdCarouselStyles = makeStyles(() => ({
     textAlign: 'center',
     width: '90px',
     padding: '2px 0px',
-    boxShadow: '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)',
+    boxShadow:
+      '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)',
     '&:hover': {
       cursor: 'pointer',
     },
@@ -88,7 +89,9 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
     <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
       <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
         <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}>
-          <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>Previous</p>
+          <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>
+            Previous
+          </p>
         </div>
       </div>
       <div style={{ ...styles?.previewsContainer }} className={classes.previewsContainer}>
@@ -97,8 +100,22 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
       </div>
       <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
         <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}>
-          <p className={classes.outerIcons} onClick={() => changeAdSlide()}>Next</p>
+          <p className={classes.outerIcons} onClick={() => changeAdSlide()}>
+            Next
+          </p>
         </div>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          backgroundSize: 'cover',
+          bottom: '0',
+          padding: '30px 70px',
+          width: '100%',
+          textAlign: 'center',
+        }}
+      >
+        User accounts and social interactions are sample data only. Ad performance will vary.
       </div>
     </Paper>
   );
