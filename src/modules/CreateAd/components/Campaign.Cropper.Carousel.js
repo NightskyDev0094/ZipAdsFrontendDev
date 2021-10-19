@@ -434,7 +434,6 @@ const CropperCarousel = ({
           </Carousel>
         )}
       </div>
-      )
     </div>
   );
 };

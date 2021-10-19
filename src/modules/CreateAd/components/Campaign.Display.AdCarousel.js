@@ -35,9 +35,9 @@ const AdCarouselStyles = makeStyles(() => ({
   },
   leftPanel: {
     height: '100%',
-    position: 'relative',
-    top: '25%',
-    left: '10px',
+    position: 'absolute',
+    top: '50%',
+    left: '-45px',
     zIndex: 2,
     ['@media (max-width:1000px)']: {
       position: 'absolute',
@@ -47,9 +47,9 @@ const AdCarouselStyles = makeStyles(() => ({
   },
   rightPanel: {
     height: '100%',
-    position: 'relative',
-    top: '25%',
-    right: '10px',
+    position: 'absolute',
+    top: '50%',
+    right: '-45px',
     zIndex: 2,
     ['@media (max-width:1000px)']: {
       position: 'absolute',
@@ -72,6 +72,7 @@ const AdCarouselStyles = makeStyles(() => ({
     textAlign: 'center',
     width: '90px',
     padding: '2px 0px',
+    boxShadow: '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)',
     '&:hover': {
       cursor: 'pointer',
     },
