@@ -38,9 +38,10 @@ const AdCarouselStyles = makeStyles(() => ({
     position: 'relative',
     top: '25%',
     left: '10px',
+    zIndex: 2,
     ['@media (max-width:1000px)']: {
       position: 'absolute',
-      top: '50px',
+      top: '100px',
       left: '30px',
     },
   },
@@ -49,9 +50,10 @@ const AdCarouselStyles = makeStyles(() => ({
     position: 'relative',
     top: '25%',
     right: '10px',
+    zIndex: 2,
     ['@media (max-width:1000px)']: {
       position: 'absolute',
-      top: '50px',
+      top: '100px',
       right: '30px',
     },
   },
@@ -62,38 +64,30 @@ const AdCarouselStyles = makeStyles(() => ({
     width: '100%',
   },
   outerIcons: {
-    fontSize: '40px',
-    border: '2px solid black',
-    borderRadius: '10px',
-    padding: '8px',
-    height: '50px',
-    width: '50px',
+    fontSize: '16px',
+    color: 'white',
+    backgroundColor: 'blue',
+    fontWeight: '600',
+    borderRadius: '4px',
+    textAlign: 'center',
+    width: '90px',
+    padding: '2px 0px',
     '&:hover': {
       cursor: 'pointer',
     },
-    ['@media (max-width:500px)']: {
-      border: 'none',
-    },
+    // ['@media (max-width:500px)']: {
+    //   border: 'none',
+    // },
   },
 }));
 
-const AdCarousel = ({
-  styles,
-  adSlideNumber,
-  changeAdSlide,
-  reverseAdSlide,
-  ...props
-}) => {
+const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...props }) => {
   const classes = AdCarouselStyles();
   return (
     <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
       <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
         <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}>
-          <ArrowBackIosIcon
-            style={{ ...styles?.outerIcons }}
-            className={classes.outerIcons}
-            onClick={() => reverseAdSlide()}
-          />
+          <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>Previous</p>
         </div>
       </div>
       <div style={{ ...styles?.previewsContainer }} className={classes.previewsContainer}>
@@ -102,11 +96,7 @@ const AdCarousel = ({
       </div>
       <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
         <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}>
-          <ArrowForwardIosIcon
-            style={{ ...styles?.outerIcons }}
-            className={classes.outerIcons}
-            onClick={() => changeAdSlide()}
-          />
+          <p className={classes.outerIcons} onClick={() => changeAdSlide()}>Next</p>
         </div>
       </div>
     </Paper>
