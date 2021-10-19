@@ -10,19 +10,17 @@ import CropperCarousel from './Campaign.Cropper.Carousel';
 const OuterCarouselStyles = makeStyles(() => ({
   container: {
     width: '100%',
-    minWidth: '600px',
     display: 'flex',
-    minHeight: '600px',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   leftPanel: {
     height: '100%',
     position: 'relative',
     top: '25%',
     left: '10px',
-    width: '49%'
+    width: '49%',
   },
   rightPanel: {
     height: '100%',
@@ -40,12 +38,14 @@ const OuterCarouselStyles = makeStyles(() => ({
     width: '100%',
   },
   outerIcons: {
-    fontSize: '40px',
-    border: '2px solid black',
-    borderRadius: '10px',
-    padding: '8px',
-    height: '50px',
-    width: '50px',
+    fontSize: '16px',
+    color: 'white',
+    backgroundColor: 'blue',
+    fontWeight: '600',
+    borderRadius: '4px',
+    textAlign: 'center',
+    width: '90px',
+    padding: '2px 0px',
     '&:hover': {
       cursor: 'pointer',
     },
@@ -53,8 +53,9 @@ const OuterCarouselStyles = makeStyles(() => ({
   panelContainer: {
     width: '100%',
     display: 'flex',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+    marginTop: '10px',
+  },
 }));
 
 export const OuterCarouselWrapper = ({
@@ -70,20 +71,16 @@ export const OuterCarouselWrapper = ({
       <div styles={{ ...styles?.panelContainer }} className={classes.panelContainer}>
         <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
           <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}>
-            <ArrowBackIosIcon
-              style={{ ...styles?.outerIcons }}
-              className={classes.outerIcons}
-              onClick={() => reverseAdSlide()}
-            />
+            <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>
+              Previous
+            </p>
           </div>
         </div>
         <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
           <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}>
-            <ArrowForwardIosIcon
-              style={{ ...styles?.outerIcons }}
-              className={classes.outerIcons}
-              onClick={() => changeAdSlide()}
-            />
+            <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>
+              Previous
+            </p>
           </div>
         </div>
       </div>

@@ -11,6 +11,10 @@ import CustomImg from './Campaign.Cropper.CustomImg';
 const useStyles = makeStyles((theme) => ({
   //should break at 750
   cropperContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+
     '@media (max-width:500px)': {
       display: 'flex',
       textAlign: 'center',
@@ -20,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
       boxShadow:
         '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
+    },
+  },
+  cropperDescription: {
+    fontSize: '23px',
+    textDecoration: 'underline',
+    padding: '10px 10px',
+    textAlign: 'center',
+    width: '100%',
+    '@media (max-width: 1000px)': {
+      fontSize: '16px',
     },
   },
 }));
@@ -131,16 +145,7 @@ const CropperWindow = ({
       {/* // Cropper  */}
       <div className={classes.cropperContainer}>
         <div className="input-field">
-          <label
-            style={{
-              fontSize: '23px',
-              textDecoration: 'underline',
-              padding: '10px 10px',
-              textAlign: 'center',
-              width: '100%',
-            }}
-            htmlFor="id_file"
-          >
+          <label className={classes.cropperDescription} htmlFor="id_file">
             Crop your Image for {labelText}
           </label>
           <AdInfoChip adName={labelText} styles={adChipInfoStyle} />
