@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pageHeader: {
     textAlign: 'center',
-    marginTop: '50px',
+    marginTop: '3em',
   },
   paper: {
     width: '88vw',
@@ -68,19 +68,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   nextButtonContainer: {
-    marginBottom: '60px',
+    marginBottom: '2em',
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     paddingRight: '60px',
-    paddingTop: '30px',
+    paddingLeft: '60px',
+    paddingTop: '20px',
     ['@media (max-width:1000px)']: {
       width: '100%',
       display: 'flex',
       justifyContent: 'space-evenly',
       paddingRight: 0,
+      paddingLeft: 0,
     },
-    paddingLeft: '60px',
   },
   progressBarTypography: {
     textAlign: 'end',

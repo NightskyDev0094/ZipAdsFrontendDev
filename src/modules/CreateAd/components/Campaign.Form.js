@@ -56,30 +56,18 @@ const isValidHttpUrl = (string) => {
 const useStyles = makeStyles((theme) => ({
   iconContainer: {},
   formContainer: {
-    overflowY: 'scroll',
     padding: '0 50px',
-    height: '1200px',
     width: '40%',
-    paddingBottom: '200px',
-    ['@media (max-width:1550px)']: {
-      width: '80%',
-      height: 'fit-content',
-      maxHeight: '1200px',
+    paddingBottom: '4em',
+    ['@media (max-width:500px)']: {
+      padding: 0,
     },
     ['@media (max-width:1000px)']: {
       width: '100%',
     },
-    // '@media (max-width:500px)': {
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   alignItems: 'center',
-    // },
   },
   input: {
     marginTop: '1.5rem',
-    '@media (max-width:500px)': {
-      width: '80%',
-    },
   },
   inputDescription: {
     fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
@@ -193,22 +181,6 @@ const FormContent1 = ({
     imgOption,
     setImgOption,
   });
-  // const [formInfo, setFormInfo] = useState({
-  //   campaign_name: '',
-  //   headline: '',
-  //   headline2: '',
-  //   ad_description: '',
-  //   cta: 'Learn More',
-  //   cta2: 'Get Offer',
-  //   ad_link: 'https://',
-  //   file_url: DEFAULT_IMAGE,
-  //   fb_feed_img: '',
-  //   instagram_img: '',
-  //   fb_audience_img: '',
-  //   ga_display_img: '',
-  //   ga_square_display_img: '',
-  //   secondary_image_url: BEER_LOGO,
-  // });
   const [previewUrl, setPreviewUrl] = useState();
   const [fbFeedImg, setFBFeedImg] = useState();
   const [fbAudienceImg, setFBAudienceImg] = useState();
@@ -216,42 +188,14 @@ const FormContent1 = ({
   const [gaDisplayImg, setGADisplayImg] = useState();
   const [gaSquareDisplayImg, setGASquareDisplayImg] = useState();
 
-  // useEffect(() => {
-  //   // Get info from server to populate defaults when component loads
-  //   setFormInfo({
-  //     campaign_name: '',
-  //     headline: '',
-  //     headline2: '',
-  //     ad_description: '',
-  //     cta: 'Learn More',
-  //     cta2: 'Get Offer',
-  //     ad_link: urlVal,
-  //     file_url: DEFAULT_IMAGE,
-  //     fb_feed_img: '',
-  //     instagram_img: '',
-  //     fb_audience_img: '',
-  //     ga_display_img: '',
-  //     ga_square_display_img: '',
-  //     secondary_image_url: BEER_LOGO,
-  //   });
-  //   console.log('RUNNING', urlVal);
-  //   // eslint-disable-next-line
-  // }, [urlVal]);
-  // useEffect(() => {
-  //   // Get info from server to populate defaults when component loads
-  //   // eslint-disable-next-line
-  // }, [formInfo]);
-
   const getRandom = (term) => {
     const collections = {
       restaurants:
         'https://images.unsplash.com/photo-1541795795328-f073b763494e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-      pets:
-        'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+      pets: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
       sports:
         'https://images.unsplash.com/photo-1560012057-4372e14c5085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      bar:
-        'https://images.unsplash.com/photo-1505104805083-91fe4b9e14df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+      bar: 'https://images.unsplash.com/photo-1505104805083-91fe4b9e14df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
       clothing:
         'https://images.unsplash.com/photo-1524275461690-a79bfeaf1f3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
       coffee:

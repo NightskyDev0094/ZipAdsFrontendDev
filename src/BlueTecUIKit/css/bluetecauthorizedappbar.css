@@ -15,7 +15,7 @@ header{
     margin: 25px auto;
     float: none;
     /* padding-right: 20px; */
-    height: 70px;
+    height: 100%;
     /* border: 1px solid black; */
     width: 100%;
     padding: 0;
@@ -42,23 +42,16 @@ header{
     top: -50px;
 }
 
-#mainmenu{
+/* #mainmenu{
     font-size: 25px;
     line-height: 60px;
-}
-
-#mainmenu li{
-    margin-left: 20px;
-}
-
-/* #header #start-now-button{
-    transform: translateY(15px);
 } */
+
 
 @media screen and (max-width: 1000px) {
     header{
-        /* background-color: blue !important; */
-        height: 600px !important;
+        height: 100% !important;
+        min-height: 400px !important;
         position: relative !important;
         margin-bottom: 30px;
         z-index: 1;

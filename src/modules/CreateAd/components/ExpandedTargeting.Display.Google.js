@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 const formatGeoTargetingData = (geoArray) =>
   geoArray.map(({ name, country_code, target_type, reach }) => ({
-    name: name ?? 'Location not Avaialable',
+    name: name ?? 'Location not Available',
     country: country_code ?? 'Country not Available',
     reach: reach ?? 'Reach not Available',
     target_type: target_type ?? 'Type not Available',

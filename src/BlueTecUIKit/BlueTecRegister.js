@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { SERVER_URL } from '../environmentVariables';
 import { TextField } from '@material-ui/core';
 import SubHeaderBackgroundImage from './images/background/5.png';
-import RegisterSectionImage from './images/background/3.png'
+import RegisterSectionImage from './images/background/3.png';
 
 import './css/colors/scheme-02.css';
 import './css/coloring.css';
@@ -21,8 +21,10 @@ import './css/blueteclanding.css';
 import './css/colors/scheme-01.css';
 
 import './css/blueteclogin.css';
+import { bool } from 'prop-types';
 
 const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirectAfterSignUp }) => {
+  const INPUT_MAX_LENGTH = 80;
   const [formState, setFormState] = React.useState({
     successMessage: 'You have been registered, welcome to EzAd!',
     errorMessage: '',
@@ -94,7 +96,6 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
   return (
     <div className="no-bottom no-top" id="content">
       <div id="top" />
-      {}
       <section id="subheader" data-bgimage={`${SubHeaderBackgroundImage} bottom`}>
         <div className="center-y relative text-center" data-scroll-speed={4}>
           <div className="container">
@@ -139,12 +140,13 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                       <TextField
                         type="text"
                         name="name"
-                        style={{margin: '10px 0'}}
+                        style={{ margin: '10px 0' }}
                         id="name"
                         required
                         variant="standard"
                         value={formState.fields.username}
                         InputProps={{ disableUnderline: true }}
+                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
                         onChange={(e) => {
                           if (e.target.value.includes(' ')) return;
                           setFormState({
@@ -167,10 +169,11 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                         type="text"
                         name="email"
                         id="email"
-                        style={{margin: '10px 0'}}
+                        style={{ margin: '10px 0' }}
                         required
                         className="form-control"
                         InputProps={{ disableUnderline: true }}
+                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
                         value={formState.fields.email}
                         onChange={(e) => {
                           if (e.target.value.includes(' ')) return;
@@ -192,10 +195,11 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                         type="password"
                         name="password"
                         id="password"
-                        style={{margin: '10px 0'}}
+                        style={{ margin: '10px 0' }}
                         required
                         className="form-control"
                         InputProps={{ disableUnderline: true }}
+                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
                         value={formState.fields.password}
                         onChange={(e) => {
                           if (e.target.value.includes(' ')) return;
@@ -218,10 +222,11 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                         type="password"
                         name="re-password"
                         id="re-password"
-                        style={{margin: '10px 0'}}
+                        style={{ margin: '10px 0' }}
                         required
                         className="form-control"
                         InputProps={{ disableUnderline: true }}
+                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
                         value={formState.fields.confirmedPassword}
                         onChange={(e) => {
                           if (e.target.value.includes(' ')) return;
@@ -304,5 +309,12 @@ const mapDispatchToProps = (dispatch) => ({
       payload: data,
     }),
 });
+
+// BlueTecRegister.propTypes = {
+//   handleLogin: func,
+//   handleFbSignup: func,
+//   isAuthenticated: bool,
+//   redirectAfterSignUp: bool,
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlueTecRegister);
