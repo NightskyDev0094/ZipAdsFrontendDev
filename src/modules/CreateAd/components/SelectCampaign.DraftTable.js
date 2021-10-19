@@ -82,6 +82,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
         return jpgFile;
       });
   };
+
   const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType) => {
     // console.log('DATA TEST:::', data);
     const search = () => {
@@ -136,6 +137,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
     // console.log('updateSocials Running', socialsArray);
     updateSocials(socialsArray);
   };
+
   const submitDraftData = (selected, formData, campaignType) => {
     if (campaignType === 'Draft') {
       formData.append('campaign_name', selected.campaign_name);
@@ -181,11 +183,15 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       addCampaign(formData);
       setSocialsToPost(selected);
     } else if (campaignType === 'New') {
-      const formData = new FormData();
-      formData.append('campaign_name', 'New Campaign');
-      addCampaign(formData);
+      createNewCampaign();
     }
     history.push('create/connect-social');
+  };
+
+  const createNewCampaign = () => {
+    const formData = new FormData();
+    formData.append('campaign_name', 'New Campaign');
+    addCampaign(formData);
   };
 
   /**
@@ -282,7 +288,9 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
 
   return (
     <Box>
-      <button style={{ padding: '2rem' }}>Create Campaign</button>
+      <button onClick={createNewCampaign()} style={{ padding: '2rem' }}>
+        Create Campaign
+      </button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
