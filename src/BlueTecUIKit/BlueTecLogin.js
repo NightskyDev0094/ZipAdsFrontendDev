@@ -43,7 +43,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
       .post(`${SERVER_URL}/api/auth/login`, data)
       .then((res) => {
         localStorage.setItem('token', res.data.token);
-        history.push('/select-campaign');
+        history.push('/dashboard');
         loginSuccessAndRedirect(res.data);
       })
       .catch((err) => {
