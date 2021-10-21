@@ -261,7 +261,7 @@ const FormContent1 = ({
         className={classes.input}
         defaultValue={currentCampaign?.campaign || ''}
       />
-      <div className={classes.inputDescription}>The name of your campaign</div>
+      <div className={classes.inputDescription}>The name of your campaign (seen only by you)</div>
       <Input
         placeholder="Headline"
         className={classes.input}
@@ -307,7 +307,7 @@ const FormContent1 = ({
         rowsMax={3}
       />
       <div className={classes.inputDescription}>
-        Text why people should engage with your business (Does not appear for ad 1)
+        One or two sentences describing your business and why people should engage with your business.
       </div>
       <Input
         placeholder="Web address"
@@ -321,7 +321,7 @@ const FormContent1 = ({
         defaultValue=""
       />
       <div className={classes.inputDescription}>
-        The Url your ad will link to. Enter in the format: https://example.com/
+        The URL your ad will link to. Enter in the format: https://example.com/
       </div>
 
       <Select
@@ -381,7 +381,7 @@ const FormContent1 = ({
         <MenuItem value="Watch More">Watch More</MenuItem>
       </Select>
       <div className={classes.inputDescription}>
-        Alternate Text that will appear on a second link
+        Alternate text that will appear on a second clickable button
       </div>
       <Box style={{ padding: '40px 0px' }}>
         <InputMainLabel>How do you want to select an image?</InputMainLabel>

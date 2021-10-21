@@ -202,9 +202,9 @@ const TargetingPage = ({
                     <FormControlLabel
                       value="drive"
                       control={<Radio />}
-                      label="A drive away (15 miles)"
+                      label="A Drive Away (15 miles)"
                     />
-                    <FormControlLabel value="nationwide" control={<Radio />} label="nationwide" />
+                    <FormControlLabel value="nationwide" control={<Radio />} label="Nationwide" />
                   </RadioGroup>
                 </Box>
                 {distance === 'hyper-local' && (

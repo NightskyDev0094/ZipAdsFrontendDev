@@ -155,7 +155,6 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                     )}
                     <div className="clearfix" />
                     <div className="spacer-single" />
-                    {}
                     {
                       // <ul className="list s3">
                       //   <li>Or login with:</li>
