@@ -156,6 +156,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly',
     padding: '10px 0',
   },
+  activeBorder: {
+    border: '1px solid lime !important',
+    borderRadius: '6px',
+  },
 }));
 
 const BudgetPage = ({
@@ -193,6 +197,7 @@ const BudgetPage = ({
     message: 'An Error has occured',
     isError: false,
   });
+  const [isActiveBorder, setIsActiveBorder] = useState(false);
 
   const nextClick = () => {
     if (hasBudgetStepBeenCompleted === 'STEP_COMPLETED') {
@@ -206,6 +211,14 @@ const BudgetPage = ({
         setError({ isError: true, message: e });
       }
     }
+  };
+
+  const setOption = (value) => {
+    setIsActiveBorder(true);
+    setTimeout(() => {
+      setIsActiveBorder(false);
+    }, 1000);
+    setBudgetOption(value);
   };
 
   return (
@@ -265,6 +278,8 @@ const BudgetPage = ({
                               onChange={(e) => setTotalBudget(e.target.value)}
                               value={totalBudget}
                               defaultValue="5.00"
+                              className={isActiveBorder ? classes.activeBorder : ''}
+                              style={{ border: '1px solid transparent', transition: '0.7s' }}
                             />
                             <InputSmallLabel>
                               What is the max amount you want to spend on ads daily?
@@ -278,6 +293,8 @@ const BudgetPage = ({
                               onChange={(e) => setAllCampaignLength(e.target.value)}
                               value={allCampaignLength}
                               defaultValue="7"
+                              className={isActiveBorder ? classes.activeBorder : ''}
+                              style={{ border: '1px solid transparent', transition: '0.7s' }}
                             />
                             <InputSmallLabel>
                               How long should your Ads run (in days)
@@ -309,6 +326,8 @@ const BudgetPage = ({
                                   onChange={(e) => setGoogleSearchBudget(e.target.value)}
                                   value={google_search_budget}
                                   defaultValue="5.00"
+                                  className={isActiveBorder ? classes.activeBorder : ''}
+                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Google Ads
@@ -334,6 +353,8 @@ const BudgetPage = ({
                                   onChange={(e) => setGoogleDisplayBudget(e.target.value)}
                                   value={google_display_budget}
                                   defaultValue="5.00"
+                                  className={isActiveBorder ? classes.activeBorder : ''}
+                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Google Ads
@@ -357,6 +378,8 @@ const BudgetPage = ({
                                 onChange={(e) => setGoogleCPC(e.target.value)}
                                 value={google_cpc}
                                 defaultValue="1.00"
+                                className={isActiveBorder ? classes.activeBorder : ''}
+                                style={{ border: '1px solid transparent', transition: '0.7s' }}
                               />
                               <InputSmallLabel>
                                 Whats the max amount you want to spend on Google Ads
@@ -380,6 +403,8 @@ const BudgetPage = ({
                                 onChange={(e) => setGACampaignLength(e.target.value)}
                                 value={ga_campaign_length}
                                 defaultValue="7"
+                                className={isActiveBorder ? classes.activeBorder : ''}
+                                style={{ border: '1px solid transparent', transition: '0.7s' }}
                               />
                               <InputSmallLabel>
                                 How long should your Google Ad run (in days)
@@ -408,6 +433,8 @@ const BudgetPage = ({
                                   onChange={(e) => setFacebookFeedBudget(e.target.value)}
                                   value={facebook_feed_budget}
                                   defaultValue="5.00"
+                                  className={isActiveBorder ? classes.activeBorder : ''}
+                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Facebook Ads
@@ -433,6 +460,8 @@ const BudgetPage = ({
                                   onChange={(e) => setFacebookAudienceBudget(e.target.value)}
                                   value={facebook_audience_budget}
                                   defaultValue="5.00"
+                                  className={isActiveBorder ? classes.activeBorder : ''}
+                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Facebook Ads
@@ -458,6 +487,8 @@ const BudgetPage = ({
                                   onChange={(e) => setInstagramBudget(e.target.value)}
                                   value={instagram_budget}
                                   defaultValue="5.00"
+                                  className={isActiveBorder ? classes.activeBorder : ''}
+                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Facebook Ads
@@ -482,6 +513,8 @@ const BudgetPage = ({
                                 onChange={(e) => setFBCampaignLength(e.target.value)}
                                 value={fb_campaign_length}
                                 defaultValue="7"
+                                className={isActiveBorder ? classes.activeBorder : ''}
+                                style={{ border: '1px solid transparent', transition: '0.7s' }}
                               />
                               <InputSmallLabel>
                                 How long should your Facebook Ad run (in days)
@@ -498,7 +531,7 @@ const BudgetPage = ({
                       aria-label="distance"
                       name="distance"
                       value={budgetOption}
-                      onChange={(e) => setBudgetOption(e.target.value)}
+                      onChange={(e) => setOption(e.target.value)}
                     >
                       <FormControlLabel value="automatic" control={<Radio />} label="Automatic" />
                       <FormControlLabel
