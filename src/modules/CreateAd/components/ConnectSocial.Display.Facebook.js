@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
   facebookText: {
     position: 'absolute',
-    paddingLeft: '1rem',
-    bottom: 2,
+    minHeight: '2.5rem',
+    padding: '0 1em 0 1em',
+    bottom: 1,
     zIndex: 1,
     backgroundColor: 'white',
     width: '380px',
