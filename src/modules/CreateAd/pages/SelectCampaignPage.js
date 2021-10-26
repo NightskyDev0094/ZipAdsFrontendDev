@@ -18,14 +18,22 @@ export const SelectCampaignPage = ({
   }, []);
 
   const [recommendedTemplate, setRecommendedTemplate] = useState(null);
+  const industries = [
+    'BEAUTY',
+    'CONSUMER PRODUCTS AND SERVICES',
+    'FINANCE',
+    'FITNESS',
+    'HEALTH',
+    'PERSONAL FINANCE',
+    'PET',
+    'REAL ESTATE',
+    'RESTAURANT',
+    'TRAVEL AND LODGING',
+  ];
 
   useEffect(() => {
-    for (let i = 1; i <= 10; i++) {
-      if (businessInfo[businessInfo.length - 1].industry === 'industry' + i) {
-        setRecommendedTemplate(props.templates[i]);
-        break;
-      }
-    }
+    let industry = businessInfo[businessInfo.length - 1].industry;
+    setRecommendedTemplate(props.templates[industries.indexOf(industry)]);
   }, [businessInfo]);
 
   return (

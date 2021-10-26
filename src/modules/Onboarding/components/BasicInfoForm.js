@@ -126,16 +126,16 @@ const BasicInfoForm = ({
               <MenuItem value="Sign Up">Sign U</MenuItem>
               <MenuItem value="Subscribe">Subscribe</MenuItem>
               <MenuItem value="Watch More">Watch More</MenuItem> */}
-              <MenuItem value="industry1">industry1</MenuItem>
-              <MenuItem value="industry2">industry2</MenuItem>
-              <MenuItem value="industry3">industry3</MenuItem>
-              <MenuItem value="industry4">industry4</MenuItem>
-              <MenuItem value="industry5">industry5</MenuItem>
-              <MenuItem value="industry6">industry6</MenuItem>
-              <MenuItem value="industry7">industry7</MenuItem>
-              <MenuItem value="industry8">industry8</MenuItem>
-              <MenuItem value="industry9">industry9</MenuItem>
-              <MenuItem value="industry10">industry10</MenuItem>
+              <MenuItem value="BEAUTY">BEAUTY</MenuItem>
+              <MenuItem value="CONSUMER PRODUCTS AND SERVICES">CONSUMER PRODUCTS AND SERVICES</MenuItem>
+              <MenuItem value="FINANCE">FINANCE</MenuItem>
+              <MenuItem value="FITNESS">FITNESS</MenuItem>
+              <MenuItem value="HEALTH">HEALTH</MenuItem>
+              <MenuItem value="PERSONAL">PERSONAL</MenuItem>
+              <MenuItem value="PET">PET</MenuItem>
+              <MenuItem value="REAL ESTATE">REAL ESTATE</MenuItem>
+              <MenuItem value="RESTAURANT">RESTAURANT</MenuItem>
+              <MenuItem value="TRAVEL AND LODGING">TRAVEL AND LODGING</MenuItem>
             </Select>
             <span className={classes.label}>Your business industry</span>
           </div>
