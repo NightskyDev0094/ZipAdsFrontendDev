@@ -135,6 +135,7 @@ const BasicInfoForm = ({
               <MenuItem value="industry7">industry7</MenuItem>
               <MenuItem value="industry8">industry8</MenuItem>
               <MenuItem value="industry9">industry9</MenuItem>
+              <MenuItem value="industry10">industry10</MenuItem>
             </Select>
             <span className={classes.label}>Your business industry</span>
           </div>

@@ -20,7 +20,7 @@ export const SelectCampaignPage = ({
   const [recommendedTemplate, setRecommendedTemplate] = useState(null);
 
   useEffect(() => {
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i <= 10; i++) {
       if (businessInfo[businessInfo.length - 1].industry === 'industry' + i) {
         setRecommendedTemplate(props.templates[i]);
         break;
