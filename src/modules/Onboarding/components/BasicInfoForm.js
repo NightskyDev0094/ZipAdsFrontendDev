@@ -108,7 +108,7 @@ const BasicInfoForm = ({
               className={classes.input}
               onChange={(e) => setIndustry(e.target.value)}
             >
-              <MenuItem value="Blank">Blank</MenuItem>
+              {/* <MenuItem value="Blank">Blank</MenuItem>
               <MenuItem value="Apply Now">Apply Now</MenuItem>
               <MenuItem value="Book Now">Book Now</MenuItem>
               <MenuItem value="Contact Us">Contact Us</MenuItem>
@@ -125,7 +125,16 @@ const BasicInfoForm = ({
               <MenuItem value="Shop Now">Shop Now</MenuItem>
               <MenuItem value="Sign Up">Sign U</MenuItem>
               <MenuItem value="Subscribe">Subscribe</MenuItem>
-              <MenuItem value="Watch More">Watch More</MenuItem>
+              <MenuItem value="Watch More">Watch More</MenuItem> */}
+              <MenuItem value="industry1">industry1</MenuItem>
+              <MenuItem value="industry2">industry2</MenuItem>
+              <MenuItem value="industry3">industry3</MenuItem>
+              <MenuItem value="industry4">industry4</MenuItem>
+              <MenuItem value="industry5">industry5</MenuItem>
+              <MenuItem value="industry6">industry6</MenuItem>
+              <MenuItem value="industry7">industry7</MenuItem>
+              <MenuItem value="industry8">industry8</MenuItem>
+              <MenuItem value="industry9">industry9</MenuItem>
             </Select>
             <span className={classes.label}>Your business industry</span>
           </div>
