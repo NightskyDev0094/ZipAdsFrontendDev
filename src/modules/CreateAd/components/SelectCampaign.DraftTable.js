@@ -211,9 +211,9 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <div>
+        <button style={{ borderWidth: '0px !important' }}>
           <DeleteIcon onClick={() => openModalAndGetData(id, campaigns)} />
-        </div>
+        </button>
       ),
     },
     {
@@ -279,16 +279,16 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <div>
+        <button style={{ borderWidth: '0px !important' }}>
           <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, campaigns, 'Draft')} />
-        </div>
+        </button>
       ),
     },
   ];
 
   return (
     <Box>
-      <button onClick={createNewCampaign()} style={{ padding: '2rem' }}>
+      <button onClick={createNewCampaign()} style={{ padding: '2rem', marginLeft: '2em' }}>
         Create Campaign
       </button>
       <Modal

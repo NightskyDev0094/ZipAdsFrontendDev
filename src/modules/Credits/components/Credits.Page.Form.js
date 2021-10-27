@@ -17,27 +17,27 @@ const useStyles = makeStyles(() => ({
   root: {
     fontfamily: 'Silka',
     '@media (max-width:1000px)': {
-      width: '100%'
-    },  
+      width: '100%',
+    },
   },
   formControl: {},
   inputsContainer: {
     display: 'flex',
     justifyContent: 'space-around',
     '@media (max-width:1000px)': {
-      width: '100%'
+      width: '100%',
     },
     '@media (max-width:700px)': {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'column',
-      height: '180px'
-    },    
+      height: '180px',
+    },
   },
   inputs: {
     '@media (max-width:700px)': {
-      height: '100px'
+      height: '100px',
     },
   },
   inputLabels: {},
@@ -55,7 +55,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '30px',
     width: '100%',
     textAlign: 'center',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   subTitleContainer: {
     display: 'flex',
@@ -68,7 +68,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     '@media (max-width:700px)': {
-      width: '100%'
+      width: '100%',
     },
   },
 }));
@@ -124,12 +124,10 @@ const CreditForm = ({
               Purchase Credits to checkout with, this is the prefered method of checkout.
               <InformationModal
                 title={`Credits`}
-                text={`
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                It has survived not only five centuries, but also the leap into electronic typesetting, 
-                remaining essentially unchanged
-                `}
+                text="Credits, used in dollar amounts,
+                help you run your ads. Depending on the amount of credits (USD) you want to spend on a campaign,
+                you can run your campaign for a longer or shorter period of time. 
+                The result of your spending will be shown in the analytics page and you can upload more at any time. "
                 styles={{
                   title: { textAlign: 'center', fontSize: '20px' },
                   container: { marginBottom: '8px' },
@@ -152,9 +150,7 @@ const CreditForm = ({
                 />
               </div>
               <div className={classes.inputs}>
-                <Typography className={classes.inputLabel}>
-                  Credits to purchase: 
-                </Typography>
+                <Typography className={classes.inputLabel}>Credits to purchase:</Typography>
                 <OutlinedInput
                   id="outlined-adornment-amount"
                   value={parseInt(amount) || 0}

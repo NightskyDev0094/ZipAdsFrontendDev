@@ -159,44 +159,6 @@ class BlueTecLanding extends React.Component {
           </div>
         </section>
 
-        {/* <section id="section-banner" className="no-top" data-bgimage={`url(${BackgroundImage3}) top`}>
-              <div className="container">
-                  <div className="row align-items-center">
-                      <div className="col-lg-6 d-none d-lg-block d-xl-block text-center wow fadeInRight" data-wow-delay="0s">
-                          <img className="relative img-fluid" src={Miscellanous1} alt="" />
-                      </div>
-
-                      <div className="col-lg-5 offset-md-1 wow fadeInLeft" data-wow-delay="0s">
-                          <h2>
-                              Data security with<br />
-                              <span className="id-color">256-bit</span> encryption
-                          </h2>
-                          <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                              aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. .
-                          </p>
-                          <div className="spacer-half"></div>
-                          <a className="btn-custom" href="#">Get Started</a>
-                      </div>
-
-                      <div className="spacer-double"></div>
-
-                      <div className="col-md-12 wow fadeInUp" data-wow-delay="0s">
-                          <div id="owl-logo" className="logo-carousel owl-carousel owl-theme">
-                              <img src="images/logo-clients/1.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/2.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/3.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/4.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/5.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/6.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/7.png" className="img-fluid" alt="" />
-                              <img src="images/logo-clients/8.png" className="img-fluid" alt="" />
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section> */}
-
         <section id="section-testimonial" data-bgimage={`url(${BackgroundImage4})  top`}>
           <div className="container">
             <div className="row">

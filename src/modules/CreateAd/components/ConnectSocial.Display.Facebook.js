@@ -22,6 +22,18 @@ const useStyles = makeStyles((theme) => ({
       width: '80vw',
     },
   },
+  facebookTextContainer: {
+    position: 'relative',
+  },
+  facebookText: {
+    position: 'absolute',
+    minHeight: '2.5rem',
+    padding: '0 1em 0 1em',
+    bottom: 1,
+    zIndex: 1,
+    backgroundColor: 'white',
+    width: '380px',
+  },
   bottomImage: {
     width: '400px',
     '@media (max-width:700px)': {
@@ -39,7 +51,10 @@ const FacebookSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
   const classes = useStyles();
   return (
     <div data-test="facebook-social-display" className={classes.facebookImageContainer}>
-      <img src={facebook_t || DEFAULT_IMAGE} className={classes.topImage} width="400px" />
+      <div className={classes.facebookTextContainer}>
+        <img src={facebook_t || DEFAULT_IMAGE} className={classes.topImage} width="400px" />
+        <div className={classes.facebookText}>{currentCampaign.ad_description}</div>
+      </div>
       <CampaignImageDisplay
         currentCampaign={currentCampaign}
         form={currentCampaign}

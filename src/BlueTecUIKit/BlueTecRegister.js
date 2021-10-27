@@ -103,7 +103,6 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
               <div className="col-md-8 offset-md-2">
                 <div className="col-md-12 text-center">
                   <h1>Register</h1>
-                  <p>Awsome Page Teaser Here</p>
                 </div>
                 <div className="clearfix" />
               </div>
@@ -118,9 +117,8 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
             <div className="col-md-8 offset-md-2">
               <h3>Dont have an account? Register now.</h3>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                Zip Ads is ready to help you take your business to the next level. Simply fill out
+                this form and you're on your way!
               </p>
               <div className="spacer-10" />
               <form
