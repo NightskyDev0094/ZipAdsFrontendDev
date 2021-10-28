@@ -152,9 +152,9 @@ const CreateCampaign = ({
   };
 
   const goToNext = () => {
-    if (hasCreateCampaignStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasCreateCampaignStepBeenCompleted === 'STEP_COMPLETED') {
+    //   setIsResubmitModalOpen(true);
+    // } else {
       try {
         completeStep(1);
         handleSubmitCampaign(formInfo);
@@ -162,7 +162,7 @@ const CreateCampaign = ({
       } catch (e) {
         setError({ message: e.message, setError: true });
       }
-    }
+    // }
   };
 
   return (

@@ -173,21 +173,6 @@ const getSteps = (stepTracker) => [
   },
   {
     label: (
-      <Link style={stepStyle} to="/create/credits">
-        Purchase Credits
-      </Link>
-    ),
-    isStepComplete:
-      stepTracker?.PURCHASE_CREDITS_STEP === 'STEP_COMPLETED' ? (
-        <div style={checkMarkStyle}>
-          <DoneAllIcon />
-        </div>
-      ) : (
-        <div />
-      ),
-  },
-  {
-    label: (
       <Link style={stepStyle} to="/create/summary">
         Post Ad
       </Link>
