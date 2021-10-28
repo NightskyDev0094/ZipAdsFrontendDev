@@ -19,6 +19,7 @@ const AdCarouselStyles = makeStyles(() => ({
     marginBottom: '150px',
     height: 'fit-content',
     position: 'relative',
+    paddingBottom: '70px', 
     ['@media (max-width:1550px)']: {
       width: '80%',
       height: 'fit-content',

@@ -201,7 +201,7 @@ const SummaryPage = ({
         <div className={classes.pageHeader}>
           <Typography variant="h2">Create an Ad</Typography>
           <div className={classes.progressBarContainer}>
-            <StepProgress formStep={7} />
+            <StepProgress formStep={6} />
           </div>
         </div>
         <Paper className={classes.paper} elevation={2}>
@@ -275,7 +275,7 @@ const SummaryPage = ({
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => history.push('/create/credits')}
+                    onClick={() => history.push('/create/objective')}
                   >
                     Back
                   </Button>

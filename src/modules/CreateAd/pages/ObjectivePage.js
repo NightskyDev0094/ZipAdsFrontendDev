@@ -171,7 +171,7 @@ const ObjectivePage = ({
       try {
         handleSubmitObjective({ objective });
         completeStep(6);
-        history.push('/create/credits');
+        history.push('/create/summary');
       } catch (e) {
         setError({ isError: true, message: e });
       }
