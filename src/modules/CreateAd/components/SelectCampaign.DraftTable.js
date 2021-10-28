@@ -293,7 +293,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
           style={{ backgroundColor: '#017DFC', color: 'white', borderRadius: '50px' }}
           onClick={() => createNewCampaign()}
         >
-          Create Campaign
+          Create New Campaign
         </Button>
       </div>
       <Modal
