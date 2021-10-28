@@ -48,12 +48,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   nextButtonContainer: {
-    marginBottom: '60px',
+    marginBottom: '2em',
     width: '100%',
     display: 'flex',
-    justifyContent: 'flex-end',
-    // border: '1px solid black',
-    padding: '30px 60px 0px 60px ',
+    justifyContent: 'space-between',
+    paddingRight: '60px',
+    paddingLeft: '60px',
+    paddingTop: '20px',
+    ['@media (max-width:1000px)']: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
   },
   progressBarTypography: {
     textAlign: 'end',
@@ -224,11 +232,19 @@ const ConnectSocialPage = ({
             <div className={classes.pageHeader}>
               <Typography variant="h2">Create an Ad</Typography>
               <div className={classes.progressBarContainer}>
-                <StepProgress formStep={0} />
+                <StepProgress formStep={1} />
               </div>
             </div>
             <Paper elevation={2} className={classes.paper}>
               <div className={classes.nextButtonContainer}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={() => history.push('/select-campaign')}
+              >
+                Back
+              </Button>
                 <Button variant="contained" color="primary" onClick={goToNext}>
                   Next
                 </Button>

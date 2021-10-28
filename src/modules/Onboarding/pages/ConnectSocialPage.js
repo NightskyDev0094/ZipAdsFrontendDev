@@ -192,7 +192,7 @@ const ConnectSocialPage = ({
       <div className={classes.pageHeader}>
         <Typography variant="h2">Connect To Ad Networks</Typography>
         <div className={classes.progressBarContainer}>
-          <StepProgress formStep={1} />
+          <StepProgress formStep={2} />
         </div>
       </div>
       <Paper elevation={2} className={classes.paper}>
