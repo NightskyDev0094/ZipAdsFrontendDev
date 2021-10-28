@@ -35,7 +35,6 @@ const AdCarouselStyles = makeStyles(() => ({
   },
   leftPanel: {
     height: '100%',
-<<<<<<< HEAD
     position: 'absolute',
     top: '100px',
     left: '30px',
@@ -46,27 +45,6 @@ const AdCarouselStyles = makeStyles(() => ({
     position: 'absolute',
     top: '100px',
     right: '30px',
-=======
-    position: 'relative',
-    top: '25%',
-    // left: '10px',
-    ['@media (max-width:1000px)']: {
-      position: 'absolute',
-      top: '50px',
-      left: '30px',
-    },
-  },
-  rightPanel: {
-    height: '100%',
-    position: 'relative',
-    top: '25%',
-    // right: '10px',
-    ['@media (max-width:1000px)']: {
-      position: 'absolute',
-      top: '50px',
-      right: '30px',
-    },
->>>>>>> master
   },
   rightCarouselButton: {},
   leftCarouselButton: {},
@@ -98,40 +76,6 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
   const classes = AdCarouselStyles();
 
   return (
-<<<<<<< HEAD
-    <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
-      <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
-        <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}>
-          <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>
-            Previous
-          </p>
-        </div>
-      </div>
-      <div style={{ ...styles?.previewsContainer }} className={classes.previewsContainer}>
-        <AdIndex currentIndex={adSlideNumber} />
-        <AdPreviewDisplays styles={styles} {...props} adSlideNumber={adSlideNumber} />
-      </div>
-      <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
-        <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}>
-          <p className={classes.outerIcons} onClick={() => changeAdSlide()}>
-            Next
-          </p>
-        </div>
-      </div>
-      <div
-        style={{
-          position: 'absolute',
-          backgroundSize: 'cover',
-          bottom: '0',
-          padding: '30px 70px',
-          width: '100%',
-          textAlign: 'center',
-        }}
-      >
-        User accounts and social interactions are sample data only. Ad performance will vary.
-      </div>
-    </Paper>
-=======
     <>
       <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
         <AdIndex currentIndex={adSlideNumber} />
@@ -157,9 +101,20 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
           />
           {/* </div> */}
         </div>
+      <div
+        style={{
+          position: 'absolute',
+          backgroundSize: 'cover',
+          bottom: '0',
+          padding: '30px 70px',
+          width: '100%',
+          textAlign: 'center',
+        }}
+      >
+        User accounts and social interactions are sample data only. Ad performance will vary.
+      </div>
       </Paper>
     </>
->>>>>>> master
   );
 };
 
