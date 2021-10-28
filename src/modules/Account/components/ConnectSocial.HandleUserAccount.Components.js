@@ -24,6 +24,8 @@ import PropTypes from 'prop-types';
 
 import FacebookLogin from './ConnectSocial.FacebookLogin';
 import GoogleLogin from './ConnectSocial.GoogleLogin';
+import { addGoogleToken } from '../../../actions/oauth.googleActions';
+import { addFacebookToken } from '../../../actions/oauth.facebookActions';
 import * as animationUpload from '../../../img/lottie/uploaded.json';
 
 export const LoadingSpinner = () => (
@@ -289,6 +291,7 @@ export const CreateNewAccountComponent = ({
   componentState,
 }) => {
   const [newAccountName, setNewAccountName] = useState('');
+
   return (
     <div className={classes.createBusinessNameContainer}>
       <h4 style={{ textAlign: 'center' }} className={classes.selectAccountTitle}>
@@ -365,6 +368,7 @@ CreateNewAccountComponent.defaultProps = {
    Login  
 * @returns <Component />
  */
+
 export const ConnectOrCreateManagedAccountComponent = ({
   classes,
   styles,
@@ -382,6 +386,13 @@ export const ConnectOrCreateManagedAccountComponent = ({
   token,
   setAcccountCreated, //temporary function that creates accounts
 }) => {
+  const handleFacebookLogin = (formData) => {
+    addFacebookToken(formData);
+  };
+  const handleGoogleLogin = (formData) => {
+    addGoogleToken(formData);
+  };
+
   return (
     <Paper className={classes.paper} style={{ ...styles.paper }} elevation={3}>
       <h2 style={{ ...styles.title }} className={classes.title}>
@@ -389,26 +400,13 @@ export const ConnectOrCreateManagedAccountComponent = ({
         {'  '} {title}
       </h2>
       <div style={{ ...styles.content }} className={classes.content}>
-        {doesUserHaveAdAccounts && token && (
-          <SelectAccountComponent
-            classes={classes}
-            setComponentState={setComponentState}
-            adAccounts={adAccounts}
-            componentState={componentState}
-            setAcccountCreated={setAcccountCreated}
-          />
-        )}
-        {doesUserHaveAdAccounts && !token && (
-          <CreateNewAccountComponent
-            placeHolder={placeHolder}
-            defaultValue={defaultValue}
-            inputProps={inputProps}
-            setComponentState={setComponentState}
-            createAccount={createAccount}
-            componentState={componentState}
-            classes={classes}
-          />
-        )}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          {title == 'Connect to Facebook' ? (
+            <FacebookLogin handleGoogleLogin={handleGoogleLogin} />
+          ) : (
+            <GoogleLogin handleGoogleLogin={handleGoogleLogin} />
+          )}
+        </div>
       </div>
     </Paper>
   );

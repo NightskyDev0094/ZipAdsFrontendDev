@@ -165,17 +165,17 @@ const ObjectivePage = ({
   const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
 
   const nextClick = () => {
-    if (hasObjectiveStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasObjectiveStepBeenCompleted === 'STEP_COMPLETED') {
+    //   setIsResubmitModalOpen(true);
+    // } else {
       try {
         handleSubmitObjective({ objective });
         completeStep(6);
-        history.push('/create/credits');
+        history.push('/create/summary');
       } catch (e) {
         setError({ isError: true, message: e });
       }
-    }
+    // }
   };
 
   return (
@@ -195,7 +195,7 @@ const ObjectivePage = ({
           <div className={classes.pageHeader}>
             <Typography variant="h2">Create an Ad</Typography>
             <div className={classes.progressBarContainer}>
-              <StepProgress formStep={5} />
+              <StepProgress formStep={6} />
             </div>
           </div>
           <Paper elevation={2} className={classes.paper}>
@@ -237,7 +237,7 @@ const ObjectivePage = ({
                     <FormControlLabel
                       value="Store Traffic"
                       control={<Radio />}
-                      label="Increase customers visiting at my businesses physical location"
+                      label="Business’s physical location"
                     />
                     <FormControlLabel
                       value="Traffic"

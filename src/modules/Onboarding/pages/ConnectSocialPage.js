@@ -38,8 +38,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '88vw',
     marginBottom: '100px',
-    paddingBottom: '50px',
-    height: '100vh',
     margin: '0 auto',
     overflow: 'auto',
     '@media (max-width:700px)': {
@@ -51,8 +49,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'center',
-    height: '100%',
-    marginTop: '100px',
+    margin: '15vw 0',
     '@media (max-width:1200px)': {
       display: 'flex',
       justifyContent: 'space-evenly',
@@ -195,7 +192,7 @@ const ConnectSocialPage = ({
       <div className={classes.pageHeader}>
         <Typography variant="h2">Connect To Ad Networks</Typography>
         <div className={classes.progressBarContainer}>
-          <StepProgress formStep={1} />
+          <StepProgress formStep={2} />
         </div>
       </div>
       <Paper elevation={2} className={classes.paper}>

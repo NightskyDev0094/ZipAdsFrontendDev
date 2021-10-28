@@ -27,25 +27,6 @@ class BlueTecLandingFooter extends React.Component {
                 <h5>Demo</h5>
                 <ul>
                   <li>
-                    <Link to="/">Saas</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Startup</Link>
-                  </li>
-                  <li>
-                    <a href="index-coworking.html">Co-working</a>
-                    <Link to="/">Co-working</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Agency</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Apps</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Email Marketing</Link>
-                  </li>
-                  <li>
                     <Link to="/">Pricing Plans</Link>
                   </li>
                 </ul>

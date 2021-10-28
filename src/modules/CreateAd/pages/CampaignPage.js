@@ -152,9 +152,9 @@ const CreateCampaign = ({
   };
 
   const goToNext = () => {
-    if (hasCreateCampaignStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasCreateCampaignStepBeenCompleted === 'STEP_COMPLETED') {
+    //   setIsResubmitModalOpen(true);
+    // } else {
       try {
         completeStep(1);
         handleSubmitCampaign(formInfo);
@@ -162,7 +162,7 @@ const CreateCampaign = ({
       } catch (e) {
         setError({ message: e.message, setError: true });
       }
-    }
+    // }
   };
 
   return (
@@ -182,7 +182,7 @@ const CreateCampaign = ({
           <div className={classes.pageHeader}>
             <Typography variant="h2">Create an Ad</Typography>
             <div className={classes.progressBarContainer}>
-              <StepProgress formStep={1} />
+              <StepProgress formStep={2} />
             </div>
           </div>
           <Paper elevation={2} className={classes.paper}>

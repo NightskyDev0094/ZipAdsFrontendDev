@@ -130,9 +130,9 @@ const TargetingPage = ({
   });
 
   const nextClick = () => {
-    if (hasTargetStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasTargetStepBeenCompleted === 'STEP_COMPLETED') {
+    //   setIsResubmitModalOpen(true);
+    // } else {
       try {
         handleSubmitTargetInfo({ distance, interest });
         completeStep(3);
@@ -140,7 +140,7 @@ const TargetingPage = ({
       } catch (e) {
         setError({ isError: true, message: e });
       }
-    }
+    // }
   };
 
   return (
@@ -160,7 +160,7 @@ const TargetingPage = ({
           <div className={classes.pageHeader}>
             <Typography variant="h2">Targeting</Typography>
             <div className={classes.progressBarContainer}>
-              <StepProgress formStep={2} />
+              <StepProgress formStep={3} />
             </div>
           </div>
           <Paper className={classes.paper} elevation={2}>

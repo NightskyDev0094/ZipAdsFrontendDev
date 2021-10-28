@@ -52,7 +52,7 @@ const CreditPage = ({completeStep, ...props}) => {
   return (
     <>
       <div className={classes.stepperContainer}>
-        <StepProgress formStep={6} />
+        <StepProgress formStep={7} />
       </div>
       <Paper className={classes.outerPaper} elevation={3}>
         <div className={classes.nextBackButtonContainer}>

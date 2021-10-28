@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     width: '88vw',
     marginBottom: '100px',
     paddingBottom: '50px',
-    height: '100vh',
     margin: '0 auto',
     overflow: 'auto',
   },
@@ -49,12 +48,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   nextButtonContainer: {
-    marginBottom: '60px',
+    marginBottom: '2em',
     width: '100%',
     display: 'flex',
-    justifyContent: 'flex-end',
-    // border: '1px solid black',
-    padding: '30px 60px 0px 60px ',
+    justifyContent: 'space-between',
+    paddingRight: '60px',
+    paddingLeft: '60px',
+    paddingTop: '20px',
+    ['@media (max-width:1000px)']: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
   },
   progressBarTypography: {
     textAlign: 'end',
@@ -180,9 +187,11 @@ const ConnectSocialPage = ({
 
   // next button
   const goToNext = async () => {
-    if (hasConnectSocialStepBeenCompleted === 'STEP_COMPLETED') {
-      setIsResubmitModalOpen(true);
-    } else {
+    // if (hasConnectSocialStepBeenCompleted === 'STEP_COMPLETED') {
+    //   console.log('1');
+    //   setIsResubmitModalOpen(true);
+    // } else {
+    //   console.log('2');
       try {
         const submitSocialsData = new FormData();
         if (googleToken) submitSocialsData.append('google_account_id', googleToken);
@@ -202,7 +211,7 @@ const ConnectSocialPage = ({
       } catch (e) {
         setError({ isError: true, message: e });
       }
-    }
+    // }
   };
 
   return (
@@ -223,18 +232,24 @@ const ConnectSocialPage = ({
             <div className={classes.pageHeader}>
               <Typography variant="h2">Create an Ad</Typography>
               <div className={classes.progressBarContainer}>
-                <StepProgress formStep={0} />
+                <StepProgress formStep={1} />
               </div>
             </div>
             <Paper elevation={2} className={classes.paper}>
               <div className={classes.nextButtonContainer}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={() => history.push('/select-campaign')}
+              >
+                Back
+              </Button>
                 <Button variant="contained" color="primary" onClick={goToNext}>
                   Next
                 </Button>
               </div>
-              <h2 className={classes.connectSocialMenuTitle}>
-                Select Networks and Accounts
-              </h2>
+              <h2 className={classes.connectSocialMenuTitle}>Select Networks and Accounts</h2>
               <div className={classes.pageBody}>
                 <div className={classes.socialFormContainer}>
                   <ConnectSocialForm
@@ -253,6 +268,5 @@ const ConnectSocialPage = ({
     </>
   );
 };
-
 
 export default ConnectSocialPage;

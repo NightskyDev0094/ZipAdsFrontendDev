@@ -8,6 +8,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+import DoneAll from '@material-ui/icons/DoneAll';
 
 const stepperBreakSize = 1000;
 
@@ -65,6 +66,21 @@ const checkMarkStyle = {
 };
 
 const getSteps = (stepTracker) => [
+  {
+    label: (
+      <Link style={stepStyle} to="/select-campaign">
+        Select Campaign
+      </Link>
+    ),
+    isStepComplete:
+      stepTracker?.CREATE_CAMPAIGN_STEP === 'CREATE_CAMPAIGN_STEP' ? (
+        <div style={checkMarkStyle}>
+          <DoneAllIcon />
+        </div>
+      ) : (
+        <div />
+      ),
+  },
   {
     label: (
       <Link style={stepStyle} to="/create/connect-social">
@@ -148,21 +164,6 @@ const getSteps = (stepTracker) => [
     ),
     isStepComplete:
       stepTracker?.OBJECTIVE_STEP === 'STEP_COMPLETED' ? (
-        <div style={checkMarkStyle}>
-          <DoneAllIcon />
-        </div>
-      ) : (
-        <div />
-      ),
-  },
-  {
-    label: (
-      <Link style={stepStyle} to="/create/credits">
-        Purchase Credits
-      </Link>
-    ),
-    isStepComplete:
-      stepTracker?.PURCHASE_CREDITS_STEP === 'STEP_COMPLETED' ? (
         <div style={checkMarkStyle}>
           <DoneAllIcon />
         </div>
