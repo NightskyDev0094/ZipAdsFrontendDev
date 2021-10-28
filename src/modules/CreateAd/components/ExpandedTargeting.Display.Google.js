@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 const formatGeoTargetingData = (geoArray) =>
   geoArray.map(({ name, country_code, target_type, reach }) => ({
-    name: name ?? 'Location not Avaialable',
+    name: name ?? 'Location not Available',
     country: country_code ?? 'Country not Available',
     reach: reach ?? 'Reach not Available',
     target_type: target_type ?? 'Type not Available',
@@ -43,7 +43,7 @@ const ExpandedGoogleTargetingComponent = ({
     setSelectedGoogleRows({
       ...selectedGoogleRows,
       selectedGeoTargeting: googleGeoTargeting,
-      selectedKeywordGroupRows: googleKeywords
+      selectedKeywordGroupRows: googleKeywords,
     });
   }, []);
 
@@ -83,7 +83,7 @@ const ExpandedGoogleTargetingComponent = ({
         selectedKeywordGroupRows: [...selectedGoogleRows.selectedKeywordGroupRows, name],
       });
     }
-  }
+  };
 
   const googleKeywordsRemoveRowFromSelected = (name) => {
     if (selectedGoogleRows.selectedKeywordGroupRows.includes(name)) {
@@ -95,7 +95,7 @@ const ExpandedGoogleTargetingComponent = ({
         selectedKeywordGroupRows: newSelectedArray,
       });
     }
-  }
+  };
 
   const googleKeywordsAddAllRowsToSelected = () => {
     const selectedRowNames = tableState.keywordArray.map((rows) => Object.values(rows)[0]);
@@ -103,7 +103,7 @@ const ExpandedGoogleTargetingComponent = ({
       ...selectedGoogleRows,
       selectedKeywordGroupRows: selectedRowNames,
     });
-  }
+  };
 
   return (
     <>
@@ -130,6 +130,7 @@ const ExpandedGoogleTargetingComponent = ({
       <Divider className={classes.divider} style={{ height: '40px' }} />
       {googleKeywords && googleKeywords.length ? (
         <DisplayTable
+          fromGoogle={true}
           tableRows={googleKeywords.length ? googleKeywords : []}
           tableHeaders={[
             '  ',
@@ -166,8 +167,8 @@ ExpandedGoogleTargetingComponent.propTypes = {
   tableState: PropTypes.object,
   setTableState: PropTypes.func,
   setSelectedGoogleRows: PropTypes.func,
-  selectedGoogleRows: PropTypes.func
-}
+  selectedGoogleRows: PropTypes.func,
+};
 
 ExpandedGoogleTargetingComponent.defaultProps = {
   googleGeoTargeting: [],
@@ -175,8 +176,7 @@ ExpandedGoogleTargetingComponent.defaultProps = {
   tableState: {},
   setTableState: () => {},
   setSelectedGoogleRows: () => {},
-  selectedGoogleRows: () => {}
-}
-
+  selectedGoogleRows: () => {},
+};
 
 export default ExpandedGoogleTargetingComponent;

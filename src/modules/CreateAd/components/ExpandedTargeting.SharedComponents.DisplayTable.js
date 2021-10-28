@@ -78,8 +78,6 @@ const useStyles = makeStyles({
   },
 });
 
-
-
 /**
  * DisplayTable
  * @param tableRows: Array,
@@ -101,6 +99,7 @@ export const DisplayTable = function ({
   selectAllRowsDisabled = false,
   addAllRowsToSelected,
   removeAllRowsFromSelected,
+  fromGoogle = false,
 }) {
   const classes = useStyles();
   const [areAllRowsSelected, setAreAllRowsSelected] = useState(true);
@@ -168,9 +167,19 @@ export const DisplayTable = function ({
                     />
                   )}
                 </StyledTableCell>
-                {rows.map((row, index) => (
-                  <StyledTableCell key={`${row}-${index}`}>{row}</StyledTableCell>
-                ))}
+                {/* This Section is for displaying micros as dollars. The only page that 'fromGoogle' should be true is the Display.Google Page which send micros in index 5 of Keywords array */}
+                {fromGoogle &&
+                  rows.map((row, index) => {
+                    index === 5 ? (
+                      <StyledTableCell key={`${row}-${index}`}>${row / 100000}</StyledTableCell>
+                    ) : (
+                      <StyledTableCell key={`${row}-${index}`}>{row}</StyledTableCell>
+                    );
+                  })}
+                {!fromGoogle &&
+                  rows.map((row, index) => (
+                    <StyledTableCell key={`${row}-${index}`}>{row}</StyledTableCell>
+                  ))}
               </StyledTableRow>
             ))}
           </TableBody>

@@ -8,21 +8,19 @@ import { OuterCarouselWrapper as CropperCarousel } from './Campaign.Cropper.Oute
 const useStyles = makeStyles((theme) => ({
   cropperContainer: {
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '50px',
-    '@media (max-width:500px)': {
-      display: 'flex',
-      textAlign: 'center',
-      alignItems: 'center',
-      flexDirection: 'column',
-      width: '100%',
-      backgroundColor: 'white',
-      marginTop: 0,
+    padding: '1em',
+    ['@media (max-width:500px)']: {
       boxShadow:
         '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
     },
-    titleContainer: {},
+  },
+  cropperForm: {
+    textAlign: 'center !important',
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
 
@@ -255,93 +253,84 @@ const Cropper = ({
     var instances = M.FormSelect.init(elems);
   });
   return (
-    // Materialize theme
     <>
-      {/* <!-- Showcase --> */}
-      {/* // Cropper  */}
-
       <div className={classes.cropperContainer}>
         <div className="input-field">
-          <label htmlFor="id_file">Upload Your Image</label>
-          <br />
-          {/* {{form.file}} */}
-        </div>
-        <div>
-          <div>
+          <div className={classes.cropperForm}>
+            <label htmlFor="id_file">Upload Your Image</label>
             <input id="id_file" type="file" accept="image/*" onChange={onSelectFile} />
           </div>
-          {fbFeedImageName !== null && (
-            <CropperCarousel
-              setFBFeedPreviewUrl={setFBFeedPreviewUrl}
-              updateFBFeedImage={updateFBFeedImage}
-              fbFeedUpImg={fbFeedUpImg}
-              fbAudienceUpImg={fbAudienceUpImg}
-              instagramUpImg={instagramUpImg}
-              gaDisplayUpImg={gaDisplayUpImg}
-              gaSquareDisplayUpImg={gaSquareDisplayUpImg}
-              setFbFeedUpImg={setFbFeedUpImg}
-              setFbAudienceUpImg={setFbAudienceUpImg}
-              setInstagramUpImg={setInstagramUpImg}
-              setGaDisplayUpImg={setGaDisplayUpImg}
-              setGaSquareDisplayUpImg={setGaSquareDisplayUpImg}
-              fbFeedImageName={fbFeedImageName}
-              fbAudienceImageName={fbAudienceImageName}
-              instagramImageName={instagramImageName}
-              gaDisplayImageName={gaDisplayImageName}
-              gaSquareDisplayImageName={gaSquareDisplayImageName}
-              setFbFeedImageName={setFbFeedImageName}
-              setFbAudienceImageName={setFbAudienceImageName}
-              setInstagramImageName={setInstagramImageName}
-              setGaDisplayImageName={setGaDisplayImageName}
-              setGaSquareDisplayImageName={setGaSquareDisplayImageName}
-              fbFeedImageFile={fbFeedImageFile}
-              setFBFeedImageFile={setFBFeedImageFile}
-              fbFeedCrop={fbFeedCrop}
-              setFBFeedCrop={setFBFeedCrop}
-              fbFeedText={fbFeedText}
-              setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
-              updateFBAudienceImage={updateFBAudienceImage}
-              fbAudienceImageFile={fbAudienceImageFile}
-              setFBAudienceImageFile={setFBAudienceImageFile}
-              fbAudienceCrop={fbAudienceCrop}
-              setFBAudienceCrop={setFBAudienceCrop}
-              fbAudienceText={fbAudienceText}
-              setInstagramPreviewUrl={setInstagramPreviewUrl}
-              updateInstagramImage={updateInstagramImage}
-              instagramImageFile={instagramImageFile}
-              setInstagramImageFile={setInstagramImageFile}
-              instagramCrop={instagramCrop}
-              setInstagramCrop={setInstagramCrop}
-              instagramText={instagramText}
-              setGADisplayPreviewUrl={setGADisplayPreviewUrl}
-              setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
-              updateGADisplayImage={updateGADisplayImage}
-              gaDisplayImageFile={gaDisplayImageFile}
-              setGADisplayImageFile={setGADisplayImageFile}
-              gaDisplayCrop={gaDisplayCrop}
-              setGADisplayCrop={setGADisplayCrop}
-              gaDisplayText={gaDisplayText}
-              updateGASquareDisplayImage={updateGASquareDisplayImage}
-              gaSquareDisplayImageFile={gaSquareDisplayImageFile}
-              setGASquareDisplayImageFile={setGASquareDisplayImageFile}
-              gaSquareDisplayCrop={gaSquareDisplayCrop}
-              setGASquareDisplayCrop={setGASquareDisplayCrop}
-              gaSquareDisplayText={gaSquareDisplayText}
-              fbFeedPreviewUrl={fbFeedPreviewUrl}
-              fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-              instagramPreviewUrl={instagramPreviewUrl}
-              gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-              gaSquareDisplayPreviewUrl={gaSquareDisplayPreviewUrl}
-              adSlideNumber={adSlideNumber}
-              changeAdSlide={changeAdSlide}
-              reverseAdSlide={reverseAdSlide}
-              setError={setError}
-              {...props}
-            />
-          )}
         </div>
-        {/* End Cropper */}
       </div>
+      {fbFeedImageName !== null && (
+        <CropperCarousel
+          setFBFeedPreviewUrl={setFBFeedPreviewUrl}
+          updateFBFeedImage={updateFBFeedImage}
+          fbFeedUpImg={fbFeedUpImg}
+          fbAudienceUpImg={fbAudienceUpImg}
+          instagramUpImg={instagramUpImg}
+          gaDisplayUpImg={gaDisplayUpImg}
+          gaSquareDisplayUpImg={gaSquareDisplayUpImg}
+          setFbFeedUpImg={setFbFeedUpImg}
+          setFbAudienceUpImg={setFbAudienceUpImg}
+          setInstagramUpImg={setInstagramUpImg}
+          setGaDisplayUpImg={setGaDisplayUpImg}
+          setGaSquareDisplayUpImg={setGaSquareDisplayUpImg}
+          fbFeedImageName={fbFeedImageName}
+          fbAudienceImageName={fbAudienceImageName}
+          instagramImageName={instagramImageName}
+          gaDisplayImageName={gaDisplayImageName}
+          gaSquareDisplayImageName={gaSquareDisplayImageName}
+          setFbFeedImageName={setFbFeedImageName}
+          setFbAudienceImageName={setFbAudienceImageName}
+          setInstagramImageName={setInstagramImageName}
+          setGaDisplayImageName={setGaDisplayImageName}
+          setGaSquareDisplayImageName={setGaSquareDisplayImageName}
+          fbFeedImageFile={fbFeedImageFile}
+          setFBFeedImageFile={setFBFeedImageFile}
+          fbFeedCrop={fbFeedCrop}
+          setFBFeedCrop={setFBFeedCrop}
+          fbFeedText={fbFeedText}
+          setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
+          updateFBAudienceImage={updateFBAudienceImage}
+          fbAudienceImageFile={fbAudienceImageFile}
+          setFBAudienceImageFile={setFBAudienceImageFile}
+          fbAudienceCrop={fbAudienceCrop}
+          setFBAudienceCrop={setFBAudienceCrop}
+          fbAudienceText={fbAudienceText}
+          setInstagramPreviewUrl={setInstagramPreviewUrl}
+          updateInstagramImage={updateInstagramImage}
+          instagramImageFile={instagramImageFile}
+          setInstagramImageFile={setInstagramImageFile}
+          instagramCrop={instagramCrop}
+          setInstagramCrop={setInstagramCrop}
+          instagramText={instagramText}
+          setGADisplayPreviewUrl={setGADisplayPreviewUrl}
+          setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
+          updateGADisplayImage={updateGADisplayImage}
+          gaDisplayImageFile={gaDisplayImageFile}
+          setGADisplayImageFile={setGADisplayImageFile}
+          gaDisplayCrop={gaDisplayCrop}
+          setGADisplayCrop={setGADisplayCrop}
+          gaDisplayText={gaDisplayText}
+          updateGASquareDisplayImage={updateGASquareDisplayImage}
+          gaSquareDisplayImageFile={gaSquareDisplayImageFile}
+          setGASquareDisplayImageFile={setGASquareDisplayImageFile}
+          gaSquareDisplayCrop={gaSquareDisplayCrop}
+          setGASquareDisplayCrop={setGASquareDisplayCrop}
+          gaSquareDisplayText={gaSquareDisplayText}
+          fbFeedPreviewUrl={fbFeedPreviewUrl}
+          fbAudiencePreviewUrl={fbAudiencePreviewUrl}
+          instagramPreviewUrl={instagramPreviewUrl}
+          gaDisplayPreviewUrl={gaDisplayPreviewUrl}
+          gaSquareDisplayPreviewUrl={gaSquareDisplayPreviewUrl}
+          adSlideNumber={adSlideNumber}
+          changeAdSlide={changeAdSlide}
+          reverseAdSlide={reverseAdSlide}
+          setError={setError}
+          {...props}
+        />
+      )}
     </>
   );
 };

@@ -272,7 +272,7 @@ const BudgetPage = ({
                       <Tooltip title="This is the maximum amount you will spend on all ads daily.">
                         <>
                           <Box className={classes.dailyFacebookAdsBudgetInput}>
-                            <InputMainLabel>Set your total Daily Budget</InputMainLabel>
+                            <InputMainLabel>Set your Total Daily Budget</InputMainLabel>
                             <Input
                               small
                               onChange={(e) => setTotalBudget(e.target.value)}
@@ -282,7 +282,7 @@ const BudgetPage = ({
                               style={{ border: '1px solid transparent', transition: '0.7s' }}
                             />
                             <InputSmallLabel>
-                              What is the max amount you want to spend on ads daily?
+                              What is the max amount you want to spend on ads daily (in USD)?
                             </InputSmallLabel>
                           </Box>
                           <Box className={classes.facebookAdsCampaignLength}>
@@ -297,7 +297,7 @@ const BudgetPage = ({
                               style={{ border: '1px solid transparent', transition: '0.7s' }}
                             />
                             <InputSmallLabel>
-                              How long should your Ads run (in days)
+                              How long should your ads run (in days)?
                             </InputSmallLabel>
                           </Box>
                         </>

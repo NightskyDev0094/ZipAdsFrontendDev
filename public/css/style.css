@@ -6185,7 +6185,7 @@ blockquote.s1:before{
 }
 
 .accordion-style-1{
-	overflow:visible;
+	overflow:wrap;
 }
 
 .accordion-style-1 .card{

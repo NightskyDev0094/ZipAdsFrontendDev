@@ -145,9 +145,9 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <div>
+        <button>
           <DeleteIcon onClick={() => openModalAndGetData(id, templates)} />
-        </div>
+        </button>
       ),
     },
     {
@@ -211,9 +211,9 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <div>
+        <button>
           <EditIcon onClick={() => templateTableData(id, templates, 'Draft')} />
-        </div>
+        </button>
       ),
     },
   ];

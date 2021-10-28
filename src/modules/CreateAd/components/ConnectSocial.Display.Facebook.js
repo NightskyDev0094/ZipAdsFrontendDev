@@ -7,8 +7,7 @@ import facebook_t from '../../../img/facebook_t.png';
 import facebook_b from '../../../img/facebook_b.png';
 
 const MOCK_FORM = {
-  file:
-    'https://images.unsplash.com/photo-1598054437544-d81eea4b1fd0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600',
+  file: 'https://images.unsplash.com/photo-1598054437544-d81eea4b1fd0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600',
   ad_link: 'go here',
   ad_description: 'something goes here',
 };
@@ -22,6 +21,18 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width:700px)': {
       width: '80vw',
     },
+  },
+  facebookTextContainer: {
+    position: 'relative',
+  },
+  facebookText: {
+    position: 'absolute',
+    minHeight: '2.5rem',
+    padding: '0 1em 0 1em',
+    bottom: 1,
+    zIndex: 1,
+    backgroundColor: 'white',
+    width: '380px',
   },
   bottomImage: {
     width: '400px',
@@ -40,10 +51,13 @@ const FacebookSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
   const classes = useStyles();
   return (
     <div data-test="facebook-social-display" className={classes.facebookImageContainer}>
-      <img src={facebook_t || DEFAULT_IMAGE} className={classes.topImage} width="400px" />
+      <div className={classes.facebookTextContainer}>
+        <img src={facebook_t || DEFAULT_IMAGE} className={classes.topImage} width="400px" />
+        <div className={classes.facebookText}>{currentCampaign.ad_description}</div>
+      </div>
       <CampaignImageDisplay
         currentCampaign={currentCampaign}
-        form={currentCampaign} 
+        form={currentCampaign}
         height="200px"
         isFacebook
         previewUrl={previewUrl}

@@ -63,6 +63,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
     await deleteCampaign(campaignModalInfo?.id);
     setModalOpen(false);
   });
+
   const getImageFromUrl = async (url, imageType, formData) => {
     await fetch(`${url}`)
       .then((res) => res.blob())
@@ -81,6 +82,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
         return jpgFile;
       });
   };
+
   const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType) => {
     // console.log('DATA TEST:::', data);
     const search = () => {
@@ -135,6 +137,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
     // console.log('updateSocials Running', socialsArray);
     updateSocials(socialsArray);
   };
+
   const submitDraftData = (selected, formData, campaignType) => {
     if (campaignType === 'Draft') {
       formData.append('campaign_name', selected.campaign_name);
@@ -180,11 +183,15 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       addCampaign(formData);
       setSocialsToPost(selected);
     } else if (campaignType === 'New') {
-      const formData = new FormData();
-      formData.append('campaign_name', 'New Campaign');
-      addCampaign(formData);
+      createNewCampaign();
     }
     history.push('create/connect-social');
+  };
+
+  const createNewCampaign = () => {
+    const formData = new FormData();
+    formData.append('campaign_name', 'New Campaign');
+    addCampaign(formData);
   };
 
   /**
@@ -204,9 +211,9 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <div>
+        <button style={{ borderWidth: '0px !important' }}>
           <DeleteIcon onClick={() => openModalAndGetData(id, campaigns)} />
-        </div>
+        </button>
       ),
     },
     {
@@ -239,7 +246,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
     },
     {
       title: (
-        <Tooltip placement="bottom" title="This is the headline of your campaign.">
+        <Tooltip placement="bottom" title="This is the tagline of your campaign.">
           Tagline
         </Tooltip>
       ),
@@ -272,15 +279,18 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <div>
+        <button style={{ borderWidth: '0px !important' }}>
           <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, campaigns, 'Draft')} />
-        </div>
+        </button>
       ),
     },
   ];
 
   return (
     <Box>
+      <button onClick={createNewCampaign()} style={{ padding: '2rem', marginLeft: '2em' }}>
+        Create Campaign
+      </button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

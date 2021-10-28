@@ -15,7 +15,7 @@ const AdCarouselStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: '40px 40px 0 40px',
+    padding: '0 40px 0 40px',
     marginBottom: '150px',
     height: 'fit-content',
     position: 'relative',
@@ -35,6 +35,7 @@ const AdCarouselStyles = makeStyles(() => ({
   },
   leftPanel: {
     height: '100%',
+<<<<<<< HEAD
     position: 'absolute',
     top: '100px',
     left: '30px',
@@ -45,6 +46,27 @@ const AdCarouselStyles = makeStyles(() => ({
     position: 'absolute',
     top: '100px',
     right: '30px',
+=======
+    position: 'relative',
+    top: '25%',
+    // left: '10px',
+    ['@media (max-width:1000px)']: {
+      position: 'absolute',
+      top: '50px',
+      left: '30px',
+    },
+  },
+  rightPanel: {
+    height: '100%',
+    position: 'relative',
+    top: '25%',
+    // right: '10px',
+    ['@media (max-width:1000px)']: {
+      position: 'absolute',
+      top: '50px',
+      right: '30px',
+    },
+>>>>>>> master
   },
   rightCarouselButton: {},
   leftCarouselButton: {},
@@ -74,7 +96,9 @@ const AdCarouselStyles = makeStyles(() => ({
 
 const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...props }) => {
   const classes = AdCarouselStyles();
+
   return (
+<<<<<<< HEAD
     <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
       <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
         <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}>
@@ -107,6 +131,35 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
         User accounts and social interactions are sample data only. Ad performance will vary.
       </div>
     </Paper>
+=======
+    <>
+      <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
+        <AdIndex currentIndex={adSlideNumber} />
+        <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
+          {/* <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}> */}
+          <ArrowBackIosIcon
+            style={{ ...styles?.outerIcons }}
+            className={classes.outerIcons}
+            onClick={() => reverseAdSlide()}
+          />
+          {/* </div> */}
+        </div>
+        
+        <div style={{ ...styles?.previewsContainer }} className={classes.previewsContainer}>
+          <AdPreviewDisplays styles={styles} {...props} adSlideNumber={adSlideNumber} />
+        </div>
+        <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
+          {/* <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}> */}
+          <ArrowForwardIosIcon
+            style={{ ...styles?.outerIcons }}
+            className={classes.outerIcons}
+            onClick={() => changeAdSlide()}
+          />
+          {/* </div> */}
+        </div>
+      </Paper>
+    </>
+>>>>>>> master
   );
 };
 

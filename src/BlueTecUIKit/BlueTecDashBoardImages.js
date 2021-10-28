@@ -32,7 +32,11 @@ import BackgroundImage1 from './images/background/7.png';
 const BlueTecDashBoardImages = () => {
   const history = useHistory();
   return (
-    <div style={{background: `url(${BackgroundImage1})`}} className="no-bottom no-top" id="content">
+    <div
+      style={{ background: `url(${BackgroundImage1})` }}
+      className="no-bottom no-top"
+      id="content"
+    >
       {}
       <section className="top">
         <div className="container">
@@ -60,7 +64,12 @@ const BlueTecDashBoardImages = () => {
               </p>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6 mb30">
-              <div className="fp-wrap f-invert mb20">
+              <div
+                className="fp-wrap f-invert mb20"
+                onClick={() => {
+                  history.push('/faq');
+                }}
+              >
                 <div className="fp-icon">
                   <i className="fa fa-desktop" />
                 </div>
@@ -68,8 +77,8 @@ const BlueTecDashBoardImages = () => {
               </div>
               <h4>Understanding Ad Campaigns</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
+                <strong>Click here</strong>to learn more about ad campaigns and how important they
+                can be to the success of your business.
               </p>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6 mb30">
@@ -91,11 +100,11 @@ const BlueTecDashBoardImages = () => {
               </div>
               <h4>Analytics Dashboard</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
+                <strong>Click here</strong> to see real time statistics on your various ad
+                campaigns.
               </p>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-6 mb30">
+            {/* <div className="col-lg-4 col-md-6 col-sm-6 mb30">
               <div className="fp-wrap f-invert mb20">
                 <div className="fp-icon">
                   <i className="fa fa-object-group" />
@@ -107,8 +116,8 @@ const BlueTecDashBoardImages = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua.
               </p>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-6 mb30">
+            </div> */}
+            {/* <div className="col-lg-4 col-md-6 col-sm-6 mb30">
               <div className="fp-wrap f-invert mb20">
                 <div className="fp-icon">
                   <i className="fa fa-hdd-o" />
@@ -120,8 +129,8 @@ const BlueTecDashBoardImages = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua.
               </p>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-6 mb30">
+            </div> */}
+            {/* <div className="col-lg-4 col-md-6 col-sm-6 mb30">
               <div className="fp-wrap f-invert mb20">
                 <div className="fp-icon">
                   <i className="fa fa-comments-o" />
@@ -138,7 +147,7 @@ const BlueTecDashBoardImages = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua.
               </p>
-            </div>
+            </div> */}
             <div />
           </div>
         </div>

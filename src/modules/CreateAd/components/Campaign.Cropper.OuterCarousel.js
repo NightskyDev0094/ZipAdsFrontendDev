@@ -10,6 +10,10 @@ import CropperCarousel from './Campaign.Cropper.Carousel';
 const OuterCarouselStyles = makeStyles(() => ({
   container: {
     width: '100%',
+<<<<<<< HEAD
+=======
+    // minWidth: '600px',
+>>>>>>> master
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
