@@ -328,7 +328,7 @@ const ExpandedTargetingPage = ({
                 </Typography>
               </Box>
               <div className={classes.progressBarContainer}>
-                <StepProgress formStep={3} />
+                <StepProgress formStep={4} />
               </div>
               <Paper className={classes.container}>
                 <div className={classes.tableContainerButtons}>

@@ -183,6 +183,9 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                       </Menu>
                     </li>
                     <li>
+                      <Link to="/select-campaign">Select Campaign</Link>
+                    </li>
+                    <li>
                       <Link to="/analytics">Analytics</Link>
                     </li>
                     <li>
