@@ -5,6 +5,8 @@ import GoogleConnect from './ConnectSocial.GoogleLogin';
 import FacebookConnect from './ConnectSocial.FacebookLogin.js';
 import { addGoogleToken } from '../../../actions/oauth.googleActions';
 import { addFacebookToken } from '../../../actions/oauth.facebookActions';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const baseStyles = makeStyles(() => ({
   connectSocialMenuTitle: {
@@ -77,6 +79,18 @@ const baseStyles = makeStyles(() => ({
     alignItems: 'center',
     width: '90%',
   },
+  createNewAccountButton: {
+    color: 'white',
+    backgroundColor: 'blue',
+    fontWeight: 'bold',
+    padding: '6px 16px',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    '&:hover': {
+      color: 'white !important',
+      textDecoration: 'none',
+    },
+  },
 }));
 
 /**************************************************************
@@ -128,12 +142,39 @@ const ConnectOrCreateManagedAccountComponent = ({
         <LoginIcon />
         {'  '} {title}
       </h2>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         {title == 'Connect to Facebook' ? (
           <FacebookConnect handleGoogleLogin={handleGoogleLogin} />
         ) : (
           <GoogleConnect handleGoogleLogin={handleGoogleLogin} />
         )}
+        {/* <div> */}
+        <p style={{ fontWeight: 'bold', fontSize: '14px', margin: '14px 0' }}>
+          --------- OR ---------
+        </p>
+        <p style={{ textAlign: 'center' }}>
+          If you do not already have a Facebook/Google Ad account then create a new one and then
+          link it.
+        </p>
+        <a
+          href={
+            title == 'Connect to Facebook'
+              ? 'https://www.facebook.com/adsmanager/manage/accounts'
+              : 'https://ads.google.com/aw/campaigns/new'
+          }
+          target="_blank"
+          className={classes.createNewAccountButton}
+        >
+          Create New Account
+        </a>
+        {/* </div> */}
       </div>
     </Paper>
   );

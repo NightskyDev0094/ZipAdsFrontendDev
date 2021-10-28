@@ -21,6 +21,7 @@ const GoogleConnect = ({ handleGoogleLogin }) => {
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
       />
+
       {/* <button onClick={getUserInfo}>get info</button> */}
     </>
   );
