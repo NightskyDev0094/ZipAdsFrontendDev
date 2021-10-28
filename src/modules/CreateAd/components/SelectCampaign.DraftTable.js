@@ -211,9 +211,9 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <button style={{ borderWidth: '0px !important' }}>
-          <DeleteIcon onClick={() => openModalAndGetData(id, campaigns)} />
-        </button>
+        // <button style={{ borderWidth: '0px !important' }}>
+        <DeleteIcon onClick={() => openModalAndGetData(id, campaigns)} />
+        // </button>
       ),
     },
     {
@@ -279,18 +279,23 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <button style={{ borderWidth: '0px !important' }}>
-          <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, campaigns, 'Draft')} />
-        </button>
+        // <button style={{ borderWidth: '0px !important' }}>
+        <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, campaigns, 'Draft')} />
+        // </button>
       ),
     },
   ];
 
   return (
     <Box>
-      <button onClick={createNewCampaign()} style={{ padding: '2rem', marginLeft: '2em' }}>
-        Create Campaign
-      </button>
+      <div className="d-flex justify-content-center">
+        <Button
+          style={{ backgroundColor: '#017DFC', color: 'white', borderRadius: '50px' }}
+          onClick={() => createNewCampaign()}
+        >
+          Create Campaign
+        </Button>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
