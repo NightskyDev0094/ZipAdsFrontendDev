@@ -195,7 +195,7 @@ const ObjectivePage = ({
           <div className={classes.pageHeader}>
             <Typography variant="h2">Create an Ad</Typography>
             <div className={classes.progressBarContainer}>
-              <StepProgress formStep={5} />
+              <StepProgress formStep={6} />
             </div>
           </div>
           <Paper elevation={2} className={classes.paper}>

@@ -201,7 +201,7 @@ const SummaryPage = ({
         <div className={classes.pageHeader}>
           <Typography variant="h2">Create an Ad</Typography>
           <div className={classes.progressBarContainer}>
-            <StepProgress formStep={7} />
+            <StepProgress formStep={8} />
           </div>
         </div>
         <Paper className={classes.paper} elevation={2}>

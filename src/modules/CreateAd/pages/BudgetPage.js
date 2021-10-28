@@ -226,7 +226,7 @@ const BudgetPage = ({
             <div className={classes.pageHeader}>
               <Typography variant="h2">Create an Ad</Typography>
               <div className={classes.progressBarContainer}>
-                <StepProgress formStep={4} />
+                <StepProgress formStep={5} />
               </div>
             </div>
             <Paper elevation={2} className={classes.paper}>
