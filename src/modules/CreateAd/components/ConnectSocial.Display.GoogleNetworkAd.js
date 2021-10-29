@@ -53,7 +53,7 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     padding: '5px 0 5px 20px',
-    fontSize: '1rem',
+    fontSize: '1.75rem',
     fontWeight: 800,
   },
   subTitle: {
