@@ -10,7 +10,6 @@ export const SelectCampaignPage = ({
   getBusinessInfo,
   businessInfo,
   businessInfoLoading,
-  // getCampaign,
   ...props
 }) => {
   useEffect(() => {
