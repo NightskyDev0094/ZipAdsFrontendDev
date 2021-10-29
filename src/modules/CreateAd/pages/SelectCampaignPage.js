@@ -31,6 +31,8 @@ export const SelectCampaignPage = ({
   ];
 
   useEffect(() => {
+    if (!businessInfo.length) return;
+    console.log(businessInfo.length);
     let industry = businessInfo[businessInfo.length - 1].industry;
     setRecommendedTemplate(props.templates[industries.indexOf(industry)]);
   }, [businessInfo]);

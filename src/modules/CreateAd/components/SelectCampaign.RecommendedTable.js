@@ -276,7 +276,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
         </Fade>
       </Modal>
       <Typography className={classes.title} variant="h1" component="h2">
-        Recommanded Template
+        Recommended Template
       </Typography>
       <Typography
         style={{
