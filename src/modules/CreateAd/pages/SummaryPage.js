@@ -230,11 +230,6 @@ const SummaryPage = ({
                       description="Total Ads Budget"
                       content={totalBudget || 0}
                     />
-                    <ListItem
-                      classes={classes}
-                      description="People interested in"
-                      content={budgetInfo?.objective}
-                    />
                   </Box>
                 </Box>
               </Box>
@@ -255,22 +250,6 @@ const SummaryPage = ({
                 {handleError.isError && (
                   <Alert severity="error">Error: Please add more credits</Alert>
                 )}
-                <Box marginTop={3} display="flex">
-                  <InputMainLabel>Ready to Run Ads?</InputMainLabel>
-                </Box>
-                <Box>
-                  <Typography>Total cost of campaign: ${totalBudget || 0}</Typography>
-                  {totalBudget > creditAmount && (
-                    <Alert severity="info">
-                      You have ${creditAmount}, please purchase more credits.
-                    </Alert>
-                  )}
-                  {totalBudget < creditAmount && (
-                    <Alert severity="success">
-                      You have ${creditAmount}, feel free to checkout
-                    </Alert>
-                  )}
-                </Box>
                 <Box marginTop={4} width="100%" display="flex" justifyContent="space-between">
                   <Button
                     variant="contained"

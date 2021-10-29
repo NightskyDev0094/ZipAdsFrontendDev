@@ -161,7 +161,7 @@ const SummaryContainer = ({
 
   const onClick = () => {
     setCheckoutStatus(SUBMIT_STATUS.LOADING);
-    if (creditAmount >= totalBudget) {
+    // if (creditAmount >= totalBudget) {
       const adId = currentCampaign.id;
       if (socialsToPost.includes('facebook feed ad')) {
         let fbfFormData = new FormData();
@@ -198,13 +198,13 @@ const SummaryContainer = ({
         // Post Ad to Google
         postGoogleSearchAd(gdaFormData);
       }
-      completeStep(8);
+      completeStep(7);
       setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
       // history.push('/create/success');
-    } else {
-      // setCheckoutStatus(SUBMIT_STATUS.ERROR);
-      setHandleError({ isError: true, message: 'Error: Please add more credits' });
-    }
+    // } else {
+    //   // setCheckoutStatus(SUBMIT_STATUS.ERROR);
+    //   setHandleError({ isError: true, message: 'Error: Please add more credits' });
+    // }
   };
 
   return (
