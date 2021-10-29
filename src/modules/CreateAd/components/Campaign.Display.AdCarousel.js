@@ -81,26 +81,22 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
       <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
         <AdIndex currentIndex={adSlideNumber} />
         <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
-          {/* <div style={{ ...styles?.leftCarouselButton }} className={classes.leftCarouselButton}> */}
           <ArrowBackIosIcon
             style={{ ...styles?.outerIcons }}
             className={classes.outerIcons}
             onClick={() => reverseAdSlide()}
           />
-          {/* </div> */}
         </div>
         
         <div style={{ ...styles?.previewsContainer }} className={classes.previewsContainer}>
           <AdPreviewDisplays styles={styles} {...props} adSlideNumber={adSlideNumber} />
         </div>
         <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
-          {/* <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}> */}
           <ArrowForwardIosIcon
             style={{ ...styles?.outerIcons }}
             className={classes.outerIcons}
             onClick={() => changeAdSlide()}
           />
-          {/* </div> */}
         </div>
       <div
         style={{
