@@ -170,6 +170,7 @@ const ConnectOrCreateManagedAccountComponent = ({
               : 'https://ads.google.com/aw/campaigns/new'
           }
           target="_blank"
+          rel="noreferrer"
           className={classes.createNewAccountButton}
         >
           Create New Account

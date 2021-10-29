@@ -112,7 +112,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                 </div>
                 <div className="align-self-center ml-auto header-col-mid">
                   <ul id="mainmenu">
-                    <li>
+                    {/* <li>
                       <div
                         className={classes.mockedLinkStyle}
                         aria-controls="create-ad-menu"
@@ -120,7 +120,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         name="create-ad-menu"
                         onClick={handleClick}
                       >
-                        Create Ad
+                        Select Campaign
                       </div>
                       <Menu
                         id="create-ad-menu"
@@ -181,9 +181,9 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                           </Link>
                         </MenuItem>
                       </Menu>
-                    </li>
+                    </li> */}
                     <li>
-                      <Link to="/select-campaign">Select Campaign</Link>
+                      <Link to="/select-campaign">Create Ad</Link>
                     </li>
                     <li>
                       <Link to="/analytics">Analytics</Link>

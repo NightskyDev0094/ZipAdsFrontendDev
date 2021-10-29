@@ -53,16 +53,15 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     padding: '5px 0 5px 20px',
-    fontSize: '27px',
+    fontSize: '1rem',
     fontWeight: 800,
-    whiteSpace: 'wrap', // TODO: review actual ad for character limit
   },
   subTitle: {
     fontWeight: 500,
     // marginTop: '5px',
     // paddingLeft: '5px',
     textOverflow: 'ellipsis',
-    fontSize: '23px',
+    fontSize: '1.5rem',
     whiteSpace: 'noWrap',
     overflow: 'hidden',
     maxWidth: '400px',
@@ -151,18 +150,16 @@ const useStyles = makeStyles(() => ({
       fontSize: '2.666666666666667vw',
     },
   },
-  //p tag in descriptionContainer
   description: {
+    fontSize:"1.25rem",
     ['@media (max-width:750px)']: {
       overflow: 'hidden',
-      height: '115px',
       textOverflow: 'ellipsis',
-      fontSize: '3vw',
       padding: '15px 10px',
     },
     ['@media (max-width:500px)']: {
-      fontSize: '4vw',
-      padding: '10px 0px 15px 0px',
+      fontSize: "0.75rem",
+      padding: '10px 0px 15px 0px'
     },
   },
 }));
@@ -209,7 +206,7 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
       </div>
       <div className={classes.lowerContainer}>
         <div className={classes.buttonContainer}>
-          <Button data-test="button" className={classes.button} variant="outlined" size="large">
+          <Button data-test="button" className={classes.button} variant="outlined" size="medium">
             {currentCampaign?.cta}
           </Button>
         </div>

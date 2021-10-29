@@ -17,7 +17,6 @@ const useStyles = makeStyles(() => ({
     borderRadius: '20px',
     position: 'relative',
     padding: '0 1.3812154696132597vw',
-    '@media (max-width:1000px)': {},
   },
   successImage: {
     height: '100%',
