@@ -78,33 +78,33 @@ const TargetingContainer = ({
   }, []);
 
   const setLocaleVals = () => {
-    if (currentCampaign.campaign_type === 'New') {
-      if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
-        if (businessInfo.length !== 0) {
-          if (typeof businessInfo[0].street !== 'undefined') {
-            setStreetVal(businessInfo[0].street || '');
-          }
-          if (typeof businessInfo[0].city !== 'undefined') {
-            setCityVal(businessInfo[0].city || '');
-          }
-          if (typeof businessInfo[0].state !== 'undefined') {
-            setStateVal(businessInfo[0].state || '');
-          }
-          if (typeof businessInfo[0].zip !== 'undefined') {
-            setZipVal(businessInfo[0].zip || '');
-          }
+    // if (currentCampaign.campaign_type === 'New') {
+    if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
+      if (businessInfo.length !== 0) {
+        if (typeof businessInfo[0].street !== 'undefined') {
+          setStreetVal(businessInfo[0].street || '');
+        }
+        if (typeof businessInfo[0].city !== 'undefined') {
+          setCityVal(businessInfo[0].city || '');
+        }
+        if (typeof businessInfo[0].state !== 'undefined') {
+          setStateVal(businessInfo[0].state || '');
+        }
+        if (typeof businessInfo[0].zip !== 'undefined') {
+          setZipVal(businessInfo[0].zip || '');
         }
       }
     }
+    // }
   };
   const setSavedVals = () => {
-    if (currentCampaign.campaign_type === 'Draft' || currentCampaign.campaign_type === 'Template') {
+    // if (currentCampaign.campaign_type === 'Draft' || currentCampaign.campaign_type === 'Template') {
       setStreetVal(currentCampaign.street_address || '');
       setCityVal(currentCampaign.city_name || '');
       setStateVal(currentCampaign.state_code || '');
       setZipVal(currentCampaign.zip_code || '');
       setInterest(currentCampaign.search_term || '');
-    }
+    // }
   };
 
   const submitTargetInfo = (targetInfo) => {
