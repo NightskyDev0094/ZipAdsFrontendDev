@@ -58,7 +58,6 @@ const TargetingContainer = ({
     getGaAdAccounts();
     getFbAdAccounts();
     getFbPages();
-    // eslint-disable-next-line
   }, []);
 
   const [streetVal, setStreetVal] = useState(currentCampaign.street_address || '');
@@ -108,16 +107,9 @@ const TargetingContainer = ({
   };
 
   const submitTargetInfo = (targetInfo) => {
-    // TODO
-    // hook up targeting action to handle posting the target info
-    // const { addresses } = targetInfo;
-    // Get campaign Id from state
     const campaignId = campaigns.current.id;
     const formDataCampaign = new FormData();
     formDataCampaign.append('interest_targeting', targetInfo.interest);
-    // let formDataFBLocations = new FormData();
-    // Check if anywhere
-    // Get list of facebook locations
     const formDataLocationSearch = new FormData();
     formDataLocationSearch.append('search_city', cityVal);
     formDataLocationSearch.append('search_state', stateVal);

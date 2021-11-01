@@ -12,27 +12,6 @@ import { useHistory } from 'react-router';
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
-const STORE_IMG =
-  'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80';
-
-const COFFEE_IMG =
-  'https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
-
-const CLOTHES_IMG =
-  'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
-
-const THANK_YOU_LOGO =
-  'https://images.unsplash.com/photo-1503980599186-9cc36eda351a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80';
-
-const BEER_LOGO =
-  'https://images.unsplash.com/photo-1558642891-54be180ea339?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
-
-const FOOD_ONE =
-  'https://images.unsplash.com/photo-1529042410759-befb1204b468?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80';
-
-const FOOD_TWO =
-  'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
-
 /**
  * @param { campaigns: CampaignInfo }  - redux state that contains information about the users campaigns, including the current one
  * @param { postCampaigns: Function } - a redux action that creates new campaigns
@@ -142,26 +121,15 @@ const CreateCampaignContainer = ({
     if (formInfo.ga_display_img !== null && formInfo.ga_display_img !== '') {
       getImageFromUrl(formInfo.ga_display_img, 'ga_display_img');
     }
-
     if (formInfo.ga_square_display_img !== null && formInfo.ga_square_display_img !== '') {
       getImageFromUrl(formInfo.ga_square_display_img, 'ga_square_display_img');
     }
   }, []);
 
   useEffect(() => {
-    // Set Address values
     setLocaleVals();
-    // eslint-disable-next-line
   }, [businessInfo]);
-  // useEffect(() => {
-  //   // Set Address values
-  //   setLocaleVals();
-  //   // eslint-disable-next-line
-  // }, []);
-  useEffect(() => {
-    console.log('Submittable Image:::', formInfo.fb_feed_img);
-    // eslint-disable-next-line
-  }, [formInfo.fb_feed_img]);
+
   const setLocaleVals = () => {
     if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
       if (businessInfo.length !== 0) {
@@ -181,7 +149,6 @@ const CreateCampaignContainer = ({
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
-        console.log('Image function test', blob);
         let n = url.lastIndexOf('/');
         let fileName = url.substring(n + 1);
         const modDate = new Date();
@@ -236,9 +203,6 @@ const CreateCampaignContainer = ({
   };
 
   const submitCampaign = async () => {
-    // TO_DO:
-    // right now postCampaigns just updates the state, need to update the database
-    // in order to post the campaigns to the database, we need to get the user's id
     const formData = new FormData();
     formData.append('campaign_name', formInfo.campaign_name);
     formData.append('headline', formInfo.headline);

@@ -11,12 +11,6 @@ import FacebookAudienceDisplay from './ConnectSocial.Display.FacebookAudience';
 import DefaultAdPreview from './ConnectSocial.Display.DefaultPreview';
 import AdDisplayTitle from './Campaign.Display.AdCarousel.AdDisplayTitle';
 
-// TODO: find out where the arrow buttons are relative or absolute to
-/**
- * decrease padding of network header
- * find out why the google ad network moves left
- */
-
 const useStyles = makeStyles({
   header: {
     textAlign: 'left',

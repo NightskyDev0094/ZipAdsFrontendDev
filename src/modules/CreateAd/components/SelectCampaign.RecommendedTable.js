@@ -219,8 +219,8 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
   ];
 
   useEffect(() => {
-    console.log(recommendedTemplate);
-  }, [recommendedTemplate])
+    console.log('RECOMMENDED TEMPLATE: ', recommendedTemplate);
+  }, [recommendedTemplate]);
 
   return (
     <Box>
@@ -298,7 +298,8 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
           borderRadius: '15px',
         }}
         dataSource={
-          recommendedTemplate && [recommendedTemplate]?.map((element, index) => ({ ...element, index: index + 1 }))
+          recommendedTemplate &&
+          [recommendedTemplate]?.map((element, index) => ({ ...element, index: index + 1 }))
         }
       />
     </Box>

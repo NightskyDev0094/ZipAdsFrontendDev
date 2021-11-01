@@ -171,7 +171,7 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
     if (previewUrl && previewUrl != '') {
       setBackgroundImageProp(previewUrl);
     } else {
-      setBackgroundImageProp(DEFAULT_IMAGE);
+      setBackgroundImageProp(currentCampaign.file_url);
     }
   }, [previewUrl]);
   const classes = useStyles();

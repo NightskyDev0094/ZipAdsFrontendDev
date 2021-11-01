@@ -3,6 +3,16 @@ import { connect } from 'react-redux';
 import SelectCampaignPage from '../pages/SelectCampaignPage';
 import { getCampaign, addCampaign } from '../../../actions/campaignActions';
 import { updateSocials } from '../../../actions/formInfoActions';
+import BEAUTY_DEFAULT_IMAGE from '../../../img/TemplateImages/Beauty_1x1.jpg';
+import CONSUMER_PRODUCT_DEFAULT_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1x1.jpg';
+import FINANCE_DEFAULT_IMAGE from '../../../img/TemplateImages/Finance_1x1.jpg';
+import FITNESS_DEFAULT_IMAGE from '../../../img/TemplateImages/Fitness_1x1.jpg';
+import HEALTH_DEFAULT_IMAGE from '../../../img/TemplateImages/Health_1x1.jpg';
+import PERSONAL_FINANCE_DEFAULT_IMAGE from '../../../img/TemplateImages/Personal_Finance_1x1.jpg';
+import PET_DEFAULT_IMAGE from '../../../img/TemplateImages/Pet_1x1.jpg';
+import REAL_ESTATE_DEFAULT_IMAGE from '../../../img/TemplateImages/Real_Estate_1x1.jpg';
+import RESTAURANT_DEFAULT_IMAGE from '../../../img/TemplateImages/Restaurant_1x1.jpg';
+import TRAVEL_AND_LODGING_DEFAULT_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1x1.jpg';
 
 const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSocials }) => {
   const [campaignData, setCampaignData] = useState([]);
@@ -74,10 +84,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Learn More',
       headline: 'Long Lashes in One Click!',
       headline2: 'Buy One Get One Free',
-      ad_description: "Maria’s Mascara will have your lashes looking so long that they'll be doing double takes when checking your ID.",
+      ad_description:
+        "Maria’s Mascara will have your lashes looking so long that they'll be doing double takes when checking your ID.",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: BEAUTY_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -105,10 +116,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Contact Us',
       headline: 'Come SEE Why We Rock',
       headline2: 'A Pair for Every Mood',
-      ad_description: 'At Miller’s Sunglasses, our quality lenses will have everyone staring at you through their own shades.',
+      ad_description:
+        'At Miller’s Sunglasses, our quality lenses will have everyone staring at you through their own shades.',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: CONSUMER_PRODUCT_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -136,10 +148,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Contact Us',
       headline: 'Trusted by Millions',
       headline2: 'Since 1931',
-      ad_description: 'John Smith Bank is opening a new location on Broadway! Come by and let us serve you.',
+      ad_description:
+        'John Smith Bank is opening a new location on Broadway! Come by and let us serve you.',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: FINANCE_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -167,10 +180,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Contact Us',
       headline: 'Gain Courage Lose Weight',
       headline2: 'With Over 100 Gym Plans',
-      ad_description: "Jim's Gym has helped thousands of people meet their physical goals. Come by today and get your first month FREE.",
+      ad_description:
+        "Jim's Gym has helped thousands of people meet their physical goals. Come by today and get your first month FREE.",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: FITNESS_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -198,10 +212,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Learn More',
       headline: "Life's a Box of Berries",
       headline2: 'Healthy if You Choose So',
-      ad_description: 'Health Today Magazine has everything you need to know about health, fitness, and nutrition. Subscribe for FREE today!',
+      ad_description:
+        'Health Today Magazine has everything you need to know about health, fitness, and nutrition. Subscribe for FREE today!',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: HEALTH_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -229,10 +244,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Sign Up',
       headline: 'Grab Your $ by the Reigns',
       headline2: 'And Make it Rain!',
-      ad_description: "SaveMore App is officially launching! We're offering a $5 sign-up credit and a $50 referral bonus!",
+      ad_description:
+        "SaveMore App is officially launching! We're offering a $5 sign-up credit and a $50 referral bonus!",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: PERSONAL_FINANCE_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -260,10 +276,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Shop Now',
       headline: 'Your Dog Would Click This',
       headline2: "So Why Won't You?",
-      ad_description: 'Good Boy Co. is offering a 24-hour SUPER SALE on all treats throughout our website!',
+      ad_description:
+        'Good Boy Co. is offering a 24-hour SUPER SALE on all treats throughout our website!',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: PET_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -291,10 +308,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Learn More',
       headline: 'Dream Home to Real Home',
       headline2: 'Sandra Will Help!',
-      ad_description: 'Sandra Williams has helped hundreds of people turn their dream home into a reality. Avoid the nightmare of doing it yourself!',
+      ad_description:
+        'Sandra Williams has helped hundreds of people turn their dream home into a reality. Avoid the nightmare of doing it yourself!',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: REAL_ESTATE_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -322,10 +340,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'See Menu',
       headline: 'Wondering Where to Eat?',
       headline2: 'Come to Slice of Heaven!',
-      ad_description: "Check out Slice of Heaven's mouth watering menu and get 15% OFF your first visit! Located in Jamestown.",
+      ad_description:
+        "Check out Slice of Heaven's mouth watering menu and get 15% OFF your first visit! Located in Jamestown.",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: RESTAURANT_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -353,10 +372,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       cta2: 'Contact Us',
       headline: 'This is One Click Away',
       headline2: 'Get 25% off Your Booking',
-      ad_description: "Romero Hotel is home to the most breathtaking view in Block Island! Visit our website to book the vacation that you deserve.",
+      ad_description:
+        'Romero Hotel is home to the most breathtaking view in Block Island! Visit our website to book the vacation that you deserve.',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: '',
+      file_url: TRAVEL_AND_LODGING_DEFAULT_IMAGE,
       file_upload: null,
       fb_feed_img: null,
       instagram_img: null,
@@ -386,7 +406,6 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
   const createNewCampaign = async () => {
     const formData = new FormData();
     formData.append('draft', 'True');
-
     // Save Targeting options to Campaign_Info
     await addCampaign(formData);
   };

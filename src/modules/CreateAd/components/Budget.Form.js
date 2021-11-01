@@ -102,7 +102,6 @@ const BudgetForm = ({ handleSubmitBudget, socialsToPost, ...props }) => {
           </InputSmallLabel>
         </Box>
       )}
-      {/* TODO: add timeline */}
       <Box marginTop="1rem">
         <InputMainLabel>Unsure of your advertising objective?</InputMainLabel>
         <Typography>

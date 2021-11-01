@@ -16,8 +16,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
 
-const TEST_IMAGE =
-  'https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
@@ -142,7 +140,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
     if (previewUrl && previewUrl != '') {
       setBackgroundImageProp(previewUrl);
     } else {
-      setBackgroundImageProp(DEFAULT_IMAGE);
+      setBackgroundImageProp(currentCampaign.file_url);
     }
   }, [previewUrl]);
   return (
@@ -228,7 +226,7 @@ InstagramSocialDisplay.defaultProps = {
     headline2: 'Lorem Ipsum',
     ad_description: `This impressive paella is a perfect party dish and a fun meal to cook together with your
         guests. Add 1 cup of frozen peas along with the mussels, if you like`,
-    file_url: TEST_IMAGE,
+    file_url: '',
     cta: 'Learn More',
     secondary_image_url: '',
   },
