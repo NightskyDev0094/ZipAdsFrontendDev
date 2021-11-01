@@ -22,12 +22,9 @@ const config = {
 // Get Ads From Server
 export const getBusinessInfo = () => async (dispatch, getState) => {
   setBusinessInfoLoading();
-  // TODO: if client has not set up business info then this api will respond with an empty array causing its implementations to fail due to undefined
-  // Temporary solution is to have client fill out their account info at "/edit-account-info"
   axios
     .get(`${SERVER_URL}/api/business-info/`, tokenConfig(getState))
     .then((res) => {
-      console.log("GET BUSINESS INFO RESPONSE: ", res.data)
       dispatch({
         type: GET_BUSINESS_INFOS,
         payload: res.data,

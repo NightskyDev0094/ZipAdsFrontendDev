@@ -220,7 +220,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
 
   useEffect(() => {
     console.log(recommendedTemplate);
-  }, [recommendedTemplate])
+  }, [recommendedTemplate]);
 
   return (
     <Box>
@@ -276,7 +276,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
         </Fade>
       </Modal>
       <Typography className={classes.title} variant="h1" component="h2">
-        Recommanded Template
+        Recommended Template
       </Typography>
       <Typography
         style={{
@@ -298,7 +298,8 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
           borderRadius: '15px',
         }}
         dataSource={
-          recommendedTemplate && [recommendedTemplate]?.map((element, index) => ({ ...element, index: index + 1 }))
+          recommendedTemplate &&
+          [recommendedTemplate]?.map((element, index) => ({ ...element, index: index + 1 }))
         }
       />
     </Box>

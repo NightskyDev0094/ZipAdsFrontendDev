@@ -67,9 +67,6 @@ const AdCarouselStyles = makeStyles(() => ({
     '&:hover': {
       cursor: 'pointer',
     },
-    // ['@media (max-width:500px)']: {
-    //   border: 'none',
-    // },
   },
 }));
 
