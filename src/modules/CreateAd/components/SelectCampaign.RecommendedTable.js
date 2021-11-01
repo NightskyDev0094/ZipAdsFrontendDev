@@ -219,7 +219,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
   ];
 
   useEffect(() => {
-    console.log(recommendedTemplate);
+    console.log('RECOMMENDED TEMPLATE: ', recommendedTemplate);
   }, [recommendedTemplate]);
 
   return (

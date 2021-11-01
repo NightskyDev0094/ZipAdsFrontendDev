@@ -121,26 +121,15 @@ const CreateCampaignContainer = ({
     if (formInfo.ga_display_img !== null && formInfo.ga_display_img !== '') {
       getImageFromUrl(formInfo.ga_display_img, 'ga_display_img');
     }
-
     if (formInfo.ga_square_display_img !== null && formInfo.ga_square_display_img !== '') {
       getImageFromUrl(formInfo.ga_square_display_img, 'ga_square_display_img');
     }
   }, []);
 
   useEffect(() => {
-    // Set Address values
     setLocaleVals();
-    // eslint-disable-next-line
   }, [businessInfo]);
-  // useEffect(() => {
-  //   // Set Address values
-  //   setLocaleVals();
-  //   // eslint-disable-next-line
-  // }, []);
-  useEffect(() => {
-    console.log('Submittable Image:::', formInfo.fb_feed_img);
-    // eslint-disable-next-line
-  }, [formInfo.fb_feed_img]);
+
   const setLocaleVals = () => {
     if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
       if (businessInfo.length !== 0) {
@@ -160,7 +149,6 @@ const CreateCampaignContainer = ({
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
-        console.log('Image function test', blob);
         let n = url.lastIndexOf('/');
         let fileName = url.substring(n + 1);
         const modDate = new Date();
@@ -215,9 +203,6 @@ const CreateCampaignContainer = ({
   };
 
   const submitCampaign = async () => {
-    // TO_DO:
-    // right now postCampaigns just updates the state, need to update the database
-    // in order to post the campaigns to the database, we need to get the user's id
     const formData = new FormData();
     formData.append('campaign_name', formInfo.campaign_name);
     formData.append('headline', formInfo.headline);

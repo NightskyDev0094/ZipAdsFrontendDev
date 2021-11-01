@@ -116,12 +116,11 @@ const useStyles = makeStyles((theme) => ({
 
 const FacebookAudienceDisplay = ({ currentCampaign, styles, previewUrl, ...props }) => {
   const [backgroundImageProp, setBackgroundImageProp] = useState('');
-
   useEffect(() => {
     if (previewUrl && previewUrl != '') {
       setBackgroundImageProp(previewUrl);
     } else {
-      setBackgroundImageProp(DEFAULT_IMAGE);
+      setBackgroundImageProp(currentCampaign.file_url);
     }
   }, [previewUrl]);
 
@@ -139,7 +138,7 @@ const FacebookAudienceDisplay = ({ currentCampaign, styles, previewUrl, ...props
           data-test="image"
           style={styles?.image}
           className={classes.image}
-          src={backgroundImageProp || DEFAULT_IMAGE}
+          src={backgroundImageProp}
           alt="Your Ad Image"
         />
       </div>

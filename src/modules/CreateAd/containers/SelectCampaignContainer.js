@@ -406,7 +406,6 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
   const createNewCampaign = async () => {
     const formData = new FormData();
     formData.append('draft', 'True');
-
     // Save Targeting options to Campaign_Info
     await addCampaign(formData);
   };

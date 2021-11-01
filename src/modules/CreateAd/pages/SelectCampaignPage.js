@@ -29,13 +29,15 @@ export const SelectCampaignPage = ({
     'RESTAURANT',
     'TRAVEL AND LODGING',
   ];
-
+  
+  console.log('BUSINESS INFO: ', businessInfo);
   useEffect(() => {
     if (!businessInfo.length) return;
-    console.log(businessInfo.length);
-    let industry = businessInfo[businessInfo.length - 1].industry;
-    setRecommendedTemplate(props.templates[industries.indexOf(industry)]);
-  }, [businessInfo]);
+    let industry = businessInfo[businessInfo.length - 1].industry; // gets the account info and assigns their industry or undefined to variable
+    if (industry) {
+      setRecommendedTemplate(props.templates[industries.indexOf(industry)]);
+    }
+  }, []);
 
   return (
     <div>
