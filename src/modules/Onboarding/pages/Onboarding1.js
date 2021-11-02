@@ -89,6 +89,7 @@ const Onboarding1 = ({ addAddresses, addBusinessInfo }) => {
         setStateCode={setStateCode}
         setZipCode={setZipCode}
         setApartment={setApartment}
+        displaySelectIndustrySection={false}
       />
     </OnboardingPageWrapper>
   );

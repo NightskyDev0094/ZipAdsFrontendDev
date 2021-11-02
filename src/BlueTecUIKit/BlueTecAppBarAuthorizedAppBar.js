@@ -61,7 +61,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
 
   const handleNav = () => {
     logoutUser();
-    history.push('/login/');
+    history.push('/');
   };
 
   //switch to drop down menu on mobile
@@ -112,76 +112,6 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                 </div>
                 <div className="align-self-center ml-auto header-col-mid">
                   <ul id="mainmenu">
-                    {/* <li>
-                      <div
-                        className={classes.mockedLinkStyle}
-                        aria-controls="create-ad-menu"
-                        aria-haspopup="true"
-                        name="create-ad-menu"
-                        onClick={handleClick}
-                      >
-                        Select Campaign
-                      </div>
-                      <Menu
-                        id="create-ad-menu"
-                        anchorEl={anchorEl.createAd}
-                        keepMounted
-                        style={{ transform: 'translateY(60px)' }}
-                        open={open.createAd}
-                        onClose={handleClose}
-                        TransitionComponent={Fade}
-                      >
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/connect-social">
-                            Connect Accounts
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create">
-                            Create Campaign
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/targeting">
-                            Target Audience
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/expanded-targeting">
-                            Review Targeting
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/budget">
-                            Set Budget
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/objective">
-                            Set Objective
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/credits">
-                            Purchase Credits
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/create/summary">
-                            Post ad
-                          </Link>
-                        </MenuItem>
-                        <MenuItem
-                          onClick={async () => {
-                            completeStep(8);
-                          }}
-                        >
-                          <Link className={classes.innerLink} to="/create/connect-social">
-                            Restart Current Campaign
-                          </Link>
-                        </MenuItem>
-                      </Menu>
-                    </li> */}
                     <li>
                       <Link to="/select-campaign">Create Ad</Link>
                     </li>

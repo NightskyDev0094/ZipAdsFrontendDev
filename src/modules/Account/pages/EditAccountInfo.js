@@ -17,6 +17,7 @@ const EditAccountInfo = ({ addAddresses, addBusinessInfo }) => {
   const [personalName, setPersonalName] = React.useState('');
   const [businessName, setBusinessName] = React.useState('');
   const [businessUrl, setBusinessUrl] = React.useState('https://');
+  const [industry, setIndustry] = React.useState('');
   const [streetAddress, setStreetAddress] = React.useState('');
   const [city, setCity] = React.useState('');
   const [stateCode, setStateCode] = React.useState('');
@@ -35,6 +36,9 @@ const EditAccountInfo = ({ addAddresses, addBusinessInfo }) => {
     if (apartment) {
       businessInfoFormData.append('apartment', apartment);
     }
+    if (industry) {
+      businessInfoFormData.append('industry', industry);
+    }
     if (streetAddress) {
       businessInfoFormData.append('street', streetAddress);
     }
@@ -48,6 +52,7 @@ const EditAccountInfo = ({ addAddresses, addBusinessInfo }) => {
       businessInfoFormData.append('zip', zipCode);
     }
 
+    console.log("BUSINESS INFO FORM: ", businessInfoFormData.entries())
     addBusinessInfo(businessInfoFormData);
   };
   return (
@@ -74,6 +79,8 @@ const EditAccountInfo = ({ addAddresses, addBusinessInfo }) => {
         setStateCode={setStateCode}
         setZipCode={setZipCode}
         setApartment={setApartment}
+        setIndustry={setIndustry}
+        industry={industry}
       />
     </AccountWrapper>
   );
