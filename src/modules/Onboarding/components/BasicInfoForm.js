@@ -53,14 +53,12 @@ const BasicInfoForm = ({
   handleUpdateInfo,
   handleErrors,
   businessName,
-  industry,
   businessUrl,
   streetAddress,
   city,
   stateCode,
   zipCode,
   setBusinessName,
-  setIndustry,
   setBusinessUrl,
   setStreetAddress,
   setCity,
@@ -92,52 +90,6 @@ const BasicInfoForm = ({
               onChange={(e) => setBusinessUrl(e.target.value)}
             />
             <span className={classes.label}>Your website url</span>
-          </div>
-          <div className={classes.inputContainer}>
-            <Input
-              className={classes.input}
-              placeholder="Industry"
-              name="industry"
-              value={industry}
-              onChange={(e) => setIndustry(e.target.value)}
-            />
-            <Select
-              placeholder="Industry"
-              name="industry"
-              value={industry}
-              className={classes.input}
-              onChange={(e) => setIndustry(e.target.value)}
-            >
-              {/* <MenuItem value="Blank">Blank</MenuItem>
-              <MenuItem value="Apply Now">Apply Now</MenuItem>
-              <MenuItem value="Book Now">Book Now</MenuItem>
-              <MenuItem value="Contact Us">Contact Us</MenuItem>
-              <MenuItem value="Donate Now">Donate Now</MenuItem>
-              <MenuItem value="Download">Download</MenuItem>
-              <MenuItem value="Get Offer">Get Offer</MenuItem>
-              <MenuItem value="Get Quote">Get Quote</MenuItem>
-              <MenuItem value="Get Showtimes">Get Showtimes</MenuItem>
-              <MenuItem value="Learn More">Learn More</MenuItem>
-              <MenuItem value="Listen Now">Listen Now</MenuItem>
-              <MenuItem value="Play Game">Play Game</MenuItem>
-              <MenuItem value="Request Time">Request Time</MenuItem>
-              <MenuItem value="See Menu">See Menu</MenuItem>
-              <MenuItem value="Shop Now">Shop Now</MenuItem>
-              <MenuItem value="Sign Up">Sign U</MenuItem>
-              <MenuItem value="Subscribe">Subscribe</MenuItem>
-              <MenuItem value="Watch More">Watch More</MenuItem> */}
-              <MenuItem value="BEAUTY">BEAUTY</MenuItem>
-              <MenuItem value="CONSUMER PRODUCTS AND SERVICES">CONSUMER PRODUCTS AND SERVICES</MenuItem>
-              <MenuItem value="FINANCE">FINANCE</MenuItem>
-              <MenuItem value="FITNESS">FITNESS</MenuItem>
-              <MenuItem value="HEALTH">HEALTH</MenuItem>
-              <MenuItem value="PERSONAL">PERSONAL</MenuItem>
-              <MenuItem value="PET">PET</MenuItem>
-              <MenuItem value="REAL ESTATE">REAL ESTATE</MenuItem>
-              <MenuItem value="RESTAURANT">RESTAURANT</MenuItem>
-              <MenuItem value="TRAVEL AND LODGING">TRAVEL AND LODGING</MenuItem>
-            </Select>
-            <span className={classes.label}>Your business industry</span>
           </div>
           <div className={classes.inputContainer}>
             <Input
