@@ -31,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
-  pageHeader: {
-    textAlign: 'center',
-    marginTop: '50px',
-  },
   paper: {
     width: '88vw',
     height: '1300px',
@@ -88,6 +84,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   createBudgetContainer: {
     padding: '2rem',
@@ -236,11 +234,13 @@ const BudgetPage = ({
       {!error.isError && (
         <ErrorHandler>
           <Box className={classes.page}>
-            <div className={classes.pageHeader}>
-              <Typography variant="h2">Create an Ad</Typography>
-              <div className={classes.progressBarContainer}>
-                <StepProgress formStep={5} />
-              </div>
+            <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+              <Typography variant="h2" textAlign="center">
+                Create an Ad
+              </Typography>
+            </div>
+            <div className={classes.progressBarContainer}>
+              <StepProgress formStep={5} />
             </div>
             <Paper elevation={2} className={classes.paper}>
               <div className={classes.nextButtonContainer}>

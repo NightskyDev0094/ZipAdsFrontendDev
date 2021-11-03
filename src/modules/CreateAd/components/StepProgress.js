@@ -15,7 +15,6 @@ const stepperBreakSize = 1000;
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    marginTop: '75px',
   },
   button: {
     marginRight: theme.spacing(1),
@@ -32,13 +31,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   stepper: {
-    '@media (max-width:1000px)': {
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
-      height: '700px',
-      paddingTop: '20px',
-    },
+    backgroundColor: 'rgb(255,255,255)',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    paddingTop: '20px',
   },
   step: {
     '@media (max-width:1000px)': {

@@ -44,6 +44,13 @@ const useStyles = makeStyles(() => ({
     opacity: 0.5,
     marginTop: '15px',
   },
+  select: {
+    padding: '2px 1rem',
+    border: '1px solid rgba(34,36,38,.15)',
+    borderRadius: '0.28rem',
+    margin: '0px 15px',
+    width: '100%',
+  },
 }));
 
 const BasicInfoForm = ({
@@ -62,7 +69,7 @@ const BasicInfoForm = ({
   setStateCode,
   setZipCode,
   setIndustry,
-  industry
+  industry,
 }) => {
   const classes = useStyles();
   return (
@@ -92,10 +99,10 @@ const BasicInfoForm = ({
           </div>
           <div className={classes.inputContainer}>
             <Select
+              className={classes.select}
               placeholder="Industry"
               name="industry"
               value={industry}
-              className={classes.input}
               onChange={(e) => setIndustry(e.target.value)}
             >
               {/* <MenuItem value="Blank">Blank</MenuItem>

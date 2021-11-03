@@ -31,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
-  pageHeader: {
-    textAlign: 'center',
-    marginTop: '50px',
-  },
   paper: {
     width: '88vw',
     height: '1100px',
@@ -76,6 +72,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   targetDistanceOptionsContainer: {
     justifyContent: 'center',
@@ -133,13 +131,13 @@ const TargetingPage = ({
     // if (hasTargetStepBeenCompleted === 'STEP_COMPLETED') {
     //   setIsResubmitModalOpen(true);
     // } else {
-      try {
-        handleSubmitTargetInfo({ distance, interest });
-        completeStep(3);
-        history.push('/create/expanded-targeting');
-      } catch (e) {
-        setError({ isError: true, message: e });
-      }
+    try {
+      handleSubmitTargetInfo({ distance, interest });
+      completeStep(3);
+      history.push('/create/expanded-targeting');
+    } catch (e) {
+      setError({ isError: true, message: e });
+    }
     // }
   };
 
@@ -157,11 +155,13 @@ const TargetingPage = ({
       )}
       {!error.isError && (
         <Box className={classes.pageContainer}>
-          <div className={classes.pageHeader}>
-            <Typography variant="h2">Targeting</Typography>
-            <div className={classes.progressBarContainer}>
-              <StepProgress formStep={3} />
-            </div>
+          <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+            <Typography variant="h2" textAlign="center">
+              Targeting
+            </Typography>
+          </div>
+          <div className={classes.progressBarContainer}>
+            <StepProgress formStep={3} />
           </div>
           <Paper className={classes.paper} elevation={2}>
             <div className={classes.nextButtonContainer}>

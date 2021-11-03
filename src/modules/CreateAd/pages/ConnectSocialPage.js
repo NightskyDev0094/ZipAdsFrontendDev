@@ -71,6 +71,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   connectSocialMenuTitle: {
     width: '100%',
@@ -192,25 +194,25 @@ const ConnectSocialPage = ({
     //   setIsResubmitModalOpen(true);
     // } else {
     //   console.log('2');
-      try {
-        const submitSocialsData = new FormData();
-        if (googleToken) submitSocialsData.append('google_account_id', googleToken);
-        if (facebookToken) submitSocialsData.append('facebook_account_id', facebookToken);
-        const networks = Object.values(networksSelected);
-        completeStep(2);
-        handleSubmitSocials(submitSocialsData);
-        if (networks.length !== 0) {
-          getUserProfileInformation();
-        } else if (addresses !== undefined) {
-          /** Re-route either way  */
-          history.push('/create/create-campaign');
-        } else {
-          history.push('/onboarding/1');
-        }
+    try {
+      const submitSocialsData = new FormData();
+      if (googleToken) submitSocialsData.append('google_account_id', googleToken);
+      if (facebookToken) submitSocialsData.append('facebook_account_id', facebookToken);
+      const networks = Object.values(networksSelected);
+      completeStep(2);
+      handleSubmitSocials(submitSocialsData);
+      if (networks.length !== 0) {
+        getUserProfileInformation();
+      } else if (addresses !== undefined) {
+        /** Re-route either way  */
         history.push('/create/create-campaign');
-      } catch (e) {
-        setError({ isError: true, message: e });
+      } else {
+        history.push('/onboarding/1');
       }
+      history.push('/create/create-campaign');
+    } catch (e) {
+      setError({ isError: true, message: e });
+    }
     // }
   };
 
@@ -229,22 +231,24 @@ const ConnectSocialPage = ({
       {!error.isError && (
         <ErrorHandler>
           <Box className={classes.container}>
-            <div className={classes.pageHeader}>
-              <Typography variant="h2">Create an Ad</Typography>
-              <div className={classes.progressBarContainer}>
-                <StepProgress formStep={1} />
-              </div>
+            <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+              <Typography variant="h2" textAlign="center">
+                Create an Ad
+              </Typography>
+            </div>
+            <div className={classes.progressBarContainer}>
+              <StepProgress formStep={1} />
             </div>
             <Paper elevation={2} className={classes.paper}>
               <div className={classes.nextButtonContainer}>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={() => history.push('/select-campaign')}
-              >
-                Back
-              </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => history.push('/select-campaign')}
+                >
+                  Back
+                </Button>
                 <Button variant="contained" color="primary" onClick={goToNext}>
                   Next
                 </Button>

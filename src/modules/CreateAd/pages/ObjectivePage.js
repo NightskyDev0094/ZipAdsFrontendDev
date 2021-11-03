@@ -86,6 +86,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   createBudgetContainer: {
     padding: '2rem',
@@ -168,13 +170,13 @@ const ObjectivePage = ({
     // if (hasObjectiveStepBeenCompleted === 'STEP_COMPLETED') {
     //   setIsResubmitModalOpen(true);
     // } else {
-      try {
-        handleSubmitObjective({ objective });
-        completeStep(6);
-        history.push('/create/summary');
-      } catch (e) {
-        setError({ isError: true, message: e });
-      }
+    try {
+      handleSubmitObjective({ objective });
+      completeStep(6);
+      history.push('/create/summary');
+    } catch (e) {
+      setError({ isError: true, message: e });
+    }
     // }
   };
 
@@ -192,11 +194,13 @@ const ObjectivePage = ({
       )}
       {!error.isError && (
         <Box className={classes.page}>
-          <div className={classes.pageHeader}>
-            <Typography variant="h2">Create an Ad</Typography>
-            <div className={classes.progressBarContainer}>
-              <StepProgress formStep={6} />
-            </div>
+          <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+            <Typography variant="h2" textAlign="center">
+              Create an Ad
+            </Typography>
+          </div>
+          <div className={classes.progressBarContainer}>
+            <StepProgress formStep={6} />
           </div>
           <Paper elevation={2} className={classes.paper}>
             <div className={classes.nextButtonContainer}>

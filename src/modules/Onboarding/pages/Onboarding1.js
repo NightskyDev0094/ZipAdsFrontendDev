@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
 }));
 

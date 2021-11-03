@@ -87,6 +87,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   listItem: {
     display: 'flex',
@@ -172,7 +174,6 @@ const SummaryPage = ({
     isError: false,
   });
 
-
   const reverseAdSlide = () => {
     if (adSlideNumber === 1) {
       setAdSlideNumber(adSlideLength);
@@ -198,11 +199,13 @@ const SummaryPage = ({
     <>
       {error.isError && <ErrorFallBackPage error={error} />}
       <Box className={classes.page}>
-        <div className={classes.pageHeader}>
-          <Typography variant="h2">Create an Ad</Typography>
-          <div className={classes.progressBarContainer}>
-            <StepProgress formStep={6} />
-          </div>
+        <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+          <Typography variant="h2" textAlign="center">
+            Create an Ad
+          </Typography>
+        </div>
+        <div className={classes.progressBarContainer}>
+          <StepProgress formStep={6} />
         </div>
         <Paper className={classes.paper} elevation={2}>
           <div className={classes.pageBody}>
