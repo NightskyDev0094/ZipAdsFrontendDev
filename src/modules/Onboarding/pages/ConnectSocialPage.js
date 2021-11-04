@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-import ConnectSocialForm from '../components/ConnectSocial.Form';
 import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo, addBusinessInfo } from '../../../actions/businessInfoActions';
@@ -205,9 +204,6 @@ const ConnectSocialPage = ({
             Next
           </Button>
         </div>
-        {/* <h2 className={classes.connectSocialMenuTitle}>
-          Connect Social Accounts or Create Social Account
-        </h2> */}
         <h2 className={classes.connectSocialMenuTitle}>Create Social Account</h2>
         <div className={classes.pageBody}>
           <ConnectSocialMenu
