@@ -138,8 +138,8 @@ const ExpandedGoogleTargetingComponent = ({
             'Monthly Searchs',
             'Competition',
             'Competition Index',
-            'Low/High Bid Micros',
-            'High/Top Bid Micros',
+            'Low/High Bid',
+            'High/Top Bid',
           ]}
           tableTitle="Google Keywords"
           addRowToSelected={(name) => googleKeywordsAddRowToSelected(name)}

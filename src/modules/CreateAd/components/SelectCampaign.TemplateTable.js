@@ -71,9 +71,11 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
         }
       }
     };
-    if (campaignType === 'Draft') {
-      let selected = search(data);
+    if (campaignType === 'Template') {
+      // let selected = search(data);
+      let selected = data[id];
 
+      console.log(selected)
       const formData = new FormData();
       formData.append('campaign_name', selected.campaign_name);
       formData.append('campaign_type', 'template');
@@ -168,6 +170,16 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
     },
     {
       title: (
+        <Tooltip placement="bottom" title="This is the industry this template is designed for.">
+          Industry
+        </Tooltip>
+      ),
+      dataIndex: 'industry',
+      key: 'industry',
+      render: (value) => <p>{value}</p>,
+    },
+    {
+      title: (
         <Tooltip placement="bottom" title="This is the headline of your campaign.">
           Headline
         </Tooltip>
@@ -212,7 +224,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       key: 'id',
       render: (id) => (
         // <button>
-          <EditIcon onClick={() => templateTableData(id, templates, 'Draft')} />
+          <EditIcon onClick={() => templateTableData(id, templates, 'Template')} />
         // </button>
       ),
     },

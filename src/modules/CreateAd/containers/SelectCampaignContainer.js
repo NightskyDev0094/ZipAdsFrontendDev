@@ -67,6 +67,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
 
   const sampleTemplateData = [
     {
+      id: 0,
       campaign_name: 'Mascara Sale',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -97,8 +98,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Beauty',
     },
     {
+      id: 1,
       campaign_name: 'Men’s Sunglasses',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -129,8 +132,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Consumer Product',
     },
     {
+      id: 2,
       campaign_name: 'Bank Opening',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -161,8 +166,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Finance',
     },
     {
+      id: 3,
       campaign_name: 'Gym Campaign',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -193,8 +200,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Fitness',
     },
     {
+      id: 4,
       campaign_name: 'Health Blog Subscription',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -225,8 +234,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Health',
     },
     {
+      id: 5,
       campaign_name: 'Finance App Launch',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -257,8 +268,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Personal Finance',
     },
     {
+      id: 6,
       campaign_name: 'Dog Treats',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -289,8 +302,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Pets',
     },
     {
+      id: 7,
       campaign_name: 'Real Estate Agent',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -321,8 +336,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Real Estate',
     },
     {
+      id: 8,
       campaign_name: 'Slice of Heaven Restaurant',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -353,8 +370,10 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Restaraunt',
     },
     {
+      id: 9,
       campaign_name: 'Romero Hotel',
       google_search_ad: 'True',
       google_display_ad: 'True',
@@ -385,6 +404,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       ga_square_display_img: null,
       img_option: 'custom',
       logo_option: 'custom',
+      industry: 'Travel and Lodging',
     },
   ];
 

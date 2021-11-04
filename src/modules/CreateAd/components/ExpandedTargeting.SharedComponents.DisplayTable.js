@@ -170,7 +170,7 @@ export const DisplayTable = function ({
                 {/* This Section is for displaying micros as dollars. The only page that 'fromGoogle' should be true is the Display.Google Page which send micros in index 5 of Keywords array */}
                 {fromGoogle &&
                   rows.map((row, index) => {
-                    return index === 5 ? (
+                    return index === 5 || index === 4 ? (
                       <StyledTableCell key={`${row}-${index}`}>${row / 100000}</StyledTableCell>
                     ) : (
                       <StyledTableCell key={`${row}-${index}`}>{row}</StyledTableCell>
