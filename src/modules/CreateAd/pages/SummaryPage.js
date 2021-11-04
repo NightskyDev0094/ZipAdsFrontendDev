@@ -205,7 +205,7 @@ const SummaryPage = ({
           </Typography>
         </div>
         <div className={classes.progressBarContainer}>
-          <StepProgress formStep={6} />
+          <StepProgress formStep={7} />
         </div>
         <Paper className={classes.paper} elevation={2}>
           <div className={classes.pageBody}>
