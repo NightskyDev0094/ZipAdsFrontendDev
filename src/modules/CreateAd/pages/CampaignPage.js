@@ -21,10 +21,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
-  pageHeader: {
-    textAlign: 'center',
-    marginTop: '3em',
-  },
   paper: {
     width: '88vw',
     margin: '0 auto',
@@ -70,6 +66,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   button: {
     margin: '0 30px',
@@ -134,13 +132,13 @@ const CreateCampaign = ({
     // if (hasCreateCampaignStepBeenCompleted === 'STEP_COMPLETED') {
     //   setIsResubmitModalOpen(true);
     // } else {
-      try {
-        completeStep(1);
-        handleSubmitCampaign(formInfo);
-        history.push('/create/targeting');
-      } catch (e) {
-        setError({ message: e.message, setError: true });
-      }
+    try {
+      completeStep(1);
+      handleSubmitCampaign(formInfo);
+      history.push('/create/targeting');
+    } catch (e) {
+      setError({ message: e.message, setError: true });
+    }
     // }
   };
 
@@ -158,11 +156,13 @@ const CreateCampaign = ({
       )}
       {!error.isError && (
         <Box className={classes.pageContainer}>
-          <div className={classes.pageHeader}>
-            <Typography variant="h2">Create an Ad</Typography>
-            <div className={classes.progressBarContainer}>
-              <StepProgress formStep={2} />
-            </div>
+          <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+            <Typography variant="h2" textAlign="center">
+              Create an Ad
+            </Typography>
+          </div>
+          <div className={classes.progressBarContainer}>
+            <StepProgress formStep={2} />
           </div>
           <Paper elevation={2} className={classes.paper}>
             <div className={classes.nextButtonContainer}>

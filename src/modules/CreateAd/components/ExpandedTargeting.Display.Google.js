@@ -135,7 +135,7 @@ const ExpandedGoogleTargetingComponent = ({
           tableHeaders={[
             '  ',
             'Keywords',
-            'Monthly Searchs',
+            'Monthly Searches',
             'Competition',
             'Competition Index',
             'Low/High Bid Micros',

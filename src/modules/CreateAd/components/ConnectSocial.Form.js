@@ -79,11 +79,11 @@ const ConnectSocialForm = ({
   const classes = useStyles();
   const [loggedInFacebook, setLoggedInFacebook] = React.useState(false);
   const [loggedInGoogle, setLoggedInGoogle] = React.useState(false);
-  const [fbFeedChecked, setFbFeedChecked] = React.useState(false);
-  const [fbDisplayChecked, setFbDisplayChecked] = React.useState(false);
-  const [instagramChecked, setInstagramChecked] = React.useState(false);
-  const [gaSearchChecked, setGaSearchChecked] = React.useState(false);
-  const [gaDisplayChecked, setGaDisplayChecked] = React.useState(false);
+  const [fbFeedChecked, setFbFeedChecked] = React.useState(true);
+  const [fbDisplayChecked, setFbDisplayChecked] = React.useState(true);
+  const [instagramChecked, setInstagramChecked] = React.useState(true);
+  const [gaSearchChecked, setGaSearchChecked] = React.useState(true);
+  const [gaDisplayChecked, setGaDisplayChecked] = React.useState(true);
 
   React.useEffect(() => {
     if (socialsToPost.includes('facebook feed ad')) {

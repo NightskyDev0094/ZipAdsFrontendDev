@@ -36,7 +36,9 @@ const useStyles = makeStyles(() => ({
   },
   stepperContainer: {
     maxWidth: '935px',
-    margin: '0 auto'
+    margin: '0 auto',
+    position:"sticky",
+    top:0
   }
 }));
 

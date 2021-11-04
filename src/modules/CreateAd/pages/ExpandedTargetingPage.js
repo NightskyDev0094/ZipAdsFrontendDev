@@ -80,6 +80,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   tableContainerButtons: {
     '@media (max-width:1050px)': {
@@ -238,59 +240,59 @@ const ExpandedTargetingPage = ({
     // if (hasExpandedTargetingStepBeenCompleted === 'STEP_COMPLETED') {
     //   setIsResubmitModalOpen(true);
     // } else {
-      try {
-        if (selectedFacebookRows?.selectedGeoTargeting.length) {
-          let selectedGeoArray = selectedFacebookRows?.selectedGeoTargeting;
-          let geotargetArray = [];
-          for (let i = 0; i < selectedGeoArray.length; i++) {
-            // Search for index value in array of
-            let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-            console.log('topush::::', toPush);
-            geotargetArray.push(toPush);
-          }
-          await updateFBLocationRequest(geotargetArray[0], fbGeoLocationId);
+    try {
+      if (selectedFacebookRows?.selectedGeoTargeting.length) {
+        let selectedGeoArray = selectedFacebookRows?.selectedGeoTargeting;
+        let geotargetArray = [];
+        for (let i = 0; i < selectedGeoArray.length; i++) {
+          // Search for index value in array of
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+          console.log('topush::::', toPush);
+          geotargetArray.push(toPush);
         }
-        if (selectedFacebookRows?.selectedInterestGroupRows.length) {
-          let selectedInterestArray = selectedFacebookRows?.selectedGeoTargeting;
-          let interestArray = [];
-          for (let i = 0; i < selectedInterestArray.length; i++) {
-            // Search for index value in array of
-            let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-            console.log('topush::::', toPush);
-            
-            interestArray.push(toPush);
-          }
-          await updateFBInterestsRequest(interestArray[0], fbInterestsListId);
-        }
-        if (selectedGoogleRows?.selectedGeoTargeting.length) {
-          let selectedGeoArray = selectedGoogleRows?.selectedGeoTargeting;
-          let geoArray = [];
-          for (let i = 0; i < selectedGeoArray.length; i++) {
-            // Search for index value in array of
-            let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-            
-            console.log('topush::::', toPush);
-            geoArray.push(toPush);
-          }
-          await updateGoogleLocationsRequest(geoArray[0], googleKeywordListId);
-        }
-        if (selectedGoogleRows?.selectedKeywordGroupRows.length) {
-          let selectedKeywordArray = selectedGoogleRows?.selectedKeywordGroupRows;
-          let keywordArray = [];
-          for (let i = 0; i < selectedKeywordArray.length; i++) {
-            // Search for index value in array of
-            let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-            console.log('topush::::', toPush);
-            keywordArray.push(toPush);
-          }
-          await updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
-        }
-        setIsTargetSubmitted(true);
-        completeStep(4);
-        history.push('/create/budget');
-      } catch (e) {
-        setError({ isError: true, message: e });
+        await updateFBLocationRequest(geotargetArray[0], fbGeoLocationId);
       }
+      if (selectedFacebookRows?.selectedInterestGroupRows.length) {
+        let selectedInterestArray = selectedFacebookRows?.selectedGeoTargeting;
+        let interestArray = [];
+        for (let i = 0; i < selectedInterestArray.length; i++) {
+          // Search for index value in array of
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+          console.log('topush::::', toPush);
+
+          interestArray.push(toPush);
+        }
+        await updateFBInterestsRequest(interestArray[0], fbInterestsListId);
+      }
+      if (selectedGoogleRows?.selectedGeoTargeting.length) {
+        let selectedGeoArray = selectedGoogleRows?.selectedGeoTargeting;
+        let geoArray = [];
+        for (let i = 0; i < selectedGeoArray.length; i++) {
+          // Search for index value in array of
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+
+          console.log('topush::::', toPush);
+          geoArray.push(toPush);
+        }
+        await updateGoogleLocationsRequest(geoArray[0], googleKeywordListId);
+      }
+      if (selectedGoogleRows?.selectedKeywordGroupRows.length) {
+        let selectedKeywordArray = selectedGoogleRows?.selectedKeywordGroupRows;
+        let keywordArray = [];
+        for (let i = 0; i < selectedKeywordArray.length; i++) {
+          // Search for index value in array of
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+          console.log('topush::::', toPush);
+          keywordArray.push(toPush);
+        }
+        await updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
+      }
+      setIsTargetSubmitted(true);
+      completeStep(4);
+      history.push('/create/budget');
+    } catch (e) {
+      setError({ isError: true, message: e });
+    }
     // }
   };
 
@@ -388,7 +390,5 @@ const ExpandedTargetingPage = ({
     </>
   );
 };
-
-
 
 export default ExpandedTargetingPage;

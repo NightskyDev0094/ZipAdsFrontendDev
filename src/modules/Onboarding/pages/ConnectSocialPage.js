@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-import ConnectSocialForm from '../components/ConnectSocial.Form';
 import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo, addBusinessInfo } from '../../../actions/businessInfoActions';
@@ -30,10 +29,6 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width:700px)': {
       marginBottom: '200px',
     },
-  },
-  pageHeader: {
-    textAlign: 'center',
-    marginTop: '50px',
   },
   paper: {
     width: '88vw',
@@ -72,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     margin: '0 auto',
     marginBottom: '25px',
+    position: 'sticky',
+    top: 0,
   },
   connectSocialMenuTitle: {
     width: '100%',
@@ -189,12 +186,15 @@ const ConnectSocialPage = ({
 
   return (
     <Box className={classes.container}>
-      <div className={classes.pageHeader}>
-        <Typography variant="h2">Connect To Ad Networks</Typography>
-        <div className={classes.progressBarContainer}>
-          <StepProgress formStep={2} />
-        </div>
+      <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+        <Typography variant="h2" textAlign="center">
+          Connect to Ad Networks
+        </Typography>
       </div>
+      <div className={classes.progressBarContainer}>
+        <StepProgress formStep={2} />
+      </div>
+
       <Paper elevation={2} className={classes.paper}>
         <div className={classes.nextButtonContainer}>
           <Button variant="contained" color="primary" onClick={() => history.push('/onboarding/1')}>
@@ -204,12 +204,7 @@ const ConnectSocialPage = ({
             Next
           </Button>
         </div>
-        {/* <h2 className={classes.connectSocialMenuTitle}>
-          Connect Social Accounts or Create Social Account
-        </h2> */}
-        <h2 className={classes.connectSocialMenuTitle}>
-          Create Social Account
-        </h2>
+        <h2 className={classes.connectSocialMenuTitle}>Create Social Account</h2>
         <div className={classes.pageBody}>
           <ConnectSocialMenu
             doesUserHaveGoogleManagedAccounts={doesUserHaveManagedAccounts.googleAdAccounts}

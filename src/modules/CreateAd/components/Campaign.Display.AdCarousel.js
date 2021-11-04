@@ -75,7 +75,7 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
 
   return (
     <>
-      <Paper style={{ ...styles?.container }} elevation={3} className={classes.container}>
+      <Paper style={{ ...styles?.container }} className={classes.container}>
         <AdIndex currentIndex={adSlideNumber} />
         <div style={{ ...styles?.leftPanel }} className={classes.leftPanel}>
           <ArrowBackIosIcon
