@@ -30,7 +30,6 @@ export const SelectCampaignPage = ({
     'TRAVEL AND LODGING',
   ];
   
-  console.log('BUSINESS INFO: ', businessInfo);
   useEffect(() => {
     if (!businessInfo.length) return;
     let industry = businessInfo[businessInfo.length - 1].industry; // gets the account info and assigns their industry or undefined to variable

@@ -10,7 +10,7 @@ const Completed = () => {
     history.push(`/credits/`);
   };
   const onCreateCampaignClick = () => {
-    history.push(`/create/connect-social`);
+    history.push(`/select-campaign`);
   };
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
