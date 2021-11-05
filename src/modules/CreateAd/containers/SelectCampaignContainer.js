@@ -3,16 +3,26 @@ import { connect } from 'react-redux';
 import SelectCampaignPage from '../pages/SelectCampaignPage';
 import { getCampaign, addCampaign } from '../../../actions/campaignActions';
 import { updateSocials } from '../../../actions/formInfoActions';
-import BEAUTY_DEFAULT_IMAGE from '../../../img/TemplateImages/Beauty_1x1.jpg';
-import CONSUMER_PRODUCT_DEFAULT_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1x1.jpg';
-import FINANCE_DEFAULT_IMAGE from '../../../img/TemplateImages/Finance_1x1.jpg';
-import FITNESS_DEFAULT_IMAGE from '../../../img/TemplateImages/Fitness_1x1.jpg';
-import HEALTH_DEFAULT_IMAGE from '../../../img/TemplateImages/Health_1x1.jpg';
-import PERSONAL_FINANCE_DEFAULT_IMAGE from '../../../img/TemplateImages/Personal_Finance_1x1.jpg';
-import PET_DEFAULT_IMAGE from '../../../img/TemplateImages/Pet_1x1.jpg';
-import REAL_ESTATE_DEFAULT_IMAGE from '../../../img/TemplateImages/Real_Estate_1x1.jpg';
-import RESTAURANT_DEFAULT_IMAGE from '../../../img/TemplateImages/Restaurant_1x1.jpg';
-import TRAVEL_AND_LODGING_DEFAULT_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1x1.jpg';
+import BEAUTY_SQUARE_IMAGE from '../../../img/TemplateImages/Beauty_1x1.jpg';
+import CONSUMER_PRODUCT_SQUARE_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1x1.jpg';
+import FINANCE_SQUARE_IMAGE from '../../../img/TemplateImages/Finance_1x1.jpg';
+import FITNESS_SQUARE_IMAGE from '../../../img/TemplateImages/Fitness_1x1.jpg';
+import HEALTH_SQUARE_IMAGE from '../../../img/TemplateImages/Health_1x1.jpg';
+import PERSONAL_FINANCE_SQUARE_IMAGE from '../../../img/TemplateImages/Personal_Finance_1x1.jpg';
+import PET_SQUARE_IMAGE from '../../../img/TemplateImages/Pet_1x1.jpg';
+import REAL_ESTATE_SQUARE_IMAGE from '../../../img/TemplateImages/Real_Estate_1x1.jpg';
+import RESTAURANT_SQUARE_IMAGE from '../../../img/TemplateImages/Restaurant_1x1.jpg';
+import TRAVEL_AND_LODGING_SQUARE_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1x1.jpg';
+import BEAUTY_RECTANGLE_IMAGE from '../../../img/TemplateImages/Beauty_1.91x1.png';
+import CONSUMER_PRODUCT_RECTANGLE_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1.91x1.png';
+import FINANCE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Finance_1.91x1.png';
+import FITNESS_RECTANGLE_IMAGE from '../../../img/TemplateImages/Fitness_1.91x1.png';
+import HEALTH_RECTANGLE_IMAGE from '../../../img/TemplateImages/Health_1.91x1.png';
+import PERSONAL_FINANCE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Personal_Finance_1.91x1.png';
+import PET_RECTANGLE_IMAGE from '../../../img/TemplateImages/Pet_1.91x1.png';
+import REAL_ESTATE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Real_Estate_1.91x1.png';
+import RESTAURANT_RECTANGLE_IMAGE from '../../../img/TemplateImages/Restaurant_1.91x1.png';
+import TRAVEL_AND_LODGING_RECTANGLE_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1.91x1.png';
 
 const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSocials }) => {
   const [campaignData, setCampaignData] = useState([]);
@@ -89,13 +99,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         "Maria’s Mascara will have your lashes looking so long that they'll be doing double takes when checking your ID.",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: BEAUTY_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: BEAUTY_RECTANGLE_IMAGE,
+      instagram_img: BEAUTY_SQUARE_IMAGE,
+      fb_audience_img: BEAUTY_RECTANGLE_IMAGE,
+      ga_display_img: BEAUTY_RECTANGLE_IMAGE,
+      ga_square_display_img: BEAUTY_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Beauty',
@@ -123,13 +131,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         'At Miller’s Sunglasses, our quality lenses will have everyone staring at you through their own shades.',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: CONSUMER_PRODUCT_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: CONSUMER_PRODUCT_RECTANGLE_IMAGE,
+      instagram_img: CONSUMER_PRODUCT_SQUARE_IMAGE,
+      fb_audience_img: CONSUMER_PRODUCT_RECTANGLE_IMAGE,
+      ga_display_img: CONSUMER_PRODUCT_RECTANGLE_IMAGE,
+      ga_square_display_img: CONSUMER_PRODUCT_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Consumer Product',
@@ -157,13 +163,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         'John Smith Bank is opening a new location on Broadway! Come by and let us serve you.',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: FINANCE_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: FINANCE_RECTANGLE_IMAGE,
+      instagram_img: FINANCE_SQUARE_IMAGE,
+      fb_audience_img: FINANCE_RECTANGLE_IMAGE,
+      ga_display_img: FINANCE_RECTANGLE_IMAGE,
+      ga_square_display_img: FINANCE_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Finance',
@@ -191,13 +195,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         "Jim's Gym has helped thousands of people meet their physical goals. Come by today and get your first month FREE.",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: FITNESS_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: FITNESS_RECTANGLE_IMAGE,
+      instagram_img: FITNESS_SQUARE_IMAGE,
+      fb_audience_img: FITNESS_RECTANGLE_IMAGE,
+      ga_display_img: FITNESS_RECTANGLE_IMAGE,
+      ga_square_display_img: FITNESS_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Fitness',
@@ -225,13 +227,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         'Health Today Magazine has everything you need to know about health, fitness, and nutrition. Subscribe for FREE today!',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: HEALTH_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: HEALTH_RECTANGLE_IMAGE,
+      instagram_img: HEALTH_SQUARE_IMAGE,
+      fb_audience_img: HEALTH_RECTANGLE_IMAGE,
+      ga_display_img: HEALTH_RECTANGLE_IMAGE,
+      ga_square_display_img: HEALTH_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Health',
@@ -259,13 +259,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         "SaveMore App is officially launching! We're offering a $5 sign-up credit and a $50 referral bonus!",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: PERSONAL_FINANCE_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: PERSONAL_FINANCE_RECTANGLE_IMAGE,
+      instagram_img: PERSONAL_FINANCE_SQUARE_IMAGE,
+      fb_audience_img: PERSONAL_FINANCE_RECTANGLE_IMAGE,
+      ga_display_img: PERSONAL_FINANCE_RECTANGLE_IMAGE,
+      ga_square_display_img: PERSONAL_FINANCE_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Personal Finance',
@@ -293,13 +291,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         'Good Boy Co. is offering a 24-hour SUPER SALE on all treats throughout our website!',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: PET_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: PET_RECTANGLE_IMAGE,
+      instagram_img: PET_SQUARE_IMAGE,
+      fb_audience_img: PET_RECTANGLE_IMAGE,
+      ga_display_img: PET_RECTANGLE_IMAGE,
+      ga_square_display_img: PET_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Pets',
@@ -327,13 +323,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         'Sandra Williams has helped hundreds of people turn their dream home into a reality. Avoid the nightmare of doing it yourself!',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: REAL_ESTATE_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: REAL_ESTATE_RECTANGLE_IMAGE,
+      instagram_img: REAL_ESTATE_SQUARE_IMAGE,
+      fb_audience_img: REAL_ESTATE_RECTANGLE_IMAGE,
+      ga_display_img: REAL_ESTATE_RECTANGLE_IMAGE,
+      ga_square_display_img: REAL_ESTATE_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Real Estate',
@@ -361,13 +355,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         "Check out Slice of Heaven's mouth watering menu and get 15% OFF your first visit! Located in Jamestown.",
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: RESTAURANT_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: RESTAURANT_RECTANGLE_IMAGE,
+      instagram_img: RESTAURANT_SQUARE_IMAGE,
+      fb_audience_img: RESTAURANT_RECTANGLE_IMAGE,
+      ga_display_img: RESTAURANT_RECTANGLE_IMAGE,
+      ga_square_display_img: RESTAURANT_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Restaraunt',
@@ -395,13 +387,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
         'Romero Hotel is home to the most breathtaking view in Block Island! Visit our website to book the vacation that you deserve.',
       ga_campaign_length: '7',
       fb_campaign_length: '7',
-      file_url: TRAVEL_AND_LODGING_DEFAULT_IMAGE,
-      file_upload: null,
-      fb_feed_img: null,
-      instagram_img: null,
-      fb_audience_img: null,
-      ga_display_img: null,
-      ga_square_display_img: null,
+      fb_feed_img: TRAVEL_AND_LODGING_RECTANGLE_IMAGE,
+      instagram_img: TRAVEL_AND_LODGING_SQUARE_IMAGE,
+      fb_audience_img: TRAVEL_AND_LODGING_RECTANGLE_IMAGE,
+      ga_display_img: TRAVEL_AND_LODGING_RECTANGLE_IMAGE,
+      ga_square_display_img: TRAVEL_AND_LODGING_SQUARE_IMAGE,
       img_option: 'custom',
       logo_option: 'custom',
       industry: 'Travel and Lodging',

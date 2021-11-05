@@ -108,6 +108,7 @@ export const updateCampaign = (campaign, id) => (dispatch, getState) => {
 export const addCampaign = (campaign) => (dispatch, _) => {
   setCampaignLoading();
   const token = localStorage.getItem('token');
+  console.log("ADDCAMPAIGN RUNNING!!!!")
   const config = {
     headers: {
       'Content-Type': 'application/json',

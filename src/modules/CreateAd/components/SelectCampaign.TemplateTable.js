@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
+const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }) => {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -63,20 +63,79 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
     await deleteCampaign(campaignModalInfo?.id);
     setModalOpen(false);
   });
-  const templateTableData = (id, data, campaignType) => {
-    const search = () => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].id === id) {
-          return data[i];
-        }
-      }
-    };
+
+  const getImageFromUrl = async (url, imageType, formData) => {
+    await fetch(`${url}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        console.log('Image function test', blob);
+        let n = url.lastIndexOf('/');
+        let fileName = url.substring(n + 1);
+        const modDate = new Date();
+        const newName = fileName;
+        const jpgFile = new File([blob], newName, {
+          type: 'image/jpg',
+          lastModified: modDate,
+        });
+        console.log('File Creation test', jpgFile);
+        formData.append(imageType, jpgFile);
+        return jpgFile;
+      });
+  };
+
+  const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType) => {
+    let selected = data[id];
+    // console.log('Selected::::', selected.ga_display_img, selected);
+    const formData = new FormData();
+    // load image files from urls
+    if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
+      await getImageFromUrl(selected.fb_feed_img, 'fb_feed_img', formData);
+    }
+    if (selected.fb_audience_img !== null && selected.fb_audience_img !== '') {
+      await getImageFromUrl(selected.fb_audience_img, 'fb_audience_img', formData);
+    }
+    if (selected.instagram_img !== null && selected.instagram_img !== '') {
+      await getImageFromUrl(selected.instagram_img, 'instagram_img', formData);
+    }
+    if (selected.ga_display_img !== null && selected.ga_display_img !== '') {
+      await getImageFromUrl(selected.ga_display_img, 'ga_display_img', formData);
+      // console.log('Image post test!!!!');
+    }
+
+    if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
+      await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
+    }
+    console.log('Submit Data test');
+    submitTemplateData(selected, formData, campaignType);
+  };
+
+  const setSocialsToPost = (selected) => {
+    let socialsArray = [];
+    if (selected.facebook_feed_ad === 'True') {
+      socialsArray.push('facebook feed ad');
+    }
+    if (selected.facebook_display_ad === 'True') {
+      socialsArray.push('facebook display ad');
+    }
+    if (selected.instagram_ad === 'True') {
+      socialsArray.push('instagram ad');
+    }
+    if (selected.google_search_ad === 'True') {
+      socialsArray.push('google search ad');
+    }
+    if (selected.google_display_ad === 'True') {
+      socialsArray.push('google display ad');
+    }
+    // console.log('updateSocials Running', socialsArray);
+    updateSocials(socialsArray);
+  };
+
+  const submitTemplateData = (selected, formData, campaignType) => {
     if (campaignType === 'Template') {
       // let selected = search(data);
-      let selected = data[id];
+      
 
-      console.log(selected)
-      const formData = new FormData();
+      console.log("submitTemplateData", selected)
       formData.append('campaign_name', selected.campaign_name);
       formData.append('campaign_type', 'template');
       formData.append('google_search_ad', selected.google_search_ad);
@@ -114,7 +173,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       formData.append('ga_campaign_length', selected.ga_campaign_length);
       formData.append('fb_campaign_length', selected.fb_campaign_length);
       formData.append('img_option', selected.img_option);
-      formData.append('file_url', selected.file_url);
+      // formData.append('file_url', selected.file_url);
       // formData.append('file_upload', selected.file_upload);
       // formData.append('fb_feed_img', selected.fb_feed_img);
       // formData.append('instagram_img', selected.instagram_img);
@@ -122,6 +181,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       // formData.append('ga_display_img', selected.ga_display_img);
       // formData.append('ga_square_display_img', selected.ga_square_display_img);
       addCampaign(formData);
+      setSocialsToPost(selected);
     } else if (campaignType === 'New') {
       const formData = new FormData();
       formData.append('campaign_name', 'New Campaign');
@@ -142,16 +202,6 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
   }, [windowSize.width]);
 
   const columns = [
-    {
-      title: 'Delete Item',
-      dataIndex: 'id',
-      key: 'id',
-      render: (id) => (
-        // <button>
-          <DeleteIcon onClick={() => openModalAndGetData(id, templates)} />
-        // </button>
-      ),
-    },
     {
       title: 'No',
       dataIndex: 'index',
@@ -224,7 +274,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       key: 'id',
       render: (id) => (
         // <button>
-          <EditIcon onClick={() => templateTableData(id, templates, 'Template')} />
+          <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, templates, 'Template')} />
         // </button>
       ),
     },

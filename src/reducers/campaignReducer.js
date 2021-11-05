@@ -22,7 +22,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         campaigns: action.payload,
-        current: action.payload[action.payload.length - 1],
+        // current: action.payload[action.payload.length - 1],
+        current: action.payload[0],
         campaignLoading: false,
       };
 
