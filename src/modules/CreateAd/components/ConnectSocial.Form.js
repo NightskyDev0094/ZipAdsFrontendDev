@@ -121,7 +121,7 @@ const ConnectSocialForm = ({
         Select Ad Networks and Connect to Accounts
       </Typography>
       <Typography className={classes.connectSocialSubHeader}>
-        Choose which platforms you want to publish to your ad to. Then connect your busines accounts
+        Choose which platforms you want to publish to your ad to. Then connect your business accounts
         or let us manage your ads.
       </Typography>
       <InputMainLabel>Choose which networks to run ads on.</InputMainLabel>

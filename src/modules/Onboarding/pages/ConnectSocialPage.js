@@ -192,7 +192,7 @@ const ConnectSocialPage = ({
         </Typography>
       </div>
       <div className={classes.progressBarContainer}>
-        <StepProgress formStep={2} />
+        <StepProgress formStep={1} />
       </div>
 
       <Paper elevation={2} className={classes.paper}>
