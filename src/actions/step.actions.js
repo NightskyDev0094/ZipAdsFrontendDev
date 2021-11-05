@@ -24,7 +24,6 @@ export const completeStep =  dispatch => stepNumber => {
 }
 
 export const completeStepByCurryingWithMultipleParams = (stepNumber) => (dispatch, _) => {
-  debugger;
   switch (stepNumber) {
     case 1:
       dispatch({ type: CREATE_CAMPAIGN_STEP });

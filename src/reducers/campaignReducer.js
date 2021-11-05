@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case SAVE_CAMPAIGN:
       return {
         ...state,
-        campaigns: [[...state.campaigns], action.payload],
+        campaigns: [...state.campaigns, action.payload],
         current: action.payload,
       };
     case SET_CAMPAIGN_LOADING:
