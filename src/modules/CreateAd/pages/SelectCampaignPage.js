@@ -36,11 +36,11 @@ export const SelectCampaignPage = ({
     if (industry) {
       setRecommendedTemplate(props.templates[industries.indexOf(industry)]);
     }
-  }, []);
+  }, [businessInfo]);
 
   return (
     <div>
-      <RecommendedTable recommendedTemplate={recommendedTemplate} {...props} />
+      {recommendedTemplate && <RecommendedTable recommendedTemplate={recommendedTemplate} {...props} />}
       <TemplateTable {...props} />
       <DraftTable {...props} />
     </div>

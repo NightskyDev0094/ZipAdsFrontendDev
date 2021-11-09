@@ -38,7 +38,10 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) => {
+const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, streetVal,
+  cityVal,
+  stateVal,
+  zipVal, }) => {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
