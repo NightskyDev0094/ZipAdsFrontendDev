@@ -177,7 +177,6 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       formData.append('ga_campaign_length', selected.ga_campaign_length);
       formData.append('fb_campaign_length', selected.fb_campaign_length);
       formData.append('img_option', selected.img_option);
-      formData.append('file_url', selected.file_url);
 
       // console.log('ADDING CAMPAIGN', formData);
       addCampaign(formData);

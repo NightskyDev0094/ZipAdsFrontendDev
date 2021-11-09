@@ -85,7 +85,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }
 
   const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType) => {
     let selected = data[id];
-    // console.log('Selected::::', selected.ga_display_img, selected);
+    console.log('Selected::::', selected.ga_display_img, selected);
     const formData = new FormData();
     // load image files from urls
     if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
@@ -135,7 +135,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }
       // let selected = search(data);
       
 
-      console.log("submitTemplateData", selected)
+      console.log("submitTemplateData", selected, selected.campaign_name)
       formData.append('campaign_name', selected.campaign_name);
       formData.append('campaign_type', 'template');
       formData.append('google_search_ad', selected.google_search_ad);
@@ -150,13 +150,13 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }
       formData.append('geotargeting', selected.geotargeting);
       formData.append('locale_type', selected.locale_type);
       formData.append('search_term', selected.search_term);
+      formData.append('budget_type', "automatic");
       formData.append('street_address', selected.street_address);
       formData.append('city_name', selected.city_name);
       formData.append('state_code', selected.state_code);
       formData.append('zip_code', selected.zip_code);
       formData.append('google_account_id', selected.google_account_id);
       formData.append('facebook_account_id', selected.facebook_account_id);
-      formData.append('facebook_page_id', selected.facebook_page_id);
       formData.append('objective', selected.objective);
       formData.append('google_search_budget', selected.google_search_budget);
       formData.append('google_cpc', selected.google_cpc);
@@ -173,21 +173,18 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }
       formData.append('ga_campaign_length', selected.ga_campaign_length);
       formData.append('fb_campaign_length', selected.fb_campaign_length);
       formData.append('img_option', selected.img_option);
-      // formData.append('file_url', selected.file_url);
-      // formData.append('file_upload', selected.file_upload);
-      // formData.append('fb_feed_img', selected.fb_feed_img);
-      // formData.append('instagram_img', selected.instagram_img);
-      // formData.append('fb_audience_img', selected.fb_audience_img);
-      // formData.append('ga_display_img', selected.ga_display_img);
-      // formData.append('ga_square_display_img', selected.ga_square_display_img);
       addCampaign(formData);
       setSocialsToPost(selected);
     } else if (campaignType === 'New') {
-      const formData = new FormData();
-      formData.append('campaign_name', 'New Campaign');
-      addCampaign(formData);
+      createNewCampaign();;
     }
     history.push('create/connect-social');
+  };
+
+  const createNewCampaign = () => {
+    const formData = new FormData();
+    formData.append('campaign_name', 'New Campaign');
+    addCampaign(formData);
   };
 
   /**
