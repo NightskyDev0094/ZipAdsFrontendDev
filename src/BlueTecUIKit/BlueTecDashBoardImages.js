@@ -60,7 +60,7 @@ const BlueTecDashBoardImages = () => {
               </div>
               <h4>Create an Ad Campaign</h4>
               <p>
-                <strong>Click here</strong> to create a new Ad Campaign
+                <strong>Click here</strong> to create a new Ad Campaign.
               </p>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6 mb30">
@@ -77,7 +77,7 @@ const BlueTecDashBoardImages = () => {
               </div>
               <h4>Understanding Ad Campaigns</h4>
               <p>
-                <strong>Click here</strong>to learn more about ad campaigns and how important they
+                <strong>Click here</strong> to learn more about ad campaigns and how important they
                 can be to the success of your business.
               </p>
             </div>

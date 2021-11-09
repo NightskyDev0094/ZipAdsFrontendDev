@@ -21,6 +21,7 @@ import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
+import InfoButton from '../../../sharedComponents/components/InfoButton';
 
 import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
 
@@ -83,17 +84,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: '20px',
-  },
-  toolTipContainer: {
-    padding: '10px 0',
-  },
-  tooltip: {
-    fontSize: '15px',
-    height: '80px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    padding: '10px 0',
   },
 }));
 
@@ -187,8 +177,8 @@ const TargetingPage = ({
                 </Box>
                 <Box marginTop="2rem">
                   <InputMainLabel>
-                    Select the distance from your target location that your ads will be distrubuted
-                    to.
+                    Select the distance from your target location that your ads will be distributed
+                    to:
                   </InputMainLabel>
                   <RadioGroup
                     aria-label="distance"
@@ -233,7 +223,12 @@ const TargetingPage = ({
                 )}
                 {distance === 'hyper-local' && localeFormat === 'zip' && (
                   <Box marginTop="2rem">
-                    <InputMainLabel>Enter your target location's zip code</InputMainLabel>
+                    <InputMainLabel>
+                      Enter your target location's zip code{' '}
+                      <InfoButton
+                        infoText={'Putting a specific zip code will optimize your campaign.'}
+                      />
+                    </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
                       <Input
                         value={zipVal}
@@ -246,7 +241,10 @@ const TargetingPage = ({
                 {distance === 'hyper-local' && localeFormat === 'city' && (
                   <Box marginTop="2rem">
                     <InputMainLabel>
-                      Enter your target location by city and state code.
+                      Enter your target location by city and state code.{' '}
+                      <InfoButton
+                        infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
+                      />
                     </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
                       <Input
@@ -330,36 +328,29 @@ const TargetingPage = ({
                     </Box>
                   </Box>
                 )}
-                <Tooltip
-                  title={
-                    <div className={classes.toolTipContainer}>
-                      <p className={classes.tooltip}>
-                        Select a common interest that your target audience might have and we will
-                        find the most relevant user groups to show your ads to
-                      </p>
-                    </div>
-                  }
-                >
-                  <Box marginTop="2rem">
-                    <InputMainLabel>
-                      Enter a keyword that your target customer will be interested in
-                    </InputMainLabel>
-                    <Box
-                      style={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        marginTop: '30px',
-                      }}
-                    >
-                      <Input
-                        value={interest}
-                        onChange={(e) => setInterest(e.target.value)}
-                        placeholder="add interests"
-                      />
-                    </Box>
+
+                <Box marginTop="2rem">
+                  <InputMainLabel>
+                    Enter a keyword that your target customer will be interested in:
+                    <InfoButton
+                      infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
+                    />
+                  </InputMainLabel>
+                  <Box
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      marginTop: '30px',
+                    }}
+                  >
+                    <Input
+                      value={interest}
+                      onChange={(e) => setInterest(e.target.value)}
+                      placeholder="add interests"
+                    />
                   </Box>
-                </Tooltip>
+                </Box>
               </Paper>
             </div>
           </Paper>

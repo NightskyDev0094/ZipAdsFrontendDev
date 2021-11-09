@@ -7,6 +7,7 @@ import {
   RadioGroup,
   Radio,
   FormControlLabel,
+  Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -248,283 +249,285 @@ const FormContent1 = ({
   }, [formInfo]);
 
   return (
-    <Box data-test="formContainer" className={classes.formContainer}>
-      <InputMainLabel>Enter Your Content</InputMainLabel>
-      <Input
-        placeholder="Campaign Name"
-        name="campaign_name"
-        onChange={handleFormChange}
-        inputProps={{
-          maxLength: CAMPAIGN_DEFINITION.CAMPAIGN_NAME.max_length,
-        }}
-        value={formInfo.campaign_name}
-        className={classes.input}
-        defaultValue={currentCampaign?.campaign || ''}
-      />
-      <div className={classes.inputDescription}>The name of your campaign (seen only by you)</div>
-      <Input
-        placeholder="Headline"
-        className={classes.input}
-        name="headline"
-        onChange={handleFormChange}
-        inputProps={{
-          maxLength: CAMPAIGN_DEFINITION.HEADLINE.max_length,
-        }}
-        value={formInfo.headline}
-        defaultValue={currentCampaign?.headline || ''}
-        multiline
-      />
-      <div className={classes.inputDescription}>Your Headline</div>
-      <Input
-        placeholder="Sub-Headline"
-        className={classes.input}
-        name="headline2"
-        onChange={handleFormChange}
-        inputProps={{
-          maxLength: CAMPAIGN_DEFINITION.HEADLINE2.max_length,
-        }}
-        value={formInfo.headline2}
-        defaultValue={currentCampaign?.headline2 || ''}
-        multiline={true}
-      />
-      <InputSmallLabel></InputSmallLabel>
-      <div className={classes.inputDescription}>
-        Your Sub-Headline (Does not appear for ads 2, 5, and 6)
-      </div>
-      <TextField
-        placeholder="Description"
-        classes={{ root: classes.textAreaInput, multiline: { height: '100px' } }}
-        name="ad_description"
-        onChange={handleFormChange}
-        value={formInfo.ad_description}
-        inputProps={{
-          maxLength: CAMPAIGN_DEFINITION.AD_DESCRIPTION.max_length,
-        }}
-        defaultValue={currentCampaign?.ad_description || ''}
-        variant="outlined"
-        rows={4}
-        multiline={true}
-        rowsMax={3}
-      />
-      <div className={classes.inputDescription}>
-        One or two sentences describing your business and why people should engage with your business.
-      </div>
-      <Input
-        placeholder="Web address"
-        name="ad_link"
-        onChange={handleFormChange}
-        value={formInfo.ad_link}
-        className={classes.input}
-        inputProps={{
-          maxLength: CAMPAIGN_DEFINITION.AD_LINK.max_length,
-        }}
-        defaultValue=""
-      />
-      <div className={classes.inputDescription}>
-        The URL your ad will link to. Enter in the format: https://example.com/
-      </div>
+    <>
+      <Box data-test="formContainer" className={classes.formContainer}>
+        <InputMainLabel>Enter Your Content</InputMainLabel>
+        <Input
+          placeholder="Campaign Name"
+          name="campaign_name"
+          onChange={handleFormChange}
+          inputProps={{
+            maxLength: CAMPAIGN_DEFINITION.CAMPAIGN_NAME.max_length,
+          }}
+          value={formInfo.campaign_name}
+          className={classes.input}
+          defaultValue={currentCampaign?.campaign || ''}
+        />
+        <div className={classes.inputDescription}>The name of your campaign (seen only by you)</div>
+        <Input
+          placeholder="Headline"
+          className={classes.input}
+          name="headline"
+          onChange={handleFormChange}
+          inputProps={{
+            maxLength: CAMPAIGN_DEFINITION.HEADLINE.max_length,
+          }}
+          value={formInfo.headline}
+          defaultValue={currentCampaign?.headline || ''}
+          multiline
+        />
+        <div className={classes.inputDescription}>Your Headline</div>
+        <Input
+          placeholder="Sub-Headline"
+          className={classes.input}
+          name="headline2"
+          onChange={handleFormChange}
+          inputProps={{
+            maxLength: CAMPAIGN_DEFINITION.HEADLINE2.max_length,
+          }}
+          value={formInfo.headline2}
+          defaultValue={currentCampaign?.headline2 || ''}
+          multiline={true}
+        />
+        <InputSmallLabel></InputSmallLabel>
+        <div className={classes.inputDescription}>
+          Your Sub-Headline (Does not appear for ads 2, 5, and 6)
+        </div>
+        <TextField
+          placeholder="Description"
+          classes={{ root: classes.textAreaInput, multiline: { height: '100px' } }}
+          name="ad_description"
+          onChange={handleFormChange}
+          value={formInfo.ad_description}
+          inputProps={{
+            maxLength: CAMPAIGN_DEFINITION.AD_DESCRIPTION.max_length,
+          }}
+          defaultValue={currentCampaign?.ad_description || ''}
+          variant="outlined"
+          rows={4}
+          multiline={true}
+          rowsMax={3}
+        />
+        <div className={classes.inputDescription}>
+          One or two sentences describing your business and why people should engage with it.
+        </div>
+        <Input
+          placeholder="Web address"
+          name="ad_link"
+          onChange={handleFormChange}
+          value={formInfo.ad_link}
+          className={classes.input}
+          inputProps={{
+            maxLength: CAMPAIGN_DEFINITION.AD_LINK.max_length,
+          }}
+          defaultValue=""
+        />
+        <div className={classes.inputDescription}>
+          The URL your ad will link to. Enter in the format: https://example.com/
+        </div>
 
-      <Select
-        placeholder="Call to action"
-        value={formInfo.cta}
-        name="cta"
-        className={classes.input}
-        onChange={handleFormChange}
-        defaultValue={currentCampaign?.cta || ''}
-      >
-        <MenuItem value="Blank">Blank</MenuItem>
-        <MenuItem value="Apply Now">Apply Now</MenuItem>
-        <MenuItem value="Book Now">Book Now</MenuItem>
-        <MenuItem value="Contact Us">Contact Us</MenuItem>
-        <MenuItem value="Donate Now">Donate Now</MenuItem>
-        <MenuItem value="Download">Download</MenuItem>
-        <MenuItem value="Get Offer">Get Offer</MenuItem>
-        <MenuItem value="Get Quote">Get Quote</MenuItem>
-        <MenuItem value="Get Showtimes">Get Showtimes</MenuItem>
-        <MenuItem value="Learn More">Learn More</MenuItem>
-        <MenuItem value="Listen Now">Listen Now</MenuItem>
-        <MenuItem value="Play Game">Play Game</MenuItem>
-        <MenuItem value="Request Time">Request Time</MenuItem>
-        <MenuItem value="See Menu">See Menu</MenuItem>
-        <MenuItem value="Shop Now">Shop Now</MenuItem>
-        <MenuItem value="Sign Up">Sign U</MenuItem>
-        <MenuItem value="Subscribe">Subscribe</MenuItem>
-        <MenuItem value="Watch More">Watch More</MenuItem>
-      </Select>
-
-      <div className={classes.inputDescription}>Text that will appear on the button</div>
-      <Select
-        placeholder="Alternate Call to action"
-        value={formInfo.cta2}
-        name="cta2"
-        className={classes.input}
-        onChange={handleFormChange}
-        defaultValue={currentCampaign?.cta2 || ''}
-      >
-        <MenuItem value="Blank">Blank</MenuItem>
-        <MenuItem value="Apply Now">Apply Now</MenuItem>
-        <MenuItem value="Book Now">Book Now</MenuItem>
-        <MenuItem value="Contact Us">Contact Us</MenuItem>
-        <MenuItem value="Donate Now">Donate Now</MenuItem>
-        <MenuItem value="Download">Download</MenuItem>
-        <MenuItem value="Get Offer">Get Offer</MenuItem>
-        <MenuItem value="Get Quote">Get Quote</MenuItem>
-        <MenuItem value="Get Showtimes">Get Showtimes</MenuItem>
-        <MenuItem value="Learn More">Learn More</MenuItem>
-        <MenuItem value="Listen Now">Listen Now</MenuItem>
-        <MenuItem value="Play Game">Play Game</MenuItem>
-        <MenuItem value="Request Time">Request Time</MenuItem>
-        <MenuItem value="See Menu">See Menu</MenuItem>
-        <MenuItem value="Shop Now">Shop Now</MenuItem>
-        <MenuItem value="Sign Up">Sign Up</MenuItem>
-        <MenuItem value="Subscribe">Subscribe</MenuItem>
-        <MenuItem value="Watch More">Watch More</MenuItem>
-      </Select>
-      <div className={classes.inputDescription}>
-        Alternate text that will appear on a second clickable button
-      </div>
-      <Box style={{ padding: '40px 0px' }}>
-        <InputMainLabel>How do you want to select an image?</InputMainLabel>
-        <RadioGroup
-          aria-label="distance"
-          name="distance"
-          value={imgOption}
-          onChange={(e) => setImgOption(e.target.value)}
+        <Select
+          placeholder="Call to action"
+          value={formInfo.cta}
+          name="cta"
+          className={classes.input}
+          onChange={handleFormChange}
+          defaultValue={currentCampaign?.cta || ''}
         >
-          <FormControlLabel
-            className={classes.radioGroupOptions}
-            value="library"
-            control={<Radio />}
-            label="Select Image from Library"
-          />
-          <FormControlLabel
-            className={classes.radioGroupOptions}
-            value="custom"
-            control={<Radio />}
-            label="Upload Custom Image"
-          />
-        </RadioGroup>
-      </Box>
-      <Box marginTop="2rem">
-        {imgOption === 'library' && (
-          <>
-            <InputMainLabel>Pictures & Videos</InputMainLabel>
-            <Box className={classes.picturesAndVideoContainer} display="flex">
-              <ThumbnailImage
-                file={DEFAULT_IMAGE}
-                onClick={() => updateImage(DEFAULT_IMAGE)}
-                clicked={formInfo.file_upload === DEFAULT_IMAGE}
-              />
-              <ThumbnailImage
-                file={COFFEE_IMG}
-                onClick={() => updateImage(COFFEE_IMG)}
-                clicked={formInfo.file_upload === COFFEE_IMG}
-              />
-              <ThumbnailImage
-                file={STORE_IMG}
-                onClick={() => updateImage(STORE_IMG)}
-                clicked={formInfo.file_upload === STORE_IMG}
-              />
-              <ThumbnailImage
-                file={CLOTHES_IMG}
-                onClick={() => updateImage(CLOTHES_IMG)}
-                clicked={formInfo.file_upload === CLOTHES_IMG}
-              />
-            </Box>
-            <Box className={classes.randomRow}>
-              <span
-                role="img"
-                aria-label="restaurant icon"
-                className={randomTerm === 'restaurants' ? classes.selected : classes.notSel}
-                onClick={() => getRandom('restaurants')}
-              >
-                🍕
-              </span>
-              <span
-                role="img"
-                aria-label="pets"
-                className={randomTerm === 'pets' ? classes.selected : classes.notSel}
-                onClick={() => getRandom('pets')}
-              >
-                🐶
-              </span>
-              <span
-                role="img"
-                aria-label="sports"
-                className={randomTerm === 'sports' ? classes.selected : classes.notSel}
-                onClick={() => getRandom('sports')}
-              >
-                🏈
-              </span>
-              <span
-                role="img"
-                aria-label="bar"
-                className={randomTerm === 'bar' ? classes.selected : classes.notSel}
-                onClick={() => getRandom('bar')}
-              >
-                🍻
-              </span>
-              <span
-                role="img"
-                aria-label="clothing"
-                className={randomTerm === 'clothing' ? classes.selected : classes.notSel}
-                onClick={() => getRandom('clothing')}
-              >
-                👔
-              </span>
-              <span
-                role="img"
-                aria-label="coffee"
-                className={randomTerm === 'coffee' ? classes.selected : classes.notSel}
-                onClick={() => getRandom('coffee')}
-              >
-                ☕️
-              </span>
-            </Box>
-          </>
-        )}
-        {/* FB Feed Cropper */}
-        {imgOption === 'custom' && (
-          <Box marginTop="1rem">
-            <Cropper
-              setError={setError}
-              handleUpdateImage={updateImage}
-              setPreviewUrl={setPreviewUrl}
-              previewUrl={previewUrl}
-              setFormInfo={setFormInfo}
-              formInfo={formInfo}
-              imgData={fbFeedImg}
-              setImgData={setFBFeedImg}
-              fbAudienceImg={fbAudienceImg}
-              setFBAudienceImg={setFBAudienceImg}
-              instagramImg={instagramImg}
-              setInstagramImg={setInstagramImg}
-              gaDisplayImg={gaDisplayImg}
-              setGADisplayImg={setGADisplayImg}
-              gaSquareDisplayImg={gaSquareDisplayImg}
-              setGASquareDisplayImg={setGASquareDisplayImg}
-              fbFeedImg={fbFeedImg}
-              setFBFeedImg={setFBFeedImg}
-              setFBFeedPreviewUrl={setFBFeedPreviewUrl}
-              fbFeedPreviewUrl={fbFeedPreviewUrl}
-              setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
-              fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-              setInstagramPreviewUrl={setInstagramPreviewUrl}
-              instagramPreviewUrl={instagramPreviewUrl}
-              setGADisplayPreviewUrl={setGADisplayPreviewUrl}
-              setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
-              gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-              updateFBFeedImage={updateFBFeedImage}
-              updateInstagramImage={updateInstagramImage}
-              updateFBAudienceImage={updateFBAudienceImage}
-              updateGADisplayImage={updateGADisplayImage}
-              updateGASquareDisplayImage={updateGASquareDisplayImage}
-              {...props}
+          <MenuItem value="Blank">Blank</MenuItem>
+          <MenuItem value="Apply Now">Apply Now</MenuItem>
+          <MenuItem value="Book Now">Book Now</MenuItem>
+          <MenuItem value="Contact Us">Contact Us</MenuItem>
+          <MenuItem value="Donate Now">Donate Now</MenuItem>
+          <MenuItem value="Download">Download</MenuItem>
+          <MenuItem value="Get Offer">Get Offer</MenuItem>
+          <MenuItem value="Get Quote">Get Quote</MenuItem>
+          <MenuItem value="Get Showtimes">Get Showtimes</MenuItem>
+          <MenuItem value="Learn More">Learn More</MenuItem>
+          <MenuItem value="Listen Now">Listen Now</MenuItem>
+          <MenuItem value="Play Game">Play Game</MenuItem>
+          <MenuItem value="Request Time">Request Time</MenuItem>
+          <MenuItem value="See Menu">See Menu</MenuItem>
+          <MenuItem value="Shop Now">Shop Now</MenuItem>
+          <MenuItem value="Sign Up">Sign Up</MenuItem>
+          <MenuItem value="Subscribe">Subscribe</MenuItem>
+          <MenuItem value="Watch More">Watch More</MenuItem>
+        </Select>
+
+        <div className={classes.inputDescription}>Text that will appear on the button</div>
+        <Select
+          placeholder="Alternate Call to action"
+          value={formInfo.cta2}
+          name="cta2"
+          className={classes.input}
+          onChange={handleFormChange}
+          defaultValue={currentCampaign?.cta2 || ''}
+        >
+          <MenuItem value="Blank">Blank</MenuItem>
+          <MenuItem value="Apply Now">Apply Now</MenuItem>
+          <MenuItem value="Book Now">Book Now</MenuItem>
+          <MenuItem value="Contact Us">Contact Us</MenuItem>
+          <MenuItem value="Donate Now">Donate Now</MenuItem>
+          <MenuItem value="Download">Download</MenuItem>
+          <MenuItem value="Get Offer">Get Offer</MenuItem>
+          <MenuItem value="Get Quote">Get Quote</MenuItem>
+          <MenuItem value="Get Showtimes">Get Showtimes</MenuItem>
+          <MenuItem value="Learn More">Learn More</MenuItem>
+          <MenuItem value="Listen Now">Listen Now</MenuItem>
+          <MenuItem value="Play Game">Play Game</MenuItem>
+          <MenuItem value="Request Time">Request Time</MenuItem>
+          <MenuItem value="See Menu">See Menu</MenuItem>
+          <MenuItem value="Shop Now">Shop Now</MenuItem>
+          <MenuItem value="Sign Up">Sign Up</MenuItem>
+          <MenuItem value="Subscribe">Subscribe</MenuItem>
+          <MenuItem value="Watch More">Watch More</MenuItem>
+        </Select>
+        <div className={classes.inputDescription}>
+          Alternate text that will appear on a second clickable button
+        </div>
+        <Box style={{ padding: '40px 0px' }}>
+          <InputMainLabel>How do you want to select an image?</InputMainLabel>
+          <RadioGroup
+            aria-label="distance"
+            name="distance"
+            value={imgOption}
+            onChange={(e) => setImgOption(e.target.value)}
+          >
+            <FormControlLabel
+              className={classes.radioGroupOptions}
+              value="library"
+              control={<Radio />}
+              label="Select Image from Library"
             />
-          </Box>
-        )}
+            <FormControlLabel
+              className={classes.radioGroupOptions}
+              value="custom"
+              control={<Radio />}
+              label="Upload Custom Image"
+            />
+          </RadioGroup>
+        </Box>
+        <Box marginTop="2rem">
+          {imgOption === 'library' && (
+            <>
+              <InputMainLabel>Pictures & Videos</InputMainLabel>
+              <Box className={classes.picturesAndVideoContainer} display="flex">
+                <ThumbnailImage
+                  file={DEFAULT_IMAGE}
+                  onClick={() => updateImage(DEFAULT_IMAGE)}
+                  clicked={formInfo.file_upload === DEFAULT_IMAGE}
+                />
+                <ThumbnailImage
+                  file={COFFEE_IMG}
+                  onClick={() => updateImage(COFFEE_IMG)}
+                  clicked={formInfo.file_upload === COFFEE_IMG}
+                />
+                <ThumbnailImage
+                  file={STORE_IMG}
+                  onClick={() => updateImage(STORE_IMG)}
+                  clicked={formInfo.file_upload === STORE_IMG}
+                />
+                <ThumbnailImage
+                  file={CLOTHES_IMG}
+                  onClick={() => updateImage(CLOTHES_IMG)}
+                  clicked={formInfo.file_upload === CLOTHES_IMG}
+                />
+              </Box>
+              <Box className={classes.randomRow}>
+                <span
+                  role="img"
+                  aria-label="restaurant icon"
+                  className={randomTerm === 'restaurants' ? classes.selected : classes.notSel}
+                  onClick={() => getRandom('restaurants')}
+                >
+                  🍕
+                </span>
+                <span
+                  role="img"
+                  aria-label="pets"
+                  className={randomTerm === 'pets' ? classes.selected : classes.notSel}
+                  onClick={() => getRandom('pets')}
+                >
+                  🐶
+                </span>
+                <span
+                  role="img"
+                  aria-label="sports"
+                  className={randomTerm === 'sports' ? classes.selected : classes.notSel}
+                  onClick={() => getRandom('sports')}
+                >
+                  🏈
+                </span>
+                <span
+                  role="img"
+                  aria-label="bar"
+                  className={randomTerm === 'bar' ? classes.selected : classes.notSel}
+                  onClick={() => getRandom('bar')}
+                >
+                  🍻
+                </span>
+                <span
+                  role="img"
+                  aria-label="clothing"
+                  className={randomTerm === 'clothing' ? classes.selected : classes.notSel}
+                  onClick={() => getRandom('clothing')}
+                >
+                  👔
+                </span>
+                <span
+                  role="img"
+                  aria-label="coffee"
+                  className={randomTerm === 'coffee' ? classes.selected : classes.notSel}
+                  onClick={() => getRandom('coffee')}
+                >
+                  ☕️
+                </span>
+              </Box>
+            </>
+          )}
+          {/* FB Feed Cropper */}
+          {imgOption === 'custom' && (
+            <Box marginTop="1rem">
+              <Cropper
+                setError={setError}
+                handleUpdateImage={updateImage}
+                setPreviewUrl={setPreviewUrl}
+                previewUrl={previewUrl}
+                setFormInfo={setFormInfo}
+                formInfo={formInfo}
+                imgData={fbFeedImg}
+                setImgData={setFBFeedImg}
+                fbAudienceImg={fbAudienceImg}
+                setFBAudienceImg={setFBAudienceImg}
+                instagramImg={instagramImg}
+                setInstagramImg={setInstagramImg}
+                gaDisplayImg={gaDisplayImg}
+                setGADisplayImg={setGADisplayImg}
+                gaSquareDisplayImg={gaSquareDisplayImg}
+                setGASquareDisplayImg={setGASquareDisplayImg}
+                fbFeedImg={fbFeedImg}
+                setFBFeedImg={setFBFeedImg}
+                setFBFeedPreviewUrl={setFBFeedPreviewUrl}
+                fbFeedPreviewUrl={fbFeedPreviewUrl}
+                setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
+                fbAudiencePreviewUrl={fbAudiencePreviewUrl}
+                setInstagramPreviewUrl={setInstagramPreviewUrl}
+                instagramPreviewUrl={instagramPreviewUrl}
+                setGADisplayPreviewUrl={setGADisplayPreviewUrl}
+                setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
+                gaDisplayPreviewUrl={gaDisplayPreviewUrl}
+                updateFBFeedImage={updateFBFeedImage}
+                updateInstagramImage={updateInstagramImage}
+                updateFBAudienceImage={updateFBAudienceImage}
+                updateGADisplayImage={updateGADisplayImage}
+                updateGASquareDisplayImage={updateGASquareDisplayImage}
+                {...props}
+              />
+            </Box>
+          )}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

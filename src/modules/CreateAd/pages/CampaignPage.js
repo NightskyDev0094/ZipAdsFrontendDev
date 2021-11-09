@@ -72,6 +72,14 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: '0 30px',
   },
+  pageExplanationText: {
+    width: '95%',
+    margin: '1.5em auto',
+    display: 'block',
+    ['@media (min-width:500px)']: {
+      width: '75%',
+    },
+  },
 }));
 
 const CreateCampaign = ({
@@ -183,6 +191,11 @@ const CreateCampaign = ({
                 Next
               </Button>
             </div>
+            <Typography className={classes.pageExplanationText} variant="h5">
+              Here is where you can preview your ad and make any changes to the text or imagery
+              within your ad. Use the blue arrows to look through the six different ways your ads
+              will be displayed on each network.
+            </Typography>
             <div className={classes.pageBody}>
               {/* <CampaignImageDisplay form={formInfo} {...props} /> */}
               <AdPreviewCarousel

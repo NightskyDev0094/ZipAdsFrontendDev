@@ -15,20 +15,20 @@ const BudgetContainer = ({
 }) => {
   const [budgetOption, setBudgetOption] = useState(currentCampaign.budget_type || 'automatic');
   const [totalBudget, setTotalBudget] = useState(
-    socialsToPost.length * currentCampaign.google_search_budget || socialsToPost.length * 5
+    socialsToPost.length * currentCampaign.google_search_budget || socialsToPost.length * 10
   );
   const [google_search_budget, setGoogleSearchBudget] = useState(
-    currentCampaign.google_search_budget || 5.0
+    currentCampaign.google_search_budget || 10.0
   );
   const [google_display_budget, setGoogleDisplayBudget] = useState(
-    currentCampaign.google_display_budget || 5.0
+    currentCampaign.google_display_budget || 10.0
   );
   const [facebook_feed_budget, setFacebookFeedBudget] = useState(
-    currentCampaign.facebook_feed_budget || 5.0
+    currentCampaign.facebook_feed_budget || 10.0
   );
-  const [instagram_budget, setInstagramBudget] = useState(currentCampaign.instagram_budget || 5.0);
+  const [instagram_budget, setInstagramBudget] = useState(currentCampaign.instagram_budget || 10.0);
   const [facebook_audience_budget, setFacebookAudienceBudget] = useState(
-    currentCampaign.facebook_audience_budget || 5.0
+    currentCampaign.facebook_audience_budget || 10.0
   );
   const [google_cpc, setGoogleCPC] = useState(currentCampaign.google_cpc || 1.0);
   const [allCampaignLength, setAllCampaignLength] = useState(

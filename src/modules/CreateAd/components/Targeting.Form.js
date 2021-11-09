@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { InputMainLabel } from '../../../sharedComponents/components';
+import InfoButton from '../../../sharedComponents/components/InfoButton';
 
 const useStyles = makeStyles({
   chip: {
@@ -63,7 +64,7 @@ const TargetingInfo = ({
 
       <Box marginTop="2rem">
         <InputMainLabel>
-          Select the distance from your target location that your ads will be distrubuted to.
+          Select the distance from your target location that your ads will be distributed to.
         </InputMainLabel>
         <RadioGroup
           aria-label="distance"
@@ -95,7 +96,8 @@ const TargetingInfo = ({
       )}
       {localeFormat === 'zip' && (
         <Box marginTop="2rem">
-          <InputMainLabel>Enter your target location's zip code</InputMainLabel>
+          <InputMainLabel>Enter your target location's zip code</InputMainLabel>{' '}
+          <InfoButton infoText={'Putting a specific zip code will optimize your campaign.'} />
           <Input
             value={addressState.zip}
             onChange={(e) =>
@@ -181,7 +183,7 @@ const TargetingInfo = ({
 
       <Box marginTop="2rem">
         <InputMainLabel>
-          Enter a keyword that your target customer will be interested in.
+          Enter a keyword that your target customer will be interested in:
         </InputMainLabel>
         <Input
           value={interest}

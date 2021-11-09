@@ -17,8 +17,8 @@ class BlueTecLandingFooter extends React.Component {
                 </Link>
                 <div className="spacer-20" />
                 <p>
-                  Easily create digital ads across multiple platforms in just 3 simple steps, in
-                  just a few minutes and with no technical knowledge whatsoever!
+                  Easily create digital ads across multiple platforms in just a few simple steps,
+                  with no technical knowledge whatsoever!
                 </p>
               </div>
             </div>
@@ -72,7 +72,7 @@ class BlueTecLandingFooter extends React.Component {
                       name="name_1"
                       placeholder="enter your email"
                       type="text"
-                    />{' '}
+                    />
                     <a href="#" id="btn-submit">
                       <i className="arrow_right" />
                     </a>
