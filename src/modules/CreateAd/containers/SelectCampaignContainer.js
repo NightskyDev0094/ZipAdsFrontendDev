@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import SelectCampaignPage from '../pages/SelectCampaignPage';
 import { getCampaign, addCampaign } from '../../../actions/campaignActions';
+import { getBusinessInfo } from '../../../actions/businessInfoActions';
 import { updateSocials } from '../../../actions/formInfoActions';
 import BEAUTY_SQUARE_IMAGE from '../../../img/TemplateImages/Beauty_1x1.jpg';
 import CONSUMER_PRODUCT_SQUARE_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1x1.jpg';
@@ -24,7 +25,7 @@ import REAL_ESTATE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Real_Estate
 import RESTAURANT_RECTANGLE_IMAGE from '../../../img/TemplateImages/Restaurant_1.91x1.png';
 import TRAVEL_AND_LODGING_RECTANGLE_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1.91x1.png';
 
-const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSocials }) => {
+const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSocials, getBusinessInfo, businessInfo, businessInfoLoading,}) => {
   const [campaignData, setCampaignData] = useState([]);
   const [templateData, setTemplateData] = useState([]);
   const [defaultData, setDefaultData] = useState({
@@ -74,6 +75,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
     img_option: '',
     logo_option: '',
   });
+
+  const [streetVal, setStreetVal] = useState(businessInfo.street_address || '');
+  const [cityVal, setCityVal] = useState(businessInfo.city_name || '');
+  const [stateVal, setStateVal] = useState(businessInfo.state_code || '');
+  const [zipVal, setZipVal] = useState(businessInfo.zip_code || '');
 
   const sampleTemplateData = [
     {
@@ -403,11 +409,17 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
   useEffect(() => {
     getCampaignData();
     setTemplateData(sampleTemplateData);
+    getBusinessInfo();
   }, []);
 
   useEffect(() => {
     setCampaignData(campaigns);
   }, [campaigns]);
+
+  useEffect(() => {
+    // Set Address values
+    setLocaleVals();
+  }, [businessInfo]);
 
   const selectDraft = (id) => {
     // Make selected campaign current
@@ -420,6 +432,27 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
     await addCampaign(formData);
   };
 
+  const setLocaleVals = () => {
+    // if (currentCampaign.campaign_type === 'New') {
+    if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
+      if (businessInfo.length !== 0) {
+        if (typeof businessInfo[0].street !== 'undefined') {
+          setStreetVal(businessInfo[0].street || '');
+        }
+        if (typeof businessInfo[0].city !== 'undefined') {
+          setCityVal(businessInfo[0].city || '');
+        }
+        if (typeof businessInfo[0].state !== 'undefined') {
+          setStateVal(businessInfo[0].state || '');
+        }
+        if (typeof businessInfo[0].zip !== 'undefined') {
+          setZipVal(businessInfo[0].zip || '');
+        }
+      }
+    }
+    // }
+  };
+
   return (
     <SelectCampaignPage
       campaigns={campaignData}
@@ -428,16 +461,23 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, updateSo
       selectDraft={selectDraft}
       addCampaign={addCampaign}
       updateSocials={updateSocials}
+      streetVal={streetVal}
+      cityVal={cityVal}
+      stateVal={stateVal}
+      zipVal={zipVal}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
   campaigns: state.campaigns.campaigns,
+  businessInfo: state.businessInfo.businessInfos,
+  businessInfoLoading: state.businessInfo.businessInfoLoading,
 });
 
 export default connect(mapStateToProps, {
   getCampaign,
   addCampaign,
   updateSocials,
+  getBusinessInfo,
 })(SelectCampaignContainer);

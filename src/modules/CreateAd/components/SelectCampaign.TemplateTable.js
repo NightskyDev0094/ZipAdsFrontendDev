@@ -38,7 +38,10 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }) => {
+const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, streetVal,
+  cityVal,
+  stateVal,
+  zipVal, }) => {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -151,10 +154,10 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials }
       formData.append('locale_type', selected.locale_type);
       formData.append('search_term', selected.search_term);
       formData.append('budget_type', "automatic");
-      formData.append('street_address', selected.street_address);
-      formData.append('city_name', selected.city_name);
-      formData.append('state_code', selected.state_code);
-      formData.append('zip_code', selected.zip_code);
+      formData.append('street_address', streetVal);
+      formData.append('city_name', cityVal);
+      formData.append('state_code', stateVal);
+      formData.append('zip_code', zipVal);
       formData.append('google_account_id', selected.google_account_id);
       formData.append('facebook_account_id', selected.facebook_account_id);
       formData.append('objective', selected.objective);

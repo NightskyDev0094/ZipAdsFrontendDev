@@ -83,7 +83,10 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
       });
   };
 
-  const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType) => {
+  const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType, streetVal,
+    cityVal,
+    stateVal,
+    zipVal,) => {
     // console.log('DATA TEST:::', data);
     const search = () => {
       for (var i = 0; i < data.length; i++) {
@@ -190,6 +193,10 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials }) =
   const createNewCampaign = () => {
     const formData = new FormData();
     formData.append('campaign_name', 'New Campaign');
+    formData.append('street_address', streetVal);
+    formData.append('city_name', cityVal);
+    formData.append('state_code', stateVal);
+    formData.append('zip_code', zipVal);
     addCampaign(formData);
   };
 
