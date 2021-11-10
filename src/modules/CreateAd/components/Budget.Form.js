@@ -16,6 +16,7 @@ const BudgetForm = ({ handleSubmitBudget, socialsToPost, ...props }) => {
   const [objective, setObjective] = useState('Conversions');
 
   const nextClick = () => {
+    
     handleSubmitBudget({
       google_budget,
       facebook_budget,

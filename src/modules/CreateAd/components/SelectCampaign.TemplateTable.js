@@ -133,7 +133,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     updateSocials(socialsArray);
   };
 
-  const submitTemplateData = (selected, formData, campaignType) => {
+  const submitTemplateData = async (selected, formData, campaignType) => {
     if (campaignType === 'Template') {
       // let selected = search(data);
       
@@ -176,18 +176,18 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
       formData.append('ga_campaign_length', selected.ga_campaign_length);
       formData.append('fb_campaign_length', selected.fb_campaign_length);
       formData.append('img_option', selected.img_option);
-      addCampaign(formData);
+      await addCampaign(formData);
       setSocialsToPost(selected);
     } else if (campaignType === 'New') {
-      createNewCampaign();;
+      await createNewCampaign();;
     }
     history.push('create/connect-social');
   };
 
-  const createNewCampaign = () => {
+  const createNewCampaign = async () => {
     const formData = new FormData();
     formData.append('campaign_name', 'New Campaign');
-    addCampaign(formData);
+    await addCampaign(formData);
   };
 
   /**

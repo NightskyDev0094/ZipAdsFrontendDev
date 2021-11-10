@@ -144,7 +144,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, str
     updateSocials(socialsArray);
   };
 
-  const submitDraftData = (selected, formData, campaignType) => {
+  const submitDraftData = async (selected, formData, campaignType) => {
     if (campaignType === 'Draft') {
       formData.append('campaign_name', selected.campaign_name);
       formData.append('campaign_type', 'draft');
@@ -185,22 +185,22 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, str
       formData.append('img_option', selected.img_option);
 
       // console.log('ADDING CAMPAIGN', formData);
-      addCampaign(formData);
+      await addCampaign(formData);
       setSocialsToPost(selected);
     } else if (campaignType === 'New') {
-      createNewCampaign();
+      await createNewCampaign();
     }
     history.push('create/connect-social');
   };
 
-  const createNewCampaign = () => {
+  const createNewCampaign = async () => {
     const formData = new FormData();
     formData.append('campaign_name', 'New Campaign');
     formData.append('street_address', streetVal);
     formData.append('city_name', cityVal);
     formData.append('state_code', stateVal);
     formData.append('zip_code', zipVal);
-    addCampaign(formData);
+    await addCampaign(formData);
   };
 
   /**

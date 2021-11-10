@@ -104,8 +104,9 @@ export const updateCampaign = (campaign, id) => (dispatch, getState) => {
   // .catch((err) => dispatch(returnErrors(err)));
 };
 
+
 // Post Add to API
-export const addCampaign = (campaign) => (dispatch, _) => {
+export const addCampaign = (campaign) => async (dispatch, _) => {
   setCampaignLoading();
   const token = localStorage.getItem('token');
   console.log("ADDCAMPAIGN RUNNING!!!!")
@@ -115,8 +116,7 @@ export const addCampaign = (campaign) => (dispatch, _) => {
       Authorization: `Token ${token}`,
     },
   };
-
-  axios
+  await axios
     .post(`${SERVER_URL}/api/campaign/`, campaign, config)
     .then((res) => {
       dispatch({
@@ -128,6 +128,31 @@ export const addCampaign = (campaign) => (dispatch, _) => {
       dispatch({ type: GET_ERRORS, payload: err });
     });
 };
+
+
+// // Post Add to API
+// export const addCampaign = (campaign) => (dispatch, _) => {
+//   setCampaignLoading();
+//   const token = localStorage.getItem('token');
+//   console.log("ADDCAMPAIGN RUNNING!!!!")
+//   const config = {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Token ${token}`,
+//     },
+//   };
+//   axios
+//     .post(`${SERVER_URL}/api/campaign/`, campaign, config)
+//     .then((res) => {
+//       dispatch({
+//         type: SAVE_CAMPAIGN,
+//         payload: res.data,
+//       });
+//     })
+//     .catch((err) => {
+//       dispatch({ type: GET_ERRORS, payload: err });
+//     });
+// };
 
 export const makeCurrent = (payload) => ({
   type: MAKE_CURRENT,
