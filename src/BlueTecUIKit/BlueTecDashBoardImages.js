@@ -45,7 +45,7 @@ const BlueTecDashBoardImages = () => {
               <div className="fp-wrap f-invert mb20">
                 <div
                   onClick={() => {
-                    history.push('/create');
+                    history.push('/select-campaign');
                   }}
                   className="fp-icon"
                 >
