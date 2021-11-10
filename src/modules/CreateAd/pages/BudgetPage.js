@@ -258,7 +258,7 @@ const BudgetPage = ({
               <div className={classes.pageBody}>
                 <Paper elevation={2} className={classes.createBudgetContainer}>
                   <InputMainLabel>Create a Budget</InputMainLabel>
-                  <Typography>Enter the budget for your ad campaigns.</Typography>
+                  <Typography>Enter the budget for your ad campaign.</Typography>
                   {(socialsToPost === undefined || socialsToPost.length === 0) && (
                     <>
                       <InputMainLabel>No Ad Network Selected</InputMainLabel>
@@ -272,12 +272,12 @@ const BudgetPage = ({
                       <Tooltip title="This is the maximum amount you will spend on all ads daily.">
                         <>
                           <Box className={classes.dailyFacebookAdsBudgetInput}>
-                            <InputMainLabel>Set your Total Daily Budget</InputMainLabel>
+                            <InputMainLabel>Set Your Total Daily Budget</InputMainLabel>
                             <Input
                               small
                               onChange={(e) => setTotalBudget(e.target.value)}
                               value={totalBudget}
-                              defaultValue="5.00"
+                              defaultValue="10.00"
                               className={isActiveBorder ? classes.activeBorder : ''}
                               style={{ border: '1px solid transparent', transition: '0.7s' }}
                             />
@@ -325,7 +325,7 @@ const BudgetPage = ({
                                   small
                                   onChange={(e) => setGoogleSearchBudget(e.target.value)}
                                   value={google_search_budget}
-                                  defaultValue="5.00"
+                                  defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
@@ -352,7 +352,7 @@ const BudgetPage = ({
                                   small
                                   onChange={(e) => setGoogleDisplayBudget(e.target.value)}
                                   value={google_display_budget}
-                                  defaultValue="5.00"
+                                  defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
@@ -432,7 +432,7 @@ const BudgetPage = ({
                                   small
                                   onChange={(e) => setFacebookFeedBudget(e.target.value)}
                                   value={facebook_feed_budget}
-                                  defaultValue="5.00"
+                                  defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
@@ -459,7 +459,7 @@ const BudgetPage = ({
                                   small
                                   onChange={(e) => setFacebookAudienceBudget(e.target.value)}
                                   value={facebook_audience_budget}
-                                  defaultValue="5.00"
+                                  defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />
@@ -486,7 +486,7 @@ const BudgetPage = ({
                                   small
                                   onChange={(e) => setInstagramBudget(e.target.value)}
                                   value={instagram_budget}
-                                  defaultValue="5.00"
+                                  defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 />

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Box, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -113,8 +113,11 @@ const ConnectSocialForm = ({
         Select Ad Networks and Connect to Accounts
       </Typography>
       <Typography className={classes.connectSocialSubHeader}>
-        Choose which platforms you want to publish to your ad to. Then connect your busines accounts
-        or let us manage your ads.
+        Choose which platforms you want to publish your ad to.
+      </Typography>
+      <Typography className={classes.connectSocialSubHeader}>
+        Don’t be intimidated! These are just the formal names for the different kinds of ads we’ll
+        run for you. We recommend checking off all of them to optimize your campaign’s success.
       </Typography>
       <InputMainLabel>Choose which networks to run ads on.</InputMainLabel>
       <Box

@@ -278,20 +278,6 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
           </div>
         )}
       </section>
-      <section className="pt60 pb60 bg-color-2 text-light">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-8 mb-sm-30 text-lg-left text-sm-center">
-              <h3 className="no-bottom">Awesomeness begin here. Are you ready?</h3>
-            </div>
-            <div className="col-md-4 text-lg-right text-sm-center">
-              <a href="#" className="btn-custom capsule med">
-                Lets do it!
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

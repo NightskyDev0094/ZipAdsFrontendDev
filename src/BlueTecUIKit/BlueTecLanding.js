@@ -53,8 +53,8 @@ class BlueTecLanding extends React.Component {
                   heights?
                 </h1>
                 <p id="sub-title" className="lead">
-                  If so, <span className="id-color">ZipAds</span> can help! Easily create, publish
-                  and track your online ads from one simple application.
+                  <span className="id-color">ZipAds</span> can help! Easily create, publish and
+                  track your online ads from our simple application.
                 </p>
                 <div className="spacer-20"></div>
                 <a className="btn-custom" href="#">
@@ -102,7 +102,7 @@ class BlueTecLanding extends React.Component {
                     </a>
                     Simply input your ad content into a generic template and the ZipAds AI-driven
                     software will automatically complete a unique ad template for each selected
-                    platform
+                    platform.
                   </div>
                   <i className="wm fa fa-folder-plus"></i>
                 </div>
@@ -116,8 +116,7 @@ class BlueTecLanding extends React.Component {
                       <h4>Select Your Target Audience </h4>
                     </a>
                     Based on the user’s profile, our AI algorithms will automatically select the
-                    optimal targeting criteria for maximum ROI, or a user can specify their own
-                    targeting criteria.
+                    optimal targeting criteria, or a user can specify their own targeting criteria.
                   </div>
                   <i className="wm fa fa-bullseye"></i>
                 </div>
@@ -150,11 +149,6 @@ class BlueTecLanding extends React.Component {
                   <i className="wm i-circle fa fa-line-chart"></i>
                 </div>
               </div>
-              <div className="col-md-12 text-center">
-                <a className="btn-custom" href="#">
-                  More Features
-                </a>
-              </div>
             </div>
           </div>
         </section>
@@ -163,12 +157,6 @@ class BlueTecLanding extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <div className="text-center">
-                  <h2 id="heres-what-our-customers-are-saying" className="uptitle id-color">
-                    Here’s What Our Customers Are Saying…
-                  </h2>
-                  <div className="spacer-20"></div>
-                </div>
                 <div className="owl-carousel owl-theme wow fadeInUp" id="testimonial-carousel">
                   <div className="item">
                     <div className="de_testi opt-2">
@@ -297,40 +285,6 @@ class BlueTecLanding extends React.Component {
             </div>
           </div>
         </section>
-
-        {/* <section id="section-fun-facts" className="pt60 pb60 text-light bg-color-3">
-              <div className="container">
-                  <div className="row">
-                      <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0s">
-                          <div className="de_count">
-                              <h3 className="timer" data-to="15425" data-speed="3000">0</h3>
-                              <span>Website Powered</span>
-                          </div>
-                      </div>
-
-                      <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".25s">
-                          <div className="de_count">
-                              <h3 className="timer" data-to="8745" data-speed="3000">0</h3>
-                              <span>Clients Supported</span>
-                          </div>
-                      </div>
-
-                      <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                          <div className="de_count">
-                              <h3 className="timer" data-to="235" data-speed="3000">0</h3>
-                              <span>Awards Winning</span>
-                          </div>
-                      </div>
-
-                      <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".75s">
-                          <div className="de_count">
-                              <h3 className="timer" data-to="15" data-speed="3000">0</h3>
-                              <span>Years Experience</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section> */}
       </div>
     );
   }

@@ -336,7 +336,7 @@ const FAQPage = () => {
                     >
                       <div className="card-body p-4">
                         <p className="m-0">
-                          At Zip ads you can do either! We have over many templates to choose from
+                          At Zip ads you can do either! We have many templates to choose from
                           but you can also upload your own at the standard sizes and formats.
                         </p>
                       </div>
@@ -581,7 +581,7 @@ const FAQPage = () => {
                   <span className="id-color">Call us</span> for further information. ZipAds customer
                   care is here to help you <span className="id-color">anytime</span>.
                 </h2>
-                <p className="lead">We're available for 24 hours!</p>
+                <p className="lead">We're available for 24/7!</p>
               </div>
 
               <div className="col-md-6 text-lg-center text-sm-center">
