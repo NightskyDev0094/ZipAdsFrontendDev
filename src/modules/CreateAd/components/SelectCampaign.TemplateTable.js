@@ -108,8 +108,9 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
       await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
     }
+    await addCampaign(formData);
     console.log('Submit Data test');
-    submitTemplateData(selected, formData, campaignType);
+    // await submitTemplateData(selected, formData, campaignType);
   };
 
   const setSocialsToPost = (selected) => {
@@ -133,62 +134,63 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     updateSocials(socialsArray);
   };
 
-  const submitTemplateData = async (selected, formData, campaignType) => {
-    if (campaignType === 'Template') {
-      // let selected = search(data);
+  // const submitTemplateData = async (selected, formData, campaignType) => {
+  //   if (campaignType === 'Template') {
+  //     // let selected = search(data);
       
 
-      console.log("submitTemplateData", selected, selected.campaign_name)
-      formData.append('campaign_name', selected.campaign_name);
-      formData.append('campaign_type', 'template');
-      formData.append('google_search_ad', selected.google_search_ad);
-      formData.append('google_display_ad', selected.google_display_ad);
-      formData.append('facebook_feed_ad', selected.facebook_feed_ad);
-      formData.append('facebook_display_ad', selected.facebook_display_ad);
-      formData.append('instagram_ad', selected.instagram_ad);
-      formData.append('ga_keyword_plan', selected.ga_keyword_plan);
-      formData.append('ga_location_plan', selected.ga_location_plan);
-      formData.append('fb_interest_plan', selected.fb_interest_plan);
-      formData.append('fb_location_plan', selected.fb_location_plan);
-      formData.append('geotargeting', selected.geotargeting);
-      formData.append('locale_type', selected.locale_type);
-      formData.append('search_term', selected.search_term);
-      formData.append('budget_type', "automatic");
-      formData.append('street_address', streetVal);
-      formData.append('city_name', cityVal);
-      formData.append('state_code', stateVal);
-      formData.append('zip_code', zipVal);
-      formData.append('google_account_id', selected.google_account_id);
-      formData.append('facebook_account_id', selected.facebook_account_id);
-      formData.append('objective', selected.objective);
-      formData.append('google_search_budget', selected.google_search_budget);
-      formData.append('google_cpc', selected.google_cpc);
-      formData.append('google_display_budget', selected.google_display_budget);
-      formData.append('facebook_feed_budget', selected.facebook_feed_budget);
-      formData.append('facebook_audience_budget', selected.facebook_audience_budget);
-      formData.append('instagram_budget', selected.instagram_budget);
-      formData.append('headline', selected.headline);
-      formData.append('headline2', selected.headline2);
-      formData.append('ad_description', selected.ad_description);
-      formData.append('cta', selected.cta);
-      formData.append('cta2', selected.cta2);
-      formData.append('ad_link', selected.ad_link);
-      formData.append('ga_campaign_length', selected.ga_campaign_length);
-      formData.append('fb_campaign_length', selected.fb_campaign_length);
-      formData.append('img_option', selected.img_option);
-      await addCampaign(formData);
-      setSocialsToPost(selected);
-    } else if (campaignType === 'New') {
-      await createNewCampaign();;
-    }
-    history.push('create/connect-social');
-  };
+  //     console.log("submitTemplateData", selected, selected.campaign_name)
+  //     formData.append('campaign_name', selected.campaign_name);
+  //     formData.append('campaign_type', 'template');
+  //     formData.append('google_search_ad', selected.google_search_ad);
+  //     formData.append('google_display_ad', selected.google_display_ad);
+  //     formData.append('facebook_feed_ad', selected.facebook_feed_ad);
+  //     formData.append('facebook_display_ad', selected.facebook_display_ad);
+  //     formData.append('instagram_ad', selected.instagram_ad);
+  //     // formData.append('ga_keyword_plan', selected.ga_keyword_plan);
+  //     // formData.append('ga_location_plan', selected.ga_location_plan);
+  //     // formData.append('fb_interest_plan', selected.fb_interest_plan);
+  //     // formData.append('fb_location_plan', selected.fb_location_plan);
+  //     formData.append('geotargeting', selected.geotargeting);
+  //     formData.append('locale_type', selected.locale_type);
+  //     formData.append('search_term', selected.search_term);
+  //     formData.append('budget_type', "automatic");
+  //     formData.append('street_address', streetVal);
+  //     formData.append('city_name', cityVal);
+  //     formData.append('state_code', stateVal);
+  //     formData.append('zip_code', zipVal);
+  //     // formData.append('google_account_id', selected.google_account_id);
+  //     // formData.append('facebook_account_id', selected.facebook_account_id);
+  //     formData.append('objective', selected.objective);
+  //     formData.append('google_search_budget', selected.google_search_budget);
+  //     formData.append('google_cpc', selected.google_cpc);
+  //     formData.append('google_display_budget', selected.google_display_budget);
+  //     formData.append('facebook_feed_budget', selected.facebook_feed_budget);
+  //     formData.append('facebook_audience_budget', selected.facebook_audience_budget);
+  //     formData.append('instagram_budget', selected.instagram_budget);
+  //     formData.append('headline', selected.headline);
+  //     formData.append('headline2', selected.headline2);
+  //     formData.append('ad_description', selected.ad_description);
+  //     formData.append('cta', selected.cta);
+  //     formData.append('cta2', selected.cta2);
+  //     // formData.append('ad_link', selected.ad_link);
+  //     formData.append('ga_campaign_length', selected.ga_campaign_length);
+  //     formData.append('fb_campaign_length', selected.fb_campaign_length);
+  //     formData.append('img_option', selected.img_option);
+  //     await addCampaign(formData);
+  //     setSocialsToPost(selected);
+   
+  //   } else if (campaignType === 'New') {
+  //     await createNewCampaign();;
+  //   }
+  //   history.push('create/connect-social');
+  // };
 
-  const createNewCampaign = async () => {
-    const formData = new FormData();
-    formData.append('campaign_name', 'New Campaign');
-    await addCampaign(formData);
-  };
+  // const createNewCampaign = async () => {
+  //   const formData = new FormData();
+  //   formData.append('campaign_name', 'New Campaign');
+  //   await addCampaign(formData);
+  // };
 
   /**
    * Table size for antd
