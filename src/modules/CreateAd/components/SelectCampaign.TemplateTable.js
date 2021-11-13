@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useEffect, memo, useCallback, useLayoutEffect } from 'react';
 import { useHistory } from 'react-router';
 
 import { Box, Typography, Modal, Backdrop, Fade, Paper, makeStyles } from '@material-ui/core';
@@ -38,10 +38,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, streetVal,
-  cityVal,
-  stateVal,
-  zipVal, }) => {
+const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, streetVal, cityVal, stateVal, zipVal, setImgLoading, submitSelectedData, templateLoading, setTemplateLoading, imgLoading, currentCampaign, campaignType }) => {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -51,6 +48,18 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     id: 0,
     campaignName: '',
   });
+  useEffect(() => {
+    // Set Address values
+    if (imgLoading === false){
+      history.push('create/connect-social');
+    }
+  }, [imgLoading]);
+  useEffect(() => {
+    // Set Address values
+    if (setTemplateLoading === false){
+      fetchImagesFromUrlThenSubmitCampaign(currentCampaign.id, campaignType);
+    }
+  }, [templateLoading]);
 
   // when modal is opened
   //set campaign data to show user
@@ -66,6 +75,8 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     await deleteCampaign(campaignModalInfo?.id);
     setModalOpen(false);
   });
+
+  
 
   const getImageFromUrl = async (url, imageType, formData) => {
     await fetch(`${url}`)
@@ -86,7 +97,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
       });
   };
 
-  const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType) => {
+  const fetchImagesFromUrlThenSubmitCampaign = async (id, data) => {
     let selected = data[id];
     console.log('Selected::::', selected.ga_display_img, selected);
     const formData = new FormData();
@@ -110,7 +121,9 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     }
     await addCampaign(formData);
     console.log('Submit Data test');
+    setImgLoading(false);
     // await submitTemplateData(selected, formData, campaignType);
+    history.push('create/connect-social');
   };
 
   const setSocialsToPost = (selected) => {
