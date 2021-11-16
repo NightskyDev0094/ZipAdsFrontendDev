@@ -11,6 +11,7 @@ import {
   FormControlLabel,
   Tooltip,
   InputAdornment,
+  TextField
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -280,6 +281,11 @@ const BudgetPage = ({
                               defaultValue="10.00"
                               className={isActiveBorder ? classes.activeBorder : ''}
                               style={{ border: '1px solid transparent', transition: '0.7s' }}
+                              inputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">$</InputAdornment>
+                                ),
+                              }}
                             />
                             <InputSmallLabel>
                               What is the max amount you want to spend on ads daily (in USD)?
@@ -295,6 +301,11 @@ const BudgetPage = ({
                               defaultValue="7"
                               className={isActiveBorder ? classes.activeBorder : ''}
                               style={{ border: '1px solid transparent', transition: '0.7s' }}
+                              inputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">$</InputAdornment>
+                                ),
+                              }}
                             />
                             <InputSmallLabel>
                               How long should your ads run (in days)?
@@ -328,6 +339,11 @@ const BudgetPage = ({
                                   defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  inputProps={{
+                                    startAdornment: (
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    ),
+                                  }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Google Ads
@@ -355,6 +371,11 @@ const BudgetPage = ({
                                   defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  inputProps={{
+                                    startAdornment: (
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    ),
+                                  }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Google Ads
@@ -373,6 +394,7 @@ const BudgetPage = ({
                           >
                             <Box className={classes.googleAdsCPCContainer}>
                               <InputMainLabel>Google Ads CPC</InputMainLabel>
+
                               <Input
                                 small
                                 onChange={(e) => setGoogleCPC(e.target.value)}
@@ -380,6 +402,11 @@ const BudgetPage = ({
                                 defaultValue="1.00"
                                 className={isActiveBorder ? classes.activeBorder : ''}
                                 style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                inputProps={{
+                                  startAdornment: (
+                                    <InputAdornment position="start">$</InputAdornment>
+                                  ),
+                                }}
                               />
                               <InputSmallLabel>
                                 Whats the max amount you want to spend on Google Ads
@@ -435,6 +462,11 @@ const BudgetPage = ({
                                   defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  inputProps={{
+                                    startAdornment: (
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    ),
+                                  }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Facebook Ads
@@ -462,6 +494,11 @@ const BudgetPage = ({
                                   defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  inputProps={{
+                                    startAdornment: (
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    ),
+                                  }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Facebook Ads
@@ -489,6 +526,11 @@ const BudgetPage = ({
                                   defaultValue="10.00"
                                   className={isActiveBorder ? classes.activeBorder : ''}
                                   style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  inputProps={{
+                                    startAdornment: (
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    ),
+                                  }}
                                 />
                                 <InputSmallLabel>
                                   Whats the max amount you want to spend on Facebook Ads
