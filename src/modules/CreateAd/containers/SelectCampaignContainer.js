@@ -8,7 +8,7 @@ import { updateSocials } from '../../../actions/formInfoActions';
 
 import { sampleTemplateData } from '../components/SelectCampaign.TemplateData';
 
-const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentCampaign, updateSocials, getBusinessInfo, businessInfo, businessInfoLoading,}) => {
+const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentCampaign, updateSocials, getBusinessInfo, businessInfo, businessInfoLoading, updateCampaign}) => {
   const [campaignData, setCampaignData] = useState([]);
   const [templateData, setTemplateData] = useState([]);
   const [defaultData, setDefaultData] = useState({
@@ -163,94 +163,98 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     // console.log('updateSocials Running', socialsArray);
     updateSocials(socialsArray);
   };
-  const submitSelectedData = async (selected, currentId, campaignType) => {
+  const submitSelectedData = async (id, data, campaignType) => {
+    
     let formData = new FormData();
     if (campaignType === 'Template') {
       // let selected = search(data);
-      
-      console.log("submitTemplateData", selected, selected.campaign_name)
-      formData.append('campaign_name', selected.campaign_name);
+      let selectedCampaign = data[id];
+      setSelected(selectedCampaign)
+      console.log("submitTemplateData", selectedCampaign, selectedCampaign.campaign_name)
+      formData.append('campaign_name', selectedCampaign.campaign_name);
       formData.append('campaign_type', 'template');
-      formData.append('google_search_ad', selected.google_search_ad);
-      formData.append('google_display_ad', selected.google_display_ad);
-      formData.append('facebook_feed_ad', selected.facebook_feed_ad);
-      formData.append('facebook_display_ad', selected.facebook_display_ad);
-      formData.append('instagram_ad', selected.instagram_ad);
-      // formData.append('ga_keyword_plan', selected.ga_keyword_plan);
-      // formData.append('ga_location_plan', selected.ga_location_plan);
-      // formData.append('fb_interest_plan', selected.fb_interest_plan);
-      // formData.append('fb_location_plan', selected.fb_location_plan);
-      formData.append('geotargeting', selected.geotargeting);
-      formData.append('locale_type', selected.locale_type);
-      formData.append('search_term', selected.search_term);
+      formData.append('google_search_ad', selectedCampaign.google_search_ad);
+      formData.append('google_display_ad', selectedCampaign.google_display_ad);
+      formData.append('facebook_feed_ad', selectedCampaign.facebook_feed_ad);
+      formData.append('facebook_display_ad', selectedCampaign.facebook_display_ad);
+      formData.append('instagram_ad', selectedCampaign.instagram_ad);
+      // formData.append('ga_keyword_plan', selectedCampaign.ga_keyword_plan);
+      // formData.append('ga_location_plan', selectedCampaign.ga_location_plan);
+      // formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
+      // formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
+      formData.append('geotargeting', selectedCampaign.geotargeting);
+      formData.append('locale_type', selectedCampaign.locale_type);
+      formData.append('search_term', selectedCampaign.search_term);
       formData.append('budget_type', "automatic");
       formData.append('street_address', streetVal);
       formData.append('city_name', cityVal);
       formData.append('state_code', stateVal);
       formData.append('zip_code', zipVal);
-      // formData.append('google_account_id', selected.google_account_id);
-      // formData.append('facebook_account_id', selected.facebook_account_id);
-      formData.append('objective', selected.objective);
-      formData.append('google_search_budget', selected.google_search_budget);
-      formData.append('google_cpc', selected.google_cpc);
-      formData.append('google_display_budget', selected.google_display_budget);
-      formData.append('facebook_feed_budget', selected.facebook_feed_budget);
-      formData.append('facebook_audience_budget', selected.facebook_audience_budget);
-      formData.append('instagram_budget', selected.instagram_budget);
-      formData.append('headline', selected.headline);
-      formData.append('headline2', selected.headline2);
-      formData.append('ad_description', selected.ad_description);
-      formData.append('cta', selected.cta);
-      formData.append('cta2', selected.cta2);
-      // formData.append('ad_link', selected.ad_link);
-      formData.append('ga_campaign_length', selected.ga_campaign_length);
-      formData.append('fb_campaign_length', selected.fb_campaign_length);
-      formData.append('img_option', selected.img_option);
-      await updateCampaign(formData, currentId);
-      setSocialsToPost(selected);
+      // formData.append('google_account_id', selectedCampaign.google_account_id);
+      // formData.append('facebook_account_id', selectedCampaign.facebook_account_id);
+      formData.append('objective', selectedCampaign.objective);
+      formData.append('google_search_budget', selectedCampaign.google_search_budget);
+      formData.append('google_cpc', selectedCampaign.google_cpc);
+      formData.append('google_display_budget', selectedCampaign.google_display_budget);
+      formData.append('facebook_feed_budget', selectedCampaign.facebook_feed_budget);
+      formData.append('facebook_audience_budget', selectedCampaign.facebook_audience_budget);
+      formData.append('instagram_budget', selectedCampaign.instagram_budget);
+      formData.append('headline', selectedCampaign.headline);
+      formData.append('headline2', selectedCampaign.headline2);
+      formData.append('ad_description', selectedCampaign.ad_description);
+      formData.append('cta', selectedCampaign.cta);
+      formData.append('cta2', selectedCampaign.cta2);
+      // formData.append('ad_link', selectedCampaign.ad_link);
+      formData.append('ga_campaign_length', selectedCampaign.ga_campaign_length);
+      formData.append('fb_campaign_length', selectedCampaign.fb_campaign_length);
+      formData.append('img_option', selectedCampaign.img_option);
+      await addCampaign(formData);
+      setSocialsToPost(selectedCampaign);
       setTemplateLoading(false);
     } else if (campaignType === 'Draft') {
-      formData.append('campaign_name', selected.campaign_name);
+      let selectedCampaign = data[id];
+      setSelected(selectedCampaign)
+      formData.append('campaign_name', selectedCampaign.campaign_name);
       formData.append('campaign_type', 'draft');
-      formData.append('google_search_ad', selected.google_search_ad);
-      formData.append('google_display_ad', selected.google_display_ad);
-      formData.append('facebook_feed_ad', selected.facebook_feed_ad);
-      formData.append('facebook_display_ad', selected.facebook_display_ad);
-      formData.append('instagram_ad', selected.instagram_ad);
-      formData.append('ga_keyword_plan', selected.ga_keyword_plan);
-      formData.append('ga_location_plan', selected.ga_location_plan);
-      formData.append('fb_interest_plan', selected.fb_interest_plan);
-      formData.append('fb_location_plan', selected.fb_location_plan);
-      formData.append('geotargeting', selected.geotargeting);
-      formData.append('locale_type', selected.locale_type);
-      formData.append('search_term', selected.search_term);
-      formData.append('budget_type', selected.budget_type);
-      formData.append('street_address', selected.street_address);
-      formData.append('city_name', selected.city_name);
-      formData.append('state_code', selected.state_code);
-      formData.append('zip_code', selected.zip_code);
-      formData.append('google_account_id', selected.google_account_id);
-      formData.append('facebook_account_id', selected.facebook_account_id);
-      formData.append('objective', selected.objective);
-      formData.append('google_search_budget', selected.google_search_budget);
-      formData.append('google_cpc', selected.google_cpc);
-      formData.append('google_display_budget', selected.google_display_budget);
-      formData.append('facebook_feed_budget', selected.facebook_feed_budget);
-      formData.append('facebook_audience_budget', selected.facebook_audience_budget);
-      formData.append('instagram_budget', selected.instagram_budget);
-      formData.append('headline', selected.headline);
-      formData.append('headline2', selected.headline2);
-      formData.append('ad_description', selected.ad_description);
-      formData.append('cta', selected.cta);
-      formData.append('cta2', selected.cta2);
-      formData.append('ad_link', selected.ad_link);
-      formData.append('ga_campaign_length', selected.ga_campaign_length);
-      formData.append('fb_campaign_length', selected.fb_campaign_length);
-      formData.append('img_option', selected.img_option);
+      formData.append('google_search_ad', selectedCampaign.google_search_ad);
+      formData.append('google_display_ad', selectedCampaign.google_display_ad);
+      formData.append('facebook_feed_ad', selectedCampaign.facebook_feed_ad);
+      formData.append('facebook_display_ad', selectedCampaign.facebook_display_ad);
+      formData.append('instagram_ad', selectedCampaign.instagram_ad);
+      formData.append('ga_keyword_plan', selectedCampaign.ga_keyword_plan);
+      formData.append('ga_location_plan', selectedCampaign.ga_location_plan);
+      formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
+      formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
+      formData.append('geotargeting', selectedCampaign.geotargeting);
+      formData.append('locale_type', selectedCampaign.locale_type);
+      formData.append('search_term', selectedCampaign.search_term);
+      formData.append('budget_type', selectedCampaign.budget_type);
+      formData.append('street_address', selectedCampaign.street_address);
+      formData.append('city_name', selectedCampaign.city_name);
+      formData.append('state_code', selectedCampaign.state_code);
+      formData.append('zip_code', selectedCampaign.zip_code);
+      formData.append('google_account_id', selectedCampaign.google_account_id);
+      formData.append('facebook_account_id', selectedCampaign.facebook_account_id);
+      formData.append('objective', selectedCampaign.objective);
+      formData.append('google_search_budget', selectedCampaign.google_search_budget);
+      formData.append('google_cpc', selectedCampaign.google_cpc);
+      formData.append('google_display_budget', selectedCampaign.google_display_budget);
+      formData.append('facebook_feed_budget', selectedCampaign.facebook_feed_budget);
+      formData.append('facebook_audience_budget', selectedCampaign.facebook_audience_budget);
+      formData.append('instagram_budget', selectedCampaign.instagram_budget);
+      formData.append('headline', selectedCampaign.headline);
+      formData.append('headline2', selectedCampaign.headline2);
+      formData.append('ad_description', selectedCampaign.ad_description);
+      formData.append('cta', selectedCampaign.cta);
+      formData.append('cta2', selectedCampaign.cta2);
+      formData.append('ad_link', selectedCampaign.ad_link);
+      formData.append('ga_campaign_length', selectedCampaign.ga_campaign_length);
+      formData.append('fb_campaign_length', selectedCampaign.fb_campaign_length);
+      formData.append('img_option', selectedCampaign.img_option);
 
       // console.log('ADDING CAMPAIGN', formData);
-      await updateCampaign(formData, currentId);
-      setSocialsToPost(selected);
+      await addCampaign(formData);
+      setSocialsToPost(selectedCampaign);
       setDraftLoading(false);
     } else if (campaignType === 'New') {
       await createNewCampaign();
@@ -309,6 +313,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       zipVal={zipVal}
       industry={industryVal}
       urlVal={urlVal}
+      selected={selected}
       setSelected={setSelected}
       setImgLoading={setImgLoading}
       imgLoading={imgLoading}
@@ -316,6 +321,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       campaignType={campaignType}
       templateLoading={templateLoading}
       draftLoading={draftLoading}
+      updateCampaign={updateCampaign}
     />
   );
 };
@@ -330,6 +336,7 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getCampaign,
   addCampaign,
+  updateCampaign,
   updateSocials,
   getBusinessInfo,
 })(SelectCampaignContainer);

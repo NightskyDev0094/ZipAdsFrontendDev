@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, streetVal, cityVal, stateVal, zipVal, setImgLoading, submitSelectedData, templateLoading, setTemplateLoading, imgLoading, currentCampaign, campaignType }) => {
+const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, streetVal, cityVal, stateVal, zipVal, setImgLoading, submitSelectedData, templateLoading, setTemplateLoading, imgLoading, currentCampaign, campaignType, selected, updateCampaign }) => {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -57,7 +57,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
   useEffect(() => {
     // Set Address values
     if (setTemplateLoading === false){
-      fetchImagesFromUrlThenSubmitCampaign(currentCampaign.id, campaignType);
+      fetchImagesFromUrlThenSubmitCampaign(selected, currentCampaign.id);
     }
   }, [templateLoading]);
 
@@ -97,8 +97,8 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
       });
   };
 
-  const fetchImagesFromUrlThenSubmitCampaign = async (id, data) => {
-    let selected = data[id];
+  const fetchImagesFromUrlThenSubmitCampaign = async (selected, id) => {
+    
     console.log('Selected::::', selected.ga_display_img, selected);
     const formData = new FormData();
     // load image files from urls
@@ -119,7 +119,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
       await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
     }
-    await addCampaign(formData);
+    await updateCampaign(formData, );
     console.log('Submit Data test');
     setImgLoading(false);
     // await submitTemplateData(selected, formData, campaignType);
@@ -289,7 +289,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
       key: 'id',
       render: (id) => (
         // <button>
-          <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, templates, 'Template')} />
+          <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} />
         // </button>
       ),
     },
