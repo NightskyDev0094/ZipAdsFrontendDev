@@ -100,7 +100,7 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
           position: 'absolute',
           backgroundSize: 'cover',
           bottom: '0',
-          padding: '30px 70px',
+          padding: '1em 0',
           width: '100%',
           textAlign: 'center',
         }}

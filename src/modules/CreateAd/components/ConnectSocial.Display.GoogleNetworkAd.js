@@ -8,7 +8,7 @@ const DEFAULT_IMAGE =
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: '600px',
+    width: '500px',
     height: 'fit-content',
     padding: '15px 15px',
     position: 'relative',
@@ -25,12 +25,9 @@ const useStyles = makeStyles(() => ({
     },
   },
   image: {
-    maxWidth: '600px',
     width: '100%',
-    height: '300px',
-    ['@media (max-width:750px)']: {
-      height: '46.666666666666664vw',
-    },
+    height: 'auto',
+    minHeight: '340px',
   },
   header: {
     display: 'flex',
@@ -48,7 +45,6 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     ['@media (max-width:750px)']: {
       width: '16.666666666666664vw',
-      minHeight: '20px',
     },
   },
   title: {
@@ -116,7 +112,6 @@ const useStyles = makeStyles(() => ({
   button: {
     backgroundColor: '#1976d2',
     color: 'white',
-    height: '60px',
     fontSize: '20px',
     fontWeight: 'normal',
     whiteSpace: 'nowrap',
@@ -125,17 +120,16 @@ const useStyles = makeStyles(() => ({
       color: 'white',
     },
     ['@media (max-width:750px)']: {
-      height: '8vw',
       fontSize: '2.666666666666667vw',
     },
   },
   midContainer: {
     width: '100%',
     height: 'fit-content',
-    minHeight: '140px',
-    fontSize: '18px',
+    minHeight: '100px',
+    fontSize: '14px',
     fontWeight: '600',
-    padding: '15px',
+    padding: '10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -151,15 +145,15 @@ const useStyles = makeStyles(() => ({
     },
   },
   description: {
-    fontSize:"1.25rem",
+    fontSize: '1.25rem',
     ['@media (max-width:750px)']: {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       padding: '15px 10px',
     },
     ['@media (max-width:500px)']: {
-      fontSize: "0.75rem",
-      padding: '10px 0px 15px 0px'
+      fontSize: '0.75rem',
+      padding: '10px 0px 15px 0px',
     },
   },
 }));
@@ -188,7 +182,7 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
           variant="square"
           aria-label="business avatar"
           className={classes.icon}
-        ></Avatar>
+        />
         <div data-test="headline" className={classes.title}>
           {currentCampaign?.headline}
         </div>
@@ -206,7 +200,7 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, styles, previewUrl, ...props 
       </div>
       <div className={classes.lowerContainer}>
         <div className={classes.buttonContainer}>
-          <Button data-test="button" className={classes.button} variant="outlined" size="medium">
+          <Button data-test="button" className={classes.button} variant="outlined" size="small">
             {currentCampaign?.cta}
           </Button>
         </div>
