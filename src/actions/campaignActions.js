@@ -54,6 +54,7 @@ export const getCampaign = () => (dispatch, getState) => {
 };
 // Alternate Get Campaign that runs with mapDispatchToProps
 export const getCampaignAsync = async (dispatch) => {
+  
   await axios
     .get(`${SERVER_URL}/api/campaign/`, config)
     .then((res) => {
@@ -87,10 +88,17 @@ export const deleteCampaign = (id) => (dispatch, getState) => {
 };
 
 // Update facebook feed ad on server
-export const updateCampaign = (campaign, id) => (dispatch, getState) => {
+export const updateCampaign = (campaign, id) => async (dispatch, getState) => {
   setCampaignLoading();
-  axios
-    .put(`${SERVER_URL}/api/campaign/${id}/`, campaign, tokenConfig(getState))
+  const token = localStorage.getItem('token');
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Token ${token}`,
+    },
+  };
+  await axios
+    .put(`${SERVER_URL}/api/campaign/${id}/`, campaign, config)
     .then((res) => {
       // dispatch(createMessage({ updateCampaign: "Ad Updated" }));
       dispatch({
