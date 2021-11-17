@@ -1,5 +1,4 @@
 import React, { useState, memo, useCallback, useLayoutEffect } from 'react';
-import { useHistory } from 'react-router';
 
 import { Box, Typography, Modal, Backdrop, Fade, Paper, makeStyles } from '@material-ui/core';
 import { Table, Alert, Button, Tooltip } from 'antd';
@@ -38,8 +37,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
-  const history = useHistory();
+const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const windowSize = useWindowSize();
@@ -48,6 +46,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
     id: 0,
     campaignName: '',
   });
+  
 
   // when modal is opened
   //set campaign data to show user
@@ -63,76 +62,10 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
     await deleteCampaign(campaignModalInfo?.id);
     setModalOpen(false);
   });
-  const templateTableData = (id, data, campaignType) => {
-    const search = () => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].id === id) {
-          return data[i];
-        }
-      }
-    };
-    if (campaignType === 'Template') {
-      // let selected = search(data);
-      let selected = data[id];
 
-      console.log(selected)
-      const formData = new FormData();
-      formData.append('campaign_name', selected.campaign_name);
-      formData.append('campaign_type', 'template');
-      formData.append('google_search_ad', selected.google_search_ad);
-      formData.append('google_display_ad', selected.google_display_ad);
-      formData.append('facebook_feed_ad', selected.facebook_feed_ad);
-      formData.append('facebook_display_ad', selected.facebook_display_ad);
-      formData.append('instagram_ad', selected.instagram_ad);
-      formData.append('ga_keyword_plan', selected.ga_keyword_plan);
-      formData.append('ga_location_plan', selected.ga_location_plan);
-      formData.append('fb_interest_plan', selected.fb_interest_plan);
-      formData.append('fb_location_plan', selected.fb_location_plan);
-      formData.append('geotargeting', selected.geotargeting);
-      formData.append('locale_type', selected.locale_type);
-      formData.append('search_term', selected.search_term);
-      formData.append('street_address', selected.street_address);
-      formData.append('city_name', selected.city_name);
-      formData.append('state_code', selected.state_code);
-      formData.append('zip_code', selected.zip_code);
-      formData.append('google_account_id', selected.google_account_id);
-      formData.append('facebook_account_id', selected.facebook_account_id);
-      formData.append('facebook_page_id', selected.facebook_page_id);
-      formData.append('objective', selected.objective);
-      formData.append('google_search_budget', selected.google_search_budget);
-      formData.append('google_cpc', selected.google_cpc);
-      formData.append('google_display_budget', selected.google_display_budget);
-      formData.append('facebook_feed_budget', selected.facebook_feed_budget);
-      formData.append('facebook_audience_budget', selected.facebook_audience_budget);
-      formData.append('instagram_budget', selected.instagram_budget);
-      formData.append('headline', selected.headline);
-      formData.append('headline2', selected.headline2);
-      formData.append('ad_description', selected.ad_description);
-      formData.append('cta', selected.cta);
-      formData.append('cta2', selected.cta2);
-      formData.append('ad_link', selected.ad_link);
-      formData.append('ga_campaign_length', selected.ga_campaign_length);
-      formData.append('fb_campaign_length', selected.fb_campaign_length);
-      formData.append('img_option', selected.img_option);
-      formData.append('file_url', selected.file_url);
-      // formData.append('file_upload', selected.file_upload);
-      // formData.append('fb_feed_img', selected.fb_feed_img);
-      // formData.append('instagram_img', selected.instagram_img);
-      // formData.append('fb_audience_img', selected.fb_audience_img);
-      // formData.append('ga_display_img', selected.ga_display_img);
-      // formData.append('ga_square_display_img', selected.ga_square_display_img);
-      addCampaign(formData);
-    } else if (campaignType === 'New') {
-      const formData = new FormData();
-      formData.append('campaign_name', 'New Campaign');
-      addCampaign(formData);
-    }
-    history.push('create/connect-social');
-  };
+  
 
-  /**
-   * Table size for antd
-   */
+
   useLayoutEffect(() => {
     if (windowSize.width < 1500) {
       setIsMobileView(true);
@@ -142,16 +75,6 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
   }, [windowSize.width]);
 
   const columns = [
-    {
-      title: 'Delete Item',
-      dataIndex: 'id',
-      key: 'id',
-      render: (id) => (
-        // <button>
-          <DeleteIcon onClick={() => openModalAndGetData(id, templates)} />
-        // </button>
-      ),
-    },
     {
       title: 'No',
       dataIndex: 'index',
@@ -224,7 +147,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign }) => {
       key: 'id',
       render: (id) => (
         // <button>
-          <EditIcon onClick={() => templateTableData(id, templates, 'Template')} />
+          <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} />
         // </button>
       ),
     },
