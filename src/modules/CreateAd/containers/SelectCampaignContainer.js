@@ -114,8 +114,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   const [urlVal, setUrlVal] = useState(businessInfo.business_url || '');
   const [campaignType, setCampaignType] = useState(businessInfo.business_url || '');
   const [imgLoading, setImgLoading] = useState(true);
-  const [templateLoading, setTemplateLoading] = useState(true);
-  const [draftLoading, setDraftLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(true);
   const history = useHistory();
 
   
@@ -137,8 +136,19 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     // Set Address values
     setLocaleVals();
   }, [businessInfo]);
-  
-
+  useEffect(() => {
+    // Go to next page when images are finished loading
+    if (imgLoading === false){
+      history.push('create/connect-social');
+    }
+  }, [imgLoading]);
+  useEffect(() => {
+    // Set Address values
+    if (dataLoading === false){
+      console.log("currentCampaign", currentCampaign.id)
+      fetchImagesFromUrlThenUpdateCampaign(selected, currentCampaign.id);
+    }
+  }, [dataLoading]);
   // const selectDraft = (id) => {
   //   // Make selected campaign current
   // };
@@ -210,9 +220,16 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('img_option', selectedCampaign.img_option);
       await addCampaign(formData);
       setSocialsToPost(selectedCampaign);
-      setTemplateLoading(false);
+      setDataLoading(false);
     } else if (campaignType === 'Draft') {
-      let selectedCampaign = data[id];
+      const search = () => {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].id === id) {
+            return data[i];
+          }
+        }
+      };
+      let selectedCampaign = search(data);
       setSelected(selectedCampaign)
       formData.append('campaign_name', selectedCampaign.campaign_name);
       formData.append('campaign_type', 'draft');
@@ -255,7 +272,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       // console.log('ADDING CAMPAIGN', formData);
       await addCampaign(formData);
       setSocialsToPost(selectedCampaign);
-      setDraftLoading(false);
+      setDataLoading(false);
     } else if (campaignType === 'New') {
       await createNewCampaign();
       history.push('create/connect-social');
@@ -266,9 +283,59 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   const createNewCampaign = async () => {
     const formData = new FormData();
     formData.append('campaign_name', 'New Campaign');
+    formData.append('street_address', streetVal);
+    formData.append('city_name', cityVal);
+    formData.append('state_code', stateVal);
+    formData.append('zip_code', zipVal);
     await addCampaign(formData);
   };
+  const getImageFromUrl = async (url, imageType, formData) => {
+    await fetch(`${url}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        console.log('Image function test', blob);
+        let n = url.lastIndexOf('/');
+        let fileName = url.substring(n + 1);
+        const modDate = new Date();
+        const newName = fileName;
+        const jpgFile = new File([blob], newName, {
+          type: 'image/jpg',
+          lastModified: modDate,
+        });
+        console.log('File Creation test', jpgFile);
+        formData.append(imageType, jpgFile);
+        return jpgFile;
+      });
+  };
 
+  const fetchImagesFromUrlThenUpdateCampaign = async (selected, id) => {
+    
+    console.log('Selected::::', selected.ga_display_img, selected);
+    const formData = new FormData();
+    // load image files from urls
+    if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
+      await getImageFromUrl(selected.fb_feed_img, 'fb_feed_img', formData);
+    }
+    if (selected.fb_audience_img !== null && selected.fb_audience_img !== '') {
+      await getImageFromUrl(selected.fb_audience_img, 'fb_audience_img', formData);
+    }
+    if (selected.instagram_img !== null && selected.instagram_img !== '') {
+      await getImageFromUrl(selected.instagram_img, 'instagram_img', formData);
+    }
+    if (selected.ga_display_img !== null && selected.ga_display_img !== '') {
+      await getImageFromUrl(selected.ga_display_img, 'ga_display_img', formData);
+      // console.log('Image post test!!!!');
+    }
+
+    if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
+      await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
+    }
+    updateCampaign(formData, id);
+    console.log('Submit Data test');
+    setImgLoading(false);
+    // await submitTemplateData(selected, formData, campaignType);
+    // history.push('/connect-social');
+  };
 
 
   const setLocaleVals = () => {
@@ -303,7 +370,6 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       campaigns={campaignData}
       templates={templateData}
       createNewCampaign={createNewCampaign}
-      // selectDraft={selectDraft}
       submitSelectedData={submitSelectedData}
       addCampaign={addCampaign}
       updateSocials={updateSocials}
@@ -315,13 +381,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       urlVal={urlVal}
       selected={selected}
       setSelected={setSelected}
-      setImgLoading={setImgLoading}
-      imgLoading={imgLoading}
       setCampaignType={setCampaignType}
       campaignType={campaignType}
-      templateLoading={templateLoading}
-      draftLoading={draftLoading}
       updateCampaign={updateCampaign}
+      currentCampaign={currentCampaign}
+      setImgLoading={setImgLoading}
     />
   );
 };

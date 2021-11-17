@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useEffect, memo, useCallback, useLayoutEffect } from 'react';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 import { Box, Typography, Modal, Backdrop, Fade, Paper, makeStyles } from '@material-ui/core';
@@ -38,11 +38,8 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, streetVal,
-  cityVal,
-  stateVal,
-  zipVal, }) => {
-  const history = useHistory();
+const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const windowSize = useWindowSize();
@@ -51,6 +48,9 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, str
     id: 0,
     campaignName: '',
   });
+
+  
+  
 
   // when modal is opened
   //set campaign data to show user
@@ -67,141 +67,6 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, str
     setModalOpen(false);
   });
 
-  const getImageFromUrl = async (url, imageType, formData) => {
-    await fetch(`${url}`)
-      .then((res) => res.blob())
-      .then((blob) => {
-        console.log('Image function test', blob);
-        let n = url.lastIndexOf('/');
-        let fileName = url.substring(n + 1);
-        const modDate = new Date();
-        const newName = fileName;
-        const jpgFile = new File([blob], newName, {
-          type: 'image/jpg',
-          lastModified: modDate,
-        });
-        console.log('File Creation test', jpgFile);
-        formData.append(imageType, jpgFile);
-        return jpgFile;
-      });
-  };
-
-  const fetchImagesFromUrlThenSubmitCampaign = async (id, data, campaignType, streetVal,
-    cityVal,
-    stateVal,
-    zipVal,) => {
-    // console.log('DATA TEST:::', data);
-    const search = () => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].id === id) {
-          return data[i];
-        }
-      }
-    };
-    let selected = search(data);
-    // console.log('Selected::::', selected.ga_display_img, selected);
-    const formData = new FormData();
-    // load image files from urls
-    if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
-      await getImageFromUrl(selected.fb_feed_img, 'fb_feed_img', formData);
-    }
-    if (selected.fb_audience_img !== null && selected.fb_audience_img !== '') {
-      await getImageFromUrl(selected.fb_audience_img, 'fb_audience_img', formData);
-    }
-    if (selected.instagram_img !== null && selected.instagram_img !== '') {
-      await getImageFromUrl(selected.instagram_img, 'instagram_img', formData);
-    }
-    if (selected.ga_display_img !== null && selected.ga_display_img !== '') {
-      await getImageFromUrl(selected.ga_display_img, 'ga_display_img', formData);
-      // console.log('Image post test!!!!');
-    }
-
-    if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
-      await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
-    }
-    // console.log('Submit Data test');
-    submitDraftData(selected, formData, campaignType);
-  };
-
-  const setSocialsToPost = (selected) => {
-    let socialsArray = [];
-    if (selected.facebook_feed_ad === 'True') {
-      socialsArray.push('facebook feed ad');
-    }
-    if (selected.facebook_display_ad === 'True') {
-      socialsArray.push('facebook display ad');
-    }
-    if (selected.instagram_ad === 'True') {
-      socialsArray.push('instagram ad');
-    }
-    if (selected.google_search_ad === 'True') {
-      socialsArray.push('google search ad');
-    }
-    if (selected.google_display_ad === 'True') {
-      socialsArray.push('google display ad');
-    }
-    // console.log('updateSocials Running', socialsArray);
-    updateSocials(socialsArray);
-  };
-
-  const submitDraftData = async (selected, formData, campaignType) => {
-    if (campaignType === 'Draft') {
-      formData.append('campaign_name', selected.campaign_name);
-      formData.append('campaign_type', 'draft');
-      formData.append('google_search_ad', selected.google_search_ad);
-      formData.append('google_display_ad', selected.google_display_ad);
-      formData.append('facebook_feed_ad', selected.facebook_feed_ad);
-      formData.append('facebook_display_ad', selected.facebook_display_ad);
-      formData.append('instagram_ad', selected.instagram_ad);
-      formData.append('ga_keyword_plan', selected.ga_keyword_plan);
-      formData.append('ga_location_plan', selected.ga_location_plan);
-      formData.append('fb_interest_plan', selected.fb_interest_plan);
-      formData.append('fb_location_plan', selected.fb_location_plan);
-      formData.append('geotargeting', selected.geotargeting);
-      formData.append('locale_type', selected.locale_type);
-      formData.append('search_term', selected.search_term);
-      formData.append('budget_type', selected.budget_type);
-      formData.append('street_address', selected.street_address);
-      formData.append('city_name', selected.city_name);
-      formData.append('state_code', selected.state_code);
-      formData.append('zip_code', selected.zip_code);
-      formData.append('google_account_id', selected.google_account_id);
-      formData.append('facebook_account_id', selected.facebook_account_id);
-      formData.append('objective', selected.objective);
-      formData.append('google_search_budget', selected.google_search_budget);
-      formData.append('google_cpc', selected.google_cpc);
-      formData.append('google_display_budget', selected.google_display_budget);
-      formData.append('facebook_feed_budget', selected.facebook_feed_budget);
-      formData.append('facebook_audience_budget', selected.facebook_audience_budget);
-      formData.append('instagram_budget', selected.instagram_budget);
-      formData.append('headline', selected.headline);
-      formData.append('headline2', selected.headline2);
-      formData.append('ad_description', selected.ad_description);
-      formData.append('cta', selected.cta);
-      formData.append('cta2', selected.cta2);
-      formData.append('ad_link', selected.ad_link);
-      formData.append('ga_campaign_length', selected.ga_campaign_length);
-      formData.append('fb_campaign_length', selected.fb_campaign_length);
-      formData.append('img_option', selected.img_option);
-
-      // console.log('ADDING CAMPAIGN', formData);
-      await addCampaign(formData);
-      setSocialsToPost(selected);
-    } else if (campaignType === 'New') {
-      await createNewCampaign();
-    }
-    history.push('create/connect-social');
-  };
-
-  const createNewCampaign = async () => {
-    const formData = new FormData();
-    formData.append('campaign_name', 'New Campaign');
-    formData.append('street_address', streetVal);
-    formData.append('city_name', cityVal);
-    formData.append('state_code', stateVal);
-    formData.append('zip_code', zipVal);
-    await addCampaign(formData);
-  };
 
   /**
    * Table size for antd
@@ -289,7 +154,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, str
       key: 'id',
       render: (id) => (
         // <button style={{ borderWidth: '0px !important' }}>
-        <EditIcon onClick={() => fetchImagesFromUrlThenSubmitCampaign(id, campaigns, 'Draft')} />
+        <EditIcon onClick={() => submitSelectedData(id, campaigns, 'Draft')} />
         // </button>
       ),
     },
@@ -300,7 +165,7 @@ const DraftTable = ({ campaigns, deleteCampaign, addCampaign, updateSocials, str
       <div className="d-flex justify-content-center">
         <Button
           style={{ backgroundColor: '#017DFC', color: 'white', borderRadius: '50px' }}
-          onClick={() => createNewCampaign()}
+          onClick={() => submitSelectedData(null, null, 'New')}
         >
           Create New Campaign
         </Button>

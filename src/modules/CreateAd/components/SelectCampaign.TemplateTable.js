@@ -1,5 +1,4 @@
-import React, { useState, useEffect, memo, useCallback, useLayoutEffect } from 'react';
-import { useHistory } from 'react-router';
+import React, { useState, memo, useCallback, useLayoutEffect } from 'react';
 
 import { Box, Typography, Modal, Backdrop, Fade, Paper, makeStyles } from '@material-ui/core';
 import { Table, Alert, Button, Tooltip } from 'antd';
@@ -38,8 +37,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, streetVal, cityVal, stateVal, zipVal, setImgLoading, submitSelectedData, templateLoading, setTemplateLoading, imgLoading, currentCampaign, campaignType, selected, updateCampaign }) => {
-  const history = useHistory();
+const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const windowSize = useWindowSize();
@@ -48,18 +46,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
     id: 0,
     campaignName: '',
   });
-  useEffect(() => {
-    // Set Address values
-    if (imgLoading === false){
-      history.push('create/connect-social');
-    }
-  }, [imgLoading]);
-  useEffect(() => {
-    // Set Address values
-    if (setTemplateLoading === false){
-      fetchImagesFromUrlThenSubmitCampaign(selected, currentCampaign.id);
-    }
-  }, [templateLoading]);
+  
 
   // when modal is opened
   //set campaign data to show user
@@ -78,136 +65,7 @@ const TemplateTable = ({ templates, deleteCampaign, addCampaign, updateSocials, 
 
   
 
-  const getImageFromUrl = async (url, imageType, formData) => {
-    await fetch(`${url}`)
-      .then((res) => res.blob())
-      .then((blob) => {
-        console.log('Image function test', blob);
-        let n = url.lastIndexOf('/');
-        let fileName = url.substring(n + 1);
-        const modDate = new Date();
-        const newName = fileName;
-        const jpgFile = new File([blob], newName, {
-          type: 'image/jpg',
-          lastModified: modDate,
-        });
-        console.log('File Creation test', jpgFile);
-        formData.append(imageType, jpgFile);
-        return jpgFile;
-      });
-  };
 
-  const fetchImagesFromUrlThenSubmitCampaign = async (selected, id) => {
-    
-    console.log('Selected::::', selected.ga_display_img, selected);
-    const formData = new FormData();
-    // load image files from urls
-    if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
-      await getImageFromUrl(selected.fb_feed_img, 'fb_feed_img', formData);
-    }
-    if (selected.fb_audience_img !== null && selected.fb_audience_img !== '') {
-      await getImageFromUrl(selected.fb_audience_img, 'fb_audience_img', formData);
-    }
-    if (selected.instagram_img !== null && selected.instagram_img !== '') {
-      await getImageFromUrl(selected.instagram_img, 'instagram_img', formData);
-    }
-    if (selected.ga_display_img !== null && selected.ga_display_img !== '') {
-      await getImageFromUrl(selected.ga_display_img, 'ga_display_img', formData);
-      // console.log('Image post test!!!!');
-    }
-
-    if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
-      await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
-    }
-    await updateCampaign(formData, );
-    console.log('Submit Data test');
-    setImgLoading(false);
-    // await submitTemplateData(selected, formData, campaignType);
-    history.push('create/connect-social');
-  };
-
-  const setSocialsToPost = (selected) => {
-    let socialsArray = [];
-    if (selected.facebook_feed_ad === 'True') {
-      socialsArray.push('facebook feed ad');
-    }
-    if (selected.facebook_display_ad === 'True') {
-      socialsArray.push('facebook display ad');
-    }
-    if (selected.instagram_ad === 'True') {
-      socialsArray.push('instagram ad');
-    }
-    if (selected.google_search_ad === 'True') {
-      socialsArray.push('google search ad');
-    }
-    if (selected.google_display_ad === 'True') {
-      socialsArray.push('google display ad');
-    }
-    // console.log('updateSocials Running', socialsArray);
-    updateSocials(socialsArray);
-  };
-
-  // const submitTemplateData = async (selected, formData, campaignType) => {
-  //   if (campaignType === 'Template') {
-  //     // let selected = search(data);
-      
-
-  //     console.log("submitTemplateData", selected, selected.campaign_name)
-  //     formData.append('campaign_name', selected.campaign_name);
-  //     formData.append('campaign_type', 'template');
-  //     formData.append('google_search_ad', selected.google_search_ad);
-  //     formData.append('google_display_ad', selected.google_display_ad);
-  //     formData.append('facebook_feed_ad', selected.facebook_feed_ad);
-  //     formData.append('facebook_display_ad', selected.facebook_display_ad);
-  //     formData.append('instagram_ad', selected.instagram_ad);
-  //     // formData.append('ga_keyword_plan', selected.ga_keyword_plan);
-  //     // formData.append('ga_location_plan', selected.ga_location_plan);
-  //     // formData.append('fb_interest_plan', selected.fb_interest_plan);
-  //     // formData.append('fb_location_plan', selected.fb_location_plan);
-  //     formData.append('geotargeting', selected.geotargeting);
-  //     formData.append('locale_type', selected.locale_type);
-  //     formData.append('search_term', selected.search_term);
-  //     formData.append('budget_type', "automatic");
-  //     formData.append('street_address', streetVal);
-  //     formData.append('city_name', cityVal);
-  //     formData.append('state_code', stateVal);
-  //     formData.append('zip_code', zipVal);
-  //     // formData.append('google_account_id', selected.google_account_id);
-  //     // formData.append('facebook_account_id', selected.facebook_account_id);
-  //     formData.append('objective', selected.objective);
-  //     formData.append('google_search_budget', selected.google_search_budget);
-  //     formData.append('google_cpc', selected.google_cpc);
-  //     formData.append('google_display_budget', selected.google_display_budget);
-  //     formData.append('facebook_feed_budget', selected.facebook_feed_budget);
-  //     formData.append('facebook_audience_budget', selected.facebook_audience_budget);
-  //     formData.append('instagram_budget', selected.instagram_budget);
-  //     formData.append('headline', selected.headline);
-  //     formData.append('headline2', selected.headline2);
-  //     formData.append('ad_description', selected.ad_description);
-  //     formData.append('cta', selected.cta);
-  //     formData.append('cta2', selected.cta2);
-  //     // formData.append('ad_link', selected.ad_link);
-  //     formData.append('ga_campaign_length', selected.ga_campaign_length);
-  //     formData.append('fb_campaign_length', selected.fb_campaign_length);
-  //     formData.append('img_option', selected.img_option);
-  //     await addCampaign(formData);
-  //     setSocialsToPost(selected);
-   
-  //   } else if (campaignType === 'New') {
-  //     await createNewCampaign();;
-  //   }
-  //   history.push('create/connect-social');
-  // };
-
-  // const createNewCampaign = async () => {
-  //   const formData = new FormData();
-  //   formData.append('campaign_name', 'New Campaign');
-  //   await addCampaign(formData);
-  // };
-
-  /**
-   * Table size for antd
-   */
   useLayoutEffect(() => {
     if (windowSize.width < 1500) {
       setIsMobileView(true);
