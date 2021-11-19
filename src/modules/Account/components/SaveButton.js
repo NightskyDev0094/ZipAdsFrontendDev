@@ -23,7 +23,7 @@ const SaveButton = ({ currPage, handleSaveClick, addBusinessInfo, classes }) => 
   return (
     <Box>
       <Box
-        className={classes.submitButtonContainer ? classes.submitButtonContainer : {}}
+        className={classes.submitButtonContainer ? classes.submitButtonContainer : ""}
         display="flex"
         justifyContent="flex-end"
       >
@@ -32,7 +32,7 @@ const SaveButton = ({ currPage, handleSaveClick, addBusinessInfo, classes }) => 
           color="primary"
           type="submit"
           onClick={handleSubmit}
-          className={classes.submitButton ? classes.submitButton : {}}
+          className={classes.submitButton ? classes.submitButton : ""}
         >
           Submit &#8594;
         </Button>

@@ -46,17 +46,15 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
     dashboard: null,
     createAd: null,
   });
-  const [open, setOpen] = useState({
-    conversions: false,
-    dashboard: false,
-    createAd: false,
-  });
+  const [dashboardOpen, setDashboardOpen] = useState(false);
+  const [conversionsOpen, setConversionOpen] = useState(false);
+  const [createAdOpen, setCreateAdOpen] = useState(false);
 
-  // const [open, setOpen] = useState(false);
-  // const handleClose = () => setOpen(!open);
   const handleClose = () => {
     setAnchorEl({ conversions: null, dashboard: null, createAd: null });
-    setOpen({ conversions: false, dashboard: false, createAd: false });
+    setCreateAdOpen(false);
+    setConversionOpen(false);
+    setDashboardOpen(false);
   };
 
   const handleNav = () => {
@@ -76,21 +74,21 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
   const handleClick = (event) => {
     if (event.target.innerText === 'DashBoard') {
       setAnchorEl({ ...anchorEl, dashboard: event.currentTarget });
-      setOpen({ ...open, dashboard: !open.dashboard });
+      setDashboardOpen(!dashboardOpen);
     }
 
     if (event.target.innerText === 'Conversions') {
       setAnchorEl({ ...anchorEl, conversions: event.currentTarget });
-      setOpen({ ...open, conversions: !open.conversions });
+      setConversionOpen(!conversionsOpen);
     }
 
     if (event.target.innerText === 'Create Ad') {
       setAnchorEl({ ...anchorEl, createAd: event.currentTarget });
-      setOpen({ ...open, createAd: !open.createAd });
+      setCreateAdOpen(!createAdOpen);
     }
     if (event.target.innerText === 'Account') {
       setAnchorEl({ ...anchorEl, account: event.currentTarget });
-      setOpen({ ...open, account: !open.createAd });
+      setCreateAdOpen(!createAdOpen);
     }
   };
 
@@ -102,13 +100,11 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
             <div className="col-md-12">
               <div className="d-flex justify-content-between">
                 <div className="align-self-center header-col-left">
-                  {}
                   <div id="logo">
                     <Link to="/">
-                      <img alt src={ZipAdsLogo} />
+                      <img alt="ZipAds Logos" src={ZipAdsLogo} />
                     </Link>
                   </div>
-                  {}
                 </div>
                 <div className="align-self-center ml-auto header-col-mid">
                   <ul id="mainmenu">
@@ -133,7 +129,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         anchorEl={anchorEl.conversions}
                         keepMounted
                         style={{ transform: 'translateY(60px)' }}
-                        open={open.conversions}
+                        open={conversionsOpen}
                         onClose={handleClose}
                         TransitionComponent={Fade}
                       >
@@ -164,7 +160,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         anchorEl={anchorEl.account}
                         keepMounted
                         style={{ transform: 'translateY(60px)' }}
-                        open={open.account}
+                        open={createAdOpen}
                         onClose={handleClose}
                         TransitionComponent={Fade}
                       >

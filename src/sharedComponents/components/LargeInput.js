@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -24,4 +25,9 @@ const LargeInput = React.forwardRef(({ isPasswordMasked = false, ...props }, ref
   );
 });
 
+LargeInput.propTypes = {
+  isPasswordMasked: PropTypes.boolean
+}
+
 export default LargeInput;
+
