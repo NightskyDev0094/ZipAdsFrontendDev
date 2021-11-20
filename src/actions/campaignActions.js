@@ -88,7 +88,7 @@ export const deleteCampaign = (id) => (dispatch, getState) => {
 };
 
 // Update facebook feed ad on server
-export const updateCampaign = (campaign, id) => async (dispatch, getState) => {
+export const updateCampaign = (campaign, id) => async (dispatch, _) => {
   setCampaignLoading();
   const token = localStorage.getItem('token');
   const config = {

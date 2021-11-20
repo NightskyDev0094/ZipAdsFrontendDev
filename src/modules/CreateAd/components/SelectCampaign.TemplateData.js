@@ -1,23 +1,24 @@
-import BEAUTY_SQUARE_IMAGE from '../../../img/TemplateImages/Beauty_1x1.jpg';
-import CONSUMER_PRODUCT_SQUARE_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1x1.jpg';
-import FINANCE_SQUARE_IMAGE from '../../../img/TemplateImages/Finance_1x1.jpg';
-import FITNESS_SQUARE_IMAGE from '../../../img/TemplateImages/Fitness_1x1.jpg';
-import HEALTH_SQUARE_IMAGE from '../../../img/TemplateImages/Health_1x1.jpg';
-import PERSONAL_FINANCE_SQUARE_IMAGE from '../../../img/TemplateImages/Personal_Finance_1x1.jpg';
-import PET_SQUARE_IMAGE from '../../../img/TemplateImages/Pet_1x1.jpg';
-import REAL_ESTATE_SQUARE_IMAGE from '../../../img/TemplateImages/Real_Estate_1x1.jpg';
-import RESTAURANT_SQUARE_IMAGE from '../../../img/TemplateImages/Restaurant_1x1.jpg';
-import TRAVEL_AND_LODGING_SQUARE_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1x1.jpg';
-import BEAUTY_RECTANGLE_IMAGE from '../../../img/TemplateImages/Beauty_1.91x1.png';
-import CONSUMER_PRODUCT_RECTANGLE_IMAGE from '../../../img/TemplateImages/Consumer_Products_and_Services_1.91x1.png';
-import FINANCE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Finance_1.91x1.png';
-import FITNESS_RECTANGLE_IMAGE from '../../../img/TemplateImages/Fitness_1.91x1.png';
-import HEALTH_RECTANGLE_IMAGE from '../../../img/TemplateImages/Health_1.91x1.png';
-import PERSONAL_FINANCE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Personal_Finance_1.91x1.png';
-import PET_RECTANGLE_IMAGE from '../../../img/TemplateImages/Pet_1.91x1.png';
-import REAL_ESTATE_RECTANGLE_IMAGE from '../../../img/TemplateImages/Real_Estate_1.91x1.png';
-import RESTAURANT_RECTANGLE_IMAGE from '../../../img/TemplateImages/Restaurant_1.91x1.png';
-import TRAVEL_AND_LODGING_RECTANGLE_IMAGE from '../../../img/TemplateImages/Travel_and_Lodging_1.91x1.png';
+const templateImgUrlBase = 'https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/templates/'
+const BEAUTY_SQUARE_IMAGE = templateImgUrlBase + 'Beauty_1x1.jpg';
+const CONSUMER_PRODUCT_SQUARE_IMAGE = templateImgUrlBase + 'Consumer_Products_and_Services_1x1.jpg';
+const FINANCE_SQUARE_IMAGE = templateImgUrlBase + 'Finance_1x1.jpg';
+const FITNESS_SQUARE_IMAGE = templateImgUrlBase + 'Fitness_1x1.jpg';
+const HEALTH_SQUARE_IMAGE = templateImgUrlBase + 'Health_1x1.jpg';
+const PERSONAL_FINANCE_SQUARE_IMAGE = templateImgUrlBase + 'Personal_Finance_1x1.jpg';
+const PET_SQUARE_IMAGE = templateImgUrlBase + 'Pet_1x1.jpg';
+const REAL_ESTATE_SQUARE_IMAGE = templateImgUrlBase + 'Real_Estate_1x1.jpg';
+const RESTAURANT_SQUARE_IMAGE = templateImgUrlBase + 'Restaurant_1x1.jpg';
+const TRAVEL_AND_LODGING_SQUARE_IMAGE = templateImgUrlBase + 'Travel_and_Lodging_1x1.jpg';
+const BEAUTY_RECTANGLE_IMAGE = templateImgUrlBase + 'Beauty_1.91x1.png';
+const CONSUMER_PRODUCT_RECTANGLE_IMAGE = templateImgUrlBase + 'Consumer_Products_and_Services_1.91x1.png';
+const FINANCE_RECTANGLE_IMAGE = templateImgUrlBase + 'Finance_1.91x1.png';
+const FITNESS_RECTANGLE_IMAGE = templateImgUrlBase + 'Fitness_1.91x1.png';
+const HEALTH_RECTANGLE_IMAGE = templateImgUrlBase + 'Health_1.91x1.png';
+const PERSONAL_FINANCE_RECTANGLE_IMAGE = templateImgUrlBase + 'Personal_Finance_1.91x1.png';
+const PET_RECTANGLE_IMAGE = templateImgUrlBase + 'Pet_1.91x1.png';
+const REAL_ESTATE_RECTANGLE_IMAGE = templateImgUrlBase + 'Real_Estate_1.91x1.png';
+const RESTAURANT_RECTANGLE_IMAGE = templateImgUrlBase + 'Restaurant_1.91x1.png';
+const TRAVEL_AND_LODGING_RECTANGLE_IMAGE = templateImgUrlBase + 'Travel_and_Lodging_1.91x1.png';
 export const sampleTemplateData = [
   {
     id: 0,

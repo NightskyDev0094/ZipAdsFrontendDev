@@ -153,6 +153,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   //   // Make selected campaign current
   // };
 
+
   const setSocialsToPost = (selected) => {
     let socialsArray = [];
     if (selected.facebook_feed_ad === 'True') {
