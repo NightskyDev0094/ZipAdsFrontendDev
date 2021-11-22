@@ -49,21 +49,21 @@ const FacebookConnect = ({ handleFacebookLogin }) => {
   };
   // Check if logged in
   const statusChangeCallback = (response) => {
-    console.log('statusChangeCallback');
+    // console.log('statusChangeCallback');
     if (response.status === 'connected') {
       const token = response.authResponse.accessToken;
-      console.log('token', token);
-      console.log('Saving token');
+      // console.log('token', token);
+      // console.log('Saving token');
       const fbAuth = { token };
       // addFbToken(fbAuth);
-      console.log('fbAuth::::', fbAuth.token);
+      // console.log('fbAuth::::', fbAuth.token);
       const formData = new FormData();
       formData.append('token', fbAuth.token);
       handleFacebookLogin(formData);
     } else if (response.status === 'not_authorized') {
-      console.log('Import error', 'Authorize app to import data', 'error');
+      // console.log('Import error', 'Authorize app to import data', 'error');
     } else {
-      console.log('Import error', 'Error occured while importing data', 'error');
+      // console.log('Import error', 'Error occured while importing data', 'error');
     }
   };
   return (

@@ -122,7 +122,7 @@ ErrorFallBackPageWrapper.propTypes = {
 ErrorFallBackPageWrapper.defaultProps = {
   error: 'An Error has occured, please refresh page',
   resetErrorBoundary: () => {
-    console.error('resetErrorBoundary not passed to ErrorFallback component');
+    // console.error('resetErrorBoundary not passed to ErrorFallback component');
   },
 };
 

@@ -157,7 +157,7 @@ const CreateCampaignContainer = ({
           type: 'image/jpg',
           lastModified: modDate,
         });
-        console.log('File Creation test', jpgFile);
+        // console.log('File Creation test', jpgFile);
         if (imageType === 'fb_feed_img') {
           setFormInfo({ ...formInfo, fb_feed_img: jpgFile });
           setFbFeedImageName(jpgFile.name);

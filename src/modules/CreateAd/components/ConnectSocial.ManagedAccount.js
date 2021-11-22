@@ -96,10 +96,10 @@ const ManagedAccountComponent = ({ token, ...props }) => {
     const createAccount = await axios
       .post('http://localhost:8000/api/managed-ga-accounts/', googleFormData, config)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
 
     // dispatchManagedAccountState({
@@ -115,10 +115,10 @@ const ManagedAccountComponent = ({ token, ...props }) => {
         config
       )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

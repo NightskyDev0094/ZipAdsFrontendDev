@@ -6,7 +6,7 @@ const FacebookConnect = ({ handleFacebookLogin }) => {
   const [code, setCode] = React.useState('');
   const responseFacebook = (response) => {
     // setCode(response);
-    console.log('RUNNING CODE::::', response.accessToken);
+    // console.log('RUNNING CODE::::', response.accessToken);
     const formData = new FormData();
     formData.append('access_token', response.accessToken);
     handleFacebookLogin(formData);

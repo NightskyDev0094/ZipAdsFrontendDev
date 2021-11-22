@@ -150,7 +150,7 @@ const Cropper = ({
       setGADisplayPreviewUrl(previewUrl);
       setGASquareDisplayPreviewUrl(previewUrl);
 
-      console.log(previewUrl);
+      // console.log(previewUrl);
       let img = new Image();
 
       img.src = previewUrl;
@@ -159,8 +159,8 @@ const Cropper = ({
         let w = loadedImage.width;
         let h = loadedImage.height;
 
-        console.log(w, h);
-        console.log(fbFeedCrop.aspect);
+        // console.log(w, h);
+        // console.log(fbFeedCrop.aspect);
 
         if (w / fbFeedCrop.aspect < h) {
           setFBFeedCrop({

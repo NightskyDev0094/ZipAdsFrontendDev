@@ -145,7 +145,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   useEffect(() => {
     // Set Address values
     if (dataLoading === false){
-      console.log("currentCampaign", currentCampaign.id)
+      // console.log("currentCampaign", currentCampaign.id)
       fetchImagesFromUrlThenUpdateCampaign(selected, currentCampaign.id);
     }
   }, [dataLoading]);
@@ -181,7 +181,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       // let selected = search(data);
       let selectedCampaign = data[id];
       setSelected(selectedCampaign)
-      console.log("submitTemplateData", selectedCampaign, selectedCampaign.campaign_name)
+      // console.log("submitTemplateData", selectedCampaign, selectedCampaign.campaign_name)
       formData.append('campaign_name', selectedCampaign.campaign_name);
       formData.append('campaign_type', 'template');
       formData.append('google_search_ad', selectedCampaign.google_search_ad);
@@ -294,7 +294,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
-        console.log('Image function test', blob);
+        // console.log('Image function test', blob);
         let n = url.lastIndexOf('/');
         let fileName = url.substring(n + 1);
         const modDate = new Date();
@@ -303,7 +303,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
           type: 'image/jpg',
           lastModified: modDate,
         });
-        console.log('File Creation test', jpgFile);
+        // console.log('File Creation test', jpgFile);
         formData.append(imageType, jpgFile);
         return jpgFile;
       });
@@ -311,7 +311,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
 
   const fetchImagesFromUrlThenUpdateCampaign = async (selected, id) => {
     
-    console.log('Selected::::', selected.ga_display_img, selected);
+    // console.log('Selected::::', selected.ga_display_img, selected);
     const formData = new FormData();
     // load image files from urls
     if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
@@ -332,7 +332,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
     }
     updateCampaign(formData, id);
-    console.log('Submit Data test');
+    // console.log('Submit Data test');
     setImgLoading(false);
     // await submitTemplateData(selected, formData, campaignType);
     // history.push('/connect-social');

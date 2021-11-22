@@ -179,7 +179,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedGeoArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           geotargetArray.push(toPush);
         }
         await updateFBLocationRequest(geotargetArray, fbGeoLocationId);
@@ -190,7 +190,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedInterestArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           interestArray.push(toPush);
         }
         await updateFBInterestsRequest(interestArray, fbInterestsListId);
@@ -201,7 +201,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedGeoArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           geoArray.push(toPush);
         }
         await updateGoogleLocationsRequest(geoArray, googleKeywordListId);
@@ -212,7 +212,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedKeywordArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           keywordArray.push(toPush);
         }
         await updateGoogleKeywordsRequest(keywordArray, googleLocationId);
@@ -247,7 +247,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedGeoArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           geotargetArray.push(toPush);
         }
         await updateFBLocationRequest(geotargetArray[0], fbGeoLocationId);
@@ -258,7 +258,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedInterestArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
 
           interestArray.push(toPush);
         }
@@ -271,7 +271,7 @@ const ExpandedTargetingPage = ({
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
 
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           geoArray.push(toPush);
         }
         await updateGoogleLocationsRequest(geoArray[0], googleKeywordListId);
@@ -282,7 +282,7 @@ const ExpandedTargetingPage = ({
         for (let i = 0; i < selectedKeywordArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          console.log('topush::::', toPush);
+          // console.log('topush::::', toPush);
           keywordArray.push(toPush);
         }
         await updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
