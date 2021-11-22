@@ -46,7 +46,8 @@ const OuterCarouselStyles = makeStyles(() => ({
     textAlign: 'center',
     width: '90px',
     padding: '2px 0px',
-    boxShadow: '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)',
+    boxShadow:
+      '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)',
     '&:hover': {
       cursor: 'pointer',
     },
@@ -80,7 +81,7 @@ export const OuterCarouselWrapper = ({
         <div style={{ ...styles?.rightPanel }} className={classes.rightPanel}>
           <div style={{ ...styles?.rightCarouselButton }} className={classes.rightCarouselButton}>
             <p className={classes.outerIcons} onClick={() => reverseAdSlide()}>
-              Previous
+              Next
             </p>
           </div>
         </div>
