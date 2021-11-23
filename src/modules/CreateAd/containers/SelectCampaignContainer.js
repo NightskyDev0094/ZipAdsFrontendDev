@@ -193,14 +193,13 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       // formData.append('ga_location_plan', selectedCampaign.ga_location_plan);
       // formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
       // formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
-      formData.append('geotargeting', selectedCampaign.geotargeting);
-      formData.append('locale_type', selectedCampaign.locale_type);
-      formData.append('search_term', selectedCampaign.search_term);
+      formData.append('locale_type', "zip");
       formData.append('budget_type', "automatic");
       formData.append('street_address', streetVal);
       formData.append('city_name', cityVal);
       formData.append('state_code', stateVal);
       formData.append('zip_code', zipVal);
+      formData.append('ad_link', urlVal);
       // formData.append('google_account_id', selectedCampaign.google_account_id);
       // formData.append('facebook_account_id', selectedCampaign.facebook_account_id);
       formData.append('objective', selectedCampaign.objective);
@@ -243,14 +242,13 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ga_location_plan', selectedCampaign.ga_location_plan);
       formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
       formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
-      formData.append('geotargeting', selectedCampaign.geotargeting);
-      formData.append('locale_type', selectedCampaign.locale_type);
-      formData.append('search_term', selectedCampaign.search_term);
+      formData.append('locale_type', "zip");
       formData.append('budget_type', selectedCampaign.budget_type);
       formData.append('street_address', selectedCampaign.street_address);
       formData.append('city_name', selectedCampaign.city_name);
       formData.append('state_code', selectedCampaign.state_code);
       formData.append('zip_code', selectedCampaign.zip_code);
+      formData.append('ad_link', selectedCampaign.ad_link);
       formData.append('google_account_id', selectedCampaign.google_account_id);
       formData.append('facebook_account_id', selectedCampaign.facebook_account_id);
       formData.append('objective', selectedCampaign.objective);
@@ -284,10 +282,13 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   const createNewCampaign = async () => {
     const formData = new FormData();
     formData.append('campaign_name', 'New Campaign');
+    formData.append('campaign_type', 'new');
     formData.append('street_address', streetVal);
     formData.append('city_name', cityVal);
     formData.append('state_code', stateVal);
     formData.append('zip_code', zipVal);
+    formData.append('ad_link', urlVal);
+    formData.append('locale_type', "zip");
     await addCampaign(formData);
   };
   const getImageFromUrl = async (url, imageType, formData) => {
@@ -345,6 +346,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       if (businessInfo.length !== 0) {
         if (typeof businessInfo[0].street !== 'undefined') {
           setStreetVal(businessInfo[0].street || '');
+          
         }
         if (typeof businessInfo[0].city !== 'undefined') {
           setCityVal(businessInfo[0].city || '');
@@ -357,6 +359,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
         }
         if (typeof businessInfo[0].industry !== 'undefined') {
           setIndustryVal(businessInfo[0].industry || '');
+          
         }
         if (typeof businessInfo[0].business_url !== 'undefined') {
           setUrlVal(businessInfo[0].business_url || '');

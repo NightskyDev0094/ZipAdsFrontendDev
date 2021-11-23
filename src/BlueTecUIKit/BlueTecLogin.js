@@ -40,7 +40,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
   const handleLoginSubmit = async (data, event) => {
     event.preventDefault();
     loginLoading(true);
-    console.log('Login Data Test', data);
+    // console.log('Login Data Test', data);
     const submitLoginCredentials = axios
       .post(`${SERVER_URL}/api/auth/login`, data)
       .then((res) => {
