@@ -101,7 +101,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
               <div className="d-flex justify-content-between">
                 <div className="align-self-center header-col-left">
                   <div id="logo">
-                    <Link to="/">
+                    <Link to="/dashboard">
                       <img alt="ZipAds Logos" src={ZipAdsLogo} />
                     </Link>
                   </div>
