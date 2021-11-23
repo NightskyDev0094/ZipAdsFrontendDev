@@ -45,7 +45,7 @@ export const getClientId = async (amount, preExistingAmount, dispatch) => {
       });
     })
     .catch((e) => {
-      console.log(e);
+      console.log('GET CLIENT ID ERROR: ', e.message);
       dispatch({
         type: CREDIT_ERROR,
         payload: e.message,
@@ -66,7 +66,7 @@ export const getCreditAmount = async (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.log('GET CREDIT AMOUNT ERROR: ', err.message);
       dispatch({ type: CREDIT_ERROR, payload: err.message });
     });
 };

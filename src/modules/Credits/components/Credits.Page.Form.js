@@ -114,7 +114,7 @@ const CreditForm = ({
           <div className={classes.titleSubContainer}>
             <Typography className={classes.title}>Purchase Credits</Typography>
             <Typography className={classes.subTitle}>
-              Purchase Credits to checkout with, this is the prefered method of checkout.
+              Purchase Credits to checkout with, this is the preferred method of checkout.
               <InformationModal
                 title={`Credits`}
                 text="Credits, used in dollar amounts,

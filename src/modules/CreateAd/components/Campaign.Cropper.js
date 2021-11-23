@@ -92,13 +92,11 @@ const Cropper = ({
   // const [imageName, setImageName] = useState(null);
 
   const classes = useStyles();
-  const cropper = useRef();
-
   // Cropper
 
   const imgRef = useRef(null);
   const [fbFeedCrop, setFBFeedCrop] = useState({ unit: '%', width: 30, aspect: 1.91 / 1 });
-  const [fbAudienceCrop, setFBAudienceCrop] = useState({ unit: '%', width: 30, aspect: 9 / 16 });
+  const [fbAudienceCrop, setFBAudienceCrop] = useState({ unit: '%', width: 30, aspect: 1 / 1 });
   const [instagramCrop, setInstagramCrop] = useState({ unit: '%', width: 30, aspect: 1 / 1 });
   const [gaSquareDisplayCrop, setGASquareDisplayCrop] = useState({
     unit: '%',
@@ -150,7 +148,6 @@ const Cropper = ({
       setGADisplayPreviewUrl(previewUrl);
       setGASquareDisplayPreviewUrl(previewUrl);
 
-      console.log(previewUrl);
       let img = new Image();
 
       img.src = previewUrl;
@@ -159,8 +156,9 @@ const Cropper = ({
         let w = loadedImage.width;
         let h = loadedImage.height;
 
-        console.log(w, h);
-        console.log(fbFeedCrop.aspect);
+        console.log('WIDTH: ', w);
+        console.log('HEIGHT: ', h);
+        console.log('Facebook Feed ASPECT: ', fbFeedCrop.aspect);
 
         if (w / fbFeedCrop.aspect < h) {
           setFBFeedCrop({

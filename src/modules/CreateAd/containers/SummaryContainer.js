@@ -229,8 +229,7 @@ const SummaryContainer = ({
       instagramNum={instagramNum}
       gaSearchNum={gaSearchNum}
       gaDisplayNum={gaDisplayNum}
-      gaSquareDisplayNum={gaSquareDisplayNum}
-      
+      gaSquareDisplayNum={gaSquareDisplayNum}    
       {...props}
     />
   );
