@@ -7,11 +7,11 @@ const FacebookFeed = () => (
   <Box>
     <InputMainLabel>Facebook Feed Content</InputMainLabel>
     <Box>
-      <Input multiline />
+      <Input multiline={true} />
       <InputSmallLabel>Post text giving context to your content</InputSmallLabel>
     </Box>
     <Box marginTop="1rem">
-      <Input multiline />
+      <Input multiline={true} />
       <InputSmallLabel>Some text about why people should engage with your business</InputSmallLabel>
     </Box>
     <Box marginTop="1rem">

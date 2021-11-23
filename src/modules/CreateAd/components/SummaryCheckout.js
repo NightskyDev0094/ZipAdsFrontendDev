@@ -5,7 +5,7 @@ import '../styles/CheckoutStyles.css';
 
 import { InputMainLabel } from '../../../sharedComponents/components';
 
-const SummaryCheckout = ({ currentCampaign, campaignInfo, getClientId, ...props }) => {
+const SummaryCheckout = ({ currentCampaign, getClientId, ...props }) => {
   const history = useHistory();
   return (
     <div style={{ marginTop: '50px' }}>

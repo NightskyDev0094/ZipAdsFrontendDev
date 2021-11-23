@@ -202,10 +202,12 @@ const StepProgress = ({ formStep, stepTracker }) => {
         activeStep={activeStep}
       >
         {steps.map((step) => (
-          <Step className={classes.step} key={step.label}>
-            <StepLabel>{step.label}</StepLabel>
-            {step.isStepComplete}
-          </Step>
+          <>
+            <Step className={classes.step} key={`${step.label}${crypto.randomUUID()}`}>
+              <StepLabel>{step.label}</StepLabel>
+              {step.isStepComplete}
+            </Step>
+          </>
         ))}
       </Stepper>
     </div>

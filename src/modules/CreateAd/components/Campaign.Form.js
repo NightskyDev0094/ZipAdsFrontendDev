@@ -274,7 +274,7 @@ const FormContent1 = ({
           }}
           value={formInfo.headline}
           defaultValue={currentCampaign?.headline || ''}
-          multiline
+          multiline={true}
         />
         <div className={classes.inputDescription}>Your Headline</div>
         <Input
@@ -289,13 +289,12 @@ const FormContent1 = ({
           defaultValue={currentCampaign?.headline2 || ''}
           multiline={true}
         />
-        <InputSmallLabel></InputSmallLabel>
         <div className={classes.inputDescription}>
           Your Sub-Headline (Does not appear for ads 2, 5, and 6)
         </div>
         <TextField
           placeholder="Description"
-          classes={{ root: classes.textAreaInput, multiline: { height: '100px' } }}
+          classes={{ root: classes.textAreaInput }}
           name="ad_description"
           onChange={handleFormChange}
           value={formInfo.ad_description}

@@ -153,6 +153,7 @@ const CreditStripeComponent = ({
             setStripeStatus(STRIPE_STATUS.ERROR);
             return;
           }
+          console.log(stripeCheckoutToken.client_secret)
           const paymentResult = await stripe?.confirmCardPayment(
             stripeCheckoutToken?.client_secret,
             {

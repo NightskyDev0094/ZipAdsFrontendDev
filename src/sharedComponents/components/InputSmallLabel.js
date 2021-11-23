@@ -1,15 +1,8 @@
 import React from 'react';
-import { Box, TextField, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  root: {
-    marginLeft: '10px',
-  },
-});
+import { Box, Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const InputSmallLabel = React.forwardRef((props, ref) => {
-  const classes = useStyles();
   return (
     <Box>
       <Typography
@@ -24,5 +17,10 @@ const InputSmallLabel = React.forwardRef((props, ref) => {
     </Box>
   );
 });
+
+InputSmallLabel.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.Node,
+};
 
 export default InputSmallLabel;

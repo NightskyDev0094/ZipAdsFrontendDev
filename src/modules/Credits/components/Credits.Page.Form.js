@@ -5,7 +5,6 @@ import {
   InputAdornment,
   OutlinedInput,
   Typography,
-  Button,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
@@ -75,26 +74,20 @@ const useStyles = makeStyles(() => ({
 
 const CreditForm = ({
   styles,
-  submitCreditAmount,
   areCreditsSuccessfullyPurchased,
   userCredits,
-  setError,
   getCreditAmount,
   clearCreditSuccess,
-  campaignInfo,
   amount,
   setAmount,
   ...props
 }) => {
   const classes = useStyles();
-  // const [amount, setAmount] = useState(0);
   const [purchaseButtonDisabled, setPurchaseButtonDisabled] = useState(true);
   const [preExistingAmount, setPreExistingAmount] = useState(0);
 
   useEffect(() => {
     getCreditAmount();
-
-    //calculate total budget
   }, []);
 
   useEffect(() => {
@@ -121,7 +114,7 @@ const CreditForm = ({
           <div className={classes.titleSubContainer}>
             <Typography className={classes.title}>Purchase Credits</Typography>
             <Typography className={classes.subTitle}>
-              Purchase Credits to checkout with, this is the prefered method of checkout.
+              Purchase Credits to checkout with, this is the preferred method of checkout.
               <InformationModal
                 title={`Credits`}
                 text="Credits, used in dollar amounts,
@@ -173,12 +166,14 @@ const CreditForm = ({
       ) : (
         <SuccessMessage clearCreditSuccess={clearCreditSuccess} />
       )}
-    </>
+    </> 
   );
 };
 
 CreditForm.propTypes = {
   styles: PropTypes.object,
+  amount: PropTypes.number,
+  setAmount: PropTypes.func,
   submitCreditAmount: PropTypes.func,
   areCreditsSuccessfullyPurchased: PropTypes.func,
   userCredits: PropTypes.array,
