@@ -7,21 +7,21 @@ import { getCampaignAsync, makeCurrent } from '../../../actions/campaignActions'
 import { postGoogleSearchAd } from '../../../actions/gsAdActions';
 import { postFBFeedAd } from '../../../actions/fbAdActions';
 import { completeStepByNormalFunction as completeStep } from '../../../actions/step.actions';
-import {
-  createCreditAmount,
-  updateCreditAmount,
-  getCreditAmount,
-  getClientId,
-  clearCreditSuccess,
-} from '../../../actions/credit.actions';
+// import {
+//   createCreditAmount,
+//   updateCreditAmount,
+//   getCreditAmount,
+//   getClientId,
+//   clearCreditSuccess,
+// } from '../../../actions/credit.actions';
 import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
 
 const SummaryContainer = ({
   completeStep,
-  userCredits,
-  getCreditAmount,
+  // userCredits,
+  // getCreditAmount,
   postGoogleSearchAd,
   postFBFeedAd,
   adInfo,
@@ -43,9 +43,9 @@ const SummaryContainer = ({
   };
   const history = useHistory();
   const [campaignData, setCampaignData] = useState({});
-  const [creditAmount, setCreditAmount] = useState(0);
+  // const [creditAmount, setCreditAmount] = useState(0);
   const [totalBudget, setTotalBudget] = useState(0);
-  const getCreditData = useCallback(async () => await getCreditAmount());
+  // const getCreditData = useCallback(async () => await getCreditAmount());
   const getCampaignData = useCallback(async () => await getCampaignAsync());
   const [totalAmount, setTotalAmount] = useState(0);
   const [checkoutStatus, setCheckoutStatus] = useState(SUBMIT_STATUS.UNSET);
@@ -65,7 +65,7 @@ const SummaryContainer = ({
 
   useEffect(() => {
     getCampaignData();
-    getCreditData();
+    // getCreditData();
   }, []);
 
   useEffect(() => {
@@ -100,13 +100,13 @@ const SummaryContainer = ({
 
  
   //get sum of users credits
-  useEffect(() => {
-    if (!userCredits || !userCredits?.length) return;
-    if (userCredits.length >= 1) {
-      const highestAmount = userCredits?.pop()['amount'];
-      setCreditAmount(highestAmount);
-    }
-  }, [userCredits]);
+  // useEffect(() => {
+  //   if (!userCredits || !userCredits?.length) return;
+  //   if (userCredits.length >= 1) {
+  //     const highestAmount = userCredits?.pop()['amount'];
+  //     setCreditAmount(highestAmount);
+  //   }
+  // }, [userCredits]);
 
   useEffect(() => {
     let budgets = [];
@@ -220,7 +220,7 @@ const SummaryContainer = ({
       handleError={handleError}
       checkoutStatus={checkoutStatus}
       SUBMIT_STATUS={SUBMIT_STATUS}
-      creditAmount={creditAmount}
+      // creditAmount={creditAmount}
       getFbAdAccounts={getFbAdAccounts}
       getGoogleAdAccounts={getGoogleAdAccounts}
       getBusinessInfo={getBusinessInfo}
@@ -241,11 +241,11 @@ const mapStateToProps = (state) => ({
   currentCampaign: state.campaigns.current,
   campaigns: state.campaigns.campaigns,
   socialsToPost: state.newAdInfo.socialsToPost,
-  userCredits: state.credits?.userCredits || 0,
+  // userCredits: state.credits?.userCredits || 0,
   campaignInfo: state.newAdInfo,
-  stripeCheckoutToken: state.credits.userClientId,
-  clientIDError: state.credits.error,
-  areCreditsSuccessfullyPurchased: state.credits.success,
+  // stripeCheckoutToken: state.credits.userClientId,
+  // clientIDError: state.credits.error,
+  // areCreditsSuccessfullyPurchased: state.credits.success,
   hasPostAdStepBeenCompleted: state.stepTracker.POST_AD_STEP,
 });
 
@@ -254,12 +254,12 @@ const mapDispatchToProps = (dispatch) => ({
   completeStep: (stepNumber) => completeStep(dispatch, stepNumber),
   postFBFeedAd: (formData) => postFBFeedAd(formData, dispatch),
   makeCurrent,
-  updateCreditAmount: (amount) => updateCreditAmount(amount, dispatch),
-  createCreditAmount: (amount) => createCreditAmount(amount, dispatch),
-  getClientId: (amount, preExistingAmount) => getClientId(amount, preExistingAmount, dispatch),
-  getCreditAmount: () => getCreditAmount(dispatch),
+  // updateCreditAmount: (amount) => updateCreditAmount(amount, dispatch),
+  // createCreditAmount: (amount) => createCreditAmount(amount, dispatch),
+  // getClientId: (amount, preExistingAmount) => getClientId(amount, preExistingAmount, dispatch),
+  // getCreditAmount: () => getCreditAmount(dispatch),
   getCampaignAsync: () => getCampaignAsync(dispatch),
-  clearCreditSuccess: () => clearCreditSuccess(dispatch),
+  // clearCreditSuccess: () => clearCreditSuccess(dispatch),
   getFbAdAccounts: () => getFbAdAccounts(dispatch),
   getGoogleAdAccounts: () => getGoogleAdAccounts(dispatch),
   getBusinessInfo: () => getBusinessInfo(dispatch)
