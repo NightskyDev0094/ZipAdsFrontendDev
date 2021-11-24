@@ -127,15 +127,41 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     setTemplateData(sampleTemplateData);
     getBusinessInfo();
   }, []);
+  const [recommendedTemplate, setRecommendedTemplate] = useState(null);
+  const industries = [
+    'BEAUTY',
+    'CONSUMER PRODUCTS AND SERVICES',
+    'FINANCE',
+    'FITNESS',
+    'HEALTH',
+    'PERSONAL FINANCE',
+    'PET',
+    'REAL ESTATE',
+    'RESTAURANT',
+    'TRAVEL AND LODGING',
+  ];
+  
+  useEffect(() => {
+    // Set Address values
+    if (businessInfo.length) {
+      console.log("Running business info update", businessInfo[businessInfo.length - 1])
+      setLocaleVals();
+      
+      // }
+    }
+  }, [businessInfo]);
+  useEffect(() => {
+    // Set Address values
+    if (businessInfo[businessInfo.length - 1].industry) {
+      console.log("Set recommended template running", businessInfo[businessInfo.length - 1].industry)
+      setRecommendedTemplate(templateData[industries.indexOf(businessInfo[businessInfo.length - 1].industry)]);
+    }
+  }, [businessInfo]);
 
   useEffect(() => {
     setCampaignData(campaigns);
   }, [campaigns]);
 
-  useEffect(() => {
-    // Set Address values
-    setLocaleVals();
-  }, [businessInfo]);
   useEffect(() => {
     // Go to next page when images are finished loading
     if (imgLoading === false){
@@ -344,25 +370,25 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     // if (currentCampaign.campaign_type === 'New') {
     if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
       if (businessInfo.length !== 0) {
-        if (typeof businessInfo[0].street !== 'undefined') {
-          setStreetVal(businessInfo[0].street || '');
+        if (typeof businessInfo[businessInfo.length - 1].street !== 'undefined') {
+          setStreetVal(businessInfo[businessInfo.length - 1].street || '');
           
         }
-        if (typeof businessInfo[0].city !== 'undefined') {
-          setCityVal(businessInfo[0].city || '');
+        if (typeof businessInfo[businessInfo.length - 1].city !== 'undefined') {
+          setCityVal(businessInfo[businessInfo.length - 1].city || '');
         }
-        if (typeof businessInfo[0].state !== 'undefined') {
-          setStateVal(businessInfo[0].state || '');
+        if (typeof businessInfo[businessInfo.length - 1].state !== 'undefined') {
+          setStateVal(businessInfo[businessInfo.length - 1].state || '');
         }
-        if (typeof businessInfo[0].zip !== 'undefined') {
-          setZipVal(businessInfo[0].zip || '');
+        if (typeof businessInfo[businessInfo.length - 1].zip !== 'undefined') {
+          setZipVal(businessInfo[businessInfo.length - 1].zip || '');
         }
-        if (typeof businessInfo[0].industry !== 'undefined') {
-          setIndustryVal(businessInfo[0].industry || '');
+        if (typeof businessInfo[businessInfo.length - 1].industry !== 'undefined') {
+          setIndustryVal(businessInfo[businessInfo.length - 1].industry || '');
           
         }
-        if (typeof businessInfo[0].business_url !== 'undefined') {
-          setUrlVal(businessInfo[0].business_url || '');
+        if (typeof businessInfo[businessInfo.length - 1].business_url !== 'undefined') {
+          setUrlVal(businessInfo[businessInfo.length - 1].business_url || '');
         }
       }
     }
@@ -390,6 +416,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       updateCampaign={updateCampaign}
       currentCampaign={currentCampaign}
       setImgLoading={setImgLoading}
+      recommendedTemplate={recommendedTemplate}
     />
   );
 };
