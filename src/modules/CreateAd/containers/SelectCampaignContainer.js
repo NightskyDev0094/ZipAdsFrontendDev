@@ -144,7 +144,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   useEffect(() => {
     // Set Address values
     if (businessInfo.length) {
-      console.log("Running business info update", businessInfo[businessInfo.length - 1])
+      // console.log("Running business info update", businessInfo[businessInfo.length - 1])
       setLocaleVals();
       
       // }
@@ -152,9 +152,11 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   }, [businessInfo]);
   useEffect(() => {
     // Set Address values
-    if (businessInfo[businessInfo.length - 1].industry) {
-      console.log("Set recommended template running", businessInfo[businessInfo.length - 1].industry)
-      setRecommendedTemplate(templateData[industries.indexOf(businessInfo[businessInfo.length - 1].industry)]);
+    if (businessInfo.length) {
+      if (businessInfo[businessInfo.length - 1].industry) {
+        // console.log("Set recommended template running", businessInfo[businessInfo.length - 1].industry)
+        setRecommendedTemplate(templateData[industries.indexOf(businessInfo[businessInfo.length - 1].industry)]);
+      }
     }
   }, [businessInfo]);
 
