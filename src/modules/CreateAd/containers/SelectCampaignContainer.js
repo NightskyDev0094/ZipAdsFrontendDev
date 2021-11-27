@@ -222,6 +222,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       // formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
       // formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
       formData.append('locale_type', "zip");
+      formData.append('distance', "hyper-local");
       formData.append('budget_type', "automatic");
       formData.append('street_address', streetVal);
       formData.append('city_name', cityVal);
@@ -271,6 +272,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
       formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
       formData.append('locale_type', "zip");
+      formData.append('distance', "hyper-local");
       formData.append('budget_type', selectedCampaign.budget_type);
       formData.append('street_address', selectedCampaign.street_address);
       formData.append('city_name', selectedCampaign.city_name);
@@ -317,6 +319,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     formData.append('zip_code', zipVal);
     formData.append('ad_link', urlVal);
     formData.append('locale_type', "zip");
+    formData.append('distance', "hyper-local");
     await addCampaign(formData);
   };
   const getImageFromUrl = async (url, imageType, formData) => {

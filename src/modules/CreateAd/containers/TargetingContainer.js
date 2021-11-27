@@ -114,9 +114,11 @@ const TargetingContainer = ({
     formDataLocationSearch.append('search_city', cityVal);
     formDataLocationSearch.append('search_state', stateVal);
     formDataLocationSearch.append('search_zip', zipVal);
-    formDataLocationSearch.append('distance', targetInfo.distance);
+    formDataLocationSearch.append('locale_type', localeFormat);
+    formDataLocationSearch.append('distance', distance);
     formDataLocationSearch.append('current_campaign', campaignId);
-    formDataLocationSearch.append('search_term', interest);
+    
+    
     searchFBLocations(formDataLocationSearch);
 
     // Search Google Locations
@@ -136,6 +138,9 @@ const TargetingContainer = ({
     formDataCampaign.append('city_name', cityVal);
     formDataCampaign.append('state_code', stateVal);
     formDataCampaign.append('zip_code', zipVal);
+    formDataCampaign.append('locale_type', localeFormat);
+    formDataCampaign.append('distance', distance);
+    formDataCampaign.append('search_term', interest);
     // Save Targeting options to Campaign_Info
     updateCampaign(formDataCampaign, campaignId);
     updateTargetInfo(targetInfo);
