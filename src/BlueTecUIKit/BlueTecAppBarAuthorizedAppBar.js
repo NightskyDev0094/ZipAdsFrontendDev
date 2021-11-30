@@ -101,7 +101,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
               <div className="d-flex justify-content-between">
                 <div className="align-self-center header-col-left">
                   <div id="logo">
-                    <Link to="/">
+                    <Link to="/dashboard">
                       <img alt="ZipAds Logos" src={ZipAdsLogo} />
                     </Link>
                   </div>
@@ -199,4 +199,9 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
   );
 };
 
-export default connect(null, { logoutUser: logout, completeStep })(BlueTecAppBarAuthorized);
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: () => logout(dispatch),
+  completeStep: (stepNumber) => completeStep(stepNumber),
+});
+
+export default connect(null, mapDispatchToProps)(BlueTecAppBarAuthorized);

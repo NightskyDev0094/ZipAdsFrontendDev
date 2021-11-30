@@ -15,6 +15,7 @@ import AccountRoutes from '../modules/Account/routes';
 import FAQPage from '../BlueTecUIKit/BlueTecFAQPage';
 import SuccessPage from '../modules/CreateAd/pages/SuccessPage';
 
+
 const AuthenticatedRoutes = ({ isAuthenticated }) => (
   <>
     {isAuthenticated && (

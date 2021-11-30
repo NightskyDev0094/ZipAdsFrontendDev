@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { history } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { setTokenTime } from '../actions/account.tokenActions';
 import { logout } from '../actions/authActions';
 
@@ -23,27 +23,32 @@ Date.prototype.today = function () {
  * @param currentTokenTime: string {The token time saved to the store}
  * @param pastToken: string {The current token in the store}
  * @param setTokenTime: function {A redux action that sets the token time}
- * @param logout: function that logs out user
+ * @param logoutUser: function that logs out user
  */
 
-const CheckToken = ({ currentTokenTime, pastToken, setTokenTime, logout }) => {
-  const date = new Date();
-  const currentTime = date.today();
+const CheckToken = ({ currentTokenTime, pastToken, logoutUser, setTokenTime }) => {
+  const history = useHistory();
+  const currentDateTime = new Date();
+  const tomorrowDateTime = new Date();
+  tomorrowDateTime.setDate(currentDateTime.getDate() + 1);
 
-  if (!currentTokenTime) {
-    setTokenTime(currentTime);
-    return <div />;
-  }
-
-  const currentDay = currentTime.split('/')[0];
-  const savedTokenDay = currentTokenTime.split('/')[0];
+  const savedTokenExpirationDate = new Date(currentTokenTime);
   const currentToken = localStorage.getItem('token');
 
-  if (savedTokenDay !== currentDay) {
-    logout();
-  } else if (pastToken !== currentToken) {
-    setTokenTime(currentTime);
-  }
+  useEffect(() => {
+    if (!currentTokenTime) {
+      // set token expiration date to the day after login date
+      setTokenTime(tomorrowDateTime.toLocaleString()); // saved as '11/29/2021, 10:46:36 PM'
+    } else if (savedTokenExpirationDate < currentDateTime) {
+      // if token expiration date has past then log out
+      logoutUser();
+      history.push('/');
+    } else if (pastToken !== currentToken) {
+      // not sure when we would be refreshing the token - but that is what this does
+      setTokenTime(tomorrowDateTime.toLocaleDateString());
+    }
+  }, []);
+
   return <div />;
 };
 
@@ -53,7 +58,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => logout(dispatch),
+  logoutUser: () => logout(dispatch),
   setTokenTime: (token) => setTokenTime(dispatch, token),
 });
 

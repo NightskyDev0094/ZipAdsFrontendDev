@@ -83,45 +83,46 @@ export const login = (data) => (dispatch) => {
 };
 
 // REGISTER USER
-export const register = ({ username, password, email }) => (dispatch) => {
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
+export const register =
+  ({ username, password, email }) =>
+  (dispatch) => {
+    // Headers
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    // Request Body
+    const body = JSON.stringify({ username, email, password });
+
+    axios
+      .post(`${SERVER_URL}/api/auth/register`, body, config)
+      .then((res) => {
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        // dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: REGISTER_FAIL,
+        });
+      });
   };
-
-  // Request Body
-  const body = JSON.stringify({ username, email, password });
-
-  axios
-    .post(`${SERVER_URL}/api/auth/register`, body, config)
-    .then((res) => {
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      // dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: REGISTER_FAIL,
-      });
-    });
-};
 
 /**
  * Logouts user from databse and application state
  */
-export const logout = () => async (dispatch, getState) => {
+export const logout = (dispatch, getState) => {
   localStorage.removeItem('token');
+  console.log('TOKEN IS NOW REMOVED');
   dispatch({ type: 'CLEAR_LEADS' });
   dispatch({
     type: LOGOUT_SUCCESS,
   });
-
 };
-
 
 // Setup config with token - helper function
 export const tokenConfig = (getState) => {
@@ -138,4 +139,3 @@ export const tokenConfig = (getState) => {
 
   return config;
 };
-
