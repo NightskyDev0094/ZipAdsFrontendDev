@@ -199,4 +199,9 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
   );
 };
 
-export default connect(null, { logoutUser: logout, completeStep })(BlueTecAppBarAuthorized);
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: () => logout(dispatch),
+  completeStep: (stepNumber) => completeStep(stepNumber),
+});
+
+export default connect(null, mapDispatchToProps)(BlueTecAppBarAuthorized);
