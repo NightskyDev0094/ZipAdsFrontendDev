@@ -13,9 +13,10 @@ const formatGeoTargetingData = (geoArray) =>
 
 //
 const formatFacebookInterestGroups = (interestGroupArray) =>
-  interestGroupArray.map(({ name, audience_size }) => ({
+  interestGroupArray.map(({ name, audience_size_lower_bound, audience_size_upper_bound }) => ({
     name: name ?? 'Name not Available',
-    audience_size: audience_size ?? 'Audience Size not Available',
+    min_audience_size: audience_size_lower_bound ?? 'Minimum Audience Size not Available',
+    max_audience_size: audience_size_upper_bound ?? 'Maximum Audience Size not Available',
   }));
 
 const ExpandedFacebookTargetingComponent = ({
@@ -26,7 +27,7 @@ const ExpandedFacebookTargetingComponent = ({
   selectedFacebookRows,
 }) => {
 
-  debugger
+
   useEffect(() => {
     setSelectedFacebookRows({
       ...selectedFacebookRows,
@@ -122,7 +123,7 @@ const ExpandedFacebookTargetingComponent = ({
       {facebookInterestGroups && facebookInterestGroups?.length ? (
         <DisplayTable
           tableTitle="Facebook Interest Groups"
-          tableHeaders={['', 'Name', 'Audience Size']}
+          tableHeaders={['', 'Name', 'Minimum Audience Size', 'Maximum Audience Size']}
           tableRows={facebookInterestGroups && formatFacebookInterestGroups(facebookInterestGroups)}
           addRowToSelected={(name) => facebookInterestGroupsAddRowToSelected(name)}
           removeRowFromSelected={(name) => facebookInterestGroupsRemoveRowFromSelected(name)}
