@@ -54,7 +54,7 @@ const TargetingContainer = ({
   useEffect(() => {
     // Get info from server to populate defaults when component loads
     getAddresses();
-    getBusinessInfo();
+    // getBusinessInfo();
     getGaAdAccounts();
     getFbAdAccounts();
     getFbPages();
@@ -67,35 +67,35 @@ const TargetingContainer = ({
   const [distance, setDistance] = useState(currentCampaign.geotargeting || 'hyper-local');
   const [interest, setInterest] = useState(currentCampaign.search_term || '');
   const [localeFormat, setLocaleFormat] = useState(currentCampaign.locale_type || 'zip');
-  useEffect(() => {
-    // Set Address values
-    setLocaleVals();
-  }, [businessInfo]);
+  // useEffect(() => {
+  //   // Set Address values
+  //   setLocaleVals();
+  // }, [businessInfo]);
   useEffect(() => {
     // Set Address values
     setSavedVals();
   }, []);
 
-  const setLocaleVals = () => {
-    // if (currentCampaign.campaign_type === 'New') {
-    if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
-      if (businessInfo.length !== 0) {
-        if (typeof businessInfo[0].street !== 'undefined') {
-          setStreetVal(businessInfo[0].street || '');
-        }
-        if (typeof businessInfo[0].city !== 'undefined') {
-          setCityVal(businessInfo[0].city || '');
-        }
-        if (typeof businessInfo[0].state !== 'undefined') {
-          setStateVal(businessInfo[0].state || '');
-        }
-        if (typeof businessInfo[0].zip !== 'undefined') {
-          setZipVal(businessInfo[0].zip || '');
-        }
-      }
-    }
+  // const setLocaleVals = () => {
+  //   // if (currentCampaign.campaign_type === 'New') {
+  //   if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
+  //     if (businessInfo.length !== 0) {
+  //       if (typeof businessInfo[0].street !== 'undefined') {
+  //         setStreetVal(businessInfo[0].street || '');
+  //       }
+  //       if (typeof businessInfo[0].city !== 'undefined') {
+  //         setCityVal(businessInfo[0].city || '');
+  //       }
+  //       if (typeof businessInfo[0].state !== 'undefined') {
+  //         setStateVal(businessInfo[0].state || '');
+  //       }
+  //       if (typeof businessInfo[0].zip !== 'undefined') {
+  //         setZipVal(businessInfo[0].zip || '');
+  //       }
+  //     }
+  //   }
     // }
-  };
+  // };
   const setSavedVals = () => {
     // if (currentCampaign.campaign_type === 'Draft' || currentCampaign.campaign_type === 'Template') {
       setStreetVal(currentCampaign.street_address || '');

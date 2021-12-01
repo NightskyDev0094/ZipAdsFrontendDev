@@ -83,7 +83,7 @@ const CreateCampaignContainer = ({
   useEffect(() => {
     getFbAdAccounts();
     getGoogleAdAccounts();
-    getBusinessInfo();
+    // getBusinessInfo();
     let val = 0;
     if (socialsToPost.includes('facebook feed ad')) {
       val++;
@@ -126,24 +126,24 @@ const CreateCampaignContainer = ({
     }
   }, []);
 
-  useEffect(() => {
-    setLocaleVals();
-  }, [businessInfo]);
+  // useEffect(() => {
+  //   setLocaleVals();
+  // }, [businessInfo]);
 
-  const setLocaleVals = () => {
-    if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
-      if (businessInfo.length !== 0) {
-        if (typeof businessInfo[0].business_url !== 'undefined') {
-          setUrlVal(businessInfo[0].business_url || '');
-          setFormInfo({
-            ...formInfo,
-            ad_link: businessInfo[0].business_url || 'https://',
-            campaign_name: businessInfo[0].business_name || '',
-          });
-        }
-      }
-    }
-  };
+  // const setLocaleVals = () => {
+  //   if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
+  //     if (businessInfo.length !== 0) {
+  //       if (typeof businessInfo[0].business_url !== 'undefined') {
+  //         setUrlVal(businessInfo[0].business_url || '');
+  //         setFormInfo({
+  //           ...formInfo,
+  //           ad_link: businessInfo[0].business_url || 'https://',
+  //           campaign_name: businessInfo[0].business_name || '',
+  //         });
+  //       }
+  //     }
+  //   }
+  // };
 
   const getImageFromUrl = async (url, imageType) => {
     await fetch(`${url}`)
