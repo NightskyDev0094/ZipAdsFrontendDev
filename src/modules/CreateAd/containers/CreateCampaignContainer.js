@@ -211,7 +211,7 @@ const CreateCampaignContainer = ({
     formData.append('cta', formInfo.cta);
     formData.append('cta2', formInfo.cta2);
     formData.append('ad_link', formInfo.ad_link);
-    formData.append('img_option', imgOption);
+    // formData.append('img_option', imgOption);
     if (
       (formInfo.fb_feed_img ||
         formInfo.instagram_img ||
