@@ -231,7 +231,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ad_link', urlVal);
       // formData.append('google_account_id', selectedCampaign.google_account_id);
       // formData.append('facebook_account_id', selectedCampaign.facebook_account_id);
-      formData.append('objective', selectedCampaign.objective);
+      formData.append('objective', "Conversions");
       formData.append('google_search_budget', selectedCampaign.google_search_budget);
       formData.append('google_cpc', selectedCampaign.google_cpc);
       formData.append('google_display_budget', selectedCampaign.google_display_budget);
@@ -320,6 +320,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     formData.append('ad_link', urlVal);
     formData.append('locale_type', "zip");
     formData.append('distance', "hyper-local");
+    formData.append('objective', "Conversions");
     await addCampaign(formData);
   };
   const getImageFromUrl = async (url, imageType, formData) => {
