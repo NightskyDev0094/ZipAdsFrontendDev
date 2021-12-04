@@ -109,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
 const ExpandedTargetingPage = ({
   hasExpandedTargetingStepBeenCompleted,
   completeStep,
+  currentCampaign,
   // Google Store state and actions
   googleTargeting,
   googleKeywords,
@@ -370,6 +371,7 @@ const ExpandedTargetingPage = ({
                     setTableState={setGoogleTableState}
                     setSelectedGoogleRows={setSelectedGoogleRows}
                     selectedGoogleRows={selectedGoogleRows}
+                    currentCampaign={currentCampaign}
                   />
                 )}
                 {(displayAllComponents || displayFacebookComponent) && (

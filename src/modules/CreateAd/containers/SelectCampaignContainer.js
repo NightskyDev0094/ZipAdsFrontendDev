@@ -247,6 +247,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ga_campaign_length', selectedCampaign.ga_campaign_length);
       formData.append('fb_campaign_length', selectedCampaign.fb_campaign_length);
       formData.append('img_option', selectedCampaign.img_option);
+      formData.append('search_term', selectedCampaign.search_term);
       await addCampaign(formData);
       setSocialsToPost(selectedCampaign);
       setDataLoading(false);

@@ -14,6 +14,7 @@ import {
 const ExpandedTargetingContainer = (props) => <ExpandedTargetingPage {...props} />;
 
 const mapStateToProps = (state) => ({
+  currentCampaign: state.campaigns?.current,
   facebookInterestGroups: state.fbTargeting.interestList?.fb_interest_plan,
   facebookGeoTargeting: state.fbTargeting.locationList?.fb_location_plan,
   googleTargeting: state.googleTargeting.locationList?.ga_location_plan,

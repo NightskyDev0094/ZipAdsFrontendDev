@@ -51,6 +51,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Beauty',
+    search_term: 'Mascara',
   },
   {
     id: 1,
@@ -83,6 +84,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Consumer Product',
+    search_term: 'Sunglasses',
   },
   {
     id: 2,
@@ -115,6 +117,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Finance',
+    search_term: 'Bank',
   },
   {
     id: 3,
@@ -147,6 +150,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Fitness',
+    search_term: 'Gym',
   },
   {
     id: 4,
@@ -179,6 +183,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Health',
+    search_term: 'Health',
   },
   {
     id: 5,
@@ -211,6 +216,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Personal Finance',
+    search_term: 'Personal Finance',
   },
   {
     id: 6,
@@ -243,6 +249,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Pets',
+    search_term: 'Dog Treats',
   },
   {
     id: 7,
@@ -275,6 +282,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Real Estate',
+    search_term: 'House',
   },
   {
     id: 8,
@@ -307,6 +315,7 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Restaraunt',
+    search_term: 'Restaraunt',
   },
   {
     id: 9,
@@ -339,5 +348,6 @@ export const sampleTemplateData = [
     img_option: 'custom',
     logo_option: 'custom',
     industry: 'Travel and Lodging',
+    search_term: 'Hotel',
   },
 ];

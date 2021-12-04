@@ -120,9 +120,10 @@ const TargetingContainer = ({
     
     
     searchFBLocations(formDataLocationSearch);
-
-    // Search Google Locations
-    searchGoogleLocations(formDataLocationSearch);
+    if (distance === 'hyper-local') {
+      // Search Google Locations
+      searchGoogleLocations(formDataLocationSearch);
+    }
     if (targetInfo.interests !== '') {
       // // Search Facebook Interests
       const formDataInterestSearch = new FormData();

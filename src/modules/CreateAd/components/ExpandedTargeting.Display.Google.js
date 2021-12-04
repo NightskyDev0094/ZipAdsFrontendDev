@@ -36,6 +36,7 @@ const ExpandedGoogleTargetingComponent = ({
   setTableState,
   setSelectedGoogleRows,
   selectedGoogleRows,
+  currentCampaign,
 }) => {
   const classes = useStyles();
 
@@ -107,7 +108,7 @@ const ExpandedGoogleTargetingComponent = ({
 
   return (
     <>
-      {googleGeoTargeting && googleGeoTargeting.length ? (
+      {googleGeoTargeting && googleGeoTargeting.length && currentCampaign && currentCampaign.distance === 'hyper-local' ? (
         <DisplayTable
           tableRows={googleGeoTargeting ? formatGeoTargetingData(googleGeoTargeting) : []}
           tableHeaders={['  ', 'Zip Code', 'Country', 'Reach', 'Target Type']}
