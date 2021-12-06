@@ -1,7 +1,7 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import './BlueTecUIKit/css/fonts.css';
 
-export const theme = createTheme({
+export const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#2f2f60',
