@@ -157,7 +157,7 @@ const SummaryPage = ({
   handleError,
   checkoutStatus,
   SUBMIT_STATUS,
-  creditAmount,
+  // creditAmount,
   ...props
 }) => {
   const classes = useStyles();
@@ -250,9 +250,9 @@ const SummaryPage = ({
                 )}
               </Box>
               <div className={classes.runAdsContainer}>
-                {handleError.isError && (
+                {/* {handleError.isError && (
                   <Alert severity="error">Error: Please add more credits</Alert>
-                )}
+                )} */}
                 <Box marginTop={4} width="100%" display="flex" justifyContent="space-between">
                   <Button
                     variant="contained"

@@ -145,7 +145,7 @@ const ConnectSocialContainer = ({
 
 const mapStateToProps = (state) => ({
   campaigns: state.campaigns.campaigns,
-  currrentCampaign: state.campaigns.current,
+  currentCampaign: state.campaigns.current,
   socialsToPost: state.newAdInfo.socialsToPost,
   businessName: state.basicInfo.businessName,
   addresses: state.businessInfo.businessInfos,

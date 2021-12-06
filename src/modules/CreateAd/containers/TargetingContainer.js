@@ -54,7 +54,7 @@ const TargetingContainer = ({
   useEffect(() => {
     // Get info from server to populate defaults when component loads
     getAddresses();
-    getBusinessInfo();
+    // getBusinessInfo();
     getGaAdAccounts();
     getFbAdAccounts();
     getFbPages();
@@ -67,35 +67,35 @@ const TargetingContainer = ({
   const [distance, setDistance] = useState(currentCampaign.geotargeting || 'hyper-local');
   const [interest, setInterest] = useState(currentCampaign.search_term || '');
   const [localeFormat, setLocaleFormat] = useState(currentCampaign.locale_type || 'zip');
-  useEffect(() => {
-    // Set Address values
-    setLocaleVals();
-  }, [businessInfo]);
+  // useEffect(() => {
+  //   // Set Address values
+  //   setLocaleVals();
+  // }, [businessInfo]);
   useEffect(() => {
     // Set Address values
     setSavedVals();
   }, []);
 
-  const setLocaleVals = () => {
-    // if (currentCampaign.campaign_type === 'New') {
-    if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
-      if (businessInfo.length !== 0) {
-        if (typeof businessInfo[0].street !== 'undefined') {
-          setStreetVal(businessInfo[0].street || '');
-        }
-        if (typeof businessInfo[0].city !== 'undefined') {
-          setCityVal(businessInfo[0].city || '');
-        }
-        if (typeof businessInfo[0].state !== 'undefined') {
-          setStateVal(businessInfo[0].state || '');
-        }
-        if (typeof businessInfo[0].zip !== 'undefined') {
-          setZipVal(businessInfo[0].zip || '');
-        }
-      }
-    }
+  // const setLocaleVals = () => {
+  //   // if (currentCampaign.campaign_type === 'New') {
+  //   if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
+  //     if (businessInfo.length !== 0) {
+  //       if (typeof businessInfo[0].street !== 'undefined') {
+  //         setStreetVal(businessInfo[0].street || '');
+  //       }
+  //       if (typeof businessInfo[0].city !== 'undefined') {
+  //         setCityVal(businessInfo[0].city || '');
+  //       }
+  //       if (typeof businessInfo[0].state !== 'undefined') {
+  //         setStateVal(businessInfo[0].state || '');
+  //       }
+  //       if (typeof businessInfo[0].zip !== 'undefined') {
+  //         setZipVal(businessInfo[0].zip || '');
+  //       }
+  //     }
+  //   }
     // }
-  };
+  // };
   const setSavedVals = () => {
     // if (currentCampaign.campaign_type === 'Draft' || currentCampaign.campaign_type === 'Template') {
       setStreetVal(currentCampaign.street_address || '');
@@ -114,13 +114,16 @@ const TargetingContainer = ({
     formDataLocationSearch.append('search_city', cityVal);
     formDataLocationSearch.append('search_state', stateVal);
     formDataLocationSearch.append('search_zip', zipVal);
-    formDataLocationSearch.append('distance', targetInfo.distance);
+    formDataLocationSearch.append('locale_type', localeFormat);
+    formDataLocationSearch.append('distance', distance);
     formDataLocationSearch.append('current_campaign', campaignId);
-    formDataLocationSearch.append('search_term', interest);
+    
+    
     searchFBLocations(formDataLocationSearch);
-
-    // Search Google Locations
-    searchGoogleLocations(formDataLocationSearch);
+    if (distance === 'hyper-local') {
+      // Search Google Locations
+      searchGoogleLocations(formDataLocationSearch);
+    }
     if (targetInfo.interests !== '') {
       // // Search Facebook Interests
       const formDataInterestSearch = new FormData();
@@ -136,6 +139,9 @@ const TargetingContainer = ({
     formDataCampaign.append('city_name', cityVal);
     formDataCampaign.append('state_code', stateVal);
     formDataCampaign.append('zip_code', zipVal);
+    formDataCampaign.append('locale_type', localeFormat);
+    formDataCampaign.append('distance', distance);
+    formDataCampaign.append('search_term', interest);
     // Save Targeting options to Campaign_Info
     updateCampaign(formDataCampaign, campaignId);
     updateTargetInfo(targetInfo);

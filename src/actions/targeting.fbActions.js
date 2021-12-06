@@ -193,8 +193,6 @@ export const getFBLocations = () => (dispatch, getState) => {
 export const updateFBLocations = (locationPlan, id) => (dispatch, getState) => {
   setLocationLoading();
   
-  debugger
-  
   axios
     .put(`${SERVER_URL}/api/fb-locations/${id}/`, locationPlan, tokenConfig(getState))
     .then((res) => {

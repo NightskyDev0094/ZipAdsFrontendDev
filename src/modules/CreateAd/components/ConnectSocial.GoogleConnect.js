@@ -12,7 +12,7 @@ import GoogleLogin from 'react-google-login';
 
 const GoogleConnect = ({ handleGoogleLogin }) => {
   const responseGoogle = (response) => {
-    console.log(response.code);
+    // console.log(response.code);
     const formData = new FormData();
     formData.append('code', response.code);
     handleGoogleLogin(formData);

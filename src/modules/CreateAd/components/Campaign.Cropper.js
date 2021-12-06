@@ -156,9 +156,8 @@ const Cropper = ({
         let w = loadedImage.width;
         let h = loadedImage.height;
 
-        console.log('WIDTH: ', w);
-        console.log('HEIGHT: ', h);
-        console.log('Facebook Feed ASPECT: ', fbFeedCrop.aspect);
+        // console.log(w, h);
+        // console.log(fbFeedCrop.aspect);
 
         if (w / fbFeedCrop.aspect < h) {
           setFBFeedCrop({
@@ -244,7 +243,6 @@ const Cropper = ({
 
     reader.readAsDataURL(file);
   };
-
   document.addEventListener('DOMContentLoaded', () => {
     const elems = document.querySelectorAll('select');
     // eslint-disable-next-line

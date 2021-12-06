@@ -161,27 +161,27 @@ const FormContent1 = ({
 }) => {
   const classes = useStyles();
   const [randomTerm, setRandomTerm] = React.useState('');
-  console.log({
-    formInfo,
-    setFormInfo,
-    clicked,
-    setError,
-    handleUpdateForm,
-    currentCampaign,
-    urlVal,
-    setFBFeedPreviewUrl,
-    fbFeedPreviewUrl,
-    setFBAudiencePreviewUrl,
-    fbAudiencePreviewUrl,
-    setInstagramPreviewUrl,
-    instagramPreviewUrl,
-    setGADisplayPreviewUrl,
-    setGASquareDisplayPreviewUrl,
-    gaDisplayPreviewUrl,
-    gaDisplaySquarePreviewUrl,
-    imgOption,
-    setImgOption,
-  });
+  // console.log({
+  //   formInfo,
+  //   setFormInfo,
+  //   clicked,
+  //   setError,
+  //   handleUpdateForm,
+  //   currentCampaign,
+  //   urlVal,
+  //   setFBFeedPreviewUrl,
+  //   fbFeedPreviewUrl,
+  //   setFBAudiencePreviewUrl,
+  //   fbAudiencePreviewUrl,
+  //   setInstagramPreviewUrl,
+  //   instagramPreviewUrl,
+  //   setGADisplayPreviewUrl,
+  //   setGASquareDisplayPreviewUrl,
+  //   gaDisplayPreviewUrl,
+  //   gaDisplaySquarePreviewUrl,
+  //   imgOption,
+  //   setImgOption,
+  // });
   const [previewUrl, setPreviewUrl] = useState();
   const [fbFeedImg, setFBFeedImg] = useState();
   const [fbAudienceImg, setFBAudienceImg] = useState();
@@ -384,7 +384,7 @@ const FormContent1 = ({
         <div className={classes.inputDescription}>
           Alternate text that will appear on a second clickable button
         </div>
-        <Box style={{ padding: '40px 0px' }}>
+        {/* <Box style={{ padding: '40px 0px' }}>
           <InputMainLabel>How do you want to select an image?</InputMainLabel>
           <RadioGroup
             aria-label="distance"
@@ -405,9 +405,9 @@ const FormContent1 = ({
               label="Upload Custom Image"
             />
           </RadioGroup>
-        </Box>
+        </Box> */}
         <Box marginTop="2rem">
-          {imgOption === 'library' && (
+          {/* {imgOption === 'library' && (
             <>
               <InputMainLabel>Pictures & Videos</InputMainLabel>
               <Box className={classes.picturesAndVideoContainer} display="flex">
@@ -483,9 +483,9 @@ const FormContent1 = ({
                 </span>
               </Box>
             </>
-          )}
+          )} */}
           {/* FB Feed Cropper */}
-          {imgOption === 'custom' && (
+          {/* {imgOption === 'custom' && ( */}
             <Box marginTop="1rem">
               <Cropper
                 setError={setError}
@@ -523,7 +523,7 @@ const FormContent1 = ({
                 {...props}
               />
             </Box>
-          )}
+          {/* )} */}
         </Box>
       </Box>
     </>

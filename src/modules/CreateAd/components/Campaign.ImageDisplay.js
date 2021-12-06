@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 const CampaignImageDisplay = ({ previewUrl, ...props }) => {
   const classes = useStyles(props);
   const [backgroundImageProp, setBackgroundImageProp] = useState('');
-  console.log('IMAGE DISPLAY PROPS: ', props.form);
+  // console.log('IMAGE DISPLAY PROPS: ', props.form);
 
   useEffect(() => {
     if (previewUrl && previewUrl != '') {

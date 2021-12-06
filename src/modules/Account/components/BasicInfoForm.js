@@ -105,24 +105,6 @@ const BasicInfoForm = ({
               value={industry}
               onChange={(e) => setIndustry(e.target.value)}
             >
-              {/* <MenuItem value="Blank">Blank</MenuItem>
-                <MenuItem value="Apply Now">Apply Now</MenuItem>
-                <MenuItem value="Book Now">Book Now</MenuItem>
-                <MenuItem value="Contact Us">Contact Us</MenuItem>
-                <MenuItem value="Donate Now">Donate Now</MenuItem>
-                <MenuItem value="Download">Download</MenuItem>
-                <MenuItem value="Get Offer">Get Offer</MenuItem>
-                <MenuItem value="Get Quote">Get Quote</MenuItem>
-                <MenuItem value="Get Showtimes">Get Showtimes</MenuItem>
-                <MenuItem value="Learn More">Learn More</MenuItem>
-                <MenuItem value="Listen Now">Listen Now</MenuItem>
-                <MenuItem value="Play Game">Play Game</MenuItem>
-                <MenuItem value="Request Time">Request Time</MenuItem>
-                <MenuItem value="See Menu">See Menu</MenuItem>
-                <MenuItem value="Shop Now">Shop Now</MenuItem>
-                <MenuItem value="Sign Up">Sign U</MenuItem>
-                <MenuItem value="Subscribe">Subscribe</MenuItem>
-                <MenuItem value="Watch More">Watch More</MenuItem> */}
               <MenuItem value="BEAUTY">BEAUTY</MenuItem>
               <MenuItem value="CONSUMER PRODUCTS AND SERVICES">
                 CONSUMER PRODUCTS AND SERVICES
