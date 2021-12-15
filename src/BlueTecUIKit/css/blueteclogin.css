@@ -1,15 +1,22 @@
 #subheader{
-    background: url('../images/background/5.png') left bottom no-repeat;
     background-size: cover;
 }
 
 .no-top{
-    background: url('../images/background/3.png') top right no-repeat;
     background-size: cover;
 }
 
 img:hover{
     cursor: pointer;
+}
+
+.form-style input {
+    padding: 14px 8px !important;
+    font-size: 16px;
+}
+
+.form-style {
+    margin: 16px 0 !important;
 }
 
 @media screen and (max-width: 1000px) {
