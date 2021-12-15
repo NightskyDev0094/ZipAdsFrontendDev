@@ -9,7 +9,7 @@ import './css/fonts.css';
 export default function BlueTecHeader() {
   const [visible, setVisible] = useState(false);
   return (
-    <div id="wrapper">
+    <div id="wrapper" style={{backgroundColor: '#080934'}}>
       <header
         id="header"
         className={classnames('header-light transparent scroll-light', {
@@ -39,7 +39,7 @@ export default function BlueTecHeader() {
                       <Link to="/login/">Login</Link>
                     </li>
                     <li style={{ fontFamily: 'SilkaLight' }}>
-                      <Link to="/signup/">Register</Link>
+                      <Link to="/signup/" style={{color: '#ffe185'}}>Register</Link>
                     </li>
                   </ul>
                 </div>

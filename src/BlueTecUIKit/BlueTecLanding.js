@@ -49,12 +49,11 @@ class BlueTecLanding extends React.Component {
               <div className="col-lg-5 wow fadeInRight" data-wow-delay=".5s">
                 <div className="spacer-10"></div>
                 <h1 id="main-title">
-                  Are you ready to take your<span className="id-color"> business</span> to new
-                  heights?
+                  Let's take <span className="id-color">your business</span> to new
+                  heights!
                 </h1>
                 <p id="sub-title" className="lead">
-                  <span className="id-color">ZipAds</span> can help! Easily create, publish and
-                  track your online ads from our simple application.
+                  <span className="id-color">ZipAds</span> is here to help. Easily create, post and track your online ads from our simple application.
                 </p>
                 <div className="spacer-20"></div>
                 <a className="btn-custom" href="#">
