@@ -41,115 +41,55 @@ class BlueTecLanding extends React.Component {
       <div className="no-bottom no-top" id="content" data-component="landing">
         <div id="top"></div>
 
-        <section className="vertical-center" style={{padding: '90px 0px', minHeight: 'auto'}}>
-          <div style={{width: '90%', margin: '0 auto'}}>
+        <section className="vertical-center" style={{ padding: '90px 0px', minHeight: 'auto' }}>
+          <div style={{ width: '90%', margin: '0 auto' }}>
             <div className="row align-items-center">
               <div className="col-lg-6 wow fadeInRight" data-wow-delay=".5s">
                 <div className="spacer-10"></div>
                 <h1 id="main-title">
-                  Let's take <span className="id-color">your business</span> to new
-                  heights!
+                  Let's take <span className="id-color">your business</span> to new heights!
                 </h1>
                 <p id="sub-title" className="lead">
-                  <span className="id-color">ZipAds</span> is here to help. Easily create, post and track your online ads from our simple application.
+                  <span className="id-color">ZipAds</span> is here to help. Easily create, post and
+                  track your online ads from our simple application.
                 </p>
                 <div className="spacer-20"></div>
                 {/* <a className="btn-custom" href="#">
                   Learn More
                 </a> */}
-                <Link className="btn-custom" href="/signup/" style={{backgroundColor: '#ffe185', borderRadius: '5px', fontSize: '20px', padding: '14px 80px', color: '#00468f', fontWeight: 'inherit'}}>
+                <Link
+                  className="btn-custom"
+                  href="/signup/"
+                  style={{
+                    backgroundColor: '#ffe185',
+                    borderRadius: '5px',
+                    fontSize: '20px',
+                    padding: '14px 80px',
+                    color: '#00468f',
+                    fontWeight: 'inherit',
+                  }}
+                >
                   Get Started
                 </Link>
                 <div className="mb-sm-30"></div>
               </div>
-              <div className="col-lg-6 offset-lg-1 wow fadeInLeft" data-wow-delay=".5s" style={{marginLeft: 0}}>
+              <div
+                className="col-lg-6 offset-lg-1 wow fadeInLeft"
+                data-wow-delay=".5s"
+                style={{ marginLeft: 0 }}
+              >
                 <img src={GuySittingAtDeskImage} className="img-fluid" alt="" />
               </div>
             </div>
           </div>
         </section>
 
-        <section id="section-highlight" data-bgimage={`url(${BackgroundImage2}) top`}>
-          <div
-            style={{
-              width: '80%',
-              maxWidth: '1400px !important',
-              margin: '0 auto',
-            }} /**className="container" */
-          >
-            <div className="row">
-              <div className="col-lg-6 offset-lg-3">
-                <div className="text-center">
-                  {/* <span className="uptitle id-color">Our Services</span> */}
-                  <h2 id="heres-how-it-works-text">Here's how it works</h2>
-                  <p className="lead">
-                    Simply enter your ad content into a standard template, select your target
-                    audience, select the desired ad platforms such as Facebook, Google and
-                    Instagram, then click publish! It’s that easy!
-                  </p>
-                  <div className="spacer-20"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-lg-3 col-md-6  mb40 wow fadeInUp" data-wow-delay="0s">
-                <div style={{ minHeight: '400px' }} className="feature-box f-boxed style-3">
-                  <i className="bg-color i-circle fa fa-folder-plus"></i>
-                  <div className="text">
-                    <a href="service-single.html">
-                      <h4>Create Your Ad</h4>
-                    </a>
-                    Simply input your ad content into a generic template and the ZipAds AI-driven
-                    software will automatically complete a unique ad template for each selected
-                    platform.
-                  </div>
-                  <i className="wm fa fa-folder-plus"></i>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6  mb40 sq-item wow fadeInUp" data-wow-delay=".25s">
-                <div style={{ minHeight: '400px' }} className="feature-box f-boxed style-3">
-                  <i className="bg-color i-circle fa fa-bullseye"></i>
-                  <div className="text">
-                    <a href="service-single.html">
-                      <h4>Select Your Target Audience </h4>
-                    </a>
-                    Based on the user’s profile, our AI algorithms will automatically select the
-                    optimal targeting criteria, or a user can specify their own targeting criteria.
-                  </div>
-                  <i className="wm fa fa-bullseye"></i>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6  mb40 sq-item wow fadeInUp" data-wow-delay=".5s">
-                <div style={{ minHeight: '400px' }} className="feature-box f-boxed style-3">
-                  <i className="bg-color i-circle fa fa-tools"></i>
-                  <div className="text">
-                    <a href="service-single.html">
-                      <h4>Publish Your Ad</h4>
-                    </a>
-                    With one click, your ad will simultaneously publish to all platforms selected
-                    such as Facebook, Google, Instagram, and programmatic sites!
-                  </div>
-                  <i className="wm i-circle fa fa-tools"></i>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6  mb40 sq-item wow fadeInUp" data-wow-delay=".5s">
-                <div style={{ minHeight: '400px' }} className="feature-box f-boxed style-3">
-                  <i className="bg-color i-circle fa fa-line-chart"></i>
-                  <div className="text">
-                    <a href="service-single.html">
-                      <h4>Track Your Ad with Powerful Analytics</h4>
-                    </a>
-                    Ad campaigns can be centrally managed across multiple platforms, including a
-                    rich analytics dashboard that provides key performance metrics for each platform
-                    on which the ad is running.
-                  </div>
-                  <i className="wm i-circle fa fa-line-chart"></i>
-                </div>
-              </div>
-            </div>
+        <section className="d-flex justify-content-center" style={{ paddingTop: 0 }}>
+          <div className="position-relative" style={{ maxWidth: '1250px' }}>
+            <img className="w-100" src={BackgroundImage2} />
+            <h1 id="middle-title" className="position-absolute" style={{top: 0, left: 0, padding: '3vw 0 0 3vw'}}>
+              Here's <br /> how it works...
+            </h1>
           </div>
         </section>
 

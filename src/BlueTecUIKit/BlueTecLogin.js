@@ -62,7 +62,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
   return (
     <>
       <div className="no-bottom no-top" id="content">
-        <div id="top" />
+        {/* <div id="top" />
         {}
         <section
           id="subheader"
@@ -84,96 +84,99 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
             </div>
           </div>
         </section>
-        {}
+        {} */}
         <section
           className="no-top"
           // data-bgimage="url(images/background/3.png) top"
         >
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 offset-md-3">
-                <form
-                  name="contactForm"
-                  className="form-border"
-                  onSubmit={handleSubmit((data, e) => {
-                    e.preventDefault();
-                    handleLoginSubmit(data, e);
-                  })}
-                >
-                  <h3>Login to your account</h3>
-                  <div className="field-set">
-                    <label>Username</label>
-                    <Controller
-                      as={<LargeInput placeholder="Username" />}
-                      name="username"
-                      control={control}
-                      rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
-                    />
+          <div className="row m-0">
+            <div className="col-lg-6 p-5" style={{minHeight: '526px'}}>
+              <form
+                name="contactForm"
+                className="form-border"
+                onSubmit={handleSubmit((data, e) => {
+                  e.preventDefault();
+                  handleLoginSubmit(data, e);
+                })}
+              >
+                <h1 className="text-center mb-4" style={{color: '#00468f'}}>Login</h1>
+                <div className="field-set">
+                  <Controller
+                    as={<LargeInput placeholder="Username" />}
+                    name="username"
+                    control={control}
+                    rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
+                  />
+                </div>
+                <div className="field-set">
+                  <Controller
+                    as={<LargeInput isPasswordMasked="true" placeholder="Password" />}
+                    name="password"
+                    control={control}
+                    rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
+                  />
+                </div>
+                <div>
+                  <div className="d-flex align-items-center" style={{padding: '25px 0'}}>
+                    <input type="checkbox" className="mr-2"/>
+                    <p>Remember Me</p>
                   </div>
-                  <div className="field-set">
-                    <label>Password</label>
-                    <Controller
-                      as={<LargeInput isPasswordMasked="true" placeholder="Password" />}
-                      name="password"
-                      control={control}
-                      rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
-                    />
+                </div>
+                <div id="submit" className="pull-left w-100">
+                  <input
+                    type="submit"
+                    id="send_message"
+                    defaultValue="Login"
+                    style={{ border: 'solid 1px #cccccc', color: 'white', padding: '10px 0', backgroundColor: '#005dbf', fontSize: '18px' }}
+                    className="btn btn-custom color-2 w-100 border-0"
+                  />
+                  <div id="mail_success" className="success">
+                    Your message has been sent successfully.
                   </div>
-                  <div id="submit" className="pull-left">
-                    <input
-                      type="submit"
-                      id="send_message"
-                      defaultValue="Login"
-                      style={{ border: 'solid 1px #cccccc' }}
-                      className="btn btn-custom color-2"
-                    />
-                    <div id="mail_success" className="success">
-                      Your message has been sent successfully.
-                    </div>
-                    {formState.isErrors && (
-                      <div
-                        className="alert alert-danger alert-dismissible fade show"
-                        role="alert"
-                        style={{ width: '500px', margin: '30px auto' }}
+                  {formState.isErrors && (
+                    <div
+                      className="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                      style={{ width: '500px', margin: '30px auto' }}
+                    >
+                      {formState.errorMessage}{' '}
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="alert"
+                        aria-label="Close"
+                        onClick={() =>
+                          setFormState({
+                            ...formState,
+                            isErrors: false,
+                          })
+                        }
                       >
-                        {formState.errorMessage}{' '}
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="alert"
-                          aria-label="Close"
-                          onClick={() =>
-                            setFormState({
-                              ...formState,
-                              isErrors: false,
-                            })
-                          }
-                        >
-                          <span aria-hidden="true">×</span>
-                        </button>
-                      </div>
-                    )}
-                    <div className="clearfix" />
-                    <div className="spacer-single" />
-                    {
-                      // <ul className="list s3">
-                      //   <li>Or login with:</li>
-                      //   <li>
-                      //     <a href="#">Facebook</a>
-                      //   </li>
-                      //   <li>
-                      //     <a href="#">Google</a>
-                      //   </li>
-                      //   <li>
-                      //     <a href="#">Instagram</a>
-                      //   </li>
-                      // </ul>
-                    }
-                    {}
-                  </div>
-                </form>
-              </div>
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                  )}
+                  <div className="clearfix" />
+                  <div className="spacer-single" />
+                  {
+                    // <ul className="list s3">
+                    //   <li>Or login with:</li>
+                    //   <li>
+                    //     <a href="#">Facebook</a>
+                    //   </li>
+                    //   <li>
+                    //     <a href="#">Google</a>
+                    //   </li>
+                    //   <li>
+                    //     <a href="#">Instagram</a>
+                    //   </li>
+                    // </ul>
+                  }
+                  {}
+                </div>
+              </form>
             </div>
+            <div className="col-lg-6" style={{backgroundColor: '#2772dd', minHeight: '526px'}}></div>
           </div>
         </section>
       </div>

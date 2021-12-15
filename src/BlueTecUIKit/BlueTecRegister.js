@@ -112,8 +112,8 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       </section>
       {} */}
       <div className="row m-0">
-        <div className="col-lg-6 p-5">
-          <h1 className="text-center" style={{color: '#00468f'}}>Register</h1>
+        <div className="col-lg-6 p-5" style={{minHeight: '526px'}}>
+          <h1 className="text-center mb-4" style={{color: '#00468f'}}>Register</h1>
           <form
             name="contactForm"
             className="form-border"
@@ -259,7 +259,7 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
             </div>
           </form>
         </div>
-        <div className="col-lg-6" style={{backgroundColor: '#2772dd'}}></div>
+        <div className="col-lg-6" style={{backgroundColor: '#2772dd', minHeight: '526px'}}></div>
       </div>
       <section className="no-top" data-bgimage={`${RegisterSectionImage} top`}>
         <div className="container">

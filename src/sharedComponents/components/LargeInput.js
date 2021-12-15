@@ -2,6 +2,7 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
+import '../../BlueTecUIKit/css/blueteclogin.css';
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -16,9 +17,9 @@ const LargeInput = React.forwardRef(({ isPasswordMasked = false, ...props }, ref
     <TextField
       ref={ref}
       type={isPasswordMasked ? 'password' : 'text'}
-      className={classes.input}
+      className="form-control form-style"
       fullWidth
-      inputProps={{ style: { fontSize: 24 } }}
+      InputProps={{ disableUnderline: true }}
       InputLabelProps={{ style: { fontSize: 24 } }}
       {...props}
     />
