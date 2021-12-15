@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
+import { Link } from 'react-router-dom';
 
 import './css/colors/scheme-02.css';
 import './css/coloring.css';
@@ -40,13 +41,10 @@ class BlueTecLanding extends React.Component {
       <div className="no-bottom no-top" id="content" data-component="landing">
         <div id="top"></div>
 
-        <section
-          data-bgimage={`url(${BackgroundImage1}) bottom`}
-          className="full-height vertical-center"
-        >
-          <div className="container">
+        <section className="vertical-center" style={{padding: '90px 0px', minHeight: 'auto'}}>
+          <div style={{width: '90%', margin: '0 auto'}}>
             <div className="row align-items-center">
-              <div className="col-lg-5 wow fadeInRight" data-wow-delay=".5s">
+              <div className="col-lg-6 wow fadeInRight" data-wow-delay=".5s">
                 <div className="spacer-10"></div>
                 <h1 id="main-title">
                   Let's take <span className="id-color">your business</span> to new
@@ -56,12 +54,15 @@ class BlueTecLanding extends React.Component {
                   <span className="id-color">ZipAds</span> is here to help. Easily create, post and track your online ads from our simple application.
                 </p>
                 <div className="spacer-20"></div>
-                <a className="btn-custom" href="#">
+                {/* <a className="btn-custom" href="#">
                   Learn More
-                </a>
+                </a> */}
+                <Link className="btn-custom" href="/signup/" style={{backgroundColor: '#ffe185', borderRadius: '5px', fontSize: '20px', padding: '14px 80px', color: '#00468f', fontWeight: 'inherit'}}>
+                  Get Started
+                </Link>
                 <div className="mb-sm-30"></div>
               </div>
-              <div className="col-lg-6 offset-lg-1 wow fadeInLeft" data-wow-delay=".5s">
+              <div className="col-lg-6 offset-lg-1 wow fadeInLeft" data-wow-delay=".5s" style={{marginLeft: 0}}>
                 <img src={GuySittingAtDeskImage} className="img-fluid" alt="" />
               </div>
             </div>

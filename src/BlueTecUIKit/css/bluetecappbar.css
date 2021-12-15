@@ -26,11 +26,6 @@
   line-height: 60px;
 }
 
-#header #mainmenu li {
-  margin-left: 20px;
-}
-
-
 #header #mainmenu li > a:hover {
   background-color: var(--primary-color);
   color: '#fff';

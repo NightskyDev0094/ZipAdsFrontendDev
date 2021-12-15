@@ -16,7 +16,7 @@ export default function BlueTecHeader() {
           'header--hidden': !visible,
         })}
       >
-        <div className="container">
+        <div style={{width: '90%', margin: 'auto'}}>
           <div className="row">
             <div className="col-md-12">
               <div className="d-flex justify-content-between">
@@ -43,12 +43,12 @@ export default function BlueTecHeader() {
                     </li>
                   </ul>
                 </div>
-                <div id="start-now-button" className="align-self-center ml-auto header-col-right">
+                {/* <div id="start-now-button" className="align-self-center ml-auto header-col-right">
                   <Link className="btn-custom" href="/signup/">
                     <i className="fa fa-arrow-down" /> Start Now
                   </Link>
                   <span id="menu-btn" />
-                </div>
+                </div> */}
                 <div className="clearfix" />
               </div>
             </div>
