@@ -9,14 +9,14 @@ import './css/fonts.css';
 export default function BlueTecHeader() {
   const [visible, setVisible] = useState(false);
   return (
-    <div id="wrapper">
+    <div id="wrapper" style={{backgroundColor: '#080934'}}>
       <header
         id="header"
         className={classnames('header-light transparent scroll-light', {
           'header--hidden': !visible,
         })}
       >
-        <div className="container">
+        <div style={{width: '90%', margin: 'auto'}}>
           <div className="row">
             <div className="col-md-12">
               <div className="d-flex justify-content-between">
@@ -39,16 +39,16 @@ export default function BlueTecHeader() {
                       <Link to="/login/">Login</Link>
                     </li>
                     <li style={{ fontFamily: 'SilkaLight' }}>
-                      <Link to="/signup/">Register</Link>
+                      <Link to="/signup/" style={{color: '#ffe185'}}>Register</Link>
                     </li>
                   </ul>
                 </div>
-                <div id="start-now-button" className="align-self-center ml-auto header-col-right">
+                {/* <div id="start-now-button" className="align-self-center ml-auto header-col-right">
                   <Link className="btn-custom" href="/signup/">
                     <i className="fa fa-arrow-down" /> Start Now
                   </Link>
                   <span id="menu-btn" />
-                </div>
+                </div> */}
                 <div className="clearfix" />
               </div>
             </div>

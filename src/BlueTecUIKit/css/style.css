@@ -527,6 +527,7 @@ header .header-col.mid .social-icons{
 }
 #mainmenu > li{
 	font-weight:500;
+	padding: 0 15px;
 }
 #mainmenu a {
 	display: inline-block;
@@ -557,7 +558,7 @@ header .header-col.mid .social-icons{
 	margin-left:0%;
 }
 .header-light #mainmenu>li>a {
-	color: #222;
+	color: #fff;
 	font-weight:600;
 }
 #mainmenu li li{
@@ -9722,8 +9723,21 @@ a, img {
 		padding-top: 0px;
 	}
 }
+
+@media (min-width: 992px) {
+	.wow {
+		padding-right: 9vw !important;
+	}
+
+	.lead {
+		padding-right: 5vw !important;
+	}
+
+
+}
+
 @media only screen and (max-width: 992px) {	
-	
+
 	.col-right{
 	position:absolute;
 	top:-82px;

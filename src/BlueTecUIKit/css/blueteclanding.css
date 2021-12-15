@@ -15,12 +15,19 @@
 }
 
 #main-title{
-    font-size: 3.5vw;
+    font-size: 3.2vw;
+    color: #00468f
+}
+
+#middle-title {
+    font-size: 65px;
+    color: #00468f
 }
 
 #sub-title{
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     margin: 50px 0;
+    color: #00468f
 }
 
 #heres-how-it-works-text{
@@ -38,7 +45,26 @@
     margin-bottom: 25px;
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1200px) {
+    #middle-title {
+        font-size: 3.2vw;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #middle-title {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #middle-title {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
     #main-title{
         font-size: 7vw;
     } 

@@ -95,7 +95,7 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
 
   return (
     <div className="no-bottom no-top" id="content">
-      <div id="top" />
+      {/* <div id="top" />
       <section id="subheader" data-bgimage={`${SubHeaderBackgroundImage} bottom`}>
         <div className="center-y relative text-center" data-scroll-speed={4}>
           <div className="container">
@@ -110,153 +110,167 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
           </div>
         </div>
       </section>
-      {}
+      {} */}
+      <div className="row m-0">
+        <div className="col-lg-6 p-5" style={{minHeight: '526px'}}>
+          <h1 className="text-center mb-4" style={{color: '#00468f'}}>Register</h1>
+          <form
+            name="contactForm"
+            className="form-border"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (e.target.checkValidity()) {
+                registerUser(formState.fields);
+              }
+            }}
+          >
+            <div className="row">
+              <div className="col-md-12">
+                <div className="field-set">
+                  {/* <label>User Name:</label> */}
+                  <TextField
+                    type="text"
+                    name="name"
+                    placeholder="Enter Username"
+                    style={{ margin: '10px 0' }}
+                    id="name"
+                    required
+                    variant="standard"
+                    value={formState.fields.username}
+                    InputProps={{ disableUnderline: true }}
+                    inputProps={{ maxLength: INPUT_MAX_LENGTH }}
+                    onChange={(e) => {
+                      if (e.target.value.includes(' ')) return;
+                      setFormState({
+                        ...formState,
+                        fields: {
+                          ...formState.fields,
+                          username: e.target.value,
+                        },
+                      });
+                    }}
+                    className="form-control form-style"
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="field-set">
+                  {/* <label>Email Address:</label> */}
+                  <TextField
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Enter Email Address"
+                    style={{ margin: '10px 0' }}
+                    required
+                    className="form-control form-style"
+                    InputProps={{ disableUnderline: true }}
+                    inputProps={{ maxLength: INPUT_MAX_LENGTH }}
+                    value={formState.fields.email}
+                    onChange={(e) => {
+                      if (e.target.value.includes(' ')) return;
+                      setFormState({
+                        ...formState,
+                        fields: {
+                          ...formState.fields,
+                          email: e.target.value,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="field-set">
+                  {/* <label>Password:</label> */}
+                  <TextField
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Create a Password"
+                    style={{ margin: '10px 0' }}
+                    required
+                    className="form-control form-style"
+                    InputProps={{ disableUnderline: true }}
+                    inputProps={{ maxLength: INPUT_MAX_LENGTH }}
+                    value={formState.fields.password}
+                    onChange={(e) => {
+                      if (e.target.value.includes(' ')) return;
+                      setFormState({
+                        ...formState,
+                        fields: {
+                          ...formState.fields,
+                          password: e.target.value,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="field-set">
+                  {/* <label>Re-enter Password:</label> */}
+                  <TextField
+                    type="password"
+                    name="re-password"
+                    id="re-password"
+                    placeholder="Re-Enter Password"
+                    style={{ margin: '10px 0' }}
+                    required
+                    className="form-control form-style"
+                    InputProps={{ disableUnderline: true }}
+                    inputProps={{ maxLength: INPUT_MAX_LENGTH }}
+                    value={formState.fields.confirmedPassword}
+                    onChange={(e) => {
+                      if (e.target.value.includes(' ')) return;
+                      setFormState({
+                        ...formState,
+                        fields: {
+                          ...formState.fields,
+                          confirmedPassword: e.target.value,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="d-flex align-items-center" style={{padding: '25px 0'}}>
+                  <input type="checkbox" className="mr-2"/>
+                  <p>Remember Me</p>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div id="submit" className="pull-left w-100">
+                  <input
+                    style={{ border: 'solid 1px #cccccc', color: 'white', padding: '10px 0', backgroundColor: '#005dbf', fontSize: '18px' }}
+                    type="submit"
+                    className="btn btn-custom color-2 w-100 border-0"
+                  />
+                </div>
+                <div id="mail_success" className="success">
+                  Your message has been sent successfully.
+                </div>
+                <div id="mail_fail" className="error">
+                  Sorry, error occured this time sending your message.
+                </div>
+                <div className="clearfix" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="col-lg-6" style={{backgroundColor: '#2772dd', minHeight: '526px'}}></div>
+      </div>
       <section className="no-top" data-bgimage={`${RegisterSectionImage} top`}>
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <h3>Dont have an account? Register now.</h3>
+              {/* <h3>Dont have an account? Register now.</h3>
               <p>
                 Zip Ads is ready to help you take your business to the next level. Simply fill out
                 this form and you're on your way!
               </p>
-              <div className="spacer-10" />
-              <form
-                name="contactForm"
-                className="form-border"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (e.target.checkValidity()) {
-                    registerUser(formState.fields);
-                  }
-                }}
-              >
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="field-set">
-                      <label>User Name:</label>
-                      <TextField
-                        type="text"
-                        name="name"
-                        style={{ margin: '10px 0' }}
-                        id="name"
-                        required
-                        variant="standard"
-                        value={formState.fields.username}
-                        InputProps={{ disableUnderline: true }}
-                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
-                        onChange={(e) => {
-                          if (e.target.value.includes(' ')) return;
-                          setFormState({
-                            ...formState,
-                            fields: {
-                              ...formState.fields,
-                              username: e.target.value,
-                            },
-                          });
-                        }}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-md-6">
-                    <div className="field-set">
-                      <label>Email Address:</label>
-                      <TextField
-                        type="text"
-                        name="email"
-                        id="email"
-                        style={{ margin: '10px 0' }}
-                        required
-                        className="form-control"
-                        InputProps={{ disableUnderline: true }}
-                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
-                        value={formState.fields.email}
-                        onChange={(e) => {
-                          if (e.target.value.includes(' ')) return;
-                          setFormState({
-                            ...formState,
-                            fields: {
-                              ...formState.fields,
-                              email: e.target.value,
-                            },
-                          });
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="field-set">
-                      <label>Password:</label>
-                      <TextField
-                        type="password"
-                        name="password"
-                        id="password"
-                        style={{ margin: '10px 0' }}
-                        required
-                        className="form-control"
-                        InputProps={{ disableUnderline: true }}
-                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
-                        value={formState.fields.password}
-                        onChange={(e) => {
-                          if (e.target.value.includes(' ')) return;
-                          setFormState({
-                            ...formState,
-                            fields: {
-                              ...formState.fields,
-                              password: e.target.value,
-                            },
-                          });
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-md-6">
-                    <div className="field-set">
-                      <label>Re-enter Password:</label>
-                      <TextField
-                        type="password"
-                        name="re-password"
-                        id="re-password"
-                        style={{ margin: '10px 0' }}
-                        required
-                        className="form-control"
-                        InputProps={{ disableUnderline: true }}
-                        inputProps={{ maxLength: INPUT_MAX_LENGTH }}
-                        value={formState.fields.confirmedPassword}
-                        onChange={(e) => {
-                          if (e.target.value.includes(' ')) return;
-                          setFormState({
-                            ...formState,
-                            fields: {
-                              ...formState.fields,
-                              confirmedPassword: e.target.value,
-                            },
-                          });
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-12">
-                    <div id="submit" className="pull-left">
-                      <input
-                        style={{ border: 'solid 1px #cccccc' }}
-                        type="submit"
-                        className="btn btn-custom color-2"
-                      />
-                    </div>
-                    <div id="mail_success" className="success">
-                      Your message has been sent successfully.
-                    </div>
-                    <div id="mail_fail" className="error">
-                      Sorry, error occured this time sending your message.
-                    </div>
-                    <div className="clearfix" />
-                  </div>
-                </div>
-              </form>
+              <div className="spacer-10" /> */}
             </div>
           </div>
         </div>
