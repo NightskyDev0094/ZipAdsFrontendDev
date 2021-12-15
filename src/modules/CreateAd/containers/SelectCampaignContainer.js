@@ -50,11 +50,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     fb_campaign_length: '',
     file_url: '',
     file_upload: null,
-    fb_feed_img: null,
-    instagram_img: null,
-    fb_audience_img: null,
-    ga_display_img: null,
-    ga_square_display_img: null,
+    rectangle_img_url: null,
+    square_img_url: null,
     img_option: '',
     logo_option: '',
   });
@@ -97,11 +94,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     fb_campaign_length: '',
     file_url: '',
     file_upload: null,
-    fb_feed_img: null,
-    instagram_img: null,
-    fb_audience_img: null,
-    ga_display_img: null,
-    ga_square_display_img: null,
+    rectangle_img_url: null,
+    square_img_url: null,
     img_option: '',
     logo_option: '',
   });
@@ -113,7 +107,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   const [industryVal, setIndustryVal] = useState(businessInfo.industry || '');
   const [urlVal, setUrlVal] = useState(businessInfo.business_url || '');
   const [campaignType, setCampaignType] = useState(businessInfo.business_url || '');
-  const [imgLoading, setImgLoading] = useState(true);
+  // const [imgLoading, setImgLoading] = useState(true);
   const [dataLoading, setDataLoading] = useState(true);
   const history = useHistory();
 
@@ -166,17 +160,17 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
 
   useEffect(() => {
     // Go to next page when images are finished loading
-    if (imgLoading === false){
+    if (dataLoading === false){
       history.push('create/connect-social');
     }
-  }, [imgLoading]);
-  useEffect(() => {
-    // Set Address values
-    if (dataLoading === false){
-      // console.log("currentCampaign", currentCampaign.id)
-      fetchImagesFromUrlThenUpdateCampaign(selected, currentCampaign.id);
-    }
   }, [dataLoading]);
+  // useEffect(() => {
+  //   // Set Address values
+  //   if (dataLoading === false){
+  //     // console.log("currentCampaign", currentCampaign.id)
+  //     fetchImagesFromUrlThenUpdateCampaign(selected, currentCampaign.id);
+  //   }
+  // }, [dataLoading]);
   // const selectDraft = (id) => {
   //   // Make selected campaign current
   // };
@@ -247,6 +241,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ga_campaign_length', selectedCampaign.ga_campaign_length);
       formData.append('fb_campaign_length', selectedCampaign.fb_campaign_length);
       formData.append('img_option', selectedCampaign.img_option);
+      formData.append('rectangle_img_url', selectedCampaign.rectangle_img_url);
+      formData.append('square_img_url', selectedCampaign.square_img_url);
       formData.append('search_term', selectedCampaign.search_term);
       await addCampaign(formData);
       setSocialsToPost(selectedCampaign);
@@ -298,6 +294,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ga_campaign_length', selectedCampaign.ga_campaign_length);
       formData.append('fb_campaign_length', selectedCampaign.fb_campaign_length);
       formData.append('img_option', selectedCampaign.img_option);
+      formData.append('rectangle_img_url', selectedCampaign.rectangle_img_url);
+      formData.append('square_img_url', selectedCampaign.square_img_url);
 
       // console.log('ADDING CAMPAIGN', formData);
       await addCampaign(formData);
@@ -343,34 +341,34 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       });
   };
 
-  const fetchImagesFromUrlThenUpdateCampaign = async (selected, id) => {
+  // const fetchImagesFromUrlThenUpdateCampaign = async (selected, id) => {
     
-    // console.log('Selected::::', selected.ga_display_img, selected);
-    const formData = new FormData();
-    // load image files from urls
-    if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
-      await getImageFromUrl(selected.fb_feed_img, 'fb_feed_img', formData);
-    }
-    if (selected.fb_audience_img !== null && selected.fb_audience_img !== '') {
-      await getImageFromUrl(selected.fb_audience_img, 'fb_audience_img', formData);
-    }
-    if (selected.instagram_img !== null && selected.instagram_img !== '') {
-      await getImageFromUrl(selected.instagram_img, 'instagram_img', formData);
-    }
-    if (selected.ga_display_img !== null && selected.ga_display_img !== '') {
-      await getImageFromUrl(selected.ga_display_img, 'ga_display_img', formData);
-      // console.log('Image post test!!!!');
-    }
+  //   // console.log('Selected::::', selected.ga_display_img, selected);
+  //   const formData = new FormData();
+  //   // load image files from urls
+  //   if (selected.fb_feed_img !== null && selected.fb_feed_img !== '') {
+  //     await getImageFromUrl(selected.fb_feed_img, 'fb_feed_img', formData);
+  //   }
+  //   if (selected.fb_audience_img !== null && selected.fb_audience_img !== '') {
+  //     await getImageFromUrl(selected.fb_audience_img, 'fb_audience_img', formData);
+  //   }
+  //   if (selected.instagram_img !== null && selected.instagram_img !== '') {
+  //     await getImageFromUrl(selected.instagram_img, 'instagram_img', formData);
+  //   }
+  //   if (selected.ga_display_img !== null && selected.ga_display_img !== '') {
+  //     await getImageFromUrl(selected.ga_display_img, 'ga_display_img', formData);
+  //     // console.log('Image post test!!!!');
+  //   }
 
-    if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
-      await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
-    }
-    updateCampaign(formData, id);
-    // console.log('Submit Data test');
-    setImgLoading(false);
-    // await submitTemplateData(selected, formData, campaignType);
-    // history.push('/connect-social');
-  };
+  //   if (selected.ga_square_display_img !== null && selected.ga_square_display_img !== '') {
+  //     await getImageFromUrl(selected.ga_square_display_img, 'ga_square_display_img', formData);
+  //   }
+  //   updateCampaign(formData, id);
+  //   // console.log('Submit Data test');
+  //   setImgLoading(false);
+  //   // await submitTemplateData(selected, formData, campaignType);
+  //   // history.push('/connect-social');
+  // };
 
 
   const setLocaleVals = () => {
