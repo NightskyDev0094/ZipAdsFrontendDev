@@ -1,6 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export default function useCheckNetwork() {
+/**
+ *
+ * @param {*} googleToken
+ * @param {*} facebookToken
+ * @param {function} getGoogleAdAccounts
+ * @param {function} getFbAdAccounts
+ * @returns
+ */
+export default function useCheckNetwork(
+  googleToken,
+  facebookToken,
+  getGoogleAdAccounts,
+  getFbAdAccounts
+) {
   const [error, setError] = useState(null);
 
   // Functions for checking Network Tokens
