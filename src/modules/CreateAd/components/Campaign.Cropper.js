@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
 // Initialize Arrow Function component with hooks, and destructure state.
 const Cropper = ({
   handleUpdateImage,
-  setPreviewUrl,
-  // previewUrl,
   setError,
   fbAudienceImg,
   setFBAudienceImg,
