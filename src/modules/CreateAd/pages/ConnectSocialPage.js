@@ -189,11 +189,7 @@ const ConnectSocialPage = ({
 
   // next button
   const goToNext = async () => {
-    // if (hasConnectSocialStepBeenCompleted === 'STEP_COMPLETED') {
-    //   console.log('1');
-    //   setIsResubmitModalOpen(true);
-    // } else {
-    //   console.log('2');
+
     try {
       const submitSocialsData = new FormData();
       if (googleToken) submitSocialsData.append('google_account_id', googleToken);
