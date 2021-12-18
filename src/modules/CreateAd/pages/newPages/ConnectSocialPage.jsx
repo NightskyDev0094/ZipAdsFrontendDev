@@ -77,7 +77,12 @@ export default function ConnectSocialPage({
   isManagedAccountCreated,
   hasConnectSocialStepBeenCompleted,
 }) {
-  const { networkError, setNetworkError } = useCheckNetwork();
+  const { networkError, setNetworkError } = useCheckNetwork(
+    googleToken,
+    facebookToken,
+    getGoogleAdAccounts,
+    getFbAdAccounts
+  );
   const history = useHistory();
   const classes = useStyles();
   const NETWORKS = [

@@ -2,45 +2,63 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Arrow from '@material-ui/icons/Forward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles({
   PageVessel: {
-    PageVessel: {
-      width: '100%',
-      minHeight: '94em',
-      position: 'relative',
-      marginTop: '10em',
+    width: '100%',
+    minHeight: '75vh',
+    position: 'relative',
+    marginTop: '5em',
 
-      ['@media (min-width:400px)']: {
-        marginTop: '0em',
-      },
+    ['@media (min-width:400px)']: {
+      marginTop: '0em',
     },
   },
   BlueText: {
-    color: '#394044',
-    'font-weight': 600,
-    fontSize: '2rem',
     width: '100%',
+    marginTop: '3.25em',
     textAlign: 'center',
+    color: '#394044',
+    fontWeight: 600,
+    fontSize: '2rem',
 
     ['@media (min-width:450px)']: {
+      marginTop: '0.25em',
       fontSize: '3rem',
     },
   },
-  ArrowButton: { padding: '1em' },
-  LeftArrow: {
+  ArrowButton: {
+    height: '3.5em',
+    width: '3.5em',
+    padding: '0',
     position: 'absolute',
-    left: 0,
-    top: 10,
+    borderRadius: '0.25rem',
+    border: 'none',
+
+    ['@media (min-width:450px)']: {
+      height: '5em',
+      width: '5em',
+      zIndex: 1,
+    },
+  },
+  ArrowIcon: {
+    stroke: 'inherit',
+    strokeWidth: '4',
+    fill: 'inherit',
     height: '1.5em',
     width: '1.5em',
-    WebkitFilter: "invert(100%)",
-    filter: "invert(100%)",
+
+    ['@media (min-width:450px)']: {
+      height: '1.15em',
+      width: '1.15em',
+    },
   },
-  RightArrow: { position: 'absolute', right: 0, top: 10, height: '1.5em', width: '1.5em' },
   BullHorn: { position: 'absolute', bottom: 0 },
 });
 
@@ -51,20 +69,27 @@ const useStyles = makeStyles({
  */
 export default function StepperWrapper({ pageHeading, children }) {
   const classes = useStyles();
+
+  const FAKE_CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
+
   return (
     <Container maxWidth="lg">
       <Box className={classes.PageVessel}>
-        <button className={classes.ArrowButton}>
-          <Arrow className={classes.LeftArrow} />
+        <button style={{ left: 0, top: 10 }} className={classes.ArrowButton}>
+          <ArrowBackIcon className={classes.ArrowIcon} />
         </button>
-        <button className={classes.ArrowButton}>
-          <Arrow className={classes.RightArrow} />
+        <button style={{ right: 0, top: 10 }} className={classes.ArrowButton}>
+          <ArrowForwardIcon className={classes.ArrowIcon} />
         </button>
         <Typography variant="h2" gutterBottom className={classes.BlueText}>
           {pageHeading}
         </Typography>
         <Stepper>
-          {/* TODO: Complete the stepper */}
+          {FAKE_CREATE_AD_STEPS.map((step) => (
+            <Step completed={false}>
+              <StepLabel>{step}</StepLabel>
+            </Step>
+          ))}
         </Stepper>
         {children}
         <Box className={classes.BullHorn}>
@@ -74,3 +99,5 @@ export default function StepperWrapper({ pageHeading, children }) {
     </Container>
   );
 }
+
+// TODO: complete the step
