@@ -24,18 +24,20 @@ import {
 import InfoButton from '../../../sharedComponents/components/InfoButton';
 
 import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
+import alert from '../../../BlueTecUIKit/images/targeting.png';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
-    backgroundImage: `url(${backgroundImage})`,
+    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
   paper: {
     width: '88vw',
-    height: '1100px',
+    // height: '1100px',
     marginBottom: '200px',
+    position: 'relative',
     margin: '0 auto',
     '@media (max-width:700px)': {
       height: '1400px',
@@ -101,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     maxWidth: '600px',
     margin: 'auto',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 }));
 
@@ -171,7 +173,7 @@ const TargetingPage = ({
           <div className={classes.progressBarContainer}>
             <StepProgress formStep={3} />
           </div>
-          <Paper className={classes.paper} elevation={2}>
+          <div className={classes.paper} elevation={2}>
             <div className={classes.nextButtonContainer}>
               <Button
                 variant="contained"
@@ -186,7 +188,7 @@ const TargetingPage = ({
             </div>
             <div>
               <div elevation={2}>
-                <InputMainLabel className={classes.textStyle}>
+                <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                   How close to your business would you like ads to be shown?
                 </InputMainLabel>
                 {/* <Box>
@@ -240,7 +242,7 @@ const TargetingPage = ({
                 {distance === 'hyper-local' && (
                   <>
                     <Box marginTop="2rem">
-                      <InputMainLabel className={classes.textStyle}>
+                      <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                         Select how you would like to target your location.
                       </InputMainLabel>
                       <Box>
@@ -277,7 +279,7 @@ const TargetingPage = ({
                 )}
                 {distance === 'hyper-local' && localeFormat === 'zip' && (
                   <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle}>
+                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                       Enter your target location's zip code{' '}
                       {/* <InfoButton
                         infoText={'Putting a specific zip code will optimize your campaign.'}
@@ -297,7 +299,7 @@ const TargetingPage = ({
                 )}
                 {distance === 'hyper-local' && localeFormat === 'city' && (
                   <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle}>
+                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                       Enter your target location by city and state code.{' '}
                       {/* <InfoButton
                         infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
@@ -327,7 +329,7 @@ const TargetingPage = ({
                 )}
                 {distance === 'drive' && (
                   <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle}>
+                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                       Enter your target location
                     </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
@@ -374,7 +376,7 @@ const TargetingPage = ({
                 )}
                 {distance === 'local' && (
                   <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle}>
+                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                       Enter your target location
                     </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
@@ -421,7 +423,7 @@ const TargetingPage = ({
                 )}
 
                 <Box marginTop="2rem">
-                  <InputMainLabel className={classes.textStyle}>
+                  <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
                     Enter a keyword that your target customer will be interested in:
                     {/* <InfoButton
                       infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
@@ -445,7 +447,8 @@ const TargetingPage = ({
                 </Box>
               </div>
             </div>
-          </Paper>
+            <img src={alert} className="position-absolute" style={{ bottom: 0 }} />
+          </div>
         </Box>
       )}
     </>
