@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 
 import { connect } from 'react-redux';
 
-import ConnectSocialPage from '../pages/ConnectSocialPage';
+// import ConnectSocialPage from '../pages/ConnectSocialPage';
+import ConnectSocialPage from '../pages/newPages/ConnectSocialPage';
 import { getCampaign, updateCampaign, makeCurrent } from '../../../actions/campaignActions';
 import { updateSocials } from '../../../actions/formInfoActions';
 import { getFbPages } from '../../../actions/account.fbPageActions';
