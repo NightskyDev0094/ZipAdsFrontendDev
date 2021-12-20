@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     display: 'inline-block',
     padding: '0px 18px',
     textDecoration: 'none',
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     outline: 'none',
     borderRadius: '5px',
@@ -87,15 +87,15 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
       setCreateAdOpen(!createAdOpen);
     }
     if (event.target.innerText === 'Account') {
-      setAnchorEl({ ...anchorEl, account: event.currentTarget });
+      // setAnchorEl({ ...anchorEl, account: event.currentTarget });
       setCreateAdOpen(!createAdOpen);
     }
   };
 
   return (
-    <div id="wrapper">
-      <header className="header-light transparent scroll-light">
-        <div className="container">
+    <div id="wrapper" style={{ backgroundColor: '#080934' }}>
+      <header className="header-light transparent scroll-light" style={{padding: '10px'}}>
+        <div style={{ width: '90%', margin: 'auto' }}>
           <div style={{ height: '100%' }} className="row">
             <div className="col-md-12">
               <div className="d-flex justify-content-between">
@@ -188,8 +188,8 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                     </li>
                   </ul>
                 </div>
-                <div className="align-self-center ml-auto header-col-right" />
-                <div className="clearfix" />
+                {/* <div className="align-self-center ml-auto header-col-right" />
+                <div className="clearfix" /> */}
               </div>
             </div>
           </div>
