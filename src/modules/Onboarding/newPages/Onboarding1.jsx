@@ -116,13 +116,14 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
   const [city, setCity] = React.useState();
   const [stateCode, setStateCode] = React.useState();
   const [zipCode, setZipCode] = React.useState();
+  const [apartment, setApartment] = React.useState('');
 
   return (
     <Container maxWidth="md" sx={{ marginTop: '20em' }}>
       <form
         style={{ width: '100%', paddingTop: '3em', paddingBottom: '3em' }}
         onSubmit={(e) => {
-          e.preventDefault;
+          e.preventDefault();
           submitHandler();
         }}
       >
