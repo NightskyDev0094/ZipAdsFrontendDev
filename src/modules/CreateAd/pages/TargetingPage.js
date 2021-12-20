@@ -21,10 +21,10 @@ import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
-import InfoButton from '../../../sharedComponents/components/InfoButton';
-
-import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
+import StepperWrapper from '../components/StepperWrapper';
 import alert from '../../../BlueTecUIKit/images/targeting.png';
+// import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
+// import InfoButton from '../../../sharedComponents/components/InfoButton';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -165,16 +165,16 @@ const TargetingPage = ({
       )}
       {!error.isError && (
         <Box className={classes.pageContainer}>
-          <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+          {/* <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
             <Typography variant="h2" textAlign="center">
               Targeting
             </Typography>
           </div>
           <div className={classes.progressBarContainer}>
             <StepProgress formStep={3} />
-          </div>
+          </div> */}
           <div className={classes.paper} elevation={2}>
-            <div className={classes.nextButtonContainer}>
+            {/* <div className={classes.nextButtonContainer}>
               <Button
                 variant="contained"
                 color="primary"
@@ -185,269 +185,274 @@ const TargetingPage = ({
               <Button variant="contained" color="primary" onClick={nextClick}>
                 Next
               </Button>
-            </div>
-            <div>
-              <div elevation={2}>
-                <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                  How close to your business would you like ads to be shown?
-                </InputMainLabel>
-                {/* <Box>
+            </div> */}
+            <StepperWrapper pageHeading={'Choose Your Target Audience'}>
+              <div>
+                <div elevation={2}>
+                  <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                    How close to your business would you like ads to be shown?
+                  </InputMainLabel>
+                  {/* <Box>
                   <Typography className="text-center">
                     How close to your business would you like ads to be shown?
                   </Typography>
                 </Box> */}
-                <Box>
-                  {/* <InputMainLabel>
+                  <Box>
+                    {/* <InputMainLabel>
                     Select the distance from your target location that your ads will be distributed
                     to:
                   </InputMainLabel> */}
-                  <div>
-                    <RadioGroup
-                      aria-label="distance"
-                      name="distance"
-                      value={distance}
-                      onChange={(e) => setDistance(e.target.value)}
-                      style={{ width: 'fit-content', minWidth: '250px' }}
-                      className="m-auto"
-                    >
-                      <FormControlLabel
-                        value="hyper-local"
-                        control={<Radio />}
-                        label={<Typography className={classes.textStyle}>Hyper Local</Typography>}
-                      />
-                      <FormControlLabel
-                        value="local"
-                        control={<Radio />}
-                        label={
-                          <Typography className={classes.textStyle}>Local (5 miles)</Typography>
-                        }
-                      />
-                      <FormControlLabel
-                        value="drive"
-                        control={<Radio />}
-                        label={
-                          <Typography className={classes.textStyle}>
-                            A Drive Away (15 miles)
-                          </Typography>
-                        }
-                      />
-                      <FormControlLabel
-                        value="nationwide"
-                        control={<Radio />}
-                        label={<Typography className={classes.textStyle}>Nationwide</Typography>}
-                      />
-                    </RadioGroup>
-                  </div>
-                </Box>
-                {distance === 'hyper-local' && (
-                  <>
-                    <Box marginTop="2rem">
-                      <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                        Select how you would like to target your location.
-                      </InputMainLabel>
-                      <Box>
-                        <div>
-                          <RadioGroup
-                            aria-label="localeFormat"
-                            name="localeFormat"
-                            value={localeFormat}
-                            onChange={(e) => setLocaleFormat(e.target.value)}
-                            style={{ width: 'fit-content', minWidth: '250px' }}
-                            className="m-auto"
-                          >
-                            <FormControlLabel
-                              value="zip"
-                              control={<Radio />}
-                              label={
-                                <Typography className={classes.textStyle}>Zip Code</Typography>
-                              }
-                            />
-                            <FormControlLabel
-                              value="city"
-                              control={<Radio />}
-                              label={
-                                <Typography className={classes.textStyle}>
-                                  City and State
-                                </Typography>
-                              }
-                            />
-                          </RadioGroup>
-                        </div>
+                    <div>
+                      <RadioGroup
+                        aria-label="distance"
+                        name="distance"
+                        value={distance}
+                        onChange={(e) => setDistance(e.target.value)}
+                        style={{ width: 'fit-content', minWidth: '250px' }}
+                        className="m-auto"
+                      >
+                        <FormControlLabel
+                          value="hyper-local"
+                          control={<Radio />}
+                          label={<Typography className={classes.textStyle}>Hyper Local</Typography>}
+                        />
+                        <FormControlLabel
+                          value="local"
+                          control={<Radio />}
+                          label={
+                            <Typography className={classes.textStyle}>Local (5 miles)</Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="drive"
+                          control={<Radio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              A Drive Away (15 miles)
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="nationwide"
+                          control={<Radio />}
+                          label={<Typography className={classes.textStyle}>Nationwide</Typography>}
+                        />
+                      </RadioGroup>
+                    </div>
+                  </Box>
+                  {distance === 'hyper-local' && (
+                    <>
+                      <Box marginTop="2rem">
+                        <InputMainLabel
+                          className={classes.textStyle}
+                          style={{ fontWeight: 'bold' }}
+                        >
+                          Select how you would like to target your location.
+                        </InputMainLabel>
+                        <Box>
+                          <div>
+                            <RadioGroup
+                              aria-label="localeFormat"
+                              name="localeFormat"
+                              value={localeFormat}
+                              onChange={(e) => setLocaleFormat(e.target.value)}
+                              style={{ width: 'fit-content', minWidth: '250px' }}
+                              className="m-auto"
+                            >
+                              <FormControlLabel
+                                value="zip"
+                                control={<Radio />}
+                                label={
+                                  <Typography className={classes.textStyle}>Zip Code</Typography>
+                                }
+                              />
+                              <FormControlLabel
+                                value="city"
+                                control={<Radio />}
+                                label={
+                                  <Typography className={classes.textStyle}>
+                                    City and State
+                                  </Typography>
+                                }
+                              />
+                            </RadioGroup>
+                          </div>
+                        </Box>
                       </Box>
-                    </Box>
-                  </>
-                )}
-                {distance === 'hyper-local' && localeFormat === 'zip' && (
-                  <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                      Enter your target location's zip code{' '}
-                      {/* <InfoButton
+                    </>
+                  )}
+                  {distance === 'hyper-local' && localeFormat === 'zip' && (
+                    <Box marginTop="2rem">
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Enter your target location's zip code{' '}
+                        {/* <InfoButton
                         infoText={'Putting a specific zip code will optimize your campaign.'}
                       /> */}
-                    </InputMainLabel>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        placeholder="Zip Code"
-                        value={zipVal}
-                        onChange={(e) => setZipVal(e.target.value)}
-                      />
+                      </InputMainLabel>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          placeholder="Zip Code"
+                          value={zipVal}
+                          onChange={(e) => setZipVal(e.target.value)}
+                        />
+                      </Box>
                     </Box>
-                  </Box>
-                )}
-                {distance === 'hyper-local' && localeFormat === 'city' && (
-                  <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                      Enter your target location by city and state code.{' '}
-                      {/* <InfoButton
+                  )}
+                  {distance === 'hyper-local' && localeFormat === 'city' && (
+                    <Box marginTop="2rem">
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Enter your target location by city and state code.{' '}
+                        {/* <InfoButton
                         infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
                       /> */}
-                    </InputMainLabel>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={cityVal}
-                        onChange={(e) => setCityVal(e.target.value)}
-                        placeholder="City"
-                      />
+                      </InputMainLabel>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={cityVal}
+                          onChange={(e) => setCityVal(e.target.value)}
+                          placeholder="City"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={stateVal}
+                          onChange={(e) => setStateVal(e.target.value)}
+                          placeholder="State"
+                        />
+                      </Box>
                     </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={stateVal}
-                        onChange={(e) => setStateVal(e.target.value)}
-                        placeholder="State"
-                      />
+                  )}
+                  {distance === 'drive' && (
+                    <Box marginTop="2rem">
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Enter your target location
+                      </InputMainLabel>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={streetVal}
+                          onChange={(e) => setStreetVal(e.target.value)}
+                          placeholder="Street Address"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={cityVal}
+                          onChange={(e) => setCityVal(e.target.value)}
+                          placeholder="City"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={stateVal}
+                          onChange={(e) => setStateVal(e.target.value)}
+                          placeholder="State"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={zipVal}
+                          onChange={(e) => setZipVal(e.target.value)}
+                          placeholder="Zip Code"
+                        />
+                      </Box>
                     </Box>
-                  </Box>
-                )}
-                {distance === 'drive' && (
-                  <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                      Enter your target location
-                    </InputMainLabel>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={streetVal}
-                        onChange={(e) => setStreetVal(e.target.value)}
-                        placeholder="Street Address"
-                      />
+                  )}
+                  {distance === 'local' && (
+                    <Box marginTop="2rem">
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Enter your target location
+                      </InputMainLabel>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={streetVal}
+                          onChange={(e) => setStreetVal(e.target.value)}
+                          placeholder="Street Address"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={cityVal}
+                          onChange={(e) => setCityVal(e.target.value)}
+                          placeholder="City"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={stateVal}
+                          onChange={(e) => setStateVal(e.target.value)}
+                          placeholder="State"
+                        />
+                      </Box>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          autoFocus
+                          className={classes.InputItem}
+                          value={zipVal}
+                          onChange={(e) => setZipVal(e.target.value)}
+                          placeholder="Zip Code"
+                        />
+                      </Box>
                     </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={cityVal}
-                        onChange={(e) => setCityVal(e.target.value)}
-                        placeholder="City"
-                      />
-                    </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={stateVal}
-                        onChange={(e) => setStateVal(e.target.value)}
-                        placeholder="State"
-                      />
-                    </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={zipVal}
-                        onChange={(e) => setZipVal(e.target.value)}
-                        placeholder="Zip Code"
-                      />
-                    </Box>
-                  </Box>
-                )}
-                {distance === 'local' && (
-                  <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                      Enter your target location
-                    </InputMainLabel>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={streetVal}
-                        onChange={(e) => setStreetVal(e.target.value)}
-                        placeholder="Street Address"
-                      />
-                    </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={cityVal}
-                        onChange={(e) => setCityVal(e.target.value)}
-                        placeholder="City"
-                      />
-                    </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={stateVal}
-                        onChange={(e) => setStateVal(e.target.value)}
-                        placeholder="State"
-                      />
-                    </Box>
-                    <Box className={classes.targetLocationInputContainer}>
-                      <Input
-                        disableUnderline
-                        autoFocus
-                        className={classes.InputItem}
-                        value={zipVal}
-                        onChange={(e) => setZipVal(e.target.value)}
-                        placeholder="Zip Code"
-                      />
-                    </Box>
-                  </Box>
-                )}
+                  )}
 
-                <Box marginTop="2rem">
-                  <InputMainLabel className={classes.textStyle} style={{fontWeight: 'bold'}}>
-                    Enter a keyword that your target customer will be interested in:
-                    {/* <InfoButton
+                  <Box marginTop="2rem">
+                    <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                      Enter a keyword that your target customer will be interested in:
+                      {/* <InfoButton
                       infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
                     /> */}
-                  </InputMainLabel>
-                  <Box className={classes.targetLocationInputContainer}>
-                    {/* <Input
+                    </InputMainLabel>
+                    <Box className={classes.targetLocationInputContainer}>
+                      {/* <Input
                       value={interest}
                       onChange={(e) => setInterest(e.target.value)}
                       placeholder="add interests"
                     /> */}
-                    <Input
-                      disableUnderline
-                      autoFocus
-                      className={classes.InputItem}
-                      placeholder="example: Mascara"
-                      value={interest}
-                      onChange={(e) => setInterest(e.target.value)}
-                    />
+                      <Input
+                        disableUnderline
+                        autoFocus
+                        className={classes.InputItem}
+                        placeholder="example: Mascara"
+                        value={interest}
+                        onChange={(e) => setInterest(e.target.value)}
+                      />
+                    </Box>
                   </Box>
-                </Box>
+                </div>
               </div>
-            </div>
-            <img src={alert} className="position-absolute" style={{ bottom: 0 }} />
+              {/* <img src={alert} className="position-absolute" style={{ bottom: 0 }} /> */}
+            </StepperWrapper>
           </div>
         </Box>
       )}
