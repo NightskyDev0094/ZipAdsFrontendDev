@@ -87,7 +87,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
       setCreateAdOpen(!createAdOpen);
     }
     if (event.target.innerText === 'Account') {
-      // setAnchorEl({ ...anchorEl, account: event.currentTarget });
+      setAnchorEl({ ...anchorEl, account: event.currentTarget });
       setCreateAdOpen(!createAdOpen);
     }
   };

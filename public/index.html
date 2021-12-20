@@ -2,26 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="google-signin-client_id" content="1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com">
+    <meta
+      name="google-signin-client_id"
+      content="1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com"
+    />
     <link rel="icon" href="%PUBLIC_URL%/ZipAdsLogo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
     <!-- Material Icons -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -42,7 +39,6 @@
       rel="stylesheet"
     />
 
-
     <!-- color scheme -->
     <link id="colors" href="./css/colors/scheme-01.css" rel="stylesheet" type="text/css" />
     <link href="./css/coloring.css" rel="stylesheet" type="text/css" />
@@ -51,8 +47,14 @@
   </head>
   <body>
     <!-- BLUTEC UI KIT SCRIPTS -->
-    <script crossorigin="anonymous" src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
     <script type="text/babel" src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
 
@@ -83,6 +85,14 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>   
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
   </body>
+  <style>
+    .MuiStepLabel-root.MuiStepLabel-alternativeLabel {
+      flex-direction: column-reverse;
+    }
+    .MuiStepLabel-label.MuiStepLabel-alternativeLabel {
+      margin: 0;
+    }
+  </style>
 </html>

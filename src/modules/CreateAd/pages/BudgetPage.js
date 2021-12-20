@@ -312,7 +312,6 @@ const BudgetPage = ({
                                 // style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                 disableUnderline
-                                autoFocus
                                 className={classes.InputItem}
                               />
                               {/* <InputSmallLabel>
@@ -334,7 +333,6 @@ const BudgetPage = ({
                                 className={isActiveBorder ? classes.activeBorder : ''}
                                 // style={{ border: '1px solid transparent', transition: '0.7s' }}
                                 disableUnderline
-                                autoFocus
                                 className={classes.InputItem}
                                 // inputProps={{
                                 //   startAdornment: (
@@ -382,7 +380,6 @@ const BudgetPage = ({
                                       <InputAdornment position="start">$</InputAdornment>
                                     }
                                     disableUnderline
-                                    autoFocus
                                     className={classes.InputItem}
                                   />
                                   <InputSmallLabel>
@@ -419,7 +416,6 @@ const BudgetPage = ({
                                       <InputAdornment position="start">$</InputAdornment>
                                     }
                                     disableUnderline
-                                    autoFocus
                                     className={classes.InputItem}
                                   />
                                   <InputSmallLabel>
@@ -455,7 +451,6 @@ const BudgetPage = ({
                                     <InputAdornment position="start">$</InputAdornment>
                                   }
                                   disableUnderline
-                                  autoFocus
                                   className={classes.InputItem}
                                 />
                                 <InputSmallLabel>
@@ -490,7 +485,6 @@ const BudgetPage = ({
                                     <InputAdornment position="start">$</InputAdornment>
                                   }
                                   disableUnderline
-                                  autoFocus
                                   className={classes.InputItem}
                                 />
                                 <InputSmallLabel>
@@ -530,7 +524,6 @@ const BudgetPage = ({
                                       <InputAdornment position="start">$</InputAdornment>
                                     }
                                     disableUnderline
-                                    autoFocus
                                     className={classes.InputItem}
                                   />
                                   <InputSmallLabel>
@@ -567,7 +560,6 @@ const BudgetPage = ({
                                       <InputAdornment position="start">$</InputAdornment>
                                     }
                                     disableUnderline
-                                    autoFocus
                                     className={classes.InputItem}
                                   />
                                   <InputSmallLabel>
@@ -604,7 +596,6 @@ const BudgetPage = ({
                                       <InputAdornment position="start">$</InputAdornment>
                                     }
                                     disableUnderline
-                                    autoFocus
                                     className={classes.InputItem}
                                   />
                                   <InputSmallLabel>
@@ -637,7 +628,6 @@ const BudgetPage = ({
                                   // className={isActiveBorder ? classes.activeBorder : ''}
                                   // style={{ border: '1px solid transparent', transition: '0.7s' }}
                                   disableUnderline
-                                  autoFocus
                                   className={classes.InputItem}
                                 />
                                 <InputSmallLabel>

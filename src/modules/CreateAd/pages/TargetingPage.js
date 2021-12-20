@@ -292,7 +292,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           placeholder="Zip Code"
                           value={zipVal}
@@ -312,7 +311,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={cityVal}
                           onChange={(e) => setCityVal(e.target.value)}
@@ -322,7 +320,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={stateVal}
                           onChange={(e) => setStateVal(e.target.value)}
@@ -339,7 +336,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={streetVal}
                           onChange={(e) => setStreetVal(e.target.value)}
@@ -349,7 +345,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={cityVal}
                           onChange={(e) => setCityVal(e.target.value)}
@@ -359,7 +354,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={stateVal}
                           onChange={(e) => setStateVal(e.target.value)}
@@ -369,7 +363,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={zipVal}
                           onChange={(e) => setZipVal(e.target.value)}
@@ -386,7 +379,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={streetVal}
                           onChange={(e) => setStreetVal(e.target.value)}
@@ -396,7 +388,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={cityVal}
                           onChange={(e) => setCityVal(e.target.value)}
@@ -406,7 +397,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={stateVal}
                           onChange={(e) => setStateVal(e.target.value)}
@@ -416,7 +406,6 @@ const TargetingPage = ({
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
                           disableUnderline
-                          autoFocus
                           className={classes.InputItem}
                           value={zipVal}
                           onChange={(e) => setZipVal(e.target.value)}
@@ -441,7 +430,6 @@ const TargetingPage = ({
                     /> */}
                       <Input
                         disableUnderline
-                        autoFocus
                         className={classes.InputItem}
                         placeholder="example: Mascara"
                         value={interest}
