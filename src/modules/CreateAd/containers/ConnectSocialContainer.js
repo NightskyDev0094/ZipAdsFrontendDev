@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 // import ConnectSocialPage from '../pages/ConnectSocialPage';
-import ConnectSocialPage from '../pages/newPages/ConnectSocialPage';
+import ConnectSocialPage, { SOCIAL_NETWORK_TITLES } from '../pages/newPages/ConnectSocialPage';
 import { getCampaign, updateCampaign, makeCurrent } from '../../../actions/campaignActions';
 import { updateSocials } from '../../../actions/formInfoActions';
 import { getFbPages } from '../../../actions/account.fbPageActions';
@@ -39,7 +39,6 @@ const ConnectSocialContainer = ({
   gaAccounts,
   fbPages,
 }) => {
-  const [selected, setSelected] = React.useState(socialsToPost || []);
   const [fbAccount, setFBAccount] = useState('');
   const [gaAccount, setGAAccount] = useState('');
   const [fbPage, setFBPage] = useState('');
@@ -76,37 +75,38 @@ const ConnectSocialContainer = ({
     getCampaign();
   }, []);
 
-  const submitSocials = async () => {
+  /**
+   * @param {string[]} selectedNetworks the social networks that are being targeted
+   */
+  const handleSubmitSocials = async (selectedNetworks) => {
     const formData = new FormData();
     formData.append('facebook_account_id', fbAccount);
     formData.append('google_account_id', gaAccount);
     formData.append('facebook_page_id', fbPage);
-    if (selected.includes('facebook feed ad')) {
-      formData.append('facebook_feed_ad', 'True');
-    } else {
-      formData.append('facebook_feed_ad', 'False');
+
+    if (selectedNetworks) {
+      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd)
+        ? formData.append('facebook_feed_ad', 'True')
+        : formData.append('facebook_feed_ad', 'False');
+
+      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.InstagramAd)
+        ? formData.append('instagram_ad', 'True')
+        : formData.append('instagram_ad', 'False');
+
+      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd)
+        ? formData.append('facebook_display_ad', 'True')
+        : formData.append('facebook_display_ad', 'False');
+
+      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleAwards)
+        ? formData.append('google_search_ad', 'True')
+        : formData.append('google_search_ad', 'False');
+
+      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)
+        ? formData.append('google_display_ad', 'True')
+        : formData.append('google_display_ad', 'False');
     }
-    if (selected.includes('instagram ad')) {
-      formData.append('instagram_ad', 'True');
-    } else {
-      formData.append('instagram_ad', 'False');
-    }
-    if (selected.includes('facebook display ad')) {
-      formData.append('facebook_display_ad', 'True');
-    } else {
-      formData.append('facebook_display_ad', 'False');
-    }
-    if (selected.includes('google search ad')) {
-      formData.append('google_search_ad', 'True');
-    } else {
-      formData.append('google_search_ad', 'False');
-    }
-    if (selected.includes('google display ad')) {
-      formData.append('google_display_ad', 'True');
-    } else {
-      formData.append('google_display_ad', 'False');
-    }
-    updateSocials(selected);
+
+    updateSocials(selectedNetworks);
     const campaignId = currentCampaign?.id;
     // Save Targeting options to Campaign_Info
     await updateCampaign(formData, campaignId);
@@ -116,12 +116,8 @@ const ConnectSocialContainer = ({
     <ConnectSocialPage
       socialsToPost={socialsToPost}
       completeStep={completeStep}
-      // handleUpdateSocial={(socials) => {
-      //   // console.log('RUNNING::::', socials);
-      //   updateSocials(socials);
-      // }}
       handleUpdateSocial={updateSocials}
-      handleSubmitSocials={submitSocials}
+      handleSubmitSocials={handleSubmitSocials}
       hasConnectSocialStepBeenCompleted={hasConnectSocialStepBeenCompleted}
       currentCampaign={currentCampaign}
       businessName={businessName}
@@ -138,8 +134,6 @@ const ConnectSocialContainer = ({
       handleUpdateFbAdAccount={handleUpdateFbAdAccount}
       handleUpdateFbPage={handleUpdateFbPage}
       getUserProfileInformation={getUserProfileInformation}
-      selected={selected}
-      setSelected={setSelected}
     />
   );
 };

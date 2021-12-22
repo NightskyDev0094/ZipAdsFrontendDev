@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import CreateCampaign from '../pages/CampaignPage';
+// import CreateCampaign from '../pages/CampaignPage';
+import CreateCampaign from '../pages/newPages/CampaignPage';
 import { updateCampaign } from '../../../actions/campaignActions';
 import { updateSocials } from '../../../actions/formInfoActions';
 import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
 import { completeStep } from '../../../actions/step.actions';
+import { SOCIAL_NETWORK_TITLES } from '../pages/newPages/ConnectSocialPage';
 import { useHistory } from 'react-router';
 
 const DEFAULT_IMAGE =
@@ -85,23 +87,23 @@ const CreateCampaignContainer = ({
     getGoogleAdAccounts();
     // getBusinessInfo();
     let val = 0;
-    if (socialsToPost.includes('facebook feed ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.FacebookAd)) {
       val++;
       setFbFeedNum(val);
     }
-    if (socialsToPost.includes('facebook display ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd)) {
       val++;
       setFbAudienceNum(val);
     }
-    if (socialsToPost.includes('instagram ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.InstagramAd)) {
       val++;
       setInstagramNum(val);
     }
-    if (socialsToPost.includes('google search ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.GoogleAwards)) {
       val++;
       setGaSearchNum(val);
     }
-    if (socialsToPost.includes('google display ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)) {
       val++;
       setGaDisplayNum(val);
       val++;
@@ -125,25 +127,6 @@ const CreateCampaignContainer = ({
       getImageFromUrl(formInfo.ga_square_display_img, 'ga_square_display_img');
     }
   }, []);
-
-  // useEffect(() => {
-  //   setLocaleVals();
-  // }, [businessInfo]);
-
-  // const setLocaleVals = () => {
-  //   if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
-  //     if (businessInfo.length !== 0) {
-  //       if (typeof businessInfo[0].business_url !== 'undefined') {
-  //         setUrlVal(businessInfo[0].business_url || '');
-  //         setFormInfo({
-  //           ...formInfo,
-  //           ad_link: businessInfo[0].business_url || 'https://',
-  //           campaign_name: businessInfo[0].business_name || '',
-  //         });
-  //       }
-  //     }
-  //   }
-  // };
 
   const getImageFromUrl = async (url, imageType) => {
     await fetch(`${url}`)
