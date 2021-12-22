@@ -137,7 +137,7 @@ export default function ConnectSocialPage({
   // TODO: complete the submitandGoToNextLogic, part of the stepper
   return (
     <>
-      {networkError && <ErrorFallBackPage error={error} />}
+      {networkError && <ErrorFallBackPage />}
       <ErrorHandler>
         <StepperWrapper pageHeading={'Choose Which Networks to Run Ads On'}>
           <Box className={classes.FlexVessel}>
