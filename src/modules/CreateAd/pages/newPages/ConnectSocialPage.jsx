@@ -4,6 +4,7 @@ import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../../components/ErrorBoundary.Component';
+import ReSubmitFormModal from '../../components/ReSubmit.Form.Modal';
 import Box from '@material-ui/core/Box';
 import NetworkCheckBox from '../../components/CreateAd.NetworkCheckBox';
 import InstagramLogoImage from '../../../../img/instagram-logo.png';
@@ -12,6 +13,14 @@ import GoogleLogoImage from '../../../../img/google-icon.png';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import StepperWrapper from '../../components/StepperWrapper';
 import useCheckNetwork from '../../hooks/useCheckNetwork';
+
+export const SOCIAL_NETWORK_TITLES = {
+  InstagramAd: 'Instagram Ad',
+  FacebookAd: 'Facebook Ad',
+  FacebookAudienceNetworkAd: 'Facebook Audience Network Ad',
+  GoogleAwards: 'Google Awards',
+  GoogleDisplayNetworkAd: 'Google Display Network Ad',
+};
 
 const useStyles = makeStyles({
   PageVessel: {
@@ -38,6 +47,7 @@ const useStyles = makeStyles({
   FlexVessel: {
     marginRight: 'auto',
     marginLeft: 'auto',
+    marginTop: '5em',
     width: '90%',
     display: 'flex',
     flexWrap: 'wrap',
@@ -83,27 +93,28 @@ export default function ConnectSocialPage({
     getGoogleAdAccounts,
     getFbAdAccounts
   );
+  const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
   const history = useHistory();
   const classes = useStyles();
   const NETWORKS = [
     {
-      titleText: 'Instagram Ad',
+      titleText: SOCIAL_NETWORK_TITLES.InstagramAd,
       iconSrc: InstagramLogoImage,
     },
     {
-      titleText: 'Facebook Ad',
+      titleText: SOCIAL_NETWORK_TITLES.FacebookAd,
       iconSrc: FacebookLogoImage,
     },
     {
-      titleText: 'Facebook Audience Network Ad',
+      titleText: SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd,
       iconSrc: FacebookLogoImage,
     },
     {
-      titleText: 'Google Awards',
+      titleText: SOCIAL_NETWORK_TITLES.GoogleAwards,
       iconSrc: GoogleLogoImage,
     },
     {
-      titleText: 'Google Display Network Ad',
+      titleText: SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd,
       iconSrc: GoogleLogoImage,
     },
   ];
@@ -112,44 +123,76 @@ export default function ConnectSocialPage({
     NETWORKS.map((network) => network.titleText)
   );
 
-  // next button
-  const submitAndGoToNextPage = async () => {
+  const submitSelectedNetworksAndGoToNextPage = async (e) => {
+    e.preventDefault();
     try {
       const submitSocialsData = new FormData();
       if (googleToken) submitSocialsData.append('google_account_id', googleToken);
       if (facebookToken) submitSocialsData.append('facebook_account_id', facebookToken);
-      completeStep(2);
-      handleSubmitSocials(submitSocialsData);
+      await handleSubmitSocials(selectedNetworks);
       if (selectedNetworks.length !== 0) {
         getUserProfileInformation();
-      } else if (addresses !== undefined) {
-        /** Re-route either way  */
+        completeStep(2);
         history.push('/create/create-campaign');
-      } else {
+      } else if (addresses === undefined) {
         history.push('/onboarding/1');
+      } else {
+        history.push('/create/create-campaign');
       }
-      history.push('/create/create-campaign');
     } catch (e) {
-      setNetworkError(e);
+      setNetworkError(e.message);
     }
   };
 
-  // TODO: complete the submitandGoToNextLogic, part of the stepper
+  const goToNextForModal = () => {
+    try {
+      const submitSocialsData = new FormData();
+      if (googleToken) submitSocialsData.append('google_account_id', googleToken);
+      if (facebookToken) submitSocialsData.append('facebook_account_id', facebookToken);
+      handleSubmitSocials(submitSocialsData);
+      if (selectedNetworks.length !== 0) {
+        getUserProfileInformation();
+        completeStep(2);
+        history.push('/create/create-campaign');
+      } else if (addresses === undefined) {
+        history.push('/onboarding/1');
+      } else {
+        history.push('/create/create-campaign');
+      }
+    } catch (e) {
+      setNetworkError(e.message);
+    }
+  };
+
+  // TODO: complete the submitAndGoToNextLogic, part of the stepper
   return (
     <>
-      {networkError && <ErrorFallBackPage error={error} />}
+      {networkError && <ErrorFallBackPage error={networkError} />}
+      {hasConnectSocialStepBeenCompleted === 'STEP_COMPLETED' && (
+        <ReSubmitFormModal
+          isResubmitModalOpen={isResubmitModalOpen}
+          setIsResubmitModalOpen={setIsResubmitModalOpen}
+          handleSubmitAction={goToNextForModal}
+          nextRoute={'/create/create-campaign'}
+          formData={{}}
+        />
+      )}
       <ErrorHandler>
         <StepperWrapper pageHeading={'Choose Which Networks to Run Ads On'}>
-          <Box className={classes.FlexVessel}>
-            {NETWORKS.map((network) => (
-              <NetworkCheckBox
-                key={crypto.randomUUID()}
-                iconSrc={network.iconSrc}
-                titleText={network.titleText}
-                setSelectedNetworks={setSelectedNetworks}
-              />
-            ))}
-          </Box>
+          <form onSubmit={submitSelectedNetworksAndGoToNextPage}>
+            <Box className={classes.FlexVessel}>
+              {NETWORKS.map((network) => (
+                <NetworkCheckBox
+                  key={crypto.randomUUID()}
+                  iconSrc={network.iconSrc}
+                  titleText={network.titleText}
+                  selectedNetworks={selectedNetworks}
+                  setSelectedNetworks={setSelectedNetworks}
+                />
+              ))}
+            </Box>
+            <button type="submit">TEMPORARY SUBMIT TILL STEPPER IS COMPLETE</button>
+          </form>
         </StepperWrapper>
       </ErrorHandler>
     </>
