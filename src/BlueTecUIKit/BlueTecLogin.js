@@ -85,12 +85,9 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
           </div>
         </section>
         {} */}
-        <section
-          className="no-top"
-          // data-bgimage="url(images/background/3.png) top"
-        >
+        <section className="no-top p-0">
           <div className="row m-0">
-            <div className="col-lg-6 p-5" style={{minHeight: '526px'}}>
+            <div className="col-lg-6 p-5" style={{ minHeight: '526px' }}>
               <form
                 name="contactForm"
                 className="form-border"
@@ -99,7 +96,9 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   handleLoginSubmit(data, e);
                 })}
               >
-                <h1 className="text-center mb-4" style={{color: '#00468f'}}>Login</h1>
+                <h1 className="text-center mb-4" style={{ color: '#00468f' }}>
+                  Login
+                </h1>
                 <div className="field-set">
                   <Controller
                     as={<LargeInput placeholder="Username" />}
@@ -117,8 +116,8 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   />
                 </div>
                 <div>
-                  <div className="d-flex align-items-center" style={{padding: '25px 0'}}>
-                    <input type="checkbox" className="mr-2"/>
+                  <div className="d-flex align-items-center" style={{ padding: '25px 0' }}>
+                    <input type="checkbox" className="mr-2" />
                     <p>Remember Me</p>
                   </div>
                 </div>
@@ -127,18 +126,26 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                     type="submit"
                     id="send_message"
                     defaultValue="Login"
-                    style={{ border: 'solid 1px #cccccc', color: 'white', padding: '10px 0', backgroundColor: '#005dbf', fontSize: '18px' }}
+                    style={{
+                      border: 'solid 1px #cccccc',
+                      color: 'white',
+                      padding: '10px 0',
+                      backgroundColor: '#005dbf',
+                      fontSize: '18px',
+                    }}
                     className="btn btn-custom color-2 w-100 border-0"
                   />
+                  <p
+                    className="text-right"
+                    style={{ margin: '1rem 0', color: '#a6a6a6', cursor: 'pointer' }}
+                  >
+                    Forgot password?
+                  </p>
                   <div id="mail_success" className="success">
                     Your message has been sent successfully.
                   </div>
                   {formState.isErrors && (
-                    <div
-                      className="alert alert-danger alert-dismissible fade show"
-                      role="alert"
-                      style={{ width: '500px', margin: '30px auto' }}
-                    >
+                    <div className="alert alert-danger alert-dismissible fade show m-0" role="alert">
                       {formState.errorMessage}{' '}
                       <button
                         type="button"
@@ -176,7 +183,10 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                 </div>
               </form>
             </div>
-            <div className="col-lg-6" style={{backgroundColor: '#2772dd', minHeight: '526px'}}></div>
+            <div
+              className="col-lg-6"
+              style={{ backgroundColor: '#2772dd', minHeight: '526px' }}
+            ></div>
           </div>
         </section>
       </div>

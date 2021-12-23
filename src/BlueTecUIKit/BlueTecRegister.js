@@ -112,8 +112,10 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       </section>
       {} */}
       <div className="row m-0">
-        <div className="col-lg-6 p-5" style={{minHeight: '526px'}}>
-          <h1 className="text-center mb-4" style={{color: '#00468f'}}>Register</h1>
+        <div className="col-lg-6 p-5" style={{ minHeight: '526px' }}>
+          <h1 className="text-center mb-4" style={{ color: '#00468f' }}>
+            Register
+          </h1>
           <form
             name="contactForm"
             className="form-border"
@@ -235,15 +237,21 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                 </div>
               </div>
               <div className="col-md-12">
-                <div className="d-flex align-items-center" style={{padding: '25px 0'}}>
-                  <input type="checkbox" className="mr-2"/>
+                <div className="d-flex align-items-center" style={{ padding: '25px 0' }}>
+                  <input type="checkbox" className="mr-2" />
                   <p>Remember Me</p>
                 </div>
               </div>
               <div className="col-md-12">
                 <div id="submit" className="pull-left w-100">
                   <input
-                    style={{ border: 'solid 1px #cccccc', color: 'white', padding: '10px 0', backgroundColor: '#005dbf', fontSize: '18px' }}
+                    style={{
+                      border: 'solid 1px #cccccc',
+                      color: 'white',
+                      padding: '10px 0',
+                      backgroundColor: '#005dbf',
+                      fontSize: '18px',
+                    }}
                     type="submit"
                     className="btn btn-custom color-2 w-100 border-0"
                   />
@@ -258,40 +266,36 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
               </div>
             </div>
           </form>
-        </div>
-        <div className="col-lg-6" style={{backgroundColor: '#2772dd', minHeight: '526px'}}></div>
-      </div>
-      <section className="no-top" data-bgimage={`${RegisterSectionImage} top`}>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              {/* <h3>Dont have an account? Register now.</h3>
+          <section className="no-top p-0" data-bgimage={`${RegisterSectionImage} top`}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-8 offset-md-2">
+                  {/* <h3>Dont have an account? Register now.</h3>
               <p>
                 Zip Ads is ready to help you take your business to the next level. Simply fill out
                 this form and you're on your way!
               </p>
               <div className="spacer-10" /> */}
+                </div>
+              </div>
             </div>
-          </div>
+            {formState.isError && (
+              <div className="alert alert-danger alert-dismissible fade show" role="alert" style={{marginTop: '25px', marginBottom: 0}}>
+                {formState.errorMessage}{' '}
+                <button type="button" className="close" aria-label="Close">
+                  <span
+                    onClick={() => setFormState({ ...formState, isError: false })}
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
+                </button>
+              </div>
+            )}
+          </section>
         </div>
-        {formState.isError && (
-          <div
-            className="alert alert-danger alert-dismissible fade show"
-            role="alert"
-            style={{ width: '500px', margin: '0 auto' }}
-          >
-            {formState.errorMessage}{' '}
-            <button type="button" className="close" aria-label="Close">
-              <span
-                onClick={() => setFormState({ ...formState, isError: false })}
-                aria-hidden="true"
-              >
-                ×
-              </span>
-            </button>
-          </div>
-        )}
-      </section>
+        <div className="col-lg-6" style={{ backgroundColor: '#2772dd', minHeight: '526px' }}></div>
+      </div>
     </div>
   );
 };

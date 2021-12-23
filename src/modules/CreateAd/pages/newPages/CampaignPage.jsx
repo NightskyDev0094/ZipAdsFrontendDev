@@ -9,6 +9,25 @@ import {
 } from '../../components/ErrorBoundary.Component';
 import StepperWrapper from '../../components/StepperWrapper';
 import AdPreviewCarousel from '../../components/AdPreviewCarousel';
+import CampaignForm from '../../components/CampaignForm';
+
+const useStyles = makeStyles({
+  CampaignVessel: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+
+    ['@media (min-width:750px)']: {
+      gridTemplateColumns: '1fr 1fr',
+    },
+
+    ['& :first-child']: {
+      order: 2,
+      ['@media (min-width:750px)']: {
+        order: 'initial',
+      },
+    },
+  },
+});
 
 export default function CampaignPage({
   formInfo,
@@ -70,6 +89,7 @@ export default function CampaignPage({
   setGASquareDisplayPreviewUrl,
   updateSocials,
 }) {
+  const classes = useStyles();
   const [campaignError, setCampaignError] = useState(null);
   const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
 
@@ -87,8 +107,9 @@ export default function CampaignPage({
       )}
       <ErrorHandler>
         <StepperWrapper>
-          <Box>
+          <Box className={classes.CampaignVessel}>
             <AdPreviewCarousel chosenSocialNetworks={socialsToPost} />
+            <CampaignForm formInfo={formInfo} setFormInfo={setFormInfo}/>
           </Box>
         </StepperWrapper>
       </ErrorHandler>

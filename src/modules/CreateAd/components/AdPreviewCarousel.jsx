@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ForwardIcon from '@material-ui/icons/Forward';
 
 const useStyles = makeStyles({
   CarouselContainer: {
-    height: '100vh',
     width: '100%',
     position: 'relative',
     marginTop: '2em',
@@ -22,8 +21,8 @@ const useStyles = makeStyles({
     },
   },
   LeftCarouselButton: {
-    height: '3.5em',
-    width: '3.5em',
+    height: '3em',
+    width: '3em',
     borderRadius: '0.25rem',
     border: 'none',
     position: 'absolute',
@@ -86,7 +85,7 @@ const useStyles = makeStyles({
  * @param {string[]} chosenSocialNetworks an array of the social networks the client has chosen for ads
  * @access ConnectSocialPage.jsx for the SOCIAL_NETWORK_TITLES allowed as strings in this array
  */
-export default function AdPreviewCarousel({ chosenSocialNetworks }) {
+function AdPreviewCarousel({ chosenSocialNetworks }) {
   const classes = useStyles();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
@@ -131,3 +130,5 @@ export default function AdPreviewCarousel({ chosenSocialNetworks }) {
     </div>
   );
 }
+
+export default memo(AdPreviewCarousel);

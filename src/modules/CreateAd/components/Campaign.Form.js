@@ -161,27 +161,6 @@ const FormContent1 = ({
 }) => {
   const classes = useStyles();
   const [randomTerm, setRandomTerm] = React.useState('');
-  // console.log({
-  //   formInfo,
-  //   setFormInfo,
-  //   clicked,
-  //   setError,
-  //   handleUpdateForm,
-  //   currentCampaign,
-  //   urlVal,
-  //   setFBFeedPreviewUrl,
-  //   fbFeedPreviewUrl,
-  //   setFBAudiencePreviewUrl,
-  //   fbAudiencePreviewUrl,
-  //   setInstagramPreviewUrl,
-  //   instagramPreviewUrl,
-  //   setGADisplayPreviewUrl,
-  //   setGASquareDisplayPreviewUrl,
-  //   gaDisplayPreviewUrl,
-  //   gaDisplaySquarePreviewUrl,
-  //   imgOption,
-  //   setImgOption,
-  // });
   const [previewUrl, setPreviewUrl] = useState();
   const [fbFeedImg, setFBFeedImg] = useState();
   const [fbAudienceImg, setFBAudienceImg] = useState();

@@ -11,32 +11,36 @@ import {
   FormControlLabel,
   Tooltip,
   InputAdornment,
-  TextField
+  TextField,
+  Input,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 
-import { Input, InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
+import { InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
+import StepperWrapper from '../components/StepperWrapper';
 import backgroundImage from '../../../BlueTecUIKit/images/background/3.png';
 import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
+import alert from '../../../BlueTecUIKit/images/budget.png';
 
 const useStyles = makeStyles((theme) => ({
   page: {
-    backgroundImage: `url(${backgroundImage})`,
+    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
   paper: {
     width: '88vw',
-    height: '1300px',
+    // height: '1300px',
     marginBottom: '200px',
     margin: '0 auto',
+    position: 'relative',
     '@media (max-width:1400px)': {
       height: '1900px',
     },
@@ -159,6 +163,25 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid lime !important',
     borderRadius: '6px',
   },
+  InputItem: {
+    width: '100%',
+    height: '3rem',
+    fontSize: '1.25rem',
+    padding: '0.5rem 1rem',
+    border: 'solid 1px #cccccc',
+    borderRadius: '0.25rem',
+    'margin-bottom': '1em',
+    maxWidth: '250px',
+    marginTop: '20px',
+
+    ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
+  },
+  textStyle: {
+    fontSize: '1.25rem',
+    maxWidth: '600px',
+    margin: 'auto',
+    textAlign: 'center',
+  },
 }));
 
 const BudgetPage = ({
@@ -235,16 +258,16 @@ const BudgetPage = ({
       {!error.isError && (
         <ErrorHandler>
           <Box className={classes.page}>
-            <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
+            {/* <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
               <Typography variant="h2" textAlign="center">
                 Create an Ad
               </Typography>
             </div>
             <div className={classes.progressBarContainer}>
               <StepProgress formStep={5} />
-            </div>
-            <Paper elevation={2} className={classes.paper}>
-              <div className={classes.nextButtonContainer}>
+            </div> */}
+            <div elevation={2} className={classes.paper}>
+              {/* <div className={classes.nextButtonContainer}>
                 <Button
                   variant="contained"
                   color="primary"
@@ -255,337 +278,399 @@ const BudgetPage = ({
                 <Button variant="contained" color="primary" onClick={nextClick}>
                   Next
                 </Button>
-              </div>
-              <div className={classes.pageBody}>
-                <Paper elevation={2} className={classes.createBudgetContainer}>
-                  <InputMainLabel>Create a Budget</InputMainLabel>
+              </div> */}
+              <StepperWrapper pageHeading={'Choose Your Budget'}>
+                <div className={classes.pageBody}>
+                  <div elevation={2} className={classes.createBudgetContainer}>
+                    {/*  <InputMainLabel className={classes.textStyle}>Create a Budget</InputMainLabel>
                   <Typography>Enter the budget for your ad campaign.</Typography>
                   {(socialsToPost === undefined || socialsToPost.length === 0) && (
                     <>
-                      <InputMainLabel>No Ad Network Selected</InputMainLabel>
+                       <InputMainLabel className={classes.textStyle}>No Ad Network Selected</InputMainLabel>
                       <Typography>
                         Please go back and select an Ad Network to run your campaign on.
                       </Typography>
                     </>
-                  )}
-                  {budgetOption === 'automatic' && (
-                    <>
-                      <Tooltip title="This is the maximum amount you will spend on all ads daily.">
-                        <>
-                          <Box className={classes.dailyFacebookAdsBudgetInput}>
-                            <InputMainLabel>Set Your Total Daily Budget</InputMainLabel>
-                            <Input
-                              small
-                              onChange={(e) => setTotalBudget(e.target.value)}
-                              value={totalBudget}
-                              defaultValue="10.00"
-                              className={isActiveBorder ? classes.activeBorder : ''}
-                              style={{ border: '1px solid transparent', transition: '0.7s' }}
-                              inputProps={{
-                                startAdornment: (
-                                  <InputAdornment position="start">$</InputAdornment>
-                                ),
-                              }}
-                            />
-                            <InputSmallLabel>
+                  )} */}
+                    {budgetOption === 'automatic' && (
+                      <>
+                        <Tooltip title="This is the maximum amount you will spend on all ads daily.">
+                          <>
+                            <Box className={classes.dailyFacebookAdsBudgetInput}>
+                              <InputMainLabel
+                                className={classes.textStyle}
+                                style={{ fontWeight: 'bold' }}
+                              >
+                                What's the total amount (in USD) that you would like to spend on
+                                your campaign per day?
+                              </InputMainLabel>
+                              <Input
+                                onChange={(e) => setTotalBudget(e.target.value)}
+                                value={totalBudget}
+                                defaultValue="10.00"
+                                // className={isActiveBorder ? classes.activeBorder : ''}
+                                // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                disableUnderline
+                                className={classes.InputItem}
+                              />
+                              {/* <InputSmallLabel>
                               What is the max amount you want to spend on ads daily (in USD)?
-                            </InputSmallLabel>
-                          </Box>
-                          <Box className={classes.facebookAdsCampaignLength}>
-                            <InputMainLabel>Campaign Length</InputMainLabel>
-
-                            <Input
-                              small
-                              onChange={(e) => setAllCampaignLength(e.target.value)}
-                              value={allCampaignLength}
-                              defaultValue="7"
-                              className={isActiveBorder ? classes.activeBorder : ''}
-                              style={{ border: '1px solid transparent', transition: '0.7s' }}
-                              inputProps={{
-                                startAdornment: (
-                                  <InputAdornment position="start">$</InputAdornment>
-                                ),
-                              }}
-                            />
-                            <InputSmallLabel>
-                              How long should your ads run (in days)?
-                            </InputSmallLabel>
-                          </Box>
-                        </>
-                      </Tooltip>
-                    </>
-                  )}
-                  {budgetOption === 'advanced' && (
-                    <>
-                      {socialsToPost.includes('google search ad' || 'google display ad') && (
-                        <>
-                          {socialsToPost.includes('google search ad') && (
-                            <Tooltip
-                              title={
-                                <div className={classes.toolTipContainer}>
-                                  <p className={classes.tooltip}>
-                                    This is the maximum amount you will spend on Google Search Ads
-                                    daily
-                                  </p>
-                                </div>
-                              }
-                            >
-                              <Box className={classes.dailyGoogleAdsBudgetInput}>
-                                <InputMainLabel>Daily Google Ads Budget</InputMainLabel>
-                                <Input
-                                  small
-                                  onChange={(e) => setGoogleSearchBudget(e.target.value)}
-                                  value={google_search_budget}
-                                  defaultValue="10.00"
-                                  className={isActiveBorder ? classes.activeBorder : ''}
-                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
-                                  inputProps={{
-                                    startAdornment: (
-                                      <InputAdornment position="start">$</InputAdornment>
-                                    ),
-                                  }}
-                                />
-                                <InputSmallLabel>
-                                  Whats the max amount you want to spend on Google Ads
-                                </InputSmallLabel>
-                              </Box>
-                            </Tooltip>
-                          )}
-                          {socialsToPost.includes('google display ad') && (
-                            <Tooltip
-                              title={
-                                <div className={classes.toolTipContainer}>
-                                  <p className={classes.tooltip}>
-                                    This is the maximum amount you will spend on Google Display Ads
-                                    daily.
-                                  </p>
-                                </div>
-                              }
-                            >
-                              <Box className={classes.dailyGoogleAdsBudgetInput}>
-                                <InputMainLabel>Daily Google Ads Budget</InputMainLabel>
-                                <Input
-                                  small
-                                  onChange={(e) => setGoogleDisplayBudget(e.target.value)}
-                                  value={google_display_budget}
-                                  defaultValue="10.00"
-                                  className={isActiveBorder ? classes.activeBorder : ''}
-                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
-                                  inputProps={{
-                                    startAdornment: (
-                                      <InputAdornment position="start">$</InputAdornment>
-                                    ),
-                                  }}
-                                />
-                                <InputSmallLabel>
-                                  Whats the max amount you want to spend on Google Ads
-                                </InputSmallLabel>
-                              </Box>
-                            </Tooltip>
-                          )}
-                          <Tooltip
-                            title={
-                              <div className={classes.toolTipContainer}>
-                                <p className={classes.tooltip}>
-                                  CPC is your maximum cost per click on a google ad.
-                                </p>
-                              </div>
-                            }
-                          >
-                            <Box className={classes.googleAdsCPCContainer}>
-                              <InputMainLabel>Google Ads CPC</InputMainLabel>
-
-                              <Input
-                                small
-                                onChange={(e) => setGoogleCPC(e.target.value)}
-                                value={google_cpc}
-                                defaultValue="1.00"
-                                className={isActiveBorder ? classes.activeBorder : ''}
-                                style={{ border: '1px solid transparent', transition: '0.7s' }}
-                                inputProps={{
-                                  startAdornment: (
-                                    <InputAdornment position="start">$</InputAdornment>
-                                  ),
-                                }}
-                              />
-                              <InputSmallLabel>
-                                Whats the max amount you want to spend on Google Ads
-                              </InputSmallLabel>
+                            </InputSmallLabel> */}
                             </Box>
-                          </Tooltip>
-                          <Tooltip
-                            title={
-                              <div className={classes.toolTipContainer}>
-                                <p className={classes.tooltip}>
-                                  This is the number of days your Google Ads will run.
-                                </p>
-                              </div>
-                            }
-                          >
-                            <Box className={classes.googleAdsCampaignLengthContainer}>
-                              <InputMainLabel>Google Ads Campaign Length</InputMainLabel>
-
-                              <Input
-                                small
-                                onChange={(e) => setGACampaignLength(e.target.value)}
-                                value={ga_campaign_length}
-                                defaultValue="7"
-                                className={isActiveBorder ? classes.activeBorder : ''}
-                                style={{ border: '1px solid transparent', transition: '0.7s' }}
-                              />
-                              <InputSmallLabel>
-                                How long should your Google Ad run (in days)
-                              </InputSmallLabel>
-                            </Box>
-                          </Tooltip>
-                        </>
-                      )}
-                      {socialsToPost.includes('facebook feed ad' || 'facebook display ad') && (
-                        <>
-                          {socialsToPost.includes('facebook feed ad') && (
-                            <Tooltip
-                              title={
-                                <div className={classes.toolTipContainer}>
-                                  <p className={classes.tooltip}>
-                                    This is the maximum amount you will spend on Facebook Feed Ads
-                                    daily
-                                  </p>
-                                </div>
-                              }
-                            >
-                              <Box className={classes.dailyFacebookAdsBudgetInput}>
-                                <InputMainLabel>Daily Facebook Ads Budget</InputMainLabel>
-                                <Input
-                                  small
-                                  onChange={(e) => setFacebookFeedBudget(e.target.value)}
-                                  value={facebook_feed_budget}
-                                  defaultValue="10.00"
-                                  className={isActiveBorder ? classes.activeBorder : ''}
-                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
-                                  inputProps={{
-                                    startAdornment: (
-                                      <InputAdornment position="start">$</InputAdornment>
-                                    ),
-                                  }}
-                                />
-                                <InputSmallLabel>
-                                  Whats the max amount you want to spend on Facebook Ads
-                                </InputSmallLabel>
-                              </Box>
-                            </Tooltip>
-                          )}
-                          {socialsToPost.includes('facebook display ad') && (
-                            <Tooltip
-                              title={
-                                <div className={classes.toolTipContainer}>
-                                  <p className={classes.tooltip}>
-                                    This is the maximum amount you will spend on Facebook Feed Ads
-                                    daily
-                                  </p>
-                                </div>
-                              }
-                            >
-                              <Box className={classes.dailyFacebookAdsBudgetInput}>
-                                <InputMainLabel>Daily Facebook Ads Budget</InputMainLabel>
-                                <Input
-                                  small
-                                  onChange={(e) => setFacebookAudienceBudget(e.target.value)}
-                                  value={facebook_audience_budget}
-                                  defaultValue="10.00"
-                                  className={isActiveBorder ? classes.activeBorder : ''}
-                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
-                                  inputProps={{
-                                    startAdornment: (
-                                      <InputAdornment position="start">$</InputAdornment>
-                                    ),
-                                  }}
-                                />
-                                <InputSmallLabel>
-                                  Whats the max amount you want to spend on Facebook Ads
-                                </InputSmallLabel>
-                              </Box>
-                            </Tooltip>
-                          )}
-                          {socialsToPost.includes('instagram ad') && (
-                            <Tooltip
-                              title={
-                                <div className={classes.toolTipContainer}>
-                                  <p className={classes.tooltip}>
-                                    This is the maximum amount you will spend on Instagram Ads
-                                    daily.
-                                  </p>
-                                </div>
-                              }
-                            >
-                              <Box className={classes.dailyFacebookAdsBudgetInput}>
-                                <InputMainLabel>Daily Facebook Ads Budget</InputMainLabel>
-                                <Input
-                                  small
-                                  onChange={(e) => setInstagramBudget(e.target.value)}
-                                  value={instagram_budget}
-                                  defaultValue="10.00"
-                                  className={isActiveBorder ? classes.activeBorder : ''}
-                                  style={{ border: '1px solid transparent', transition: '0.7s' }}
-                                  inputProps={{
-                                    startAdornment: (
-                                      <InputAdornment position="start">$</InputAdornment>
-                                    ),
-                                  }}
-                                />
-                                <InputSmallLabel>
-                                  Whats the max amount you want to spend on Facebook Ads
-                                </InputSmallLabel>
-                              </Box>
-                            </Tooltip>
-                          )}
-                          <Tooltip
-                            title={
-                              <div className={classes.toolTipContainer}>
-                                <p className={classes.tooltip}>
-                                  This is the number of days your Facebook and Instagram Ads will
-                                  run
-                                </p>
-                              </div>
-                            }
-                          >
                             <Box className={classes.facebookAdsCampaignLength}>
-                              <InputMainLabel>Facebook Ads Campaign Length</InputMainLabel>
+                              <InputMainLabel
+                                className={classes.textStyle}
+                                style={{ fontWeight: 'bold' }}
+                              >
+                                For how many doays would you like your campaign to run?
+                              </InputMainLabel>
+
                               <Input
-                                small
-                                onChange={(e) => setFBCampaignLength(e.target.value)}
-                                value={fb_campaign_length}
+                                onChange={(e) => setAllCampaignLength(e.target.value)}
+                                value={allCampaignLength}
                                 defaultValue="7"
                                 className={isActiveBorder ? classes.activeBorder : ''}
-                                style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                disableUnderline
+                                className={classes.InputItem}
+                                // inputProps={{
+                                //   startAdornment: (
+                                //     <InputAdornment position="start">$</InputAdornment>
+                                //   ),
+                                // }}
                               />
-                              <InputSmallLabel>
-                                How long should your Facebook Ad run (in days)
-                              </InputSmallLabel>
+                              {/* <InputSmallLabel>
+                              How long should your ads run (in days)?
+                            </InputSmallLabel> */}
                             </Box>
-                          </Tooltip>
-                        </>
-                      )}
-                    </>
-                  )}
-                  <Box>
-                    <InputMainLabel>Show Advanced Options</InputMainLabel>
-                    <RadioGroup
-                      aria-label="distance"
-                      name="distance"
-                      value={budgetOption}
-                      onChange={(e) => setOption(e.target.value)}
-                    >
-                      <FormControlLabel value="automatic" control={<Radio />} label="Automatic" />
-                      <FormControlLabel
-                        value="advanced"
-                        control={<Radio />}
-                        label="Advanced Options"
-                      />
-                    </RadioGroup>
-                  </Box>
-                </Paper>
-              </div>
-            </Paper>
+                          </>
+                        </Tooltip>
+                      </>
+                    )}
+                    {budgetOption === 'advanced' && (
+                      <>
+                        {socialsToPost.includes('google search ad' || 'google display ad') && (
+                          <>
+                            {socialsToPost.includes('google search ad') && (
+                              <Tooltip
+                                title={
+                                  <div className={classes.toolTipContainer}>
+                                    <p className={classes.tooltip}>
+                                      This is the maximum amount you will spend on Google Search Ads
+                                      daily
+                                    </p>
+                                  </div>
+                                }
+                              >
+                                <Box className={classes.dailyGoogleAdsBudgetInput}>
+                                  <InputMainLabel
+                                    className={classes.textStyle}
+                                    style={{ fontWeight: 'bold' }}
+                                  >
+                                    Daily Google Ads Budget
+                                  </InputMainLabel>
+                                  <Input
+                                    onChange={(e) => setGoogleSearchBudget(e.target.value)}
+                                    value={google_search_budget}
+                                    defaultValue="10.00"
+                                    // className={isActiveBorder ? classes.activeBorder : ''}
+                                    // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                    startAdornment={
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    }
+                                    disableUnderline
+                                    className={classes.InputItem}
+                                  />
+                                  <InputSmallLabel>
+                                    Whats the max amount you want to spend on Google Ads
+                                  </InputSmallLabel>
+                                </Box>
+                              </Tooltip>
+                            )}
+                            {socialsToPost.includes('google display ad') && (
+                              <Tooltip
+                                title={
+                                  <div className={classes.toolTipContainer}>
+                                    <p className={classes.tooltip}>
+                                      This is the maximum amount you will spend on Google Display
+                                      Ads daily.
+                                    </p>
+                                  </div>
+                                }
+                              >
+                                <Box className={classes.dailyGoogleAdsBudgetInput}>
+                                  <InputMainLabel
+                                    className={classes.textStyle}
+                                    style={{ fontWeight: 'bold' }}
+                                  >
+                                    Daily Google Ads Budget
+                                  </InputMainLabel>
+                                  <Input
+                                    onChange={(e) => setGoogleDisplayBudget(e.target.value)}
+                                    value={google_display_budget}
+                                    defaultValue="10.00"
+                                    // className={isActiveBorder ? classes.activeBorder : ''}
+                                    // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                    startAdornment={
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    }
+                                    disableUnderline
+                                    className={classes.InputItem}
+                                  />
+                                  <InputSmallLabel>
+                                    Whats the max amount you want to spend on Google Ads
+                                  </InputSmallLabel>
+                                </Box>
+                              </Tooltip>
+                            )}
+                            <Tooltip
+                              title={
+                                <div className={classes.toolTipContainer}>
+                                  <p className={classes.tooltip}>
+                                    CPC is your maximum cost per click on a google ad.
+                                  </p>
+                                </div>
+                              }
+                            >
+                              <Box className={classes.googleAdsCPCContainer}>
+                                <InputMainLabel
+                                  className={classes.textStyle}
+                                  style={{ fontWeight: 'bold' }}
+                                >
+                                  Google Ads CPC
+                                </InputMainLabel>
+
+                                <Input
+                                  onChange={(e) => setGoogleCPC(e.target.value)}
+                                  value={google_cpc}
+                                  defaultValue="1.00"
+                                  // className={isActiveBorder ? classes.activeBorder : ''}
+                                  // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  startAdornment={
+                                    <InputAdornment position="start">$</InputAdornment>
+                                  }
+                                  disableUnderline
+                                  className={classes.InputItem}
+                                />
+                                <InputSmallLabel>
+                                  Whats the max amount you want to spend on Google Ads
+                                </InputSmallLabel>
+                              </Box>
+                            </Tooltip>
+                            <Tooltip
+                              title={
+                                <div className={classes.toolTipContainer}>
+                                  <p className={classes.tooltip}>
+                                    This is the number of days your Google Ads will run.
+                                  </p>
+                                </div>
+                              }
+                            >
+                              <Box className={classes.googleAdsCampaignLengthContainer}>
+                                <InputMainLabel
+                                  className={classes.textStyle}
+                                  style={{ fontWeight: 'bold' }}
+                                >
+                                  Google Ads Campaign Length
+                                </InputMainLabel>
+
+                                <Input
+                                  onChange={(e) => setGACampaignLength(e.target.value)}
+                                  value={ga_campaign_length}
+                                  defaultValue="7"
+                                  // className={isActiveBorder ? classes.activeBorder : ''}
+                                  // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  startAdornment={
+                                    <InputAdornment position="start">$</InputAdornment>
+                                  }
+                                  disableUnderline
+                                  className={classes.InputItem}
+                                />
+                                <InputSmallLabel>
+                                  How long should your Google Ad run (in days)
+                                </InputSmallLabel>
+                              </Box>
+                            </Tooltip>
+                          </>
+                        )}
+                        {socialsToPost.includes('facebook feed ad' || 'facebook display ad') && (
+                          <>
+                            {socialsToPost.includes('facebook feed ad') && (
+                              <Tooltip
+                                title={
+                                  <div className={classes.toolTipContainer}>
+                                    <p className={classes.tooltip}>
+                                      This is the maximum amount you will spend on Facebook Feed Ads
+                                      daily
+                                    </p>
+                                  </div>
+                                }
+                              >
+                                <Box className={classes.dailyFacebookAdsBudgetInput}>
+                                  <InputMainLabel
+                                    className={classes.textStyle}
+                                    style={{ fontWeight: 'bold' }}
+                                  >
+                                    Daily Facebook Ads Budget
+                                  </InputMainLabel>
+                                  <Input
+                                    onChange={(e) => setFacebookFeedBudget(e.target.value)}
+                                    value={facebook_feed_budget}
+                                    defaultValue="10.00"
+                                    // className={isActiveBorder ? classes.activeBorder : ''}
+                                    // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                    startAdornment={
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    }
+                                    disableUnderline
+                                    className={classes.InputItem}
+                                  />
+                                  <InputSmallLabel>
+                                    Whats the max amount you want to spend on Facebook Ads
+                                  </InputSmallLabel>
+                                </Box>
+                              </Tooltip>
+                            )}
+                            {socialsToPost.includes('facebook display ad') && (
+                              <Tooltip
+                                title={
+                                  <div className={classes.toolTipContainer}>
+                                    <p className={classes.tooltip}>
+                                      This is the maximum amount you will spend on Facebook Feed Ads
+                                      daily
+                                    </p>
+                                  </div>
+                                }
+                              >
+                                <Box className={classes.dailyFacebookAdsBudgetInput}>
+                                  <InputMainLabel
+                                    className={classes.textStyle}
+                                    style={{ fontWeight: 'bold' }}
+                                  >
+                                    Daily Facebook Ads Budget
+                                  </InputMainLabel>
+                                  <Input
+                                    onChange={(e) => setFacebookAudienceBudget(e.target.value)}
+                                    value={facebook_audience_budget}
+                                    defaultValue="10.00"
+                                    // className={isActiveBorder ? classes.activeBorder : ''}
+                                    // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                    startAdornment={
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    }
+                                    disableUnderline
+                                    className={classes.InputItem}
+                                  />
+                                  <InputSmallLabel>
+                                    Whats the max amount you want to spend on Facebook Ads
+                                  </InputSmallLabel>
+                                </Box>
+                              </Tooltip>
+                            )}
+                            {socialsToPost.includes('instagram ad') && (
+                              <Tooltip
+                                title={
+                                  <div className={classes.toolTipContainer}>
+                                    <p className={classes.tooltip}>
+                                      This is the maximum amount you will spend on Instagram Ads
+                                      daily.
+                                    </p>
+                                  </div>
+                                }
+                              >
+                                <Box className={classes.dailyFacebookAdsBudgetInput}>
+                                  <InputMainLabel
+                                    className={classes.textStyle}
+                                    style={{ fontWeight: 'bold' }}
+                                  >
+                                    Daily Facebook Ads Budget
+                                  </InputMainLabel>
+                                  <Input
+                                    onChange={(e) => setInstagramBudget(e.target.value)}
+                                    value={instagram_budget}
+                                    defaultValue="10.00"
+                                    // className={isActiveBorder ? classes.activeBorder : ''}
+                                    // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                    startAdornment={
+                                      <InputAdornment position="start">$</InputAdornment>
+                                    }
+                                    disableUnderline
+                                    className={classes.InputItem}
+                                  />
+                                  <InputSmallLabel>
+                                    Whats the max amount you want to spend on Facebook Ads
+                                  </InputSmallLabel>
+                                </Box>
+                              </Tooltip>
+                            )}
+                            <Tooltip
+                              title={
+                                <div className={classes.toolTipContainer}>
+                                  <p className={classes.tooltip}>
+                                    This is the number of days your Facebook and Instagram Ads will
+                                    run
+                                  </p>
+                                </div>
+                              }
+                            >
+                              <Box className={classes.facebookAdsCampaignLength}>
+                                <InputMainLabel
+                                  className={classes.textStyle}
+                                  style={{ fontWeight: 'bold' }}
+                                >
+                                  Facebook Ads Campaign Length
+                                </InputMainLabel>
+                                <Input
+                                  onChange={(e) => setFBCampaignLength(e.target.value)}
+                                  value={fb_campaign_length}
+                                  defaultValue="7"
+                                  // className={isActiveBorder ? classes.activeBorder : ''}
+                                  // style={{ border: '1px solid transparent', transition: '0.7s' }}
+                                  disableUnderline
+                                  className={classes.InputItem}
+                                />
+                                <InputSmallLabel>
+                                  How long should your Facebook Ad run (in days)
+                                </InputSmallLabel>
+                              </Box>
+                            </Tooltip>
+                          </>
+                        )}
+                      </>
+                    )}
+                    <Box>
+                      <InputMainLabel
+                        style={{
+                          textDecoration: 'underline',
+                          fontStyle: 'italic',
+                          color: '#0b4d93',
+                          textDecoration: 'underline',
+                          fontWeight: 'bold',
+                          fontSize: '1.25rem',
+                        }}
+                      >
+                        Advanced Options
+                      </InputMainLabel>
+                      <RadioGroup
+                        aria-label="distance"
+                        name="distance"
+                        value={budgetOption}
+                        onChange={(e) => setOption(e.target.value)}
+                      >
+                        <FormControlLabel value="automatic" control={<Radio />} label="Automatic" />
+                        <FormControlLabel
+                          value="advanced"
+                          control={<Radio />}
+                          label="Advanced Options"
+                        />
+                      </RadioGroup>
+                    </Box>
+                  </div>
+                </div>
+                {/* <img src={alert} className="position-absolute" style={{ bottom: 0 }} /> */}
+              </StepperWrapper>
+            </div>
           </Box>
         </ErrorHandler>
       )}
