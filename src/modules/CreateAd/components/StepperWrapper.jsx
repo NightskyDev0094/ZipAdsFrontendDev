@@ -73,7 +73,7 @@ export default function StepperWrapper({ pageHeading, children }) {
   const FAKE_CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Box className={classes.PageVessel}>
         <button style={{ left: 0, top: 10 }} className={classes.ArrowButton}>
           <ArrowBackIcon className={classes.ArrowIcon} />
