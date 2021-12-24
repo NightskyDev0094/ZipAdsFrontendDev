@@ -5,7 +5,7 @@ const BlueTecDashBoardHeader = () => (
   <>
     <div id="top" />
     {}
-    <section id="subheader" data-bgimage="url(images/background/5.png) bottom">
+    <section style={{padding: '10px 0 0 0'}}>
       <div className="center-y relative text-center" data-scroll-speed={4}>
         <div className="container">
           <div className="row">
@@ -18,8 +18,8 @@ const BlueTecDashBoardHeader = () => (
                 name="myForm"
               >
                 <div className="col-md-12 text-center">
-                  <h1 style={{fontFamily: 'SilkaMedium'}}>DashBoard</h1>
-                  <p style={{fontFamily: 'SilkaLight'}}>Your account information</p>
+                  <h1 style={{fontFamily: 'SilkaMedium', color: '#2f68a3'}}>Dashboard</h1>
+                  {/* <p style={{fontFamily: 'SilkaLight'}}>Your account information</p> */}
                 </div>
                 <div className="clearfix" />
               </form>

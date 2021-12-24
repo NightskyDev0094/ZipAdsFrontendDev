@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { connect } from 'react-redux';
 import {
   Box,
   Grid,
@@ -211,6 +212,7 @@ const BudgetPage = ({
   setFBCampaignLength,
   allCampaignLength,
   setAllCampaignLength,
+  currentCampaign,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -220,7 +222,8 @@ const BudgetPage = ({
     isError: false,
   });
   const [isActiveBorder, setIsActiveBorder] = useState(false);
-
+  const [objective, setObjective] = useState(currentCampaign.objective || 'Conversions');
+  console.log(currentCampaign);
   const nextClick = () => {
     if (hasBudgetStepBeenCompleted === 'STEP_COMPLETED') {
       setIsResubmitModalOpen(true);
@@ -652,7 +655,7 @@ const BudgetPage = ({
                       >
                         Advanced Options
                       </InputMainLabel>
-                      <RadioGroup
+                      {/* <RadioGroup
                         aria-label="distance"
                         name="distance"
                         value={budgetOption}
@@ -663,6 +666,54 @@ const BudgetPage = ({
                           value="advanced"
                           control={<Radio />}
                           label="Advanced Options"
+                        />
+                      </RadioGroup> */}
+                    </Box>
+                    <Box className={classes.dailyFacebookAdsBudgetInput}>
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        What is your main advertising objective for your business?
+                      </InputMainLabel>
+                      <RadioGroup
+                        aria-label="distance"
+                        name="distance"
+                        value={objective}
+                        onChange={(e) => setObjective(e.target.value)}
+                      >
+                        <FormControlLabel
+                          value="Conversions"
+                          control={<Radio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Generate sales or signups
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="Brand Awareness"
+                          control={<Radio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Make people aware of my business
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="Store Traffic"
+                          control={<Radio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Increase visits to my business's physical location
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="Traffic"
+                          control={<Radio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Generate web traffic
+                            </Typography>
+                          }
                         />
                       </RadioGroup>
                     </Box>
@@ -678,4 +729,8 @@ const BudgetPage = ({
   );
 };
 
-export default BudgetPage;
+const mapStateToProps = (state) => ({
+  currentCampaign: state.campaigns?.current,
+});
+
+export default connect(mapStateToProps, {})(BudgetPage);
