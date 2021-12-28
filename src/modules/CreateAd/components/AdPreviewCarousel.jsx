@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ForwardIcon from '@material-ui/icons/Forward';
@@ -88,6 +88,11 @@ const useStyles = makeStyles({
 function AdPreviewCarousel({ chosenSocialNetworks }) {
   const classes = useStyles();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+
+  // Reset if the length of chosenSocialNetworks changes, fix index error
+  useEffect(() => {
+    setCurrentStepIndex(0);
+  }, [chosenSocialNetworks]);
 
   // helper function for removing the word ad from any SOCIAL_NETWORK_TITLE
   const removeAdFromTitle = (title) => {

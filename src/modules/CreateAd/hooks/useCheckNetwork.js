@@ -12,7 +12,8 @@ export default function useCheckNetwork(
   googleToken,
   facebookToken,
   getGoogleAdAccounts,
-  getFbAdAccounts
+  getFbAdAccounts,
+  getFBPageData
 ) {
   const [error, setError] = useState(null);
 

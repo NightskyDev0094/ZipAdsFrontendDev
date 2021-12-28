@@ -60,22 +60,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CampaignForm({ formInfo, setFormInfo }) {
+export default function CampaignForm({ formInfo }) {
   const classes = useStyles();
 
-  const handleFormChange = (e) => setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
-  const handleClearForm = (e) => {
-    setFormInfo({
-      ...formInfo,
-      campaign_name: '',
-      headline: '',
-      headline2: '',
-      ad_description: '',
-      ad_link: '',
-      ad_link: '',
-      cta: 'Blank',
-      cta2: 'Blank',
-    });
+  const handleClearForm = () => {
+    formInfo.setCampaignName('');
+    formInfo.setHeadline('');
+    formInfo.setHeadline2('');
+    formInfo.setAdDescription('');
+    formInfo.setAdLink('');
+    formInfo.setCta('Blank');
+    formInfo.setCta2('Blank');
   };
 
   return (
@@ -87,8 +82,8 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         placeholder="Campaign Name"
         name="campaign_name"
         id="campaign_name"
-        value={formInfo.campaign_name}
-        onChange={handleFormChange}
+        value={formInfo.campaignName}
+        onChange={(e) => formInfo.setCampaignName(e.target.value)}
       />
       <label className={classes.InputLabel} htmlFor="campaign_name">
         The name of your campaign (seen only by you)
@@ -100,7 +95,7 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         name="headline"
         id="headline"
         value={formInfo.headline}
-        onChange={handleFormChange}
+        onChange={(e) => formInfo.setHeadline(e.target.value)}
       />
       <label className={classes.InputLabel} htmlFor="headline">
         Your Headline
@@ -112,7 +107,7 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         name="headline2"
         id="headline2"
         value={formInfo.headline2}
-        onChange={handleFormChange}
+        onChange={(e) => formInfo.setHeadline2(e.target.value)}
       />
       <label className={classes.InputLabel} htmlFor="headline2">
         Your Sub-Headline (Does not appear for ads 2, 5, and 6)
@@ -126,8 +121,8 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         maxLength={160}
         name="ad_description"
         id="ad_description"
-        value={formInfo.ad_description}
-        onChange={handleFormChange}
+        value={formInfo.adDescription}
+        onChange={(e) => formInfo.setAdDescription(e.target.value)}
       />
       <label className={classes.InputLabel} htmlFor="ad_description">
         One or two sentences describing your business and why people should engage with it.
@@ -138,8 +133,8 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         placeholder="Web Address"
         name="ad_link"
         id="ad_link"
-        value={formInfo.ad_link}
-        onChange={handleFormChange}
+        value={formInfo.adLink}
+        onChange={(e) => formInfo.setAdLink(e.target.value)}
       />
       <label className={classes.InputLabel} htmlFor="ad_link">
         The URL that your ad will link to. Enter in the format: https://www.example.com
@@ -157,7 +152,7 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         name="cta"
         id="cta"
         value={formInfo.cta}
-        onChange={handleFormChange}
+        onChange={(e) => formInfo.setCta(e.target.value)}
       >
         <option>Blank</option>
         <option>Apply Now</option>
@@ -194,7 +189,7 @@ export default function CampaignForm({ formInfo, setFormInfo }) {
         name="cta2"
         id="cta2"
         value={formInfo.cta2}
-        onChange={handleFormChange}
+        onChange={(e) => formInfo.setCta2(e.target.value)}
       >
         <option>Blank</option>
         <option>Apply Now</option>

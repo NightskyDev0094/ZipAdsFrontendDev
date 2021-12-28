@@ -8,7 +8,7 @@ import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
 import { completeStep } from '../../../actions/step.actions';
-import { SOCIAL_NETWORK_TITLES } from '../pages/newPages/ConnectSocialPage';
+import { SOCIAL_NETWORK_TITLES } from '../hooks/useCampaignForm';
 import { useHistory } from 'react-router';
 
 const DEFAULT_IMAGE =

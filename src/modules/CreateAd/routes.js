@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import CreateAdMainPage from "./pages";
 import SelectCampaignContainer from './containers/SelectCampaignContainer';
-import CreateCampaignContainer from './containers/CreateCampaignContainer';
+// import CreateCampaignContainer from './containers/CreateCampaignContainer';
+import CreateCampaignContainer from './containers/NewCreateCampaignContainer';
 import ConnectSocialContainer from './containers/ConnectSocialContainer';
 import TargetingContainer from './containers/TargetingContainer';
 import ExpandedTargetingContainer from './containers/ExpandedTargetingContainer';
