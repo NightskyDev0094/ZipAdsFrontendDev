@@ -92,7 +92,7 @@ const useStyles = makeStyles({
  * @param {object} currentCampaign - the current campaign in the Ad Creation WorkFlow
  * @param {number} adSlideNumber - the slide number\
  * @param {string} rectangleImgPreviewUrl - image url for fb feed ad preview
- * @param {string} setSquareImgPreviewUrl - image url for instagram ad
+ * @param {string} squareImgPreviewUrl - image url for instagram ad
  * @param {number} fbFeedNum
  * @param {number} fbAudienceNum
  * @param {number} instagramNum
@@ -106,7 +106,7 @@ const AdPreviewDisplays = ({
   currentCampaign,
   adSlideNumber,
   rectangleImgPreviewUrl,
-  setSquareImgPreviewUrl,
+  squareImgPreviewUrl,
   styles,
   fbFeedNum,
   fbAudienceNum,
@@ -141,7 +141,7 @@ const AdPreviewDisplays = ({
           <AdDisplayTitle classes={classes} name={'Facebook Audience'} />
           <FacebookAudienceDisplay
             currentCampaign={currentCampaign}
-            previewUrl={setSquareImgPreviewUrl}
+            previewUrl={squareImgPreviewUrl}
             {...props}
           />
         </Box>
@@ -151,7 +151,7 @@ const AdPreviewDisplays = ({
           <AdDisplayTitle classes={classes} name={'Instagram'} />
           <InstagramSocialDisplay
             currentCampaign={currentCampaign}
-            previewUrl={setSquareImgPreviewUrl}
+            previewUrl={squareImgPreviewUrl}
             {...props}
           />
         </Box>
@@ -189,7 +189,7 @@ const AdPreviewDisplays = ({
           <AdDisplayTitle classes={classes} name={'Google Ad Network Square Image'} />
           <GoogleAdNetworkDisplay
             currentCampaign={currentCampaign}
-            previewUrl={setSquareImgPreviewUrl}
+            previewUrl={squareImgPreviewUrl}
             {...props}
           />
         </Box>

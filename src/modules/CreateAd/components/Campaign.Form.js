@@ -176,11 +176,8 @@ const FormContent1 = ({
   //   imgOption,
   //   setImgOption,
   // });
-  const [fbFeedImg, setFBFeedImg] = useState();
-  const [fbAudienceImg, setFBAudienceImg] = useState();
-  const [instagramImg, setInstagramImg] = useState();
-  const [gaDisplayImg, setGADisplayImg] = useState();
-  const [gaSquareDisplayImg, setGASquareDisplayImg] = useState();
+  const [squareImg, setSquareImg] = useState();
+  const [rectangleImg, setRectangleImg] = useState();
 
   // const getRandom = (term) => {
   //   // these need to be set to new image library from aws
@@ -209,20 +206,11 @@ const FormContent1 = ({
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
   };
 
-  const updateFBFeedImage = (image) => {
-    setFormInfo({ ...formInfo, fb_feed_img: image });
+  const updateSquareImage = (image) => {
+    setFormInfo({ ...formInfo, square_img_upload: image });
   };
-  const updateInstagramImage = (image) => {
-    setFormInfo({ ...formInfo, instagram_img: image });
-  };
-  const updateFBAudienceImage = (image) => {
-    setFormInfo({ ...formInfo, fb_audience_img: image });
-  };
-  const updateGADisplayImage = (image) => {
-    setFormInfo({ ...formInfo, ga_display_img: image });
-  };
-  const updateGASquareDisplayImage = (image) => {
-    setFormInfo({ ...formInfo, ga_square_display_img: image });
+  const updateRectangleImage = (image) => {
+    setFormInfo({ ...formInfo, rectangle_img_upload: image });
   };
   const updateImage = (image) => {
     // setFormInfo({ ...formInfo, file_url: image });
@@ -372,7 +360,7 @@ const FormContent1 = ({
         <div className={classes.inputDescription}>
           Alternate text that will appear on a second clickable button
         </div>
-        {/* <Box style={{ padding: '40px 0px' }}>
+        <Box style={{ padding: '40px 0px' }}>
           <InputMainLabel>How do you want to select an image?</InputMainLabel>
           <RadioGroup
             aria-label="distance"
@@ -393,11 +381,12 @@ const FormContent1 = ({
               label="Upload Custom Image"
             />
           </RadioGroup>
-        </Box> */}
+        </Box>
         <Box marginTop="2rem">
-          {/* {imgOption === 'library' && (
+          {imgOption === 'library' && (
             <>
-              <InputMainLabel>Pictures & Videos</InputMainLabel>
+              <InputMainLabel>Your Ads will use the default images for your template.</InputMainLabel>
+              {/* <InputMainLabel>Pictures & Videos</InputMainLabel>
               <Box className={classes.picturesAndVideoContainer} display="flex">
                 <ThumbnailImage
                   file={DEFAULT_IMAGE}
@@ -469,47 +458,31 @@ const FormContent1 = ({
                 >
                   ☕️
                 </span>
-              </Box>
+              </Box> */}
             </>
-          )} */}
+          )}
           {/* FB Feed Cropper */}
-          {/* {imgOption === 'custom' && ( */}
+          {imgOption === 'custom' && (
             <Box marginTop="1rem">
               <Cropper
                 setError={setError}
                 handleUpdateImage={updateImage}
                 setFormInfo={setFormInfo}
                 formInfo={formInfo}
-                imgData={fbFeedImg}
-                setImgData={setFBFeedImg}
-                fbAudienceImg={fbAudienceImg}
-                setFBAudienceImg={setFBAudienceImg}
-                instagramImg={instagramImg}
-                setInstagramImg={setInstagramImg}
-                gaDisplayImg={gaDisplayImg}
-                setGADisplayImg={setGADisplayImg}
-                gaSquareDisplayImg={gaSquareDisplayImg}
-                setGASquareDisplayImg={setGASquareDisplayImg}
-                fbFeedImg={fbFeedImg}
-                setFBFeedImg={setFBFeedImg}
-                setFBFeedPreviewUrl={setFBFeedPreviewUrl}
-                fbFeedPreviewUrl={fbFeedPreviewUrl}
-                setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
-                fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-                setInstagramPreviewUrl={setInstagramPreviewUrl}
-                instagramPreviewUrl={instagramPreviewUrl}
-                setGADisplayPreviewUrl={setGADisplayPreviewUrl}
-                setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
-                gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-                updateFBFeedImage={updateFBFeedImage}
-                updateInstagramImage={updateInstagramImage}
-                updateFBAudienceImage={updateFBAudienceImage}
-                updateGADisplayImage={updateGADisplayImage}
-                updateGASquareDisplayImage={updateGASquareDisplayImage}
+                rectangleImg={rectangleImg}
+                setRectangleImg={setRectangleImg}
+                squareImg={squareImg}
+                setSquareImg={setSquareImg}
+                setSquareImgPreviewUrl={setSquareImgPreviewUrl}
+                squareImgPreviewUrl={squareImgPreviewUrl}
+                setRectangleImgPreviewUrl={setRectangleImgPreviewUrl}
+                rectangleImgPreviewUrl={rectangleImgPreviewUrl}
+                updateSquareImage={updateSquareImage}
+                updateRectangleImage={updateRectangleImage}
                 {...props}
               />
             </Box>
-          {/* )} */}
+          )}
         </Box>
       </Box>
     </>

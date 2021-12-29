@@ -1,9 +1,6 @@
-// 20211217171546
-// https://raw.githubusercontent.com/twheelertech/ZipAdsFrontendDev/master/package.json?token=AKDV7TYXBG47DXH5D5JM25LBXUNF2
-
 {
   "name": "reactapp",
-  "homepage": ".",
+  "homepage": "https://zipads.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

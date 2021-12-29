@@ -106,66 +106,30 @@ const CropperCarousel = ({
   currentCampaign,
   adSlideNumber,
   styles,
-  setFBFeedPreviewUrl,
-  updateFBFeedImage,
-  fbFeedUpImg,
-  fbAudienceUpImg,
-  instagramUpImg,
-  gaDisplayUpImg,
-  gaSquareDisplayUpImg,
-  setFbFeedUpImg,
-  setFbAudienceUpImg,
-  setInstagramUpImg,
-  setGaDisplayUpImg,
-  setGaSquareDisplayUpImg,
-  fbFeedImageName,
-  fbAudienceImageName,
-  instagramImageName,
-  gaDisplayImageName,
-  gaSquareDisplayImageName,
-  setFbFeedImageName,
-  setFbAudienceImageName,
-  setInstagramImageName,
-  setGaDisplayImageName,
-  setGaSquareDisplayImageName,
-  fbFeedImageFile,
-  setFBFeedImageFile,
-  fbFeedCrop,
-  setFBFeedCrop,
-  fbFeedText,
-  setFBAudiencePreviewUrl,
-  updateFBAudienceImage,
-  fbAudienceImageFile,
-  setFBAudienceImageFile,
-  fbAudienceCrop,
-  setFBAudienceCrop,
-  fbAudienceText,
-  setInstagramPreviewUrl,
-  updateInstagramImage,
-  instagramImageFile,
-  setInstagramImageFile,
-  instagramCrop,
-  setInstagramCrop,
-  instagramText,
-  setGADisplayPreviewUrl,
-  updateGADisplayImage,
-  gaDisplayImageFile,
-  setGADisplayImageFile,
-  gaDisplayCrop,
-  setGADisplayCrop,
-  gaDisplayText,
-  setGASquareDisplayPreviewUrl,
-  updateGASquareDisplayImage,
-  gaSquareDisplayImageFile,
-  setGASquareDisplayImageFile,
-  gaSquareDisplayCrop,
-  setGASquareDisplayCrop,
-  gaSquareDisplayText,
-  fbFeedPreviewUrl,
-  fbAudiencePreviewUrl,
-  instagramPreviewUrl,
-  gaDisplayPreviewUrl,
-  gaSquareDisplayPreviewUrl,
+  setSquareImgPreviewUrl,
+  updateSquareImage,
+  squareUpImg,
+  rectangleUpImg,
+  setSquareUpImg,
+  setRectangleUpImg,
+  rectangleImgName,
+  squareImgName,
+  setRectangleImgName,
+  setSquareImgName,
+  rectangleImgFile,
+  setRectangleImgFile,
+  rectangleCrop,
+  setRectangleCrop,
+  rectangleText,
+  rectangleImgPreviewUrl,
+  setRectangleImgPreviewUrl,
+  updateRectangleImage,
+  squareImgFile,
+  setSquareImgFile,
+  squareCrop,
+  setSquareCrop,
+  squareText,
+  squareImgPreviewUrl,
   fbFeedNum,
   fbAudienceNum,
   instagramNum,
@@ -196,7 +160,7 @@ const CropperCarousel = ({
         style={styles?.connectSocialDisplayContainer}
         className={classes.connectSocialDisplayContainer}
       >
-        {adSlideNumber === fbFeedNum && (
+        {(adSlideNumber === fbFeedNum || adSlideNumber === instagramNum || adSlideNumber === gaDisplayNum) && (
           <Carousel
             style={{ ...styles?.socialMenuContainer }}
             className={classes.socialMenuContainer}
@@ -220,25 +184,27 @@ const CropperCarousel = ({
             }}
           >
             <CropperWindow
-              setPreviewUrl={setFBFeedPreviewUrl}
-              previewUrl={fbFeedPreviewUrl}
-              handleUpdateImage={updateFBFeedImage}
-              upImg={fbFeedUpImg}
-              setUpImg={setFbFeedUpImg}
-              setImageName={setFbFeedImageName}
-              imageName={fbFeedImageName}
-              imageFile={fbFeedImageFile}
-              setImageFile={setFBFeedImageFile}
-              crop={fbFeedCrop}
-              setCrop={setFBFeedCrop}
-              labelText={fbFeedText}
+              
+              setPreviewUrl={setRectangleImgPreviewUrl}
+              previewUrl={rectangleImgPreviewUrl}
+              handleUpdateImage={updateRectangleImage}
+              upImg={rectangleUpImg}
+              setUpImg={setRectangleUpImg}
+              
+              setImageName={setRectangleImgName}
+              imageName={rectangleImgName}
+              imageFile={rectangleImgFile}
+              setImageFile={setRectangleImgFile}
+              crop={rectangleCrop}
+              setCrop={setRectangleCrop}
+              labelText={rectangleText}
               cropType={'fbFeed_'}
-              imgType={'Facebook Feed'}
+              imgType={'Rectangle Image'}
               setError={setError}
             />
           </Carousel>
         )}
-        {adSlideNumber === fbAudienceNum && (
+        {(adSlideNumber === fbAudienceNum || adSlideNumber === gaSquareDisplayNum) && (
           <Carousel
             style={{ ...styles?.socialMenuContainer }}
             className={classes.socialMenuContainer}
@@ -262,66 +228,25 @@ const CropperCarousel = ({
             }}
           >
             <CropperWindow
-              setPreviewUrl={setFBAudiencePreviewUrl}
-              previewUrl={fbAudiencePreviewUrl}
-              handleUpdateImage={updateFBAudienceImage}
-              upImg={fbAudienceUpImg}
-              setUpImg={setFbAudienceUpImg}
-              setImageName={setFbAudienceImageName}
-              imageName={fbAudienceImageName}
-              imageFile={fbAudienceImageFile}
-              setImageFile={setFBAudienceImageFile}
-              crop={fbAudienceCrop}
-              setCrop={setFBAudienceCrop}
-              labelText={fbAudienceText}
-              cropType={'fbAudience_'}
-              imgType={'Facebook Audience'}
+              setPreviewUrl={setSquareImgPreviewUrl}
+              previewUrl={squareImgPreviewUrl}
+              handleUpdateImage={updateSquareImage}
+              upImg={squareUpImg}
+              setUpImg={setSquareUpImg}
+              setImageName={setSquareImgName}
+              imageName={squareImgName}
+              imageFile={squareImgFile}
+              setImageFile={setSquareImgFile}
+              crop={squareCrop}
+              setCrop={setSquareCrop}
+              labelText={squareText}
+              cropType={'square_'}
+              imgType={'Square'}
               setError={setError}
             />
           </Carousel>
         )}
-        {adSlideNumber === instagramNum && (
-          <Carousel
-            style={{ ...styles?.socialMenuContainer }}
-            className={classes.socialMenuContainer}
-            navButtonsAlwaysInvisible={true} //disable inner nav buttons
-            NextIcon={<ArrowRightIcon className={classes.googleInnerIcons} />}
-            PrevIcon={<ArrowLeftIcon className={classes.googleInnerIcons} />}
-            IndicatorIcon={<FiberManualRecordIcon fontSize="medium" />}
-            autoPlay={false}
-            swipe={true}
-            indicatorContainerProps={{
-              style: {
-                height: '30px',
-                marginTop: '30px',
-              },
-              ...styles.indicatorContainerProps,
-            }}
-            navButtonsProps={{
-              // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
-              ...navButtonProps,
-              ...styles.navButtonProps,
-            }}
-          >
-            <CropperWindow
-              setPreviewUrl={setInstagramPreviewUrl}
-              previewUrl={instagramPreviewUrl}
-              handleUpdateImage={updateInstagramImage}
-              upImg={instagramUpImg}
-              setUpImg={setInstagramUpImg}
-              setImageName={setInstagramImageName}
-              imageName={instagramImageName}
-              imageFile={instagramImageFile}
-              setImageFile={setInstagramImageFile}
-              crop={instagramCrop}
-              setCrop={setInstagramCrop}
-              labelText={instagramText}
-              cropType={'instagram_'}
-              imgType={'Instagram'}
-              setError={setError}
-            />
-          </Carousel>
-        )}
+        
         {adSlideNumber === gaSearchNum && (
           <Carousel
             style={{ ...styles?.socialMenuContainer }}
@@ -346,90 +271,6 @@ const CropperCarousel = ({
             }}
           >
             <h2>No image needed for Google search Ads.</h2>
-          </Carousel>
-        )}
-        {adSlideNumber === gaDisplayNum && (
-          <Carousel
-            style={{ ...styles?.socialMenuContainer }}
-            className={classes.socialMenuContainer}
-            navButtonsAlwaysInvisible={true} //disable inner nav buttons
-            NextIcon={<ArrowRightIcon className={classes.googleInnerIcons} />}
-            PrevIcon={<ArrowLeftIcon className={classes.googleInnerIcons} />}
-            IndicatorIcon={<FiberManualRecordIcon fontSize="medium" />}
-            autoPlay={false}
-            swipe={true}
-            indicatorContainerProps={{
-              style: {
-                height: '30px',
-                marginTop: '30px',
-              },
-              ...styles.indicatorContainerProps,
-            }}
-            navButtonsProps={{
-              // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
-              ...navButtonProps,
-              ...styles.navButtonProps,
-            }}
-          >
-            <CropperWindow
-              setPreviewUrl={setGADisplayPreviewUrl}
-              previewUrl={gaDisplayPreviewUrl}
-              handleUpdateImage={updateGADisplayImage}
-              upImg={gaDisplayUpImg}
-              setUpImg={setGaDisplayUpImg}
-              setImageName={setGaDisplayImageName}
-              imageName={gaDisplayImageName}
-              imageFile={gaDisplayImageFile}
-              setImageFile={setGADisplayImageFile}
-              crop={gaDisplayCrop}
-              setCrop={setGADisplayCrop}
-              labelText={gaDisplayText}
-              cropType={'gaDisplay_'}
-              imgType={'Google Display'}
-              setError={setError}
-            />
-          </Carousel>
-        )}
-        {adSlideNumber === gaSquareDisplayNum && (
-          <Carousel
-            style={{ ...styles?.socialMenuContainer }}
-            className={classes.socialMenuContainer}
-            navButtonsAlwaysInvisible={true} //disable inner nav buttons
-            NextIcon={<ArrowRightIcon className={classes.googleInnerIcons} />}
-            PrevIcon={<ArrowLeftIcon className={classes.googleInnerIcons} />}
-            IndicatorIcon={<FiberManualRecordIcon fontSize="medium" />}
-            autoPlay={false}
-            swipe={true}
-            indicatorContainerProps={{
-              style: {
-                height: '30px',
-                marginTop: '30px',
-              },
-              ...styles.indicatorContainerProps,
-            }}
-            navButtonsProps={{
-              // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
-              ...navButtonProps,
-              ...styles.navButtonProps,
-            }}
-          >
-            <CropperWindow
-              setPreviewUrl={setGASquareDisplayPreviewUrl}
-              previewUrl={gaSquareDisplayPreviewUrl}
-              handleUpdateImage={updateGASquareDisplayImage}
-              upImg={gaSquareDisplayUpImg}
-              setUpImg={setGaSquareDisplayUpImg}
-              setImageName={setGaSquareDisplayImageName}
-              imageName={gaSquareDisplayImageName}
-              imageFile={gaSquareDisplayImageFile}
-              setImageFile={setGASquareDisplayImageFile}
-              crop={gaSquareDisplayCrop}
-              setCrop={setGASquareDisplayCrop}
-              labelText={gaSquareDisplayText}
-              cropType={'gaSquareDisplay_'}
-              imgType={'Google Square Display'}
-              setError={setError}
-            />
           </Carousel>
         )}
       </div>

@@ -60,9 +60,9 @@ const CreateCampaignContainer = ({
   const [rectangleImgName, setRectangleImgName] = useState(null);
   const [squareImgName, setSquareImgName] = useState(null);
   const [rectangleImgFile, setRectangleImgFile] = useState(null);
-  const [squareImgFile, setSquareImageFile] = useState(null);
-  const [rectangleImg, setRectangleImg] = useState();
-  const [squareImg, setSquareImg] = useState();
+  const [squareImgFile, setSquareImgFile] = useState(null);
+  const [rectangleUpImg, setRectangleUpImg] = useState();
+  const [squareUpImg, setSquareUpImg] = useState();
   // preview urls
   const [squareImgPreviewUrl, setSquareImgPreviewUrl] = useState('');
   const [rectangleImgPreviewUrl, setRectangleImgPreviewUrl] = useState('');
@@ -146,13 +146,13 @@ const CreateCampaignContainer = ({
           setFormInfo({ ...formInfo, [imageType]: jpgFile });
           setRectangleImgName(jpgFile.name);
           setRectangleImgFile(jpgFile);
-          setImgPreview(jpgFile, setRectangleImg, setRectangleImgPreviewUrl);
+          setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
         }
         if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
           setFormInfo({ ...formInfo, [imageType]: jpgFile });
           setSquareImgName(jpgFile.name);
-          setSquareImageFile(jpgFile);
-          setImgPreview(jpgFile, setSquareImg, setSquareImgPreviewUrl);
+          setSquareImgFile(jpgFile);
+          setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
         }
         return jpgFile;
       });
@@ -224,11 +224,10 @@ const CreateCampaignContainer = ({
       gaDisplayNum={gaDisplayNum}
       gaSquareDisplayNum={gaSquareDisplayNum}
       adSlideLength={adSlideLength}
-      rectangleImg={rectangleImg}
-      squareImg={squareImg}
-      setRectangleImg={setRectangleImg}
-      setSquareImg={setSquareImg}
-      setInstagramUpImg={setInstagramUpImg}
+      rectangleUpImg={rectangleUpImg}
+      squareUpImg={squareUpImg}
+      setRectangleUpImg={setRectangleUpImg}
+      setSquareUpImg={setSquareUpImg}
       rectangleImgName={rectangleImgName}
       squareImgName={squareImgName}
       setRectangleImgName={setRectangleImgName}

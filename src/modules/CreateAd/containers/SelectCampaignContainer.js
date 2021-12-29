@@ -420,7 +420,6 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       campaignType={campaignType}
       updateCampaign={updateCampaign}
       currentCampaign={currentCampaign}
-      setImgLoading={setImgLoading}
       recommendedTemplate={recommendedTemplate}
     />
   );
