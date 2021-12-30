@@ -18,29 +18,29 @@ import { CAMPAIGN_DEFINITION } from '../shared_logic/definitions/campaign';
 import ThumbnailImage from './Campaign.ThumbnailImage';
 import Cropper from './Campaign.Cropper';
 
-const STORE_IMG =
-  'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80';
+// const STORE_IMG =
+//   'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80';
 
-const COFFEE_IMG =
-  'https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
+// const COFFEE_IMG =
+//   'https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
 
-const CLOTHES_IMG =
-  'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
+// const CLOTHES_IMG =
+//   'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
 
-const DEFAULT_IMAGE =
-  'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
+// const DEFAULT_IMAGE =
+//   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
-const THANK_YOU_LOGO =
-  'https://images.unsplash.com/photo-1503980599186-9cc36eda351a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80';
+// const THANK_YOU_LOGO =
+//   'https://images.unsplash.com/photo-1503980599186-9cc36eda351a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80';
 
-const BEER_LOGO =
-  'https://images.unsplash.com/photo-1558642891-54be180ea339?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+// const BEER_LOGO =
+//   'https://images.unsplash.com/photo-1558642891-54be180ea339?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
-const FOOD_ONE =
-  'https://images.unsplash.com/photo-1529042410759-befb1204b468?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80';
+// const FOOD_ONE =
+//   'https://images.unsplash.com/photo-1529042410759-befb1204b468?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80';
 
-const FOOD_TWO =
-  'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+// const FOOD_TWO =
+//   'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
 const isValidHttpUrl = (string) => {
   let url;
@@ -145,82 +145,79 @@ const FormContent1 = ({
   handleUpdateForm,
   currentCampaign,
   urlVal,
-  setFBFeedPreviewUrl,
-  fbFeedPreviewUrl,
-  setFBAudiencePreviewUrl,
-  fbAudiencePreviewUrl,
-  setInstagramPreviewUrl,
-  instagramPreviewUrl,
-  setGADisplayPreviewUrl,
-  setGASquareDisplayPreviewUrl,
-  gaDisplayPreviewUrl,
-  gaDisplaySquarePreviewUrl,
+  setSquareImgPreviewUrl,
+  squareImgPreviewUrl,
+  setRectangleImgPreviewUrl,
+  rectangleImgPreviewUrl,
   imgOption,
   setImgOption,
   ...props
 }) => {
   const classes = useStyles();
-  const [randomTerm, setRandomTerm] = React.useState('');
-  const [previewUrl, setPreviewUrl] = useState();
-  const [fbFeedImg, setFBFeedImg] = useState();
-  const [fbAudienceImg, setFBAudienceImg] = useState();
-  const [instagramImg, setInstagramImg] = useState();
-  const [gaDisplayImg, setGADisplayImg] = useState();
-  const [gaSquareDisplayImg, setGASquareDisplayImg] = useState();
+  // const [randomTerm, setRandomTerm] = React.useState('');
+  // console.log({
+  //   formInfo,
+  //   setFormInfo,
+  //   clicked,
+  //   setError,
+  //   handleUpdateForm,
+  //   currentCampaign,
+  //   urlVal,
+  //   setFBFeedPreviewUrl,
+  //   fbFeedPreviewUrl,
+  //   setFBAudiencePreviewUrl,
+  //   fbAudiencePreviewUrl,
+  //   setInstagramPreviewUrl,
+  //   instagramPreviewUrl,
+  //   setGADisplayPreviewUrl,
+  //   setGASquareDisplayPreviewUrl,
+  //   gaDisplayPreviewUrl,
+  //   gaDisplaySquarePreviewUrl,
+  //   imgOption,
+  //   setImgOption,
+  // });
+  const [squareImg, setSquareImg] = useState();
+  const [rectangleImg, setRectangleImg] = useState();
 
-  const getRandom = (term) => {
-    const collections = {
-      restaurants:
-        'https://images.unsplash.com/photo-1541795795328-f073b763494e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-      pets: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      sports:
-        'https://images.unsplash.com/photo-1560012057-4372e14c5085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      bar: 'https://images.unsplash.com/photo-1505104805083-91fe4b9e14df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      clothing:
-        'https://images.unsplash.com/photo-1524275461690-a79bfeaf1f3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      coffee:
-        'https://images.unsplash.com/photo-1500353391678-d7b57979d6d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-    };
-    setRandomTerm(term);
-    setFormInfo({ ...formInfo, file_url: collections[term] });
-    setFBFeedPreviewUrl(collections[term]);
-    setFBAudiencePreviewUrl(collections[term]);
-    setInstagramPreviewUrl(collections[term]);
-    setGADisplayPreviewUrl(collections[term]);
-    setGASquareDisplayPreviewUrl(collections[term]);
-  };
+  // const getRandom = (term) => {
+  //   // these need to be set to new image library from aws
+  //   const collections = {
+  //     restaurants:
+  //       'https://images.unsplash.com/photo-1541795795328-f073b763494e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+  //     pets: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+  //     sports:
+  //       'https://images.unsplash.com/photo-1560012057-4372e14c5085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+  //     bar: 'https://images.unsplash.com/photo-1505104805083-91fe4b9e14df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+  //     clothing:
+  //       'https://images.unsplash.com/photo-1524275461690-a79bfeaf1f3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+  //     coffee:
+  //       'https://images.unsplash.com/photo-1500353391678-d7b57979d6d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+  //   };
+  //   setRandomTerm(term);
+  //   setFormInfo({ ...formInfo, file_url: collections[term] });
+  //   setFBFeedPreviewUrl(collections[term]);
+  //   setFBAudiencePreviewUrl(collections[term]);
+  //   setInstagramPreviewUrl(collections[term]);
+  //   setGADisplayPreviewUrl(collections[term]);
+  //   setGASquareDisplayPreviewUrl(collections[term]);
+  // };
 
   const handleFormChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
   };
 
-  const updateFBFeedImage = (image) => {
-    setFormInfo({ ...formInfo, fb_feed_img: image });
+  const updateSquareImage = (image) => {
+    setFormInfo({ ...formInfo, square_img_upload: image });
   };
-  const updateInstagramImage = (image) => {
-    setFormInfo({ ...formInfo, instagram_img: image });
-  };
-  const updateFBAudienceImage = (image) => {
-    setFormInfo({ ...formInfo, fb_audience_img: image });
-  };
-  const updateGADisplayImage = (image) => {
-    setFormInfo({ ...formInfo, ga_display_img: image });
-  };
-  const updateGASquareDisplayImage = (image) => {
-    setFormInfo({ ...formInfo, ga_square_display_img: image });
+  const updateRectangleImage = (image) => {
+    setFormInfo({ ...formInfo, rectangle_img_upload: image });
   };
   const updateImage = (image) => {
     // setFormInfo({ ...formInfo, file_url: image });
-    setFormInfo({ ...formInfo, fb_feed_img: image });
-    setFormInfo({ ...formInfo, instagram_img: image });
-    setFormInfo({ ...formInfo, fb_audience_img: image });
-    setFormInfo({ ...formInfo, ga_display_img: image });
-    setFormInfo({ ...formInfo, ga_square_display_img: image });
-    setFBFeedPreviewUrl(image);
-    setFBAudiencePreviewUrl(image);
-    setInstagramPreviewUrl(image);
-    setGADisplayPreviewUrl(image);
-    setGASquareDisplayPreviewUrl(image);
+    setFormInfo({ ...formInfo, square_img_upload: image });
+    setFormInfo({ ...formInfo, rectangle_img_upload: image });
+    setSquareImgPreviewUrl(image);
+    setRectangleImgPreviewUrl(image);
   };
 
   React.useEffect(() => {
@@ -363,7 +360,7 @@ const FormContent1 = ({
         <div className={classes.inputDescription}>
           Alternate text that will appear on a second clickable button
         </div>
-        {/* <Box style={{ padding: '40px 0px' }}>
+        <Box style={{ padding: '40px 0px' }}>
           <InputMainLabel>How do you want to select an image?</InputMainLabel>
           <RadioGroup
             aria-label="distance"
@@ -384,11 +381,12 @@ const FormContent1 = ({
               label="Upload Custom Image"
             />
           </RadioGroup>
-        </Box> */}
+        </Box>
         <Box marginTop="2rem">
-          {/* {imgOption === 'library' && (
+          {imgOption === 'library' && (
             <>
-              <InputMainLabel>Pictures & Videos</InputMainLabel>
+              <InputMainLabel>Your Ads will use the default images for your template.</InputMainLabel>
+              {/* <InputMainLabel>Pictures & Videos</InputMainLabel>
               <Box className={classes.picturesAndVideoContainer} display="flex">
                 <ThumbnailImage
                   file={DEFAULT_IMAGE}
@@ -460,49 +458,31 @@ const FormContent1 = ({
                 >
                   ☕️
                 </span>
-              </Box>
+              </Box> */}
             </>
-          )} */}
+          )}
           {/* FB Feed Cropper */}
-          {/* {imgOption === 'custom' && ( */}
+          {imgOption === 'custom' && (
             <Box marginTop="1rem">
               <Cropper
                 setError={setError}
                 handleUpdateImage={updateImage}
-                setPreviewUrl={setPreviewUrl}
-                previewUrl={previewUrl}
                 setFormInfo={setFormInfo}
                 formInfo={formInfo}
-                imgData={fbFeedImg}
-                setImgData={setFBFeedImg}
-                fbAudienceImg={fbAudienceImg}
-                setFBAudienceImg={setFBAudienceImg}
-                instagramImg={instagramImg}
-                setInstagramImg={setInstagramImg}
-                gaDisplayImg={gaDisplayImg}
-                setGADisplayImg={setGADisplayImg}
-                gaSquareDisplayImg={gaSquareDisplayImg}
-                setGASquareDisplayImg={setGASquareDisplayImg}
-                fbFeedImg={fbFeedImg}
-                setFBFeedImg={setFBFeedImg}
-                setFBFeedPreviewUrl={setFBFeedPreviewUrl}
-                fbFeedPreviewUrl={fbFeedPreviewUrl}
-                setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
-                fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-                setInstagramPreviewUrl={setInstagramPreviewUrl}
-                instagramPreviewUrl={instagramPreviewUrl}
-                setGADisplayPreviewUrl={setGADisplayPreviewUrl}
-                setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
-                gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-                updateFBFeedImage={updateFBFeedImage}
-                updateInstagramImage={updateInstagramImage}
-                updateFBAudienceImage={updateFBAudienceImage}
-                updateGADisplayImage={updateGADisplayImage}
-                updateGASquareDisplayImage={updateGASquareDisplayImage}
+                rectangleImg={rectangleImg}
+                setRectangleImg={setRectangleImg}
+                squareImg={squareImg}
+                setSquareImg={setSquareImg}
+                setSquareImgPreviewUrl={setSquareImgPreviewUrl}
+                squareImgPreviewUrl={squareImgPreviewUrl}
+                setRectangleImgPreviewUrl={setRectangleImgPreviewUrl}
+                rectangleImgPreviewUrl={rectangleImgPreviewUrl}
+                updateSquareImage={updateSquareImage}
+                updateRectangleImage={updateRectangleImage}
                 {...props}
               />
             </Box>
-          {/* )} */}
+          )}
         </Box>
       </Box>
     </>
