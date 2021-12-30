@@ -3,15 +3,6 @@ import { useState, useEffect } from 'react';
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
-export const CAMPAIGN_FORM_IMAGE_IDS = {
-  default: 'file_url',
-  fbImg: 'fb_feed_img',
-  instagramImg: 'instagram_img',
-  fbAudienceImg: 'fb_audience_img',
-  gaImg: 'ga_display_img',
-  gaSquareImg: 'ga_square_display_img',
-};
-
 export const SOCIAL_NETWORK_TITLES = {
   InstagramAd: 'Instagram Ad',
   FacebookAd: 'Facebook Ad',
@@ -36,9 +27,8 @@ export default function useCampaignForm(
   currentCampaign,
   googleToken,
   facebookToken,
-  fbPages,
+  fbPages
 ) {
-
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
 
@@ -51,49 +41,34 @@ export default function useCampaignForm(
   const [cta2, setCta2] = useState(currentCampaign.cta2 || 'Get Offer');
   const [adLink, setAdLink] = useState(currentCampaign.ad_link || 'https://');
   const [fileUrl, setFileUrl] = useState(currentCampaign.file_url || DEFAULT_IMAGE);
-  const [fbFeedImg, setFbFeedImg] = useState(currentCampaign.fb_feed_img || '');
-  const [instagramImg, setInstagramImg] = useState(currentCampaign.instagram_img || '');
-  const [fbAudienceImg, setFbAudienceImg] = useState(currentCampaign.fb_audience_img || '');
-  const [gaDisplayImg, setGaDisplayImg] = useState(currentCampaign.ga_display_img || '');
-  const [gaSquareDisplayImg, setGaSquareDisplayImg] = useState(
-    currentCampaign.ga_square_display_img || ''
+  const [squareImgUrl, setSquareImgUrl] = useState(currentCampaign.square_img_url || '');
+  const [rectangleImgUrl, setRectangleImgUrl] = useState(currentCampaign.rectangle_img_url || '');
+  const [squareImgUpload, setSquareImgUpload] = useState(currentCampaign.square_img_upload || '');
+  const [rectangleImgUpload, setRectangleImgUpload] = useState(
+    currentCampaign.rectangle_img_upload || ''
   );
 
   /** Cropper Management */
-  const [fbFeedImgName, setFbFeedImgName] = useState(null);
-  const [fbAudienceImgName, setFbAudienceImgName] = useState(null);
-  const [instagramImgName, setInstagramImgName] = useState(null);
-  const [gaDisplayImgName, setGaDisplayImgName] = useState(null);
-  const [gaSquareDisplayImgName, setGaSquareDisplayImgName] = useState(null);
-  const [fbFeedImgFile, setFBFeedImgFile] = useState(null);
-  const [fbAudienceImgFile, setFBAudienceImgFile] = useState(null);
-  const [instagramImgFile, setInstagramImgFile] = useState(null);
-  const [gaDisplayImgFile, setGADisplayImgFile] = useState(null);
-  const [gaSquareDisplayImgFile, setGASquareDisplayImgFile] = useState(null);
-  const [fbFeedUpImg, setFbFeedUpImg] = useState(null);
-  const [fbAudienceUpImg, setFbAudienceUpImg] = useState(null);
-  const [instagramUpImg, setInstagramUpImg] = useState(null);
-  const [gaDisplayUpImg, setGaDisplayUpImg] = useState(null);
-  const [gaSquareDisplayUpImg, setGaSquareDisplayUpImg] = useState(null);
+  const [rectangleImgName, setRectangleImgName] = useState(null);
+  const [squareImgName, setSquareImgName] = useState(null);
+  const [rectangleImgFile, setRectangleImgFile] = useState(null);
+  const [squareImgFile, setSquareImgFile] = useState(null);
+  const [rectangleUpImg, setRectangleUpImg] = useState();
+  const [squareUpImg, setSquareUpImg] = useState();
 
   /** Preview Urls */
-  const [fbFeedPreviewUrl, setFBFeedPreviewUrl] = useState('');
-  const [fbAudiencePreviewUrl, setFBAudiencePreviewUrl] = useState('');
-  const [instagramPreviewUrl, setInstagramPreviewUrl] = useState('');
-  const [gaDisplayPreviewUrl, setGADisplayPreviewUrl] = useState('');
-  const [gaSquareDisplayPreviewUrl, setGASquareDisplayPreviewUrl] = useState('');
+  const [squareImgPreviewUrl, setSquareImgPreviewUrl] = useState('');
+  const [rectangleImgPreviewUrl, setRectangleImgPreviewUrl] = useState('');
 
   /** Other */
   const [imgOption, setImgOption] = useState(currentCampaign.img_option || 'library');
 
   useEffect(() => {
     /** Load campaign images */
-    if (fbFeedImg) getImageFromUrl(fbFeedImg, CAMPAIGN_FORM_IMAGE_IDS.fbImg);
-    if (fbAudienceImg) getImageFromUrl(fbAudienceImg, CAMPAIGN_FORM_IMAGE_IDS.fbAudienceImg);
-    if (instagramImg) getImageFromUrl(instagramImg, CAMPAIGN_FORM_IMAGE_IDS.instagramImg);
-    if (gaDisplayImg) getImageFromUrl(gaDisplayImg, CAMPAIGN_FORM_IMAGE_IDS.gaDisplayImg);
-    if (gaSquareDisplayImg)
-      getImageFromUrl(gaSquareDisplayImg, CAMPAIGN_FORM_IMAGE_IDS.gaSquareImg);
+    if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
+    if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
+    if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
+    if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
   }, []);
 
   /**Helper function that encapsulates logic for reading and setting the image urls
@@ -113,35 +88,21 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
-        if (imageType === CAMPAIGN_FORM_IMAGE_IDS.fbImg) {
-          setFbFeedImg(jpgFile);
-          setFbFeedImgName(jpgFile.name);
-          setFBFeedImgFile(jpgFile);
-          setImgPreview(jpgFile, setFbFeedUpImg, setFBFeedPreviewUrl);
+        if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
+          imageType === 'rectangle_img_upload'
+            ? setRectangleImgUpload(jpgFile)
+            : setRectangleImgUrl(jpgFile);
+          setRectangleImgName(jpgFile.name);
+          setRectangleImgFile(jpgFile);
+          setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
         }
-        if (imageType === CAMPAIGN_FORM_IMAGE_IDS.fbAudienceImg) {
-          setFbAudienceImg(jpgFile);
-          setFbAudienceImgName(jpgFile.name);
-          setFBAudienceImgFile(jpgFile);
-          setImgPreview(jpgFile, setFbAudienceUpImg, setFBAudiencePreviewUrl);
-        }
-        if (imageType === CAMPAIGN_FORM_IMAGE_IDS.instagramImg) {
-          setInstagramImg(jpgFile);
-          setInstagramImgName(jpgFile.name);
-          setInstagramImgFile(jpgFile);
-          setImgPreview(jpgFile, setInstagramUpImg, setInstagramPreviewUrl);
-        }
-        if (imageType === CAMPAIGN_FORM_IMAGE_IDS.gaDisplayImg) {
-          setGaDisplayImg(jpgFile);
-          setGaDisplayImgName(jpgFile.name);
-          setGADisplayImgFile(jpgFile);
-          setImgPreview(jpgFile, setGaDisplayUpImg, setGADisplayPreviewUrl);
-        }
-        if (imageType === CAMPAIGN_FORM_IMAGE_IDS.gaSquareImg) {
-          setGaSquareDisplayImg(jpgFile);
-          setGaSquareDisplayImgName(jpgFile.name);
-          setGASquareDisplayImgFile(jpgFile);
-          setImgPreview(jpgFile, setGaSquareDisplayUpImg, setGASquareDisplayPreviewUrl);
+        if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
+          imageType === 'square_img_upload'
+            ? setSquareImgUpload(jpgFile)
+            : setSquareImgUrl(jpgFile);
+          setSquareImgName(jpgFile.name);
+          setSquareImgFile(jpgFile);
+          setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
         }
         return jpgFile;
       });
@@ -173,6 +134,7 @@ export default function useCampaignForm(
     formData.append('cta', cta);
     formData.append('cta2', cta2);
     formData.append('ad_link', adLink);
+    formData.append('img_option', imgOption);
 
     /** Section that appends the tokens or access keys to social network accounts */
     formData.append('facebook_account_id', facebookToken);
@@ -201,29 +163,20 @@ export default function useCampaignForm(
       : formData.append('google_display_ad', 'False');
 
     /** Section of the form that manages the addition of custom images to specific networks */
-    if (
-      (fbImg || instagramImg || fbAudienceImg || gaDisplayImg || gaSquareDisplayImg) &&
-      imgOption === 'custom'
-    ) {
-      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd) &&
-        formData.append('fb_feed_img', fbFeedImg);
-
-      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd) &&
-        formData.append('fb_audience_img', fbAudienceImg);
-
-      selectedNetworks.includes(SOCIAL_NETWORK_TITLES.InstagramAd) &&
-        formData.append('instagram_img', instagramImg);
-
+    if ((squareImgUpload || rectangleImgUpload) && imgOption === 'custom') {
       if (
-        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleAwards) ||
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd) ||
         selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)
       ) {
-        formData.append('ga_display_img', gaDisplayImg);
-        formData.append('ga_square_display_img', gaSquareDisplayImg);
+        formData.upload('rectangle_img_upload', rectangleImgUpload);
       }
-    } else {
-      // if not custom we use the same for everything
-      formData.append('file_url', fileUrl);
+      if (
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd) ||
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.InstagramAd) ||
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleAwards)
+      ) {
+        formData.append('square_img_upload', squareImgUpload);
+      }
     }
 
     /** Grab the campaign id and update it with the forms data */
@@ -254,64 +207,38 @@ export default function useCampaignForm(
       setAdLink,
       fileUrl,
       setFileUrl,
-      fbFeedImg,
-      setFbFeedImg,
-      instagramImg,
-      setInstagramImg,
-      fbAudienceImg,
-      setFbAudienceImg,
-      gaDisplayImg,
-      setGaDisplayImg,
-      gaSquareDisplayImg,
-      setGaSquareDisplayImg,
+      squareImgUrl,
+      setSquareImgUrl,
+      rectangleImgUrl,
+      setRectangleImgUrl,
+      squareImgUpload,
+      setSquareImgUpload,
+      rectangleImgUpload,
+      setRectangleImgUpload,
     },
 
     /** state management for the cropper */
     cropper: {
-      fbFeedImgName,
-      setFbFeedImgName,
-      fbAudienceImgName,
-      setFbAudienceImgName,
-      instagramImgName,
-      setInstagramImgName,
-      gaDisplayImgName,
-      setGaDisplayImgName,
-      gaSquareDisplayImgName,
-      setGaSquareDisplayImgName,
-      fbFeedImgFile,
-      setFBFeedImgFile,
-      fbAudienceImgFile,
-      setFBAudienceImgFile,
-      instagramImgFile,
-      setInstagramImgFile,
-      gaDisplayImgFile,
-      setGADisplayImgFile,
-      gaSquareDisplayImgFile,
-      setGASquareDisplayImgFile,
-      fbFeedUpImg,
-      setFbFeedUpImg,
-      fbAudienceUpImg,
-      setFbAudienceUpImg,
-      instagramUpImg,
-      setInstagramUpImg,
-      gaDisplayUpImg,
-      setGaDisplayUpImg,
-      gaSquareDisplayUpImg,
-      setGaSquareDisplayUpImg,
+      rectangleImgName,
+      setRectangleImgName,
+      squareImgName,
+      setSquareImgName,
+      rectangleImgFile,
+      setRectangleImgFile,
+      squareImgFile,
+      setSquareImgFile,
+      rectangleUpImg,
+      setRectangleUpImg,
+      squareUpImg,
+      setSquareUpImg,
     },
 
     /** state management for the image preview urls */
     previews: {
-      fbFeedPreviewUrl,
-      setFBFeedPreviewUrl,
-      fbAudiencePreviewUrl,
-      setFBAudiencePreviewUrl,
-      instagramPreviewUrl,
-      setInstagramPreviewUrl,
-      gaDisplayPreviewUrl,
-      setGADisplayPreviewUrl,
-      gaSquareDisplayPreviewUrl,
-      setGASquareDisplayPreviewUrl,
+      squareImgPreviewUrl,
+      setSquareImgPreviewUrl,
+      rectangleImgPreviewUrl,
+      setRectangleImgPreviewUrl,
     },
 
     imgOption,

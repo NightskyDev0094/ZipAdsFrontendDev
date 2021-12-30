@@ -165,17 +165,27 @@ const CreateCampaignContainer = ({
     // formData.append('rectangle_img_url', formInfo.rectangle_img_url);
     // console.log()
     if (
-      (formInfo.square_img_upload ||
-        formInfo.rectangle_img_upload != '') &&
+      (formInfo.square_img_upload || formInfo.rectangle_img_upload != '') &&
       imgOption == 'custom'
     ) {
-      if (socialsToPost.includes('facebook feed ad') || socialsToPost.includes('google display ad')) {
+      if (
+        socialsToPost.includes('facebook feed ad') ||
+        socialsToPost.includes('google display ad')
+      ) {
         formData.append('rectangle_img_upload', formInfo.rectangle_img_upload);
       }
-      if (socialsToPost.includes('facebook display ad') || socialsToPost.includes('instagram ad') || socialsToPost.includes('google display ad')) {
+      if (
+        socialsToPost.includes('facebook display ad') ||
+        socialsToPost.includes('instagram ad') ||
+        socialsToPost.includes('google display ad')
+      ) {
         formData.append('square_img_upload', formInfo.square_img_upload);
       }
-      console.log("Custom img upload running!", formInfo.square_img_upload, formInfo.rectangle_img_upload)
+      console.log(
+        'Custom img upload running!',
+        formInfo.square_img_upload,
+        formInfo.rectangle_img_upload
+      );
     }
     // Get campaign Id from state
     const campaignId = currentCampaign?.id;

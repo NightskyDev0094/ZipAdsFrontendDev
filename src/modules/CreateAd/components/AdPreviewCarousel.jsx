@@ -97,7 +97,7 @@ function AdPreviewCarousel({ chosenSocialNetworks }) {
   // helper function for removing the word ad from any SOCIAL_NETWORK_TITLE
   const removeAdFromTitle = (title) => {
     const wordToRemove = 'Ad';
-    const AdWordStartIndex = title.lastIndexOf(wordToRemove);
+    const AdWordStartIndex = title ? title.lastIndexOf(wordToRemove) : -1;
     return AdWordStartIndex === -1 ? title : title.substring(0, AdWordStartIndex);
   };
 
