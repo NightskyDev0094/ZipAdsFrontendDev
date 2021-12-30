@@ -156,6 +156,8 @@ const SummaryPage = ({
   totalBudget,
   handleError,
   checkoutStatus,
+  rectangleImgPreviewUrl,
+  squareImgPreviewUrl,
   SUBMIT_STATUS,
   // creditAmount,
   ...props
@@ -163,11 +165,6 @@ const SummaryPage = ({
   const classes = useStyles();
   const history = useHistory();
   const [adSlideNumber, setAdSlideNumber] = useState(1);
-  const [fbFeedPreviewUrl, setFBFeedPreviewUrl] = useState('');
-  const [fbAudiencePreviewUrl, setFBAudiencePreviewUrl] = useState('');
-  const [instagramPreviewUrl, setInstagramPreviewUrl] = useState('');
-  const [gaDisplayPreviewUrl, setGADisplayPreviewUrl] = useState('');
-  const [gaSquareDisplayPreviewUrl, setGASquareDisplayPreviewUrl] = useState('');
   const [adSlideLength, setAdSlideLength] = useState(socialsToPost.length);
   const [error, setError] = useState({
     message: 'An Error has occured',
@@ -269,11 +266,8 @@ const SummaryPage = ({
             </Paper>
             <AdPreviewCarousel
               currentCampaign={currentCampaign}
-              fbFeedPreviewUrl={fbFeedPreviewUrl}
-              fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-              instagramPreviewUrl={instagramPreviewUrl}
-              gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-              gaSquareDisplayPreviewUrl={gaSquareDisplayPreviewUrl}
+              rectangleImgPreviewUrl={rectangleImgPreviewUrl}
+              squareImgPreviewUrl={squareImgPreviewUrl}
               adSlideNumber={adSlideNumber}
               changeAdSlide={changeAdSlide}
               reverseAdSlide={reverseAdSlide}

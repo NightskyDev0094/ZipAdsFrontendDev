@@ -93,16 +93,10 @@ const CreateCampaign = ({
   completeStep,
   socialsToPost,
   adSlideLength,
-  setFBFeedPreviewUrl,
-  fbFeedPreviewUrl,
-  setFBAudiencePreviewUrl,
-  fbAudiencePreviewUrl,
-  setInstagramPreviewUrl,
-  instagramPreviewUrl,
-  setGADisplayPreviewUrl,
-  setGASquareDisplayPreviewUrl,
-  gaDisplayPreviewUrl,
-  gaSquareDisplayPreviewUrl,
+  squareImgPreviewUrl,
+  rectangleImgPreviewUrl,
+  setRectangleImgPreviewUrl,
+  setSquareImgPreviewUrl,
   ...props
 }) => {
   const history = useHistory();
@@ -200,11 +194,8 @@ const CreateCampaign = ({
               {/* <CampaignImageDisplay form={formInfo} {...props} /> */}
               <AdPreviewCarousel
                 currentCampaign={formInfo}
-                fbFeedPreviewUrl={fbFeedPreviewUrl}
-                fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-                instagramPreviewUrl={instagramPreviewUrl}
-                gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-                gaSquareDisplayPreviewUrl={gaSquareDisplayPreviewUrl}
+                squareImgPreviewUrl={squareImgPreviewUrl}
+                rectangleImgPreviewUrl={rectangleImgPreviewUrl}
                 adSlideNumber={adSlideNumber}
                 changeAdSlide={changeAdSlide}
                 reverseAdSlide={reverseAdSlide}
@@ -216,16 +207,10 @@ const CreateCampaign = ({
                 setFormInfo={setFormInfo}
                 setError={setError}
                 handleUpdateForm={(formInput) => updateForm(formInput)}
-                fbFeedPreviewUrl={fbFeedPreviewUrl}
-                fbAudiencePreviewUrl={fbAudiencePreviewUrl}
-                instagramPreviewUrl={instagramPreviewUrl}
-                gaDisplayPreviewUrl={gaDisplayPreviewUrl}
-                gaSquareDisplayPreviewUrl={gaSquareDisplayPreviewUrl}
-                setFBFeedPreviewUrl={setFBFeedPreviewUrl}
-                setFBAudiencePreviewUrl={setFBAudiencePreviewUrl}
-                setInstagramPreviewUrl={setInstagramPreviewUrl}
-                setGADisplayPreviewUrl={setGADisplayPreviewUrl}
-                setGASquareDisplayPreviewUrl={setGASquareDisplayPreviewUrl}
+                squareImgPreviewUrl={squareImgPreviewUrl}
+                rectangleImgPreviewUrl={rectangleImgPreviewUrl}
+                setSquareImgPreviewUrl={setSquareImgPreviewUrl}
+                setRectangleImgPreviewUrl={setRectangleImgPreviewUrl}
                 adSlideNumber={adSlideNumber}
                 changeAdSlide={changeAdSlide}
                 reverseAdSlide={reverseAdSlide}
