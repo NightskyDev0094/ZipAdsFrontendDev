@@ -177,7 +177,10 @@ const CreateCampaignContainer = ({
     formData.append('cta', formInfo.cta);
     formData.append('cta2', formInfo.cta2);
     formData.append('ad_link', formInfo.ad_link);
-    // formData.append('img_option', imgOption);
+    formData.append('img_option', imgOption);
+    // formData.append('square_img_url', formInfo.square_img_url);
+    // formData.append('rectangle_img_url', formInfo.rectangle_img_url);
+    // console.log()
     if (
       (formInfo.square_img_upload ||
         formInfo.rectangle_img_upload != '') &&
@@ -189,14 +192,7 @@ const CreateCampaignContainer = ({
       if (socialsToPost.includes('facebook display ad') || socialsToPost.includes('instagram ad') || socialsToPost.includes('google display ad')) {
         formData.append('square_img_upload', formInfo.square_img_upload);
       }
-    } else {
-      // it's a default image link
-      if (socialsToPost.includes('facebook feed ad') || socialsToPost.includes('google display ad')) {
-        formData.append('rectangle_img_url', formInfo.rectangle_img_url);
-      }
-      if (socialsToPost.includes('facebook display ad') || socialsToPost.includes('instagram ad') || socialsToPost.includes('google display ad')) {
-        formData.append('square_img_url', formInfo.square_img_url);
-      }
+      console.log("Custom img upload running!", formInfo.square_img_upload, formInfo.rectangle_img_upload)
     }
     // Get campaign Id from state
     const campaignId = currentCampaign?.id;

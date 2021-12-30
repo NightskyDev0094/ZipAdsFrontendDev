@@ -55,6 +55,8 @@ const SummaryContainer = ({
   const [gaSearchNum, setGaSearchNum] = useState(0);
   const [gaDisplayNum, setGaDisplayNum] = useState(0);
   const [gaSquareDisplayNum, setGaSquareDisplayNum] = useState(0);
+  const [rectangleImgPreviewUrl, setRectangleImgPreviewUrl] = useState(currentCampaign?.rectangle_img_upload || currentCampaign?.rectangle_img_url || '');
+  const [squareImgPreviewUrl, setSquareImgPreviewUrl] = useState(currentCampaign?.square_img_upload || currentCampaign?.square_img_url || '');
   const [adSlideLength, setAdSlideLength] = useState(socialsToPost.length);
 
   const getAmount = () => {};
@@ -96,6 +98,14 @@ const SummaryContainer = ({
       setGaSquareDisplayNum(val);
     }
     setAdSlideLength(val);
+    if(currentCampaign?.img_option === 'custom' && currentCampaign?.rectangle_img_upload !== '' &&  currentCampaign?.square_img_upload !== ''){
+      setRectangleImgPreviewUrl(currentCampaign.rectangle_img_upload)
+      setSquareImgPreviewUrl(currentCampaign.square_img_upload)
+    } else {
+      setRectangleImgPreviewUrl(currentCampaign.rectangle_img_url)
+      setSquareImgPreviewUrl(currentCampaign.square_img_url)
+    }
+    
   }, []);
 
  
@@ -229,7 +239,9 @@ const SummaryContainer = ({
       instagramNum={instagramNum}
       gaSearchNum={gaSearchNum}
       gaDisplayNum={gaDisplayNum}
-      gaSquareDisplayNum={gaSquareDisplayNum}    
+      gaSquareDisplayNum={gaSquareDisplayNum}
+      rectangleImgPreviewUrl={rectangleImgPreviewUrl}
+      squareImgPreviewUrl={squareImgPreviewUrl}  
       {...props}
     />
   );
