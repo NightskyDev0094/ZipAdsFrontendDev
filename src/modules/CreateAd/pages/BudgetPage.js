@@ -21,6 +21,7 @@ import { useHistory } from 'react-router-dom';
 import { InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
 import StepperWrapper from '../components/StepperWrapper';
+import StyledRadio from '../components/StyledRadio';
 import backgroundImage from '../../../BlueTecUIKit/images/background/3.png';
 import {
   ErrorHandler,
@@ -167,7 +168,7 @@ const useStyles = makeStyles((theme) => ({
   InputItem: {
     width: '100%',
     height: '3rem',
-    fontSize: '1.25rem',
+    fontSize: '1.25rem !important',
     padding: '0.5rem 1rem',
     border: 'solid 1px #cccccc',
     borderRadius: '0.25rem',
@@ -661,10 +662,10 @@ const BudgetPage = ({
                         value={budgetOption}
                         onChange={(e) => setOption(e.target.value)}
                       >
-                        <FormControlLabel value="automatic" control={<Radio />} label="Automatic" />
+                        <FormControlLabel value="automatic" control={<StyledRadio />} label="Automatic" />
                         <FormControlLabel
                           value="advanced"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label="Advanced Options"
                         />
                       </RadioGroup> */}
@@ -681,7 +682,7 @@ const BudgetPage = ({
                       >
                         <FormControlLabel
                           value="Conversions"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={
                             <Typography className={classes.textStyle}>
                               Generate sales or signups
@@ -690,7 +691,7 @@ const BudgetPage = ({
                         />
                         <FormControlLabel
                           value="Brand Awareness"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={
                             <Typography className={classes.textStyle}>
                               Make people aware of my business
@@ -699,7 +700,7 @@ const BudgetPage = ({
                         />
                         <FormControlLabel
                           value="Store Traffic"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={
                             <Typography className={classes.textStyle}>
                               Increase visits to my business's physical location
@@ -708,7 +709,7 @@ const BudgetPage = ({
                         />
                         <FormControlLabel
                           value="Traffic"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={
                             <Typography className={classes.textStyle}>
                               Generate web traffic
