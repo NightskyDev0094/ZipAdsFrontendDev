@@ -316,7 +316,7 @@ const ExpandedTargetingPage = ({
           {!error.isError && (
             <>
               <Box
-                marginTop="5rem"
+                // marginTop="5rem"
                 width="100%"
                 display="flex"
                 justifyContent="space-evenly"
@@ -330,39 +330,8 @@ const ExpandedTargetingPage = ({
                   Remove any unwanted keywords and locations.
                 </Typography>
               </Box>
-              <div className={classes.progressBarContainer}>
-                <StepProgress formStep={4} />
-              </div>
               <Paper className={classes.container}>
-                <div className={classes.tableContainerButtons}>
-                  <ExpandedTargetingPageMenu
-                    handleChange={handleToggle}
-                    state={displayState}
-                    classes={classes}
-                  />
-                  <>
-                    <div className={classes.buttonContainer}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.backButton}
-                        style={{ height: '30px' }}
-                        onClick={() => history.push('/create/targeting')}
-                      >
-                        Back
-                      </Button>
-                      <Button
-                        style={{ height: '30px' }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => submitInformation()}
-                        className={classes.nextButton}
-                      >
-                        Next
-                      </Button>
-                    </div>
-                  </>
-                </div>
+
                 {(displayAllComponents || displayGoogleComponent) && (
                   <ExpandedGoogleTargetingComponent
                     googleGeoTargeting={googleTargeting}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import TargetingPage from '../pages/TargetingPage';
+import ExpandedTargetingPage from '../pages/ExpandedTargetingPage';
 import { updateTargetInfo } from '../../../actions/formInfoActions';
 import {
   addFBLocations,
@@ -23,6 +24,14 @@ import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGaAdAccounts } from '../../../actions/account.gaAdActions';
 import { getFbPages } from '../../../actions/account.fbPageActions';
 import { completeStepByCurryingWithMultipleParams as completeStep } from '../../../actions/step.actions';
+import {
+  updateFBInterests as updateFBInterestsRequest,
+  updateFBLocations as updateFBLocationRequest,
+} from '../../../actions/targeting.fbActions';
+import {
+  updateGoogleKeywords as updateGoogleKeywordsRequest,
+  updateGoogleLocationPlans as updateGoogleLocationsRequest,
+} from '../../../actions/targeting.googleActions';
 
 const TargetingContainer = ({
   hasTargetStepBeenCompleted,
@@ -50,6 +59,7 @@ const TargetingContainer = ({
   getFbPages,
   businessInfo,
   businessInfoLoading,
+  ...props
 }) => {
   useEffect(() => {
     // Get info from server to populate defaults when component loads
@@ -148,27 +158,30 @@ const TargetingContainer = ({
   };
 
   return (
-    <TargetingPage
-      handleSubmitTargetInfo={submitTargetInfo}
-      businessInfo={businessInfo}
-      hasTargetStepBeenCompleted={hasTargetStepBeenCompleted}
-      businessInfoLoading={businessInfoLoading}
-      completeStep={completeStep}
-      streetVal={streetVal}
-      cityVal={cityVal}
-      stateVal={stateVal}
-      zipVal={zipVal}
-      setStreetVal={setStreetVal}
-      setCityVal={setCityVal}
-      setStateVal={setStateVal}
-      setZipVal={setZipVal}
-      distance={distance}
-      setDistance={setDistance}
-      interest={interest}
-      setInterest={setInterest}
-      localeFormat={localeFormat}
-      setLocaleFormat={setLocaleFormat}
-    />
+    <>
+      <TargetingPage
+        handleSubmitTargetInfo={submitTargetInfo}
+        businessInfo={businessInfo}
+        hasTargetStepBeenCompleted={hasTargetStepBeenCompleted}
+        businessInfoLoading={businessInfoLoading}
+        completeStep={completeStep}
+        streetVal={streetVal}
+        cityVal={cityVal}
+        stateVal={stateVal}
+        zipVal={zipVal}
+        setStreetVal={setStreetVal}
+        setCityVal={setCityVal}
+        setStateVal={setStateVal}
+        setZipVal={setZipVal}
+        distance={distance}
+        setDistance={setDistance}
+        interest={interest}
+        setInterest={setInterest}
+        localeFormat={localeFormat}
+        setLocaleFormat={setLocaleFormat}
+      />
+      <ExpandedTargetingPage {...props} />
+    </>
   );
 };
 
@@ -183,6 +196,15 @@ const mapStateToProps = (state) => ({
   businessInfo: state.businessInfo.businessInfos,
   businessInfoLoading: state.businessInfo.businessInfoLoading,
   hasTargetStepBeenCompleted: state.stepTracker.TARGET_AUDIENCE_STEP,
+  facebookInterestGroups: state.fbTargeting.interestList?.fb_interest_plan,
+  facebookGeoTargeting: state.fbTargeting.locationList?.fb_location_plan,
+  googleTargeting: state.googleTargeting.locationList?.ga_location_plan,
+  googleKeywords: state.googleTargeting.keywordList?.ga_keyword_plan,
+  hasExpandedTargetingStepBeenCompleted: state.stepTracker.REVIEW_TARGETING_STEP,
+  fbGeoLocationId: state.fbTargeting?.locationList?.plan_id,
+  fbInterestsListId: state.fbTargeting?.interestList?.plan_id,
+  googleKeywordListId: state.googleTargeting?.keywordList?.plan_id,
+  googleLocationId: state.googleTargeting?.locationList?.plan_id
 });
 
 export default connect(mapStateToProps, {
@@ -202,4 +224,8 @@ export default connect(mapStateToProps, {
   getGaAdAccounts,
   getFbPages,
   completeStep,
+  updateFBLocationRequest,
+  updateFBInterestsRequest,
+  updateGoogleKeywordsRequest,
+  updateGoogleLocationsRequest,
 })(TargetingContainer);
