@@ -142,9 +142,9 @@ const TargetingPage = ({
     //   setIsResubmitModalOpen(true);
     // } else {
     try {
-      handleSubmitTargetInfo({ distance, interest });
-      completeStep(3);
-      history.push('/create/expanded-targeting');
+      handleSubmitTargetInfo({ distance, interest }, 'stay');
+      // completeStep(3);
+      // history.push('/create/expanded-targeting');
     } catch (e) {
       setError({ isError: true, message: e });
     }
@@ -435,6 +435,25 @@ const TargetingPage = ({
                         value={interest}
                         onChange={(e) => setInterest(e.target.value)}
                       />
+                    </Box>
+                  </Box>
+                  {/* Switch button to activate advanced targeting */}
+                  <Box marginTop="2rem">
+                    <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                      Refine your targeting selections by clicking the search button below:
+                      {/* <InfoButton
+                      infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
+                    /> */}
+                    </InputMainLabel>
+                    <Box className={classes.targetLocationInputContainer}>
+                      {/* <Input
+                      value={interest}
+                      onChange={(e) => setInterest(e.target.value)}
+                      placeholder="add interests"
+                    /> */}
+                      <Button variant="contained" color="primary" onClick={nextClick}>
+                        Search
+                      </Button>
                     </Box>
                   </Box>
                 </div>

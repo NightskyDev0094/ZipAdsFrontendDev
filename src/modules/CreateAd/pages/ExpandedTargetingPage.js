@@ -124,180 +124,192 @@ const ExpandedTargetingPage = ({
   fbGeoLocationId,
   updateFBInterestsRequest,
   updateFBLocationRequest,
+  error,
+  displayAllComponents,
+  displayGoogleComponent,
+  googleTableState,
+  setGoogleTableState,
+  setSelectedGoogleRows,
+  selectedGoogleRows,
+  displayFacebookComponent,
+  fbTableState,
+  setFBTableState,
+  setSelectedFacebookRows,
+  selectedFacebookRows
 }) => {
   const classes = useStyles();
-  const history = useHistory();
-  const [isTargetSubmitted, setIsTargetSubmitted] = useState(false);
-  // const [fbInterestStr, setFbInterestStr] = useState('');
-  // const [fbGeotargetStr, setFbGeotargetStr] = useState('');
-  const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
-  const [error, setError] = useState({
-    message: 'An Error has occured',
-    isError: false,
-  });
-  const [displayState, setDisplayState] = useState({
-    displayGoogleComponent: false,
-    displayFacebookComponent: false,
-    displayAllComponents: true,
-  });
+  // const history = useHistory();
+  // const [isTargetSubmitted, setIsTargetSubmitted] = useState(false);
+  // // const [fbInterestStr, setFbInterestStr] = useState('');
+  // // const [fbGeotargetStr, setFbGeotargetStr] = useState('');
+  // const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
+  // const [error, setError] = useState({
+  //   message: 'An Error has occured',
+  //   isError: false,
+  // });
+  // const [displayState, setDisplayState] = useState({
+  //   displayGoogleComponent: false,
+  //   displayFacebookComponent: false,
+  //   displayAllComponents: true,
+  // });
 
-  const [fbTableState, setFBTableState] = useState({
-    geoTargetingArray: [],
-    interestGroupArray: [],
-  });
+  // const [fbTableState, setFBTableState] = useState({
+  //   geoTargetingArray: [],
+  //   interestGroupArray: [],
+  // });
 
-  const [googleTableState, setGoogleTableState] = useState({
-    geoTargetingArray: [],
-    keywordArray: [],
-  });
+  // const [googleTableState, setGoogleTableState] = useState({
+  //   geoTargetingArray: [],
+  //   keywordArray: [],
+  // });
 
-  const [selectedFacebookRows, setSelectedFacebookRows] = useState({
-    selectedInterestGroupRows: [],
-    selectedGeoTargeting: [],
-  });
+  // const [selectedFacebookRows, setSelectedFacebookRows] = useState({
+  //   selectedInterestGroupRows: [],
+  //   selectedGeoTargeting: [],
+  // });
 
-  const [selectedGoogleRows, setSelectedGoogleRows] = useState({
-    selectedKeywordGroupRows: [],
-    selectedGeoTargeting: [],
-  });
+  // const [selectedGoogleRows, setSelectedGoogleRows] = useState({
+  //   selectedKeywordGroupRows: [],
+  //   selectedGeoTargeting: [],
+  // });
 
-  const handleToggle = (event) => {
-    setDisplayState({
-      ...displayState,
-      [event.target.name]: event.target.checked,
-    });
-  };
+  // const handleToggle = (event) => {
+  //   setDisplayState({
+  //     ...displayState,
+  //     [event.target.name]: event.target.checked,
+  //   });
+  // };
 
-  const submitInformationForReSubmitModal = async () => {
-    const fbGeoTargetingArray = selectedFacebookRows?.selectedGeoTargeting;
-    const fbInterestGroupArray = selectedFacebookRows?.selectedInterestGroupRows;
-    const googleGeoTargetingArray = selectedGoogleRows?.selectedGeoTargeting;
-    const googleKeywordTargetingArray = selectedGoogleRows?.selectedKeywordGroupRows;
-    try {
-      if (selectedFacebookRows?.selectedGeoTargeting.length) {
-        let selectedGeoArray = selectedFacebookRows?.selectedGeoTargeting;
-        let geotargetArray = [];
-        for (let i = 0; i < selectedGeoArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
-          geotargetArray.push(toPush);
-        }
-        await updateFBLocationRequest(geotargetArray, fbGeoLocationId);
-      }
-      if (selectedFacebookRows?.selectedInterestGroupRows.length) {
-        let selectedInterestArray = selectedFacebookRows?.selectedGeoTargeting;
-        let interestArray = [];
-        for (let i = 0; i < selectedInterestArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
-          interestArray.push(toPush);
-        }
-        await updateFBInterestsRequest(interestArray, fbInterestsListId);
-      }
-      if (selectedGoogleRows?.selectedGeoTargeting.length) {
-        let selectedGeoArray = selectedGoogleRows?.selectedGeoTargeting;
-        let geoArray = [];
-        for (let i = 0; i < selectedGeoArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
-          geoArray.push(toPush);
-        }
-        await updateGoogleLocationsRequest(geoArray, googleKeywordListId);
-      }
-      if (selectedGoogleRows?.selectedKeywordGroupRows.length) {
-        let selectedKeywordArray = selectedGoogleRows?.selectedKeywordGroupRows;
-        let keywordArray = [];
-        for (let i = 0; i < selectedKeywordArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
-          keywordArray.push(toPush);
-        }
-        await updateGoogleKeywordsRequest(keywordArray, googleLocationId);
-      }
-      setIsTargetSubmitted(true);
-      completeStep(4);
-      if (
-        !fbGeoTargetingArray.length && // user does not select any items to save
-        !fbInterestGroupArray.length &&
-        !googleKeywordTargetingArray.length &&
-        !googleGeoTargetingArray.length
-      ) {
-        history.push('/create/budget');
-      }
-    } catch (e) {
-      setError({ isError: true, message: e });
-    }
-  };
+  // const submitInformationForReSubmitModal = async () => {
+  //   const fbGeoTargetingArray = selectedFacebookRows?.selectedGeoTargeting;
+  //   const fbInterestGroupArray = selectedFacebookRows?.selectedInterestGroupRows;
+  //   const googleGeoTargetingArray = selectedGoogleRows?.selectedGeoTargeting;
+  //   const googleKeywordTargetingArray = selectedGoogleRows?.selectedKeywordGroupRows;
+  //   try {
+  //     if (selectedFacebookRows?.selectedGeoTargeting.length) {
+  //       let selectedGeoArray = selectedFacebookRows?.selectedGeoTargeting;
+  //       let geotargetArray = [];
+  //       for (let i = 0; i < selectedGeoArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
+  //         geotargetArray.push(toPush);
+  //       }
+  //       await updateFBLocationRequest(geotargetArray, fbGeoLocationId);
+  //     }
+  //     if (selectedFacebookRows?.selectedInterestGroupRows.length) {
+  //       let selectedInterestArray = selectedFacebookRows?.selectedGeoTargeting;
+  //       let interestArray = [];
+  //       for (let i = 0; i < selectedInterestArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
+  //         interestArray.push(toPush);
+  //       }
+  //       await updateFBInterestsRequest(interestArray, fbInterestsListId);
+  //     }
+  //     if (selectedGoogleRows?.selectedGeoTargeting.length) {
+  //       let selectedGeoArray = selectedGoogleRows?.selectedGeoTargeting;
+  //       let geoArray = [];
+  //       for (let i = 0; i < selectedGeoArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
+  //         geoArray.push(toPush);
+  //       }
+  //       await updateGoogleLocationsRequest(geoArray, googleKeywordListId);
+  //     }
+  //     if (selectedGoogleRows?.selectedKeywordGroupRows.length) {
+  //       let selectedKeywordArray = selectedGoogleRows?.selectedKeywordGroupRows;
+  //       let keywordArray = [];
+  //       for (let i = 0; i < selectedKeywordArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
+  //         keywordArray.push(toPush);
+  //       }
+  //       await updateGoogleKeywordsRequest(keywordArray, googleLocationId);
+  //     }
+  //     setIsTargetSubmitted(true);
+  //     completeStep(4);
+  //     if (
+  //       !fbGeoTargetingArray.length && // user does not select any items to save
+  //       !fbInterestGroupArray.length &&
+  //       !googleKeywordTargetingArray.length &&
+  //       !googleGeoTargetingArray.length
+  //     ) {
+  //       history.push('/create/budget');
+  //     }
+  //   } catch (e) {
+  //     setError({ isError: true, message: e });
+  //   }
+  // };
 
-  const submitInformation = async () => {
-    const fbGeoTargetingArray = selectedFacebookRows?.selectedGeoTargeting;
-    const fbInterestGroupArray = selectedFacebookRows?.selectedInterestGroupRows;
-    const googleGeoTargetingArray = selectedGoogleRows?.selectedGeoTargeting;
-    const googleKeywordTargetingArray = selectedGoogleRows?.selectedKeywordGroupRows;
-    // if (hasExpandedTargetingStepBeenCompleted === 'STEP_COMPLETED') {
-    //   setIsResubmitModalOpen(true);
-    // } else {
-    try {
-      if (selectedFacebookRows?.selectedGeoTargeting.length) {
-        let selectedGeoArray = selectedFacebookRows?.selectedGeoTargeting;
-        let geotargetArray = [];
-        for (let i = 0; i < selectedGeoArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
-          geotargetArray.push(toPush);
-        }
-        await updateFBLocationRequest(geotargetArray[0], fbGeoLocationId);
-      }
-      if (selectedFacebookRows?.selectedInterestGroupRows.length) {
-        let selectedInterestArray = selectedFacebookRows?.selectedGeoTargeting;
-        let interestArray = [];
-        for (let i = 0; i < selectedInterestArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
+  // const submitInformation = async () => {
+  //   const fbGeoTargetingArray = selectedFacebookRows?.selectedGeoTargeting;
+  //   const fbInterestGroupArray = selectedFacebookRows?.selectedInterestGroupRows;
+  //   const googleGeoTargetingArray = selectedGoogleRows?.selectedGeoTargeting;
+  //   const googleKeywordTargetingArray = selectedGoogleRows?.selectedKeywordGroupRows;
+  //   // if (hasExpandedTargetingStepBeenCompleted === 'STEP_COMPLETED') {
+  //   //   setIsResubmitModalOpen(true);
+  //   // } else {
+  //   try {
+  //     if (selectedFacebookRows?.selectedGeoTargeting.length) {
+  //       let selectedGeoArray = selectedFacebookRows?.selectedGeoTargeting;
+  //       let geotargetArray = [];
+  //       for (let i = 0; i < selectedGeoArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
+  //         geotargetArray.push(toPush);
+  //       }
+  //       await updateFBLocationRequest(geotargetArray[0], fbGeoLocationId);
+  //     }
+  //     if (selectedFacebookRows?.selectedInterestGroupRows.length) {
+  //       let selectedInterestArray = selectedFacebookRows?.selectedGeoTargeting;
+  //       let interestArray = [];
+  //       for (let i = 0; i < selectedInterestArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
 
-          interestArray.push(toPush);
-        }
-        await updateFBInterestsRequest(interestArray[0], fbInterestsListId);
-      }
-      if (selectedGoogleRows?.selectedGeoTargeting.length) {
-        let selectedGeoArray = selectedGoogleRows?.selectedGeoTargeting;
-        let geoArray = [];
-        for (let i = 0; i < selectedGeoArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         interestArray.push(toPush);
+  //       }
+  //       await updateFBInterestsRequest(interestArray[0], fbInterestsListId);
+  //     }
+  //     if (selectedGoogleRows?.selectedGeoTargeting.length) {
+  //       let selectedGeoArray = selectedGoogleRows?.selectedGeoTargeting;
+  //       let geoArray = [];
+  //       for (let i = 0; i < selectedGeoArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
 
-          // console.log('topush::::', toPush);
-          geoArray.push(toPush);
-        }
-        await updateGoogleLocationsRequest(geoArray[0], googleKeywordListId);
-      }
-      if (selectedGoogleRows?.selectedKeywordGroupRows.length) {
-        let selectedKeywordArray = selectedGoogleRows?.selectedKeywordGroupRows;
-        let keywordArray = [];
-        for (let i = 0; i < selectedKeywordArray.length; i++) {
-          // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
-          keywordArray.push(toPush);
-        }
-        await updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
-      }
-      setIsTargetSubmitted(true);
-      completeStep(4);
-      history.push('/create/budget');
-    } catch (e) {
-      setError({ isError: true, message: e });
-    }
-    // }
-  };
+  //         // console.log('topush::::', toPush);
+  //         geoArray.push(toPush);
+  //       }
+  //       await updateGoogleLocationsRequest(geoArray[0], googleKeywordListId);
+  //     }
+  //     if (selectedGoogleRows?.selectedKeywordGroupRows.length) {
+  //       let selectedKeywordArray = selectedGoogleRows?.selectedKeywordGroupRows;
+  //       let keywordArray = [];
+  //       for (let i = 0; i < selectedKeywordArray.length; i++) {
+  //         // Search for index value in array of
+  //         let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+  //         // console.log('topush::::', toPush);
+  //         keywordArray.push(toPush);
+  //       }
+  //       await updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
+  //     }
+  //     setIsTargetSubmitted(true);
+  //     completeStep(4);
+  //     history.push('/create/budget');
+  //   } catch (e) {
+  //     setError({ isError: true, message: e });
+  //   }
+  //   // }
+  // };
 
-  const { displayAllComponents, displayGoogleComponent, displayFacebookComponent } = displayState;
+  // const { displayAllComponents, displayGoogleComponent, displayFacebookComponent } = displayState;
 
   return (
     <>

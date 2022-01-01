@@ -168,7 +168,7 @@ ExpandedGoogleTargetingComponent.propTypes = {
   tableState: PropTypes.object,
   setTableState: PropTypes.func,
   setSelectedGoogleRows: PropTypes.func,
-  selectedGoogleRows: PropTypes.func,
+  selectedGoogleRows: PropTypes.object,
 };
 
 ExpandedGoogleTargetingComponent.defaultProps = {
