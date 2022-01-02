@@ -1,7 +1,12 @@
 import React, { useState, useEffect, memo } from 'react';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ForwardIcon from '@material-ui/icons/Forward';
+import InstagramSocialDisplay from './ConnectSocial.Display.Instagram';
+import FacebookSocialDisplay from './ConnectSocial.Display.Facebook';
+import FacebookAudienceDisplay from './ConnectSocial.Display.FacebookAudience';
+import GoogleAdNetworkDisplay from './ConnectSocial.Display.GoogleNetworkAd';
+import GoogleSocialDisplay from './ConnectSocial.Display.Google';
+import { SOCIAL_NETWORK_TITLES } from '../hooks/useCampaignForm';
 
 const useStyles = makeStyles({
   CarouselContainer: {
@@ -85,7 +90,7 @@ const useStyles = makeStyles({
  * @param {string[]} chosenSocialNetworks an array of the social networks the client has chosen for ads
  * @access ConnectSocialPage.jsx for the SOCIAL_NETWORK_TITLES allowed as strings in this array
  */
-function AdPreviewCarousel({ chosenSocialNetworks }) {
+function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
   const classes = useStyles();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
@@ -130,7 +135,38 @@ function AdPreviewCarousel({ chosenSocialNetworks }) {
         {removeAdFromTitle(chosenSocialNetworks[currentStepIndex])}
       </h2>
       <section className={classes.PreviewContainer}>
-        <div>All The network previews that must be filtered for the correct one</div>
+        {chosenSocialNetworks[currentStepIndex] === SOCIAL_NETWORK_TITLES.InstagramAd && (
+          <InstagramSocialDisplay
+            currentCampaign={formInfo}
+            previewUrl={previews.squareImgPreviewUrl}
+          />
+        )}
+        {chosenSocialNetworks[currentStepIndex] === SOCIAL_NETWORK_TITLES.FacebookAd && (
+          <FacebookSocialDisplay
+            currentCampaign={formInfo}
+            previewUrl={previews.squareImgPreviewUrl}
+          />
+        )}
+        {chosenSocialNetworks[currentStepIndex] ===
+          SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd && (
+          <FacebookAudienceDisplay
+            currentCampaign={formInfo}
+            previewUrl={previews.squareImgPreviewUrl}
+          />
+        )}
+        {chosenSocialNetworks[currentStepIndex] === SOCIAL_NETWORK_TITLES.GoogleAwards && (
+          <GoogleSocialDisplay
+            currentCampaign={formInfo}
+            previewUrl={previews.squareImgPreviewUrl}
+          />
+        )}
+        {chosenSocialNetworks[currentStepIndex] ===
+          SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd && (
+          <GoogleAdNetworkDisplay
+            currentCampaign={formInfo}
+            previewUrl={previews.squareImgPreviewUrl}
+          />
+        )}
       </section>
     </div>
   );

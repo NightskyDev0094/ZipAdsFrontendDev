@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 
-const DEFAULT_IMAGE =
-  'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
-
 export const SOCIAL_NETWORK_TITLES = {
   InstagramAd: 'Instagram Ad',
   FacebookAd: 'Facebook Ad',
@@ -31,6 +28,7 @@ export default function useCampaignForm(
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
+  console.log('CURRENT CAMPAIGN: ', currentCampaign);
 
   /** Create Campaign Form Inputs */
   const [campaignName, setCampaignName] = useState(currentCampaign.campaign_name || '');
@@ -40,7 +38,6 @@ export default function useCampaignForm(
   const [cta, setCta] = useState(currentCampaign.cta || 'Learn More');
   const [cta2, setCta2] = useState(currentCampaign.cta2 || 'Get Offer');
   const [adLink, setAdLink] = useState(currentCampaign.ad_link || 'https://');
-  const [fileUrl, setFileUrl] = useState(currentCampaign.file_url || DEFAULT_IMAGE);
   const [squareImgUrl, setSquareImgUrl] = useState(currentCampaign.square_img_url || '');
   const [rectangleImgUrl, setRectangleImgUrl] = useState(currentCampaign.rectangle_img_url || '');
   const [squareImgUpload, setSquareImgUpload] = useState(currentCampaign.square_img_upload || '');
@@ -88,6 +85,7 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
+        console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
@@ -205,8 +203,6 @@ export default function useCampaignForm(
       setCta2,
       adLink,
       setAdLink,
-      fileUrl,
-      setFileUrl,
       squareImgUrl,
       setSquareImgUrl,
       rectangleImgUrl,

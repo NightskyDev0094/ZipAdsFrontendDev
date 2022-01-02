@@ -71,7 +71,7 @@ function CreateCampaignContainer({
             selectedNetworks={selectedNetworks}
             setSelectedNetworks={setSelectedNetworks}
           />
-          <CampaignPage formInfo={formInfo} selectedNetworks={selectedNetworks} />
+          <CampaignPage formInfo={formInfo} selectedNetworks={selectedNetworks} previews={previews} />
         </StepperWrapper>
       </ErrorHandler>
     </>

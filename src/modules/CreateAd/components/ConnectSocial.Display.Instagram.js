@@ -24,15 +24,11 @@ const useStyles = makeStyles(() => ({
     boxShadow:
       '--tw-drop-shadow: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06))',
     width: '340px',
-    // height:'680px',
-    height: 'fit-content',
-    padding: '5px 0',
     margin: '0 auto',
   },
   image: {
     width: '100%',
-    height: 'auto',
-    minHeight: '340px',
+    height: '340px',
   },
   header: {
     alignItems: 'center',
@@ -132,17 +128,17 @@ const useStyles = makeStyles(() => ({
  * @param {object} currentCampaign
  * @returns
  */
-const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
+const InstagramSocialDisplay = ({ currentCampaign, previewUrl }) => {
   const classes = useStyles();
-  const [backgroundImageProp, setBackgroundImageProp] = useState('');
+  console.log(`${currentCampaign.squareImgUrl}`);
+  const [backgroundImageProp, setBackgroundImageProp] = useState(currentCampaign.squareImgUrl);
 
   useEffect(() => {
-    if (previewUrl && previewUrl != '') {
+    if (previewUrl) {
       setBackgroundImageProp(previewUrl);
-    } else {
-      setBackgroundImageProp(currentCampaign.file_url);
     }
   }, [previewUrl]);
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -159,7 +155,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
             }`}
             aria-label="company logo"
             className={classes.icon}
-          ></Avatar>
+          />
         }
         title={
           <>
@@ -168,7 +164,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
           </>
         }
       />
-      <CardMedia className={classes.image} image={backgroundImageProp} />
+      <img className={classes.image} src={backgroundImageProp} />
       <CardActions className={classes.cardActionsContainer}>
         <div className={classes.actionIconContainer}>
           <IconButton classes={{ root: classes.iconButton }} aria-label="like">
@@ -202,7 +198,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
           <strong style={{ fontSize: '13px', color: '#1D447B' }}>
             {currentCampaign.headline2}
           </strong>
-          : {currentCampaign.ad_description}
+          : {currentCampaign.adDescription}
         </Typography>
       </CardContent>
     </Card>
@@ -220,16 +216,6 @@ InstagramSocialDisplay.propTypes = {
   }),
 };
 
-InstagramSocialDisplay.defaultProps = {
-  currentCampaign: {
-    headline: 'htc',
-    headline2: 'Lorem Ipsum',
-    ad_description: `This impressive paella is a perfect party dish and a fun meal to cook together with your
-        guests. Add 1 cup of frozen peas along with the mussels, if you like`,
-    file_url: '',
-    cta: 'Learn More',
-    secondary_image_url: '',
-  },
-};
-
 export default InstagramSocialDisplay;
+
+//TODO: this still needs to display the image

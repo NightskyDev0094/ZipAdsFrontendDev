@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SelectCampaignContainer from './containers/SelectCampaignContainer';
 // import CreateCampaignContainer from './containers/CreateCampaignContainer';
 import CreateCampaignContainer from './containers/NewCreateCampaignContainer';
-import ConnectSocialContainer from './containers/ConnectSocialContainer';
 import TargetingContainer from './containers/TargetingContainer';
 import ExpandedTargetingContainer from './containers/ExpandedTargetingContainer';
 import BudgetContainer from './containers/BudgetContainer';
@@ -26,7 +25,6 @@ const CreateAdRoutes = () => (
     <Route exact path="/create/objective" component={ObjectiveContainer} />
     <Route exact path="/create/targeting" component={TargetingContainer} />
     <Route exact path="/create/expanded-targeting" component={ExpandedTargetingContainer} />
-    <Route exact path="/create/connect-social" component={ConnectSocialContainer} />
     <Route exact path="/create/credits" component={CreditsContainer} />
     <Route exact path="/create/create-campaign" component={CreateCampaignContainer} />
     <Route exact path="/create" component={CreateCampaignContainer} />

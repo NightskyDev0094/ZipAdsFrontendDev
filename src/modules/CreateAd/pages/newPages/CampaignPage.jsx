@@ -22,12 +22,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CampaignPage({ formInfo, selectedNetworks }) {
+export default function CampaignPage({ formInfo, selectedNetworks, previews }) {
   const classes = useStyles();
 
   return (
     <Box className={classes.CampaignVessel}>
-      <AdPreviewCarousel chosenSocialNetworks={selectedNetworks} />
+      <AdPreviewCarousel
+        chosenSocialNetworks={selectedNetworks}
+        formInfo={formInfo}
+        previews={previews}
+      />
       <CampaignForm formInfo={formInfo} />
     </Box>
   );
