@@ -8,14 +8,15 @@ const useStyles = makeStyles({
   CampaignVessel: {
     display: 'grid',
     gridTemplateColumns: '1fr',
+    margin: '2em 0px',
 
-    ['@media (min-width:750px)']: {
+    ['@media (min-width:1250px)']: {
       gridTemplateColumns: '1fr 1fr',
     },
 
     ['& :first-child']: {
       order: 2,
-      ['@media (min-width:750px)']: {
+      ['@media (min-width:1250px)']: {
         order: 'initial',
       },
     },

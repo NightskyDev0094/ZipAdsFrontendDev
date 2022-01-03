@@ -72,16 +72,20 @@ const useStyles = makeStyles({
     },
   },
   PreviewContainer: {
-    height: '30em',
     width: '100%',
-    backgroundColor: 'blue',
-    margin: '3em auto 2em auto',
+    height: "50em",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '50px 0px',
+    margin: '2em auto',
+    backgroundColor: 'inherit',
     overflow: 'hidden',
 
     ['@media (min-width:450px)']: {
-      height: '50em',
-      width: '75%',
-      margin: '2em auto',
+      width: '80%',
+      height: '60em',
+      margin: '0px auto',
     },
   },
 });
