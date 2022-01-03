@@ -3,9 +3,6 @@ import { Box, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-const DEFAULT_IMAGE =
-  'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
-
 const useStyles = makeStyles({
   container: {
     position: 'relative',
@@ -46,7 +43,6 @@ const useStyles = makeStyles({
 const CampaignImageDisplay = ({ previewUrl, ...props }) => {
   const classes = useStyles(props);
   const [backgroundImageProp, setBackgroundImageProp] = useState('');
-  // console.log('IMAGE DISPLAY PROPS: ', props.form);
 
   useEffect(() => {
     if (previewUrl && previewUrl != '') {
@@ -85,28 +81,6 @@ CampaignImageDisplay.propTypes = {
       secondary_image_url: PropTypes.string,
     }),
   }),
-};
-
-CampaignImageDisplay.defaultProps = {
-  previewUrl: 'www.google.com',
-  props: {
-    form: {
-      ad_description: 'ad_description prop not passed',
-      ad_link: 'ad link prop not passed',
-      campaign_name: 'campaign_name prop not passed',
-      cta: 'cta prop not passed',
-      cta2: 'cta2 prop not passed',
-      fb_audience_img: 'fb_audience_img prop not passed',
-      fb_feed_img: 'fb feed img prop not passed',
-      file_url: 'file_url prop not passed',
-      ga_display_img: 'ga_display_img prop not passed',
-      ga_square_display_img: 'ga_square_display_img',
-      headline: 'headline prop not passed',
-      headline2: 'headline2 prop not passed',
-      instagram_img: 'instagram_img prop not passed',
-      secondary_image_url: 'secondary_image_url prop not passed',
-    },
-  },
 };
 
 export default CampaignImageDisplay;

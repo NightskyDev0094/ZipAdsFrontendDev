@@ -15,6 +15,8 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
+import useCustomBackgroundImage from '../hooks/useCusomBackgroundImage';
+import AdPreviewDisplayContainer from './AdPreviewDisplayContainer';
 
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
@@ -136,17 +138,20 @@ const useStyles = makeStyles(() => ({
  */
 const InstagramSocialDisplay = ({ currentCampaign, previewUrl }) => {
   const classes = useStyles();
-  console.log(`${currentCampaign.squareImgUrl}`);
-  const [backgroundImageProp, setBackgroundImageProp] = useState(currentCampaign.squareImgUrl);
+  const { backgroundImageProp } = useCustomBackgroundImage(
+    currentCampaign.squareImgUrl,
+    previewUrl
+  );
 
-  useEffect(() => {
-    if (previewUrl) {
-      setBackgroundImageProp(previewUrl);
-    }
-  }, [previewUrl]);
+  const AdPreviewDisplayContainerProps = {
+    mobileWidth: '340px',
+    mobileHeight: '544px', // (340 *2) - (340 *2 /5)
+    width: '450px',
+    height: '720px', // (450 *2) - (450 *2 /5)
+  };
 
   return (
-    <Card className={classes.root}>
+    <AdPreviewDisplayContainer {...AdPreviewDisplayContainerProps}>
       <CardHeader
         classes={{
           root: classes.header,
@@ -193,7 +198,7 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl }) => {
           {currentCampaign.adDescription}
         </Typography>
       </CardContent>
-    </Card>
+    </AdPreviewDisplayContainer>
   );
 };
 

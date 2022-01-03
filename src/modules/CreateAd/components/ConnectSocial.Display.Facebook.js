@@ -5,12 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import CampaignImageDisplay from './Campaign.ImageDisplay';
 import facebook_t from '../../../img/facebook_t.png';
 import facebook_b from '../../../img/facebook_b.png';
-
-const MOCK_FORM = {
-  file: 'https://images.unsplash.com/photo-1598054437544-d81eea4b1fd0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600',
-  ad_link: 'go here',
-  ad_description: 'something goes here',
-};
+import AdPreviewDisplayContainer from './AdPreviewDisplayContainer';
 
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
@@ -37,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     width: '380px',
     '@media (max-width:700px)': {
       bottom: -40,
-      minHeight:'5.25rem',
+      minHeight: '5.25rem',
       width: '100%',
     },
   },
@@ -47,20 +42,26 @@ const useStyles = makeStyles((theme) => ({
       width: '80vw',
     },
   },
-  facebookImageContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
+  facebookImageContainer: {},
 }));
 
-const FacebookSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
+const FacebookSocialDisplay = ({ currentCampaign, previewUrl }) => {
   const classes = useStyles();
+
+  const AdPreviewDisplayContainerProps = {
+    mobileWidth: '340px',
+    mobileHeight: '272px', // width - (width/5)
+    width: '650px',
+    height: '520px', // width - (width/5)
+  };
+
   return (
-    <div data-test="facebook-social-display" className={classes.facebookImageContainer}>
+    <AdPreviewDisplayContainer {...AdPreviewDisplayContainerProps}>
       <div className={classes.facebookTextContainer}>
         <img src={facebook_t || DEFAULT_IMAGE} className={classes.topImage} width="400px" />
-        <div className={classes.facebookText}>{`${currentCampaign.headline}: ${currentCampaign.headline2}`}</div>
+        <div
+          className={classes.facebookText}
+        >{`${currentCampaign.headline}: ${currentCampaign.headline2}`}</div>
       </div>
       <CampaignImageDisplay
         currentCampaign={currentCampaign}
@@ -68,10 +69,9 @@ const FacebookSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
         height="200px"
         isFacebook
         previewUrl={previewUrl}
-        {...props}
       />
       <img src={facebook_b} className={classes.topImage} width="400px" />
-    </div>
+    </AdPreviewDisplayContainer>
   );
 };
 
@@ -81,3 +81,5 @@ FacebookSocialDisplay.propTypes = {
 };
 
 export default FacebookSocialDisplay;
+
+// TODO: make this look better
