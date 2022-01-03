@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
  * @returns
  */
 
-const FacebookAudienceDisplay = ({ currentCampaign, styles, previewUrl, ...props }) => {
+const FacebookAudienceDisplay = ({ currentCampaign, styles, previewUrl }) => {
   const [backgroundImageProp, setBackgroundImageProp] = useState('');
   useEffect(() => {
     if (previewUrl && previewUrl != '') {
@@ -175,20 +175,6 @@ FacebookAudienceDisplay.propTypes = {
     cta: PropTypes.string,
   }),
   styles: PropTypes.object,
-};
-
-FacebookAudienceDisplay.defaultProps = {
-  currentCampaign: {
-    headline: 'Walgreens',
-    headline2: 'Lorem ipsum dolor sit amet consectetur',
-    ad_description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium molestias vero
-    tempora cupiditate nulla, ducimus ipsam repudiandae asperiores. Iste aspernatur vitae
-    suscipit doloremque, cupiditate dignissimos adipisci. Officiis, aperiam? A, ipsum.
-  `,
-    file_url: DEFAULT_IMAGE,
-    cta: 'Button text prop not passed',
-  },
-  styles: {},
 };
 
 export default FacebookAudienceDisplay;
