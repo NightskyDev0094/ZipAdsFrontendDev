@@ -1,18 +1,25 @@
 import React from 'react';
-import CheckBox from '@material-ui/core/CheckBox';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles({
-  Vessel: { marginBottom: '2em', textAlign: 'center' },
+  Vessel: { marginBottom: '3em', textAlign: 'center' },
   CheckVessel: {
     marginBottom: '0.75rem',
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   CheckBox: {
     display: 'inline-block',
-    marginRight: '0.3em',
+    marginRight: '1em',
+    height: '1.25rem',
+    width: '1.25rem',
+    cursor: 'pointer',
+    ['@media (min-width:450px)']: {
+      height: '2.5rem',
+      width: '2.5rem',
+    },
   },
   Image: {
     display: 'inline-block',
@@ -23,6 +30,10 @@ const useStyles = makeStyles({
       width: '3.5em',
       height: '3.5em',
     },
+    ['@media (min-width:1200px)']: {
+      width: '5em',
+      height: '5em',
+    },
   },
   TitleText: {
     marginRight: 'auto',
@@ -32,6 +43,9 @@ const useStyles = makeStyles({
     ['@media (min-width:450px)']: {
       fontSize: '1.5rem',
     },
+    ['@media (min-width:1200px)']: {
+      fontSize: '2rem',
+    },
   },
 });
 
@@ -40,15 +54,21 @@ const useStyles = makeStyles({
  * @param {string} titleText The text that describes what this checkBox is for
  * @param {function} setSelectedNetworks function that runs whenever the check box is clicked
  */
-export default function NetworkCheckBox({ iconSrc, titleText, setSelectedNetworks }) {
+export default function NetworkCheckBox({
+  iconSrc,
+  titleText,
+  selectedNetworks,
+  setSelectedNetworks,
+}) {
   const classes = useStyles();
+
   return (
     <div className={classes.Vessel}>
       <div className={classes.CheckVessel}>
-        <CheckBox
-          size="large"
+        <input
+          type="checkbox"
           className={classes.CheckBox}
-          defaultChecked={true}
+          checked={selectedNetworks.includes(titleText)}
           onChange={(e) =>
             e.target.checked
               ? setSelectedNetworks((prevNetworkState) => [...prevNetworkState, titleText])

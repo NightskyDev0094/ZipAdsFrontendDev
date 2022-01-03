@@ -19,7 +19,7 @@ const AdCarouselStyles = makeStyles(() => ({
     marginBottom: '150px',
     height: 'fit-content',
     position: 'relative',
-    paddingBottom: '70px', 
+    paddingBottom: '70px',
     ['@media (max-width:1550px)']: {
       width: '80%',
       height: 'fit-content',
@@ -72,7 +72,7 @@ const AdCarouselStyles = makeStyles(() => ({
 
 const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...props }) => {
   const classes = AdCarouselStyles();
-
+  console.log('SOCIALS FROM CAR: ', props.socialsToPost);
   return (
     <>
       <Paper style={{ ...styles?.container }} className={classes.container}>
@@ -84,7 +84,7 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
             onClick={() => reverseAdSlide()}
           />
         </div>
-        
+
         <div style={{ ...styles?.previewsContainer }} className={classes.previewsContainer}>
           <AdPreviewDisplays styles={styles} {...props} adSlideNumber={adSlideNumber} />
         </div>
@@ -95,18 +95,18 @@ const AdCarousel = ({ styles, adSlideNumber, changeAdSlide, reverseAdSlide, ...p
             onClick={() => changeAdSlide()}
           />
         </div>
-      <div
-        style={{
-          position: 'absolute',
-          backgroundSize: 'cover',
-          bottom: '0',
-          padding: '1em 0',
-          width: '100%',
-          textAlign: 'center',
-        }}
-      >
-        User accounts and social interactions are sample data only. Ad performance will vary.
-      </div>
+        <div
+          style={{
+            position: 'absolute',
+            backgroundSize: 'cover',
+            bottom: '0',
+            padding: '1em 0',
+            width: '100%',
+            textAlign: 'center',
+          }}
+        >
+          User accounts and social interactions are sample data only. Ad performance will vary.
+        </div>
       </Paper>
     </>
   );

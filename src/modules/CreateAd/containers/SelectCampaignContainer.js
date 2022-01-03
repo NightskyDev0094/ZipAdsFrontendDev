@@ -5,10 +5,21 @@ import SelectCampaignPage from '../pages/SelectCampaignPage';
 import { getCampaign, addCampaign, updateCampaign } from '../../../actions/campaignActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
 import { updateSocials } from '../../../actions/formInfoActions';
+import { SOCIAL_NETWORK_TITLES } from '../hooks/useCampaignForm';
 
 import { sampleTemplateData } from '../components/SelectCampaign.TemplateData';
 
-const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentCampaign, updateSocials, getBusinessInfo, businessInfo, businessInfoLoading, updateCampaign}) => {
+const SelectCampaignContainer = ({
+  getCampaign,
+  addCampaign,
+  campaigns,
+  currentCampaign,
+  updateSocials,
+  getBusinessInfo,
+  businessInfo,
+  businessInfoLoading,
+  updateCampaign,
+}) => {
   const [campaignData, setCampaignData] = useState([]);
   const [templateData, setTemplateData] = useState([]);
   const [defaultData, setDefaultData] = useState({
@@ -111,9 +122,6 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   const [dataLoading, setDataLoading] = useState(true);
   const history = useHistory();
 
-  
-
-
   const getCampaignData = useCallback(async () => await getCampaign());
 
   useEffect(() => {
@@ -134,13 +142,13 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     'RESTAURANT',
     'TRAVEL AND LODGING',
   ];
-  
+
   useEffect(() => {
     // Set Address values
     if (businessInfo.length) {
       // console.log("Running business info update", businessInfo[businessInfo.length - 1])
       setLocaleVals();
-      
+
       // }
     }
   }, [businessInfo]);
@@ -149,7 +157,9 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     if (businessInfo.length) {
       if (businessInfo[businessInfo.length - 1].industry) {
         // console.log("Set recommended template running", businessInfo[businessInfo.length - 1].industry)
-        setRecommendedTemplate(templateData[industries.indexOf(businessInfo[businessInfo.length - 1].industry)]);
+        setRecommendedTemplate(
+          templateData[industries.indexOf(businessInfo[businessInfo.length - 1].industry)]
+        );
       }
     }
   }, [businessInfo]);
@@ -160,8 +170,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
 
   useEffect(() => {
     // Go to next page when images are finished loading
-    if (dataLoading === false){
-      history.push('create/connect-social');
+    if (dataLoading === false) {
+      history.push('create/create-campaign');
     }
   }, [dataLoading]);
   // useEffect(() => {
@@ -175,34 +185,32 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   //   // Make selected campaign current
   // };
 
-
   const setSocialsToPost = (selected) => {
     let socialsArray = [];
     if (selected.facebook_feed_ad === 'True') {
-      socialsArray.push('facebook feed ad');
+      socialsArray.push(SOCIAL_NETWORK_TITLES.FacebookAd);
     }
     if (selected.facebook_display_ad === 'True') {
-      socialsArray.push('facebook display ad');
+      socialsArray.push(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd);
     }
     if (selected.instagram_ad === 'True') {
-      socialsArray.push('instagram ad');
+      socialsArray.push(SOCIAL_NETWORK_TITLES.instagram_ad);
     }
     if (selected.google_search_ad === 'True') {
-      socialsArray.push('google search ad');
+      socialsArray.push(SOCIAL_NETWORK_TITLES.GoogleAwards);
     }
     if (selected.google_display_ad === 'True') {
-      socialsArray.push('google display ad');
+      socialsArray.push(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd);
     }
     // console.log('updateSocials Running', socialsArray);
     updateSocials(socialsArray);
   };
   const submitSelectedData = async (id, data, campaignType) => {
-    
     let formData = new FormData();
     if (campaignType === 'Template') {
       // let selected = search(data);
       let selectedCampaign = data[id];
-      setSelected(selectedCampaign)
+      setSelected(selectedCampaign);
       // console.log("submitTemplateData", selectedCampaign, selectedCampaign.campaign_name)
       formData.append('campaign_name', selectedCampaign.campaign_name);
       formData.append('campaign_type', 'template');
@@ -215,9 +223,9 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       // formData.append('ga_location_plan', selectedCampaign.ga_location_plan);
       // formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
       // formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
-      formData.append('locale_type', "zip");
-      formData.append('distance', "hyper-local");
-      formData.append('budget_type', "automatic");
+      formData.append('locale_type', 'zip');
+      formData.append('distance', 'hyper-local');
+      formData.append('budget_type', 'automatic');
       formData.append('street_address', streetVal);
       formData.append('city_name', cityVal);
       formData.append('state_code', stateVal);
@@ -225,7 +233,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ad_link', urlVal);
       // formData.append('google_account_id', selectedCampaign.google_account_id);
       // formData.append('facebook_account_id', selectedCampaign.facebook_account_id);
-      formData.append('objective', "Conversions");
+      formData.append('objective', 'Conversions');
       formData.append('google_search_budget', selectedCampaign.google_search_budget);
       formData.append('google_cpc', selectedCampaign.google_cpc);
       formData.append('google_display_budget', selectedCampaign.google_display_budget);
@@ -256,7 +264,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
         }
       };
       let selectedCampaign = search(data);
-      setSelected(selectedCampaign)
+      setSelected(selectedCampaign);
       formData.append('campaign_name', selectedCampaign.campaign_name);
       formData.append('campaign_type', 'draft');
       formData.append('google_search_ad', selectedCampaign.google_search_ad);
@@ -268,8 +276,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       formData.append('ga_location_plan', selectedCampaign.ga_location_plan);
       formData.append('fb_interest_plan', selectedCampaign.fb_interest_plan);
       formData.append('fb_location_plan', selectedCampaign.fb_location_plan);
-      formData.append('locale_type', "zip");
-      formData.append('distance', "hyper-local");
+      formData.append('locale_type', 'zip');
+      formData.append('distance', 'hyper-local');
       formData.append('budget_type', selectedCampaign.budget_type);
       formData.append('street_address', selectedCampaign.street_address);
       formData.append('city_name', selectedCampaign.city_name);
@@ -303,9 +311,8 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
       setDataLoading(false);
     } else if (campaignType === 'New') {
       await createNewCampaign();
-      history.push('create/connect-social');
+      history.push('create/create-campaign');
     }
-    
   };
 
   const createNewCampaign = async () => {
@@ -317,9 +324,9 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
     formData.append('state_code', stateVal);
     formData.append('zip_code', zipVal);
     formData.append('ad_link', urlVal);
-    formData.append('locale_type', "zip");
-    formData.append('distance', "hyper-local");
-    formData.append('objective', "Conversions");
+    formData.append('locale_type', 'zip');
+    formData.append('distance', 'hyper-local');
+    formData.append('objective', 'Conversions');
     await addCampaign(formData);
   };
   const getImageFromUrl = async (url, imageType, formData) => {
@@ -342,7 +349,7 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   };
 
   // const fetchImagesFromUrlThenUpdateCampaign = async (selected, id) => {
-    
+
   //   // console.log('Selected::::', selected.ga_display_img, selected);
   //   const formData = new FormData();
   //   // load image files from urls
@@ -370,14 +377,12 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
   //   // history.push('/connect-social');
   // };
 
-
   const setLocaleVals = () => {
     // if (currentCampaign.campaign_type === 'New') {
     if (!businessInfoLoading && typeof businessInfo !== 'undefined') {
       if (businessInfo.length !== 0) {
         if (typeof businessInfo[businessInfo.length - 1].street !== 'undefined') {
           setStreetVal(businessInfo[businessInfo.length - 1].street || '');
-          
         }
         if (typeof businessInfo[businessInfo.length - 1].city !== 'undefined') {
           setCityVal(businessInfo[businessInfo.length - 1].city || '');
@@ -390,7 +395,6 @@ const SelectCampaignContainer = ({ getCampaign, addCampaign, campaigns, currentC
         }
         if (typeof businessInfo[businessInfo.length - 1].industry !== 'undefined') {
           setIndustryVal(businessInfo[businessInfo.length - 1].industry || '');
-          
         }
         if (typeof businessInfo[businessInfo.length - 1].business_url !== 'undefined') {
           setUrlVal(businessInfo[businessInfo.length - 1].business_url || '');
