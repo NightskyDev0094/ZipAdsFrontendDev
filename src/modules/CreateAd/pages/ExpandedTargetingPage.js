@@ -111,7 +111,7 @@ const ExpandedTargetingPage = ({
   completeStep,
   currentCampaign,
   // Google Store state and actions
-  googleTargeting,
+  googleGeoTargeting,
   googleKeywords,
   googleLocationId,
   googleKeywordListId,
@@ -346,7 +346,7 @@ const ExpandedTargetingPage = ({
 
                 {(displayAllComponents || displayGoogleComponent) && (
                   <ExpandedGoogleTargetingComponent
-                    googleGeoTargeting={googleTargeting}
+                    googleGeoTargeting={googleGeoTargeting}
                     googleKeywords={googleKeywords}
                     tableState={googleTableState}
                     setTableState={setGoogleTableState}

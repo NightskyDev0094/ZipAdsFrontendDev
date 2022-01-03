@@ -61,7 +61,7 @@ const TargetingContainer = ({
   businessInfoLoading,
   hasExpandedTargetingStepBeenCompleted,
   // Google Store state and actions
-  googleTargeting,
+  googleGeoTargeting,
   googleKeywords,
   googleLocationId,
   googleKeywordListId,
@@ -85,18 +85,6 @@ const TargetingContainer = ({
     getFbAdAccounts();
     getFbPages();
   }, []);
-  // useEffect(() => {
-  //   setGaKeywordLoading(false)
-  // }, [googleKeywords]);
-  // useEffect(() => {
-  //   setGaGeoLoading(false)
-  // }, [googleTargeting]);
-  // useEffect(() => {
-  //   setFbInterestLoading(false)
-  // }, [facebookInterestGroups]);
-  // useEffect(() => {
-  //   setFbGeoLoading(false)
-  // }, [facebookGeoTargeting]);
 
   const [streetVal, setStreetVal] = useState(currentCampaign.street_address || '');
   const [cityVal, setCityVal] = useState(currentCampaign.city_name || '');
@@ -106,16 +94,10 @@ const TargetingContainer = ({
   const [interest, setInterest] = useState(currentCampaign.search_term || '');
   const [localeFormat, setLocaleFormat] = useState(currentCampaign.locale_type || 'zip');
   const [advTargeting, setAdvTargeting] = useState(false);
-  // const [gaGeoLoading, setGaGeoLoading] = useState(true);
-  // const [gaKeywordLoading, setGaKeywordLoading] = useState(true);
-  // const [fbGeoLoading, setFbGeoLoading] = useState(true);
-  // const [fbInterestLoading, setFbInterestLoading] = useState(true);
   // Advanced targeting state
   // const classes = useStyles();
   const history = useHistory();
   const [isTargetSubmitted, setIsTargetSubmitted] = useState(false);
-  // const [fbInterestStr, setFbInterestStr] = useState('');
-  // const [fbGeotargetStr, setFbGeotargetStr] = useState('');
   const [isResubmitModalOpen, setIsResubmitModalOpen] = useState(false);
   const [error, setError] = useState({
     message: 'An Error has occured',
@@ -262,7 +244,6 @@ const TargetingContainer = ({
         for (let i = 0; i < selectedGeoArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
           geotargetArray.push(toPush);
         }
         updateFBLocationRequest(geotargetArray[0], fbGeoLocationId);
@@ -273,7 +254,6 @@ const TargetingContainer = ({
         for (let i = 0; i < selectedInterestArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
 
           interestArray.push(toPush);
         }
@@ -286,7 +266,6 @@ const TargetingContainer = ({
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
 
-          // console.log('topush::::', toPush);
           geoArray.push(toPush);
         }
         updateGoogleLocationsRequest(geoArray[0], googleKeywordListId);
@@ -297,7 +276,6 @@ const TargetingContainer = ({
         for (let i = 0; i < selectedKeywordArray.length; i++) {
           // Search for index value in array of
           let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
-          // console.log('topush::::', toPush);
           keywordArray.push(toPush);
         }
         updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
@@ -331,7 +309,7 @@ const TargetingContainer = ({
         setInterest={setInterest}
         localeFormat={localeFormat}
         setLocaleFormat={setLocaleFormat}
-        googleGeoTargeting={googleTargeting}
+        googleGeoTargeting={googleGeoTargeting}
         googleKeywords={googleKeywords}
         
       />
@@ -340,7 +318,7 @@ const TargetingContainer = ({
         setGoogleTableState={setGoogleTableState}
         setSelectedGoogleRows={setSelectedGoogleRows}
         selectedGoogleRows={selectedGoogleRows}
-        googleTargeting={googleTargeting}
+        googleGeoTargeting={googleGeoTargeting}
         googleKeywords={googleKeywords}
         facebookGeoTargeting={facebookGeoTargeting}
         facebookInterestGroups={facebookInterestGroups}
@@ -352,6 +330,7 @@ const TargetingContainer = ({
         displayAllComponents={displayAllComponents}
         displayGoogleComponent={displayGoogleComponent}
         displayFacebookComponent={displayFacebookComponent} 
+        currentCampaign={currentCampaign}
         {...props} 
         />}
     </>
@@ -371,7 +350,7 @@ const mapStateToProps = (state) => ({
   hasTargetStepBeenCompleted: state.stepTracker.TARGET_AUDIENCE_STEP,
   facebookInterestGroups: state.fbTargeting.interestList?.fb_interest_plan,
   facebookGeoTargeting: state.fbTargeting.locationList?.fb_location_plan,
-  googleTargeting: state.googleTargeting.locationList?.ga_location_plan,
+  googleGeoTargeting: state.googleTargeting.locationList?.ga_location_plan,
   googleKeywords: state.googleTargeting.keywordList?.ga_keyword_plan,
   hasExpandedTargetingStepBeenCompleted: state.stepTracker.REVIEW_TARGETING_STEP,
   fbGeoLocationId: state.fbTargeting?.locationList?.plan_id,
