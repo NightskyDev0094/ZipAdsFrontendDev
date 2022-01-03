@@ -147,9 +147,9 @@ const ExpandedFacebookTargetingComponent = ({
 ExpandedFacebookTargetingComponent.propTypes = {
   facebookInterestGroups: PropTypes.array,
   facebookGeoTargeting: PropTypes.array,
-  tableState: PropTypes.func,
+  tableState: PropTypes.object,
   setSelectedFacebookRows: PropTypes.func,
-  selectedFacebookRows: PropTypes.array
+  selectedFacebookRows: PropTypes.object
 }
 
 ExpandedFacebookTargetingComponent.defaultProps = {
