@@ -74,7 +74,7 @@ class BlueTecLanding extends React.Component {
                 <div className="mb-sm-30"></div>
               </div>
               <div
-                className="col-lg-6 offset-lg-1 wow fadeInLeft"
+                className="col-lg-6 offset-lg-1 wow fadeInLeft p-0 d-flex justify-content-center"
                 data-wow-delay=".5s"
                 style={{ marginLeft: 0 }}
               >
