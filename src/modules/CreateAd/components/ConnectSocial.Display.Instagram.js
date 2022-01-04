@@ -15,41 +15,58 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
+import useCustomBackgroundImage from '../hooks/useCusomBackgroundImage';
+import AdPreviewDisplayContainer from './AdPreviewDisplayContainer';
 
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
 const useStyles = makeStyles(() => ({
   root: {
-    boxShadow:
-      '--tw-drop-shadow: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06))',
     width: '340px',
-    // height:'680px',
-    height: 'fit-content',
-    padding: '5px 0',
-    margin: '0 auto',
+    height: '544px', // (340 *2) - (340 *2 /5)
+    border: '1px solid black',
+
+    ['@media (min-width:450px)']: {
+      width: '450px',
+      height: '720px', // (450 *2) - (450 *2 /5)
+    },
   },
   image: {
-    width: '100%',
-    height: 'auto',
-    minHeight: '340px',
+    width: '340px',
+    height: '340px',
+
+    ['@media (min-width:450px)']: {
+      width: '450px',
+      height: '450px',
+    },
   },
   header: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '50px',
-    verticalAlign: 'middle',
+    height: '51px', // 1/4 of remaining height after image
+    width: '100%',
+    padding: '0.5em 1em',
+
+    ['@media (min-width:450px)']: {
+      height: '68px',
+    },
   },
-  title: {
-    marginBottom: '1px',
+  HeadlinePrime: {
+    fontSize: '1.25em',
+    marginBottom: '0.5em',
+    ['@media (min-width:450px)']: {
+      fontSize: '1.75em',
+    },
   },
-  subTitle: {
-    color: '#403f45',
+  HeadlineBeta: {
+    fontSize: '1em',
     marginBottom: 0,
+    ['@media (min-width:450px)']: {
+      fontSize: '1.25em',
+    },
   },
   icon: {
     width: '45px',
-    height: '40px',
+    height: '45px',
     ['@media (max-width:450px)']: {
       height: '8.88888888888889vw',
       width: '10vw',
@@ -64,40 +81,28 @@ const useStyles = makeStyles(() => ({
   cardActionsContainer: {
     height: '45px',
     marginTop: '5px',
-    ['@media (max-width:450px)']: {
-      height: '10vw',
-      marginTop: '1.1111111111111112vw',
+
+    ['@media (min-width:450px)']: {
+      height: '60px',
     },
   },
-  learnMoreButtonContainer: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  learnMoreButton: {
+  CtaButton: {
     borderColor: '#8ABBE6',
     color: '#8DB2CF',
-    width: '125px',
+    width: '170px',
     height: '35px',
-    marginTop: '10px',
-    fontSize: '15px',
-    ['@media (max-width:450px)']: {
-      height: '10vw',
-      fontSize: '3.3333333333333335vw',
-      marginTop: '2.2222222222222223vw',
-      width: '27.77777777777778vw',
+    fontSize: '1em',
+
+    ['@media (min-width:450px)']: {
+      width: '224px',
+      height: '50px',
+      fontSize: '1.25em',
     },
   },
   actionIconContainer: {
     display: 'flex',
     width: '100%',
     justifyContent: 'flex-start',
-    // paddingLeft: '8px',
-    // ['@media (max-width:450px)']: {
-    //   paddingLeft: '1.7777777777777777vw',
-    // },
   },
   iconButton: {
     padding: '5px 8px',
@@ -108,22 +113,21 @@ const useStyles = makeStyles(() => ({
       padding: '5px 3px',
     },
   },
-  numberOfLikes: {
-    fontSize: '15px',
-    color: '#1D447B',
-    display: 'flex',
-    alignItems: 'flex-start',
-    fontWeight: 800,
-    ['@media (max-width:450px)']: {
-      fontSize: '3.3333333333333335vw',
+  AdHeadline: {
+    fontSize: '1.1em',
+    color: '1D447B',
+
+    ['@media (min-width:450px)']: {
+      fontSize: '1.15em',
     },
   },
-  likes: {
-    marginLeft: '5px',
-  },
   adDescription: {
+    fontSize: '0.9em',
     padding: '5px',
-    minHeight: '10em',
+
+    ['@media (min-width:450px)']: {
+      fontSize: '1em',
+    },
   },
 }));
 
@@ -132,19 +136,22 @@ const useStyles = makeStyles(() => ({
  * @param {object} currentCampaign
  * @returns
  */
-const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
+const InstagramSocialDisplay = ({ currentCampaign, previewUrl }) => {
   const classes = useStyles();
-  const [backgroundImageProp, setBackgroundImageProp] = useState('');
+  const { backgroundImageProp } = useCustomBackgroundImage(
+    currentCampaign.squareImgUrl,
+    previewUrl
+  );
 
-  useEffect(() => {
-    if (previewUrl && previewUrl != '') {
-      setBackgroundImageProp(previewUrl);
-    } else {
-      setBackgroundImageProp(currentCampaign.file_url);
-    }
-  }, [previewUrl]);
+  const AdPreviewDisplayContainerProps = {
+    mobileWidth: '340px',
+    mobileHeight: '544px', // (340 *2) - (340 *2 /5)
+    width: '450px',
+    height: '720px', // (450 *2) - (450 *2 /5)
+  };
+
   return (
-    <Card className={classes.root}>
+    <AdPreviewDisplayContainer {...AdPreviewDisplayContainerProps}>
       <CardHeader
         classes={{
           root: classes.header,
@@ -159,16 +166,16 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
             }`}
             aria-label="company logo"
             className={classes.icon}
-          ></Avatar>
+          />
         }
         title={
           <>
-            <h5 className={classes.title}>{currentCampaign.headline}</h5>
-            <h6 className={classes.subTitle}>Sponsored</h6>
+            <h5 className={classes.HeadlinePrime}>{currentCampaign.headline}</h5>
+            <h6 className={classes.HeadlineBeta}>Sponsored</h6>
           </>
         }
       />
-      <CardMedia className={classes.image} image={backgroundImageProp} />
+      <img className={classes.image} src={backgroundImageProp} />
       <CardActions className={classes.cardActionsContainer}>
         <div className={classes.actionIconContainer}>
           <IconButton classes={{ root: classes.iconButton }} aria-label="like">
@@ -181,31 +188,17 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl, ...props }) => {
             <SendIcon className={classes.actionIcons} />
           </IconButton>
         </div>
-        <div className={classes.learnMoreButtonContainer}>
-          <Button
-            className={classes.learnMoreButton}
-            size="small"
-            variant="outlined"
-            color="primary"
-          >
-            {currentCampaign.cta}
-          </Button>
-        </div>
+        <Button className={classes.CtaButton} size="small" variant="outlined" color="primary">
+          {currentCampaign.cta}
+        </Button>
       </CardActions>
       <CardContent>
-        <Typography
-          className={classes.adDescription}
-          variant="body2"
-          color="textSecondary"
-          component="p"
-        >
-          <strong style={{ fontSize: '13px', color: '#1D447B' }}>
-            {currentCampaign.headline2}
-          </strong>
-          : {currentCampaign.ad_description}
+        <Typography className={classes.adDescription} variant="body2" component="p">
+          <strong className={classes.AdHeadline}>{currentCampaign.headline2}</strong>:
+          {currentCampaign.adDescription}
         </Typography>
       </CardContent>
-    </Card>
+    </AdPreviewDisplayContainer>
   );
 };
 
@@ -218,18 +211,6 @@ InstagramSocialDisplay.propTypes = {
     cta: PropTypes.string,
     secondary_image_url: PropTypes.string,
   }),
-};
-
-InstagramSocialDisplay.defaultProps = {
-  currentCampaign: {
-    headline: 'htc',
-    headline2: 'Lorem Ipsum',
-    ad_description: `This impressive paella is a perfect party dish and a fun meal to cook together with your
-        guests. Add 1 cup of frozen peas along with the mussels, if you like`,
-    file_url: '',
-    cta: 'Learn More',
-    secondary_image_url: '',
-  },
 };
 
 export default InstagramSocialDisplay;

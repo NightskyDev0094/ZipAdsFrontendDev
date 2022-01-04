@@ -125,7 +125,7 @@ const ExpandedGoogleTargetingComponent = ({
         />
       ) : (
         <MissingDataAlert severity="info">
-          There is no Google Targeting info at this time
+          There is no Google Geo-Targeting info at this time
         </MissingDataAlert>
       )}
       <Divider className={classes.divider} style={{ height: '40px' }} />
@@ -168,7 +168,7 @@ ExpandedGoogleTargetingComponent.propTypes = {
   tableState: PropTypes.object,
   setTableState: PropTypes.func,
   setSelectedGoogleRows: PropTypes.func,
-  selectedGoogleRows: PropTypes.func,
+  selectedGoogleRows: PropTypes.object,
 };
 
 ExpandedGoogleTargetingComponent.defaultProps = {

@@ -153,7 +153,7 @@ export default function StepperWrapper({ pageHeading, children }) {
   const classes = useStyles();
   const history = useHistory();
 
-  const FAKE_CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
+  const CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
   const headings = [
     'Choose Which Networks to Run Ads On',
     'Choose Your Target Audience',
@@ -186,14 +186,13 @@ export default function StepperWrapper({ pageHeading, children }) {
   }, [pageHeading]);
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Box className={classes.PageVessel}>
         <IconButton
           onClick={() => handleStep(activeStep - 1 < 0 ? activeStep : activeStep - 1)}
           style={{ left: 0, top: 10 }}
           className={classes.ArrowButton}
         >
-          {/* <ArrowBackIcon className={classes.ArrowIcon} /> */}
           <img src={back} className="w-100 h-100" />
         </IconButton>
         <IconButton
@@ -201,21 +200,13 @@ export default function StepperWrapper({ pageHeading, children }) {
           style={{ right: 0, top: 10 }}
           className={classes.ArrowButton}
         >
-          {/* <ArrowForwardIcon className={classes.ArrowIcon} /> */}
           <img src={next} className="w-100 h-100" />
         </IconButton>
         <Typography variant="h2" gutterBottom className={classes.BlueText}>
           {pageHeading}
         </Typography>
-        {/* <Stepper alternativeLabel>
-          {FAKE_CREATE_AD_STEPS.map((step) => (
-            <Step completed={false}>
-              <StepLabel>{step}</StepLabel>
-            </Step>
-          ))}
-        </Stepper> */}
         <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-          {FAKE_CREATE_AD_STEPS.map((label, index) => (
+          {CREATE_AD_STEPS.map((label, index) => (
             <Step key={label}>
               <StepLabel StepIconComponent={ColorlibStepIcon} onClick={() => handleStep(index)}>
                 <p className={classes.stepLabel}>{label}</p>
@@ -231,5 +222,3 @@ export default function StepperWrapper({ pageHeading, children }) {
     </Container>
   );
 }
-
-// TODO: complete the step

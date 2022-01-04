@@ -1,0 +1,245 @@
+import { useState, useEffect } from 'react';
+
+export const SOCIAL_NETWORK_TITLES = {
+  InstagramAd: 'Instagram Ad',
+  FacebookAd: 'Facebook Ad',
+  FacebookAudienceNetworkAd: 'Facebook Audience Network Ad',
+  GoogleAwards: 'Google Awards',
+  GoogleDisplayNetworkAd: 'Google Display Network Ad',
+};
+
+/**
+ * Custom hook that manages all aspects of the create campaign form.
+ * Manages the state of selected networks
+ * Manages the state of the various campaign details form inputs and the submit form handler
+ * All logic is mashed into a single hook because at the moment all uses of this hook are on a single page
+ * @param {*} updateCampaign redux action for updating the campaign
+ * @param {*} currentCampaign redux state of the current campaign
+ * @param {*} googleToken
+ * @param {*} facebookToken
+ * @param {*} fbPages
+ */
+export default function useCampaignForm(
+  updateCampaign,
+  currentCampaign,
+  googleToken,
+  facebookToken,
+  fbPages
+) {
+  /** Selected Networks Management */
+  const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
+  console.log('CURRENT CAMPAIGN: ', currentCampaign);
+
+  /** Create Campaign Form Inputs */
+  const [campaignName, setCampaignName] = useState(currentCampaign.campaign_name || '');
+  const [headline, setHeadline] = useState(currentCampaign.headline || '');
+  const [headline2, setHeadline2] = useState(currentCampaign.headline2 || '');
+  const [adDescription, setAdDescription] = useState(currentCampaign.ad_description || '');
+  const [cta, setCta] = useState(currentCampaign.cta || 'Learn More');
+  const [cta2, setCta2] = useState(currentCampaign.cta2 || 'Get Offer');
+  const [adLink, setAdLink] = useState(currentCampaign.ad_link || 'https://');
+  const [squareImgUrl, setSquareImgUrl] = useState(currentCampaign.square_img_url || '');
+  const [rectangleImgUrl, setRectangleImgUrl] = useState(currentCampaign.rectangle_img_url || '');
+  const [squareImgUpload, setSquareImgUpload] = useState(currentCampaign.square_img_upload || '');
+  const [rectangleImgUpload, setRectangleImgUpload] = useState(
+    currentCampaign.rectangle_img_upload || ''
+  );
+
+  /** Cropper Management */
+  const [rectangleImgName, setRectangleImgName] = useState(null);
+  const [squareImgName, setSquareImgName] = useState(null);
+  const [rectangleImgFile, setRectangleImgFile] = useState(null);
+  const [squareImgFile, setSquareImgFile] = useState(null);
+  const [rectangleUpImg, setRectangleUpImg] = useState();
+  const [squareUpImg, setSquareUpImg] = useState();
+
+  /** Preview Urls */
+  const [squareImgPreviewUrl, setSquareImgPreviewUrl] = useState('');
+  const [rectangleImgPreviewUrl, setRectangleImgPreviewUrl] = useState('');
+
+  /** Other */
+  const [imgOption, setImgOption] = useState(currentCampaign.img_option || 'library');
+
+  useEffect(() => {
+    /** Load campaign images */
+    if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
+    if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
+    if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
+    if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
+  }, []);
+
+  /**Helper function that encapsulates logic for reading and setting the image urls
+   * @param url string url for the image
+   * @param imageType string from the established set of form ids
+   */
+  const getImageFromUrl = async (url, imageType) => {
+    await fetch(`${url}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        let n = url.lastIndexOf('/');
+        let fileName = url.substring(n + 1);
+        const modDate = new Date();
+        const newName = fileName;
+        const jpgFile = new File([blob], newName, {
+          type: 'image/jpg',
+          lastModified: modDate,
+        });
+
+        console.log('JPGFILE ', jpgFile);
+        if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
+          imageType === 'rectangle_img_upload'
+            ? setRectangleImgUpload(jpgFile)
+            : setRectangleImgUrl(jpgFile);
+          setRectangleImgName(jpgFile.name);
+          setRectangleImgFile(jpgFile);
+          setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
+        }
+        if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
+          imageType === 'square_img_upload'
+            ? setSquareImgUpload(jpgFile)
+            : setSquareImgUrl(jpgFile);
+          setSquareImgName(jpgFile.name);
+          setSquareImgFile(jpgFile);
+          setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
+        }
+        return jpgFile;
+      });
+  };
+
+  /** Helper function for reading uploaded files
+   * @param file the file being uploaded
+   * @param setUpImg the react state dispatch for the type of file image
+   * @param  setPreviewUrl the react dispatch for the type of file preview url
+   */
+  const setImgPreview = (file, setUpImg, setPreviewUrl) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      let previewUrl = reader.result;
+      setUpImg(previewUrl);
+      setPreviewUrl(previewUrl);
+    });
+    reader.readAsDataURL(file);
+  };
+
+  const submitCampaign = async () => {
+    const formData = new FormData();
+
+    /** Section that handles the various form inputs */
+    formData.append('campaign_name', campaignName);
+    formData.append('headline', headline);
+    formData.append('headline2', headline2);
+    formData.append('ad_description', adDescription);
+    formData.append('cta', cta);
+    formData.append('cta2', cta2);
+    formData.append('ad_link', adLink);
+    formData.append('img_option', imgOption);
+
+    /** Section that appends the tokens or access keys to social network accounts */
+    formData.append('facebook_account_id', facebookToken);
+    formData.append('google_account_id', googleToken);
+    formData.append('facebook_page_id', fbPages);
+
+    /** Section of Form that appends the selected status of each available social network */
+    selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd)
+      ? formData.append('facebook_feed_ad', 'True')
+      : formData.append('facebook_feed_ad', 'False');
+
+    selectedNetworks.includes(SOCIAL_NETWORK_TITLES.InstagramAd)
+      ? formData.append('instagram_ad', 'True')
+      : formData.append('instagram_ad', 'False');
+
+    selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd)
+      ? formData.append('facebook_display_ad', 'True')
+      : formData.append('facebook_display_ad', 'False');
+
+    selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleAwards)
+      ? formData.append('google_search_ad', 'True')
+      : formData.append('google_search_ad', 'False');
+
+    selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)
+      ? formData.append('google_display_ad', 'True')
+      : formData.append('google_display_ad', 'False');
+
+    /** Section of the form that manages the addition of custom images to specific networks */
+    if ((squareImgUpload || rectangleImgUpload) && imgOption === 'custom') {
+      if (
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd) ||
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)
+      ) {
+        formData.upload('rectangle_img_upload', rectangleImgUpload);
+      }
+      if (
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd) ||
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.InstagramAd) ||
+        selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleAwards)
+      ) {
+        formData.append('square_img_upload', squareImgUpload);
+      }
+    }
+
+    /** Grab the campaign id and update it with the forms data */
+    const campaignId = currentCampaign.id;
+    await updateCampaign(formData, campaignId);
+  };
+
+  return {
+    /** state management for the selected networks */
+    selectedNetworks,
+    setSelectedNetworks,
+
+    /** state management for the campaign form */
+    formInfo: {
+      campaignName,
+      setCampaignName,
+      headline,
+      setHeadline,
+      headline2,
+      setHeadline2,
+      adDescription,
+      setAdDescription,
+      cta,
+      setCta,
+      cta2,
+      setCta2,
+      adLink,
+      setAdLink,
+      squareImgUrl,
+      setSquareImgUrl,
+      rectangleImgUrl,
+      setRectangleImgUrl,
+      squareImgUpload,
+      setSquareImgUpload,
+      rectangleImgUpload,
+      setRectangleImgUpload,
+    },
+
+    /** state management for the cropper */
+    cropper: {
+      rectangleImgName,
+      setRectangleImgName,
+      squareImgName,
+      setSquareImgName,
+      rectangleImgFile,
+      setRectangleImgFile,
+      squareImgFile,
+      setSquareImgFile,
+      rectangleUpImg,
+      setRectangleUpImg,
+      squareUpImg,
+      setSquareUpImg,
+    },
+
+    /** state management for the image preview urls */
+    previews: {
+      squareImgPreviewUrl,
+      setSquareImgPreviewUrl,
+      rectangleImgPreviewUrl,
+      setRectangleImgPreviewUrl,
+    },
+
+    imgOption,
+    setImgOption,
+
+    submitCampaign,
+  };
+}
