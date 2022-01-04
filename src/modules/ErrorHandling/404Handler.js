@@ -8,10 +8,9 @@ const useStyles = makeStyles(() => ({
   },
   mainBox: {
     width: '100vw',
-    height: '100vh',
+    height: 'calc(100vh - 140px)',
     position: 'relative',
     backgroundColor: '#95c2de',
-    margin: '30px auto',
   },
   err: {
     color: '#ffffff',

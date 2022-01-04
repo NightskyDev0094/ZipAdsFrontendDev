@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import SignIn_Up from './images/signin&up.png';
 
 import LargeInput from '../sharedComponents/components/LargeInput';
 import './css/colors/scheme-02.css';
@@ -184,9 +185,11 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
               </form>
             </div>
             <div
-              className="col-lg-6"
+              className="col-lg-6 text-center"
               style={{ backgroundColor: '#2772dd', minHeight: '526px' }}
-            ></div>
+            >
+              <img alt="true" className='mt-4' src={SignIn_Up} />
+            </div>
           </div>
         </section>
       </div>

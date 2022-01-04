@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { SERVER_URL } from '../environmentVariables';
 import { TextField } from '@material-ui/core';
 import SubHeaderBackgroundImage from './images/background/5.png';
+import SignIn_Up from './images/signin&up.png';
 import RegisterSectionImage from './images/background/3.png';
 
 import './css/colors/scheme-02.css';
@@ -280,7 +281,11 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
               </div>
             </div>
             {formState.isError && (
-              <div className="alert alert-danger alert-dismissible fade show" role="alert" style={{marginTop: '25px', marginBottom: 0}}>
+              <div
+                className="alert alert-danger alert-dismissible fade show"
+                role="alert"
+                style={{ marginTop: '25px', marginBottom: 0 }}
+              >
                 {formState.errorMessage}{' '}
                 <button type="button" className="close" aria-label="Close">
                   <span
@@ -294,7 +299,12 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
             )}
           </section>
         </div>
-        <div className="col-lg-6" style={{ backgroundColor: '#2772dd', minHeight: '526px' }}></div>
+        <div
+          className="col-lg-6 text-center"
+          style={{ backgroundColor: '#2772dd', minHeight: '526px' }}
+        >
+          <img alt="true" className="mt-4" src={SignIn_Up} />
+        </div>
       </div>
     </div>
   );
