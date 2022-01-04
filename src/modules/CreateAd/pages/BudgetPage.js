@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { connect } from 'react-redux';
 import {
   Box,
   Grid,
@@ -14,12 +15,22 @@ import {
   TextField,
   Input,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import { green, purple } from '@material-ui/core/colors';
 
 import { InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
 import StepperWrapper from '../components/StepperWrapper';
+import StyledRadio from '../components/StyledRadio';
+import { getCampaignAsync, makeCurrent } from '../../../actions/campaignActions';
+import { postGoogleSearchAd } from '../../../actions/gsAdActions';
+import { postFBFeedAd } from '../../../actions/fbAdActions';
+import { completeStepByNormalFunction as completeStep } from '../../../actions/step.actions';
+import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
+import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
+import { getBusinessInfo } from '../../../actions/businessInfoActions';
+
 import backgroundImage from '../../../BlueTecUIKit/images/background/3.png';
 import {
   ErrorHandler,
@@ -166,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
   InputItem: {
     width: '100%',
     height: '3rem',
-    fontSize: '1.25rem',
+    fontSize: '1.25rem !important',
     padding: '0.5rem 1rem',
     border: 'solid 1px #cccccc',
     borderRadius: '0.25rem',
@@ -181,6 +192,13 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '600px',
     margin: 'auto',
     textAlign: 'center',
+  },
+  submitButton: {
+    padding: '1rem 8rem',
+    borderRadius: '10px',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    boxShadow: 'none',
   },
 }));
 
@@ -211,6 +229,7 @@ const BudgetPage = ({
   setFBCampaignLength,
   allCampaignLength,
   setAllCampaignLength,
+  currentCampaign,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -220,6 +239,89 @@ const BudgetPage = ({
     isError: false,
   });
   const [isActiveBorder, setIsActiveBorder] = useState(false);
+  const [objective, setObjective] = useState(currentCampaign.objective || 'Conversions');
+  const [campaignData, setCampaignData] = useState({});
+
+  const submitAds = () => {
+    // setCheckoutStatus(SUBMIT_STATUS.LOADING);
+    // if (creditAmount >= totalBudget) {
+    const adId = currentCampaign.id;
+    if (socialsToPost.includes('facebook feed ad')) {
+      let fbfFormData = new FormData();
+      fbfFormData.append('ad_id', adId);
+      fbfFormData.append('ad_type', 'feed');
+      // Post Ad to Facebook
+      postFBFeedAd(fbfFormData);
+    }
+    if (socialsToPost.includes('facebook display ad')) {
+      let fbaFormData = new FormData();
+      fbaFormData.append('ad_id', adId);
+      fbaFormData.append('ad_type', 'audience');
+      // Post Ad to Facebook
+      postFBFeedAd(fbaFormData);
+    }
+    if (socialsToPost.includes('instagram ad')) {
+      let igFormData = new FormData();
+      igFormData.append('ad_id', adId);
+      igFormData.append('ad_type', 'instagram');
+      // Post Ad to Facebook
+      postFBFeedAd(igFormData);
+    }
+    if (socialsToPost.includes('google adwords')) {
+      let gsaFormData = new FormData();
+      gsaFormData.append('ad_id', adId);
+      gsaFormData.append('ad_type', 'search');
+      // Post Ad to Google
+      postGoogleSearchAd(gsaFormData);
+    }
+    if (socialsToPost.includes('google display ad')) {
+      let gdaFormData = new FormData();
+      gdaFormData.append('ad_id', adId);
+      gdaFormData.append('ad_type', 'display');
+      // Post Ad to Google
+      postGoogleSearchAd(gdaFormData);
+    }
+    history.push('/create/summary');
+    // setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
+    // history.push('/create/success');
+    // } else {
+    //   // setCheckoutStatus(SUBMIT_STATUS.ERROR);
+    //   setHandleError({ isError: true, message: 'Error: Please add more credits' });
+    // }
+  };
+
+  useEffect(() => {
+    let budgets = [];
+    if (!currentCampaign) return;
+    if (socialsToPost.includes('facebook feed ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.facebook_feed_budget) * currentCampaign.fb_campaign_length
+      );
+    }
+    if (socialsToPost.includes('facebook display ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.facebook_audience_budget) * currentCampaign.fb_campaign_length
+      );
+    }
+    if (socialsToPost.includes('instagram ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.instagram_budget) * currentCampaign.fb_campaign_length
+      );
+    }
+    if (socialsToPost.includes('google search ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.google_search_budget) * currentCampaign.ga_campaign_length
+      );
+    }
+    if (socialsToPost.includes('google display ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.google_display_budget) * currentCampaign.ga_campaign_length
+      );
+    }
+    let budgetVal = budgets.reduce((a, b) => a + b, 0);
+    setTotalBudget(budgetVal);
+    setCampaignData(currentCampaign);
+  }, [currentCampaign]);
 
   const nextClick = () => {
     if (hasBudgetStepBeenCompleted === 'STEP_COMPLETED') {
@@ -652,19 +754,106 @@ const BudgetPage = ({
                       >
                         Advanced Options
                       </InputMainLabel>
-                      <RadioGroup
+                      {/* <RadioGroup
                         aria-label="distance"
                         name="distance"
                         value={budgetOption}
                         onChange={(e) => setOption(e.target.value)}
                       >
-                        <FormControlLabel value="automatic" control={<Radio />} label="Automatic" />
+                        <FormControlLabel value="automatic" control={<StyledRadio />} label="Automatic" />
                         <FormControlLabel
                           value="advanced"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label="Advanced Options"
                         />
+                      </RadioGroup> */}
+                    </Box>
+                    <Box className={classes.dailyFacebookAdsBudgetInput}>
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        What is your main advertising objective for your business?
+                      </InputMainLabel>
+                      <RadioGroup
+                        aria-label="distance"
+                        name="distance"
+                        value={objective}
+                        onChange={(e) => setObjective(e.target.value)}
+                      >
+                        <FormControlLabel
+                          value="Conversions"
+                          control={<StyledRadio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Generate sales or signups
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="Brand Awareness"
+                          control={<StyledRadio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Make people aware of my business
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="Store Traffic"
+                          control={<StyledRadio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Increase visits to my business's physical location
+                            </Typography>
+                          }
+                        />
+                        <FormControlLabel
+                          value="Traffic"
+                          control={<StyledRadio />}
+                          label={
+                            <Typography className={classes.textStyle}>
+                              Generate web traffic
+                            </Typography>
+                          }
+                        />
                       </RadioGroup>
+                    </Box>
+                    <Box className={classes.dailyFacebookAdsBudgetInput}>
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Please confirm your total ad spend for this campaign:
+                      </InputMainLabel>
+                      <InputMainLabel
+                        style={{
+                          margin: '3rem 0 1rem 0',
+                          color: '#00468f',
+                          fontWeight: 'bold',
+                          fontSize: '2rem',
+                        }}
+                      >
+                        ${allCampaignLength * totalBudget}
+                      </InputMainLabel>
+                      <Typography className={classes.textStyle} style={{ color: '#00468f' }}>
+                        Based on ${totalBudget} daily spend x {allCampaignLength} days campaign
+                        length.
+                      </Typography>
+                    </Box>
+                    <Box marginTop={4} width="100%" display="flex" justifyContent="center">
+                      {/* <ColorButton variant="contained" className={classes.submitButton}>
+                        Submit
+                      </ColorButton> */}
+                      <input
+                        type="button"
+                        value="Submit"
+                        id="send_message"
+                        style={{
+                          color: '#00468f',
+                          backgroundColor: '#47e362',
+                          borderRadius: '10px',
+                          padding: '1rem 8rem',
+                          fontSize: '1.5rem',
+                          width: 'fit-content',
+                        }}
+                        className="btn btn-custom color-2 border-0"
+                        onClick={submitAds}
+                      />
                     </Box>
                   </div>
                 </div>
@@ -678,4 +867,16 @@ const BudgetPage = ({
   );
 };
 
-export default BudgetPage;
+const mapStateToProps = (state) => ({
+  currentCampaign: state.campaigns?.current,
+});
+const mapDispatchToProps = (dispatch) => ({
+  postFBFeedAd: (formData) => postFBFeedAd(formData, dispatch),
+  postGoogleSearchAd: (formData) => postGoogleSearchAd(formData, dispatch),
+  getCampaignAsync: () => getCampaignAsync(dispatch),
+  getFbAdAccounts: () => getFbAdAccounts(dispatch),
+  getGoogleAdAccounts: () => getGoogleAdAccounts(dispatch),
+  getBusinessInfo: () => getBusinessInfo(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetPage);

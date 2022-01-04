@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/';
 
 import './css/colors/scheme-02.css';
 import './css/coloring.css';
@@ -23,17 +24,28 @@ import ThirdImage from './images/services/3.jpg';
 import FourthImage from './images/services/4.jpg';
 import FifthImage from './images/services/5.jpg';
 import SixthImage from './images/services/6.jpg';
-import CreationImage from './images/creation.png';
+import CreationImage1 from './images/creation1.png';
 import CreationImage2 from './images/creation2.png';
-import CreationImage3 from './images/creation3.jpg';
-import CreationImage4 from './images/creation4.jpg';
+import CreationImage3 from './images/creation3.png';
+// import CreationImage4 from './images/creation4.png';
 import BackgroundImage1 from './images/background/7.png';
+
+const useStyles = makeStyles((theme) => ({
+  boardTitle: {
+    fontWeight: '600',
+  },
+  boardContent: {
+    fontSize: '1.15rem',
+  },
+}));
 
 const BlueTecDashBoardImages = () => {
   const history = useHistory();
+  const classes = useStyles();
+
   return (
     <div
-      style={{ background: `url(${BackgroundImage1})` }}
+      // style={{ background: `url(${BackgroundImage1})` }}
       className="no-bottom no-top"
       id="content"
     >
@@ -53,13 +65,13 @@ const BlueTecDashBoardImages = () => {
                 </div>
                 <img
                   style={{ height: '275px', '&:hover': { cursor: 'pointer' } }}
-                  src={CreationImage4}
-                  className="fp-image img-fluid"
+                  src={CreationImage1}
+                  className="fp-image img-fluid w-100 h-100"
                   alt
                 />
               </div>
-              <h4>Create an Ad Campaign</h4>
-              <p>
+              <h4 className={classes.boardTitle}>Create an Ad Campaign</h4>
+              <p className={classes.boardContent}>
                 <strong>Click here</strong> to create a new Ad Campaign.
               </p>
             </div>
@@ -73,10 +85,10 @@ const BlueTecDashBoardImages = () => {
                 <div className="fp-icon">
                   <i className="fa fa-desktop" />
                 </div>
-                <img src={CreationImage} className="fp-image img-fluid" alt />
+                <img src={CreationImage2} className="fp-image img-fluid w-100 h-100" alt />
               </div>
-              <h4>Understanding Ad Campaigns</h4>
-              <p>
+              <h4 className={classes.boardTitle}>Understanding Ad Campaigns</h4>
+              <p className={classes.boardContent}>
                 <strong>Click here</strong> to learn more about ad campaigns and how important they
                 can be to the success of your business.
               </p>
@@ -92,14 +104,14 @@ const BlueTecDashBoardImages = () => {
                   <i className="fa fa-line-chart" />
                 </div>
                 <img
-                  src={CreationImage2}
-                  className="fp-image img-fluid"
+                  src={CreationImage3}
+                  className="fp-image img-fluid w-100 h-100"
                   style={{ height: '275px' }}
                   alt
                 />
               </div>
-              <h4>Analytics Dashboard</h4>
-              <p>
+              <h4 className={classes.boardTitle}>Analytics Dashboard</h4>
+              <p className={classes.boardContent}>
                 <strong>Click here</strong> to see real time statistics on your various ad
                 campaigns.
               </p>
@@ -109,7 +121,7 @@ const BlueTecDashBoardImages = () => {
                 <div className="fp-icon">
                   <i className="fa fa-object-group" />
                 </div>
-                <img src={FourthImage} className="fp-image img-fluid" alt />
+                <img src={FourthImage} className="fp-image img-fluid w-100 h-100" alt />
               </div>
               <h4>Our Tutorials</h4>
               <p>
@@ -122,7 +134,7 @@ const BlueTecDashBoardImages = () => {
                 <div className="fp-icon">
                   <i className="fa fa-hdd-o" />
                 </div>
-                <img src={FifthImage} className="fp-image img-fluid" alt />
+                <img src={FifthImage} className="fp-image img-fluid w-100 h-100" alt />
               </div>
               <h4>Consult with US</h4>
               <p>
@@ -137,7 +149,7 @@ const BlueTecDashBoardImages = () => {
                 </div>
                 <img
                   src={CreationImage3}
-                  className="fp-image img-fluid"
+                  className="fp-image img-fluid w-100 h-100"
                   style={{ height: '250px' }}
                   alt
                 />

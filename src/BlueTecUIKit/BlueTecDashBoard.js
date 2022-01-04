@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',

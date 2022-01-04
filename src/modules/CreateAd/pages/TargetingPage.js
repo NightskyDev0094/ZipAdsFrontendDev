@@ -4,18 +4,15 @@ import {
   Box,
   Typography,
   FormControlLabel,
-  LinearProgress,
   RadioGroup,
   Radio,
   Input,
-  Chip,
-  Button,
-  Paper,
-  Tooltip,
+  Button
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { InputMainLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
+import StyledRadio from '../components/StyledRadio';
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
 import {
   ErrorHandler,
@@ -90,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   InputItem: {
     width: '100%',
     height: '3rem',
-    fontSize: '1.25rem',
+    fontSize: '1.25rem !important',
     padding: '0.5rem 1rem',
     border: 'solid 1px #cccccc',
     borderRadius: '0.25rem',
@@ -213,19 +210,19 @@ const TargetingPage = ({
                       >
                         <FormControlLabel
                           value="hyper-local"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={<Typography className={classes.textStyle}>Hyper Local</Typography>}
                         />
                         <FormControlLabel
                           value="local"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={
                             <Typography className={classes.textStyle}>Local (5 miles)</Typography>
                           }
                         />
                         <FormControlLabel
                           value="drive"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={
                             <Typography className={classes.textStyle}>
                               A Drive Away (15 miles)
@@ -234,13 +231,13 @@ const TargetingPage = ({
                         />
                         <FormControlLabel
                           value="nationwide"
-                          control={<Radio />}
+                          control={<StyledRadio />}
                           label={<Typography className={classes.textStyle}>Nationwide</Typography>}
                         />
                       </RadioGroup>
                     </div>
                   </Box>
-                  {distance === 'hyper-local' && (
+                  {/* {distance === 'hyper-local' && (
                     <>
                       <Box marginTop="2rem">
                         <InputMainLabel
@@ -280,7 +277,7 @@ const TargetingPage = ({
                         </Box>
                       </Box>
                     </>
-                  )}
+                  )} */}
                   {distance === 'hyper-local' && localeFormat === 'zip' && (
                     <Box marginTop="2rem">
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
@@ -331,7 +328,7 @@ const TargetingPage = ({
                   {distance === 'drive' && (
                     <Box marginTop="2rem">
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                        Enter your target location
+                        Enter your target location's address:
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
@@ -374,7 +371,7 @@ const TargetingPage = ({
                   {distance === 'local' && (
                     <Box marginTop="2rem">
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                        Enter your target location
+                        Enter your target location's address:
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
@@ -417,7 +414,7 @@ const TargetingPage = ({
 
                   <Box marginTop="2rem">
                     <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                      Enter a keyword that your target customer will be interested in:
+                      Enter a keyword that your customers would be interested in:
                       {/* <InfoButton
                       infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
                     /> */}
