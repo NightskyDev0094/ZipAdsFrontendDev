@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
   Box,
@@ -15,13 +15,22 @@ import {
   TextField,
   Input,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import { green, purple } from '@material-ui/core/colors';
 
 import { InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
 import StepperWrapper from '../components/StepperWrapper';
 import StyledRadio from '../components/StyledRadio';
+import { getCampaignAsync, makeCurrent } from '../../../actions/campaignActions';
+import { postGoogleSearchAd } from '../../../actions/gsAdActions';
+import { postFBFeedAd } from '../../../actions/fbAdActions';
+import { completeStepByNormalFunction as completeStep } from '../../../actions/step.actions';
+import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
+import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
+import { getBusinessInfo } from '../../../actions/businessInfoActions';
+
 import backgroundImage from '../../../BlueTecUIKit/images/background/3.png';
 import {
   ErrorHandler,
@@ -184,6 +193,13 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     textAlign: 'center',
   },
+  submitButton: {
+    padding: '1rem 8rem',
+    borderRadius: '10px',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    boxShadow: 'none',
+  },
 }));
 
 const BudgetPage = ({
@@ -224,7 +240,89 @@ const BudgetPage = ({
   });
   const [isActiveBorder, setIsActiveBorder] = useState(false);
   const [objective, setObjective] = useState(currentCampaign.objective || 'Conversions');
-  console.log(currentCampaign);
+  const [campaignData, setCampaignData] = useState({});
+
+  const submitAds = () => {
+    // setCheckoutStatus(SUBMIT_STATUS.LOADING);
+    // if (creditAmount >= totalBudget) {
+    const adId = currentCampaign.id;
+    if (socialsToPost.includes('facebook feed ad')) {
+      let fbfFormData = new FormData();
+      fbfFormData.append('ad_id', adId);
+      fbfFormData.append('ad_type', 'feed');
+      // Post Ad to Facebook
+      postFBFeedAd(fbfFormData);
+    }
+    if (socialsToPost.includes('facebook display ad')) {
+      let fbaFormData = new FormData();
+      fbaFormData.append('ad_id', adId);
+      fbaFormData.append('ad_type', 'audience');
+      // Post Ad to Facebook
+      postFBFeedAd(fbaFormData);
+    }
+    if (socialsToPost.includes('instagram ad')) {
+      let igFormData = new FormData();
+      igFormData.append('ad_id', adId);
+      igFormData.append('ad_type', 'instagram');
+      // Post Ad to Facebook
+      postFBFeedAd(igFormData);
+    }
+    if (socialsToPost.includes('google adwords')) {
+      let gsaFormData = new FormData();
+      gsaFormData.append('ad_id', adId);
+      gsaFormData.append('ad_type', 'search');
+      // Post Ad to Google
+      postGoogleSearchAd(gsaFormData);
+    }
+    if (socialsToPost.includes('google display ad')) {
+      let gdaFormData = new FormData();
+      gdaFormData.append('ad_id', adId);
+      gdaFormData.append('ad_type', 'display');
+      // Post Ad to Google
+      postGoogleSearchAd(gdaFormData);
+    }
+    history.push('/create/summary');
+    // setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
+    // history.push('/create/success');
+    // } else {
+    //   // setCheckoutStatus(SUBMIT_STATUS.ERROR);
+    //   setHandleError({ isError: true, message: 'Error: Please add more credits' });
+    // }
+  };
+
+  useEffect(() => {
+    let budgets = [];
+    if (!currentCampaign) return;
+    if (socialsToPost.includes('facebook feed ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.facebook_feed_budget) * currentCampaign.fb_campaign_length
+      );
+    }
+    if (socialsToPost.includes('facebook display ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.facebook_audience_budget) * currentCampaign.fb_campaign_length
+      );
+    }
+    if (socialsToPost.includes('instagram ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.instagram_budget) * currentCampaign.fb_campaign_length
+      );
+    }
+    if (socialsToPost.includes('google search ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.google_search_budget) * currentCampaign.ga_campaign_length
+      );
+    }
+    if (socialsToPost.includes('google display ad')) {
+      budgets.push(
+        parseFloat(currentCampaign.google_display_budget) * currentCampaign.ga_campaign_length
+      );
+    }
+    let budgetVal = budgets.reduce((a, b) => a + b, 0);
+    setTotalBudget(budgetVal);
+    setCampaignData(currentCampaign);
+  }, [currentCampaign]);
+
   const nextClick = () => {
     if (hasBudgetStepBeenCompleted === 'STEP_COMPLETED') {
       setIsResubmitModalOpen(true);
@@ -718,6 +816,45 @@ const BudgetPage = ({
                         />
                       </RadioGroup>
                     </Box>
+                    <Box className={classes.dailyFacebookAdsBudgetInput}>
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Please confirm your total ad spend for this campaign:
+                      </InputMainLabel>
+                      <InputMainLabel
+                        style={{
+                          margin: '3rem 0 1rem 0',
+                          color: '#00468f',
+                          fontWeight: 'bold',
+                          fontSize: '2rem',
+                        }}
+                      >
+                        ${allCampaignLength * totalBudget}
+                      </InputMainLabel>
+                      <Typography className={classes.textStyle} style={{ color: '#00468f' }}>
+                        Based on ${totalBudget} daily spend x {allCampaignLength} days campaign
+                        length.
+                      </Typography>
+                    </Box>
+                    <Box marginTop={4} width="100%" display="flex" justifyContent="center">
+                      {/* <ColorButton variant="contained" className={classes.submitButton}>
+                        Submit
+                      </ColorButton> */}
+                      <input
+                        type="button"
+                        value="Submit"
+                        id="send_message"
+                        style={{
+                          color: '#00468f',
+                          backgroundColor: '#47e362',
+                          borderRadius: '10px',
+                          padding: '1rem 8rem',
+                          fontSize: '1.5rem',
+                          width: 'fit-content',
+                        }}
+                        className="btn btn-custom color-2 border-0"
+                        onClick={submitAds}
+                      />
+                    </Box>
                   </div>
                 </div>
                 {/* <img src={alert} className="position-absolute" style={{ bottom: 0 }} /> */}
@@ -733,5 +870,13 @@ const BudgetPage = ({
 const mapStateToProps = (state) => ({
   currentCampaign: state.campaigns?.current,
 });
+const mapDispatchToProps = (dispatch) => ({
+  postFBFeedAd: (formData) => postFBFeedAd(formData, dispatch),
+  postGoogleSearchAd: (formData) => postGoogleSearchAd(formData, dispatch),
+  getCampaignAsync: () => getCampaignAsync(dispatch),
+  getFbAdAccounts: () => getFbAdAccounts(dispatch),
+  getGoogleAdAccounts: () => getGoogleAdAccounts(dispatch),
+  getBusinessInfo: () => getBusinessInfo(dispatch),
+});
 
-export default connect(mapStateToProps, {})(BudgetPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetPage);

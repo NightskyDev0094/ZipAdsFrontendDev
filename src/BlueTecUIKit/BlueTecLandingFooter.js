@@ -7,7 +7,7 @@ import './css/bluetecfooter.css';
 class BlueTecLandingFooter extends React.Component {
   render() {
     return (
-      <footer className="footer footer-light">
+      <footer>
         <div className="container">
           <div className="row">
             <div className="col-lg-4">
@@ -65,7 +65,7 @@ class BlueTecLandingFooter extends React.Component {
                   method="post"
                   name="form_subscribe"
                 >
-                  <div className="col text-center">
+                  <div className="col text-center d-flex">
                     <input
                       className="form-control"
                       id="name_1"
@@ -74,7 +74,10 @@ class BlueTecLandingFooter extends React.Component {
                       type="text"
                     />
                     <a href="#" id="btn-submit">
-                      <i className="arrow_right" />
+                      <i
+                        className="arrow_right position-absolute"
+                        style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                      />
                     </a>
                     <div className="clearfix" />
                   </div>
