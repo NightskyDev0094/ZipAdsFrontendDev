@@ -28,7 +28,7 @@ export default function useCampaignForm(
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
-  console.log('CURRENT CAMPAIGN: ', currentCampaign);
+  // console.log('CURRENT CAMPAIGN: ', currentCampaign);
 
   /** Create Campaign Form Inputs */
   const [campaignName, setCampaignName] = useState(currentCampaign.campaign_name || '');
@@ -61,11 +61,24 @@ export default function useCampaignForm(
   const [imgOption, setImgOption] = useState(currentCampaign.img_option || 'library');
 
   useEffect(() => {
+    console.log("Use effect running", )
     /** Load campaign images */
-    if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
-    if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
-    if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
-    if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
+    // if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
+    // if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
+    // if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
+    // if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
+    if (currentCampaign.rectangle_img_url !== null && currentCampaign.rectangle_img_url !== '') {
+      getImageFromUrl(currentCampaign.rectangle_img_url, 'rectangle_img_url');
+    }
+    if (currentCampaign.square_img_url !== null && currentCampaign.square_img_url !== '') {
+      getImageFromUrl(currentCampaign.square_img_url, 'square_img_url');
+    }
+    if (currentCampaign.rectangle_img_upload !== null && currentCampaign.rectangle_img_upload !== '') {
+      getImageFromUrl(currentCampaign.rectangle_img_upload, 'rectangle_img_upload');
+    }
+    if (currentCampaign.square_img_upload !== null && currentCampaign.square_img_upload !== '') {
+      getImageFromUrl(currentCampaign.square_img_upload, 'square_img_upload');
+    }
   }, []);
 
   /**Helper function that encapsulates logic for reading and setting the image urls
@@ -85,7 +98,7 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
-        console.log('JPGFILE ', jpgFile);
+        // console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
