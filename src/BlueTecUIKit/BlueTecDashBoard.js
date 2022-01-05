@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const BlueTecDashBoard = () => {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
+    <div className={classes.container} style={{height: 'calc(100vh - 140px)', display: 'flex', flexDirection: 'column'}}>
       <BlueTecDashBoardHeader />
       <BlueTecDashBoardImages />
       <BlueTecLandingFooter />

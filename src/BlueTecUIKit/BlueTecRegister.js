@@ -6,6 +6,7 @@ import { TextField } from '@material-ui/core';
 import SubHeaderBackgroundImage from './images/background/5.png';
 import SignIn_Up from './images/signin&up.png';
 import RegisterSectionImage from './images/background/3.png';
+import BlueTecAuthenticationSub from './BlueTecAuthenticationSub';
 
 import './css/colors/scheme-02.css';
 import './css/coloring.css';
@@ -113,7 +114,7 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       </section>
       {} */}
       <div className="row m-0">
-        <div className="col-lg-6 p-5" style={{ minHeight: '526px' }}>
+        <div className="col-lg-6 p-5" style={{ minHeight: 'calc(100vh - 297.38px)' }}>
           <h1 className="text-center mb-4" style={{ color: '#00468f' }}>
             Register
           </h1>
@@ -300,10 +301,10 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
           </section>
         </div>
         <div
-          className="col-lg-6 text-center"
-          style={{ backgroundColor: '#2772dd', minHeight: '526px' }}
+          className="col-lg-6 text-center d-flex flex-column feature-sub"
+          style={{ padding: '40px 5vw' }}
         >
-          <img alt="true" className="mt-4" src={SignIn_Up} />
+          <BlueTecAuthenticationSub />
         </div>
       </div>
     </div>

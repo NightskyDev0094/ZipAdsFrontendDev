@@ -23,6 +23,7 @@ import './css/colors/scheme-01.css';
 import './css/blueteclogin.css';
 import { SERVER_URL } from '../environmentVariables';
 import { func } from 'prop-types';
+import BlueTecAuthenticationSub from './BlueTecAuthenticationSub';
 
 const errorParsing = (errorMessage) =>
   errorMessage.length > 100 ? errorMessage.substring(0, 50) : errorMessage;
@@ -146,7 +147,10 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                     Your message has been sent successfully.
                   </div>
                   {formState.isErrors && (
-                    <div className="alert alert-danger alert-dismissible fade show m-0" role="alert">
+                    <div
+                      className="alert alert-danger alert-dismissible fade show m-0"
+                      role="alert"
+                    >
                       {formState.errorMessage}{' '}
                       <button
                         type="button"
@@ -185,10 +189,10 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
               </form>
             </div>
             <div
-              className="col-lg-6 text-center"
-              style={{ backgroundColor: '#2772dd', minHeight: '526px' }}
+              className="col-lg-6 text-center d-flex flex-column feature-sub"
+              style={{ padding: '40px 5vw' }}
             >
-              <img alt="true" className='mt-4' src={SignIn_Up} />
+              <BlueTecAuthenticationSub />
             </div>
           </div>
         </section>

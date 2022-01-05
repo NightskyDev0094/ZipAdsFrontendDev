@@ -10841,8 +10841,6 @@ img {
     background-size: cover;
     background-attachment: scroll;
   }
-}
-@media only screen and (max-width: 992px) {
   section {
     -webkit-background-size: auto 100%;
     -moz-background-size: auto 100%;
@@ -10850,4 +10848,23 @@ img {
     background-size: auto 100%;
     background-attachment: scroll;
   }
+  .feature-sub {
+    padding: 40px 12vw !important;
+  }
+}
+/* 
+@media only screen and (max-width: 992px) {
+} */
+
+.icon-style {
+  color: white;
+  background: #7ac943;
+  padding: 10px;
+  border-radius: 100%;
+}
+
+.feature-sub {
+  background-color: #2772dd;
+  min-height: calc(100vh - 297.38px);
+  
 }

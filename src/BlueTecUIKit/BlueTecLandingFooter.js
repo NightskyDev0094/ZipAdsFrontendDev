@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ZipAdsLogo from './images/ZipAdsLogo.png';
+import Mic from './images/mic.png';
+import FacebookLogo from './images/icons/facebook.svg';
+import InstagramLogo from './images/icons/instagram.svg';
+import TwitterLogo from './images/icons/twitter.svg';
+import LinkdinLogo from './images/icons/linkdin.svg';
+import YoutubeLogo from './images/icons/youtube.svg';
 import './css/bluetecfooter.css';
 
 class BlueTecLandingFooter extends React.Component {
   render() {
     return (
-      <footer>
-        <div className="container">
-          <div className="row">
+      <footer style={{ padding: '10px 60px', background: '#d9d9d9' }}>
+        <div className="footer-container">
+          {/* <div className="row">
             <div className="col-lg-4">
               <div className="widget">
                 <Link to="/">
@@ -107,6 +112,51 @@ class BlueTecLandingFooter extends React.Component {
                   <i className="fa fa-rss fa-lg" />
                 </a>
               </div>
+            </div>
+          </div> */}
+          <div className="section mt-auto" style={{marginBottom: '20px'}}>
+            <h3 className='mb-3' style={{ color: '#737373', fontWeight: '600' }}>Contact Us</h3>
+            <h5 className='mb-3' style={{ color: '#737373', fontWeight: '600' }}>(555) 555-5555</h5>
+            <h5 style={{ color: '#737373', fontWeight: '600' }}>support@zipads.net</h5>
+          </div>
+          <div className="social-icons section d-flex justify-content-center" style={{marginBottom: '20px'}}>
+            <a className="mt-auto mx-3" href="#">
+              <div className="logo-section">
+                <img className="logo" src={FacebookLogo} style={{ borderRadius: '11px' }} />
+                <div className="whiteBG"></div>
+              </div>
+            </a>
+            <a className="mt-auto mx-3" href="#">
+              <div className="logo-section">
+                <img className="logo" src={InstagramLogo} className="p-0" />
+              </div>
+            </a>
+            <a className="mt-auto mx-3" href="#">
+              <div className="logo-section">
+                <img className="logo" src={TwitterLogo} />
+                <div className="whiteBG"></div>
+              </div>
+            </a>
+            <a className="mt-auto mx-3" href="#">
+              <div className="logo-section">
+                <img className="logo" src={LinkdinLogo} style={{ padding: '3px' }} />
+                <div className="whiteBG"></div>
+              </div>
+            </a>
+            <a className="mt-auto mx-3" href="#">
+              <div className="logo-section">
+                <img className="logo" src={YoutubeLogo} style={{ borderRadius: '11px' }} />
+                <div className="whiteBG"></div>
+              </div>
+            </a>
+          </div>
+          <div className="section ml-auto">
+            <div className="text-center" style={{ width: 'fit-content' }}>
+              <img className="mb-2" src={Mic} style={{ width: '90px', height: '80px' }} />
+              <h4 style={{ color: '#737373', fontWeight: '600' }} className="m-0">
+                Chat with
+              </h4>
+              <h4 style={{ color: '#737373', fontWeight: '600' }}>Live Support</h4>
             </div>
           </div>
         </div>

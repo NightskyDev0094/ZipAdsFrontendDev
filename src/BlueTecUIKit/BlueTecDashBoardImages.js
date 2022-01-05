@@ -46,11 +46,11 @@ const BlueTecDashBoardImages = () => {
   return (
     <div
       // style={{ background: `url(${BackgroundImage1})` }}
-      className="no-bottom no-top"
+      className="no-bottom no-top flex-fill d-flex justify-content-center align-items-center"
       id="content"
     >
       {}
-      <section className="top">
+      <section className="top p-0">
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-6 mb30">
