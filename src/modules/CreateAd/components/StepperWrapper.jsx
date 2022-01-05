@@ -29,16 +29,15 @@ const useStyles = makeStyles({
   },
   BlueText: {
     width: '100%',
-    marginTop: '3.25em',
+    marginTop: '0.7rem',
     textAlign: 'center',
     color: '#00468f',
     fontWeight: 600,
-    fontSize: '2rem',
+    fontSize: '3rem',
 
-    ['@media (min-width:450px)']: {
-      marginTop: '0.25em',
-      fontSize: '3rem',
-    },
+    ['@media (max-width:992px)']: {
+      marginTop: '4rem',
+    }
   },
   ArrowButton: {
     height: '3rem',

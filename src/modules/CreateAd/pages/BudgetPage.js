@@ -37,6 +37,7 @@ import {
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 import alert from '../../../BlueTecUIKit/images/budget.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,15 +50,15 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '88vw',
     // height: '1300px',
-    marginBottom: '200px',
+    // marginBottom: '200px',
     margin: '0 auto',
     position: 'relative',
     '@media (max-width:1400px)': {
-      height: '1900px',
+      // height: '1900px',
     },
     '@media (max-width:500px)': {
-      marginBottom: '300px',
-      height: '2400px',
+      // marginBottom: '300px',
+      // height: '2400px',
     },
   },
   pageBody: {
@@ -863,6 +864,7 @@ const BudgetPage = ({
           </Box>
         </ErrorHandler>
       )}
+      <BlueTecLandingFooter />
     </>
   );
 };

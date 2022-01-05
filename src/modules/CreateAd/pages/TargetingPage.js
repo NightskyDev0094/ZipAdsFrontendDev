@@ -20,6 +20,7 @@ import {
 } from '../components/ErrorBoundary.Component';
 import StepperWrapper from '../components/StepperWrapper';
 import alert from '../../../BlueTecUIKit/images/targeting.png';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 // import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
 // import InfoButton from '../../../sharedComponents/components/InfoButton';
 
@@ -33,12 +34,12 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '88vw',
     // height: '1100px',
-    marginBottom: '200px',
+    // marginBottom: '200px',
     position: 'relative',
     margin: '0 auto',
     '@media (max-width:700px)': {
-      height: '1400px',
-      marginBottom: '300px',
+      // height: '1400px',
+      // marginBottom: '300px',
     },
   },
   pageBody: {
@@ -460,6 +461,7 @@ const TargetingPage = ({
           </div>
         </Box>
       )}
+      <BlueTecLandingFooter />
     </>
   );
 };
