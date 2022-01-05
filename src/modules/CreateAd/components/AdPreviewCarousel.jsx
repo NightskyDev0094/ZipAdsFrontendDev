@@ -10,7 +10,6 @@ import { SOCIAL_NETWORK_TITLES } from '../hooks/useCampaignForm';
 
 const useStyles = makeStyles({
   CarouselContainer: {
-    width: '100%',
     position: 'relative',
     marginTop: '2em',
   },
@@ -73,16 +72,18 @@ const useStyles = makeStyles({
   },
   PreviewContainer: {
     width: '100%',
-    height: "50em",
+    minHeight: '20em',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'start',
     alignItems: 'center',
-    padding: '50px 0px',
+    padding: '30px 0px',
     margin: '2em auto',
     backgroundColor: 'inherit',
-    overflow: 'hidden',
+    overflowX: 'auto',
 
     ['@media (min-width:450px)']: {
+      justifyContent: 'center',
+      padding: '50px 0px',
       width: '80%',
       height: '60em',
       margin: '0px auto',
