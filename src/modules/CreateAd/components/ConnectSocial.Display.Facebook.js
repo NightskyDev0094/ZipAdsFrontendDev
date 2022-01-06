@@ -15,13 +15,8 @@ import useCustomBackgroundImage from '../hooks/useCustomBackgroundImage';
 
 const useStyles = makeStyles({
   AdImage: {
-    width: '340px',
-    height: '170px', // 5/8 of container height272/8
-
-    ['@media(min-width:450px)']: {
-      width: '650px',
-      height: '325px', // 5/8 of container height
-    },
+    width: '100%',
+    height: '62%', // 5/8 of container height272/8
   },
 
   TopSection: {
@@ -115,10 +110,10 @@ const FacebookSocialDisplay = ({ currentCampaign, previewUrl }) => {
   );
 
   const AdPreviewDisplayContainerProps = {
-    mobileWidth: '340px',
-    mobileHeight: '272px', // width - (width/5)
-    width: '650px',
-    height: '520px', // width - (width/5)
+    mobileWidth: '330px',
+    mobileHeight: '390px',
+    width: '550px',
+    height: '650px',
   };
 
   return (

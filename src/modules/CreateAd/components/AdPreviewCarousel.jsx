@@ -25,39 +25,47 @@ const useStyles = makeStyles({
     },
   },
   LeftCarouselButton: {
-    height: '3em',
-    width: '3em',
     borderRadius: '0.25rem',
+    backgroundColor: 'inherit',
     border: 'none',
     position: 'absolute',
     top: 50,
     left: 0,
+    padding: '1.25em',
+
+    ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
+
     ['@media (min-width:450px)']: {
       top: '50%',
+      padding: '1.5em',
     },
   },
   RightCarouselButton: {
-    height: '3em',
-    width: '3em',
     border: 'none',
+    backgroundColor: 'inherit',
     borderRadius: '0.25rem',
     position: 'absolute',
     top: 50,
     right: 0,
+    padding: '1.25em',
+
+    ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
+
     ['@media (min-width:450px)']: {
+      padding: '1.5em',
       top: '50%',
     },
   },
   ArrowIcon: {
     stroke: 'inherit',
     strokeWidth: '4',
-    fill: 'inherit',
+    fill: '#00468f',
     height: '1.5em',
     width: '1.5em',
 
     ['@media (min-width:450px)']: {
-      height: '1.15em',
-      width: '1.15em',
+      height: '2em',
+      width: '2em',
     },
   },
 
@@ -71,18 +79,19 @@ const useStyles = makeStyles({
     },
   },
   PreviewContainer: {
-    width: '100%',
     minHeight: '20em',
     display: 'flex',
-    justifyContent: 'start',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: '30px 0px',
-    margin: '2em auto',
+    margin: '3em auto 2em auto',
     backgroundColor: 'inherit',
-    overflowX: 'auto',
+
+    ['& img']: {
+      cursor: 'default',
+    },
 
     ['@media (min-width:450px)']: {
-      justifyContent: 'center',
       padding: '50px 0px',
       width: '80%',
       height: '60em',

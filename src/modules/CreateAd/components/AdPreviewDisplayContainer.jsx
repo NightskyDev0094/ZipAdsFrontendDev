@@ -6,6 +6,7 @@ const useStyles = makeStyles({
     width: (props) => props.mobileWidth,
     height: (props) => props.mobileHeight,
     boxShadow: '1px 1px 10px 5px grey',
+    overflowX: 'auto',
 
     ['@media (min-width:450px)']: {
       boxShadow: '1px 1px 10px 5px grey, 10px 0 20px 20px rgb(0 0 0 /30%)',
