@@ -10866,5 +10866,27 @@ img {
 .feature-sub {
   background-color: #2772dd;
   min-height: calc(100vh - 297.38px);
-  
+}
+
+.table-row-light {
+  background-color: #d9d9d9;
+}
+
+.table-row-dark {
+  background-color: #bfbcbc;
+}
+
+.table-style{
+  font-size: 18px;
+}
+
+.table-style td{
+  padding: 6px 16px !important;
+  line-height: 3.5715;
+}
+
+thead > tr > th {
+  background-color: white !important;
+  font-size: 18px;
+  font-weight: bold !important;
 }
