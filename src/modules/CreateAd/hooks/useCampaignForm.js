@@ -24,7 +24,8 @@ export default function useCampaignForm(
   currentCampaign,
   googleToken,
   facebookToken,
-  fbPages
+  fbPages,
+  getTemplateImages
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
@@ -86,37 +87,26 @@ export default function useCampaignForm(
    * @param imageType string from the established set of form ids
    */
   const getImageFromUrl = async (url, imageType) => {
-    await fetch(`${url}`)
-      .then((res) => res.blob())
-      .then((blob) => {
-        let n = url.lastIndexOf('/');
-        let fileName = url.substring(n + 1);
-        const modDate = new Date();
-        const newName = fileName;
-        const jpgFile = new File([blob], newName, {
-          type: 'image/jpg',
-          lastModified: modDate,
-        });
+    let jpgFile = await getTemplateImages(url)
 
-        // console.log('JPGFILE ', jpgFile);
-        if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
-          imageType === 'rectangle_img_upload'
-            ? setRectangleImgUpload(jpgFile)
-            : setRectangleImgUrl(jpgFile);
-          setRectangleImgName(jpgFile.name);
-          setRectangleImgFile(jpgFile);
-          setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
-        }
-        if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
-          imageType === 'square_img_upload'
-            ? setSquareImgUpload(jpgFile)
-            : setSquareImgUrl(jpgFile);
-          setSquareImgName(jpgFile.name);
-          setSquareImgFile(jpgFile);
-          setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
-        }
-        return jpgFile;
-      });
+    // console.log('JPGFILE ', jpgFile);
+    if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
+      imageType === 'rectangle_img_upload'
+        ? setRectangleImgUpload(jpgFile)
+        : setRectangleImgUrl(jpgFile);
+      setRectangleImgName(jpgFile.name);
+      setRectangleImgFile(jpgFile);
+      setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
+    }
+    if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
+      imageType === 'square_img_upload'
+        ? setSquareImgUpload(jpgFile)
+        : setSquareImgUrl(jpgFile);
+      setSquareImgName(jpgFile.name);
+      setSquareImgFile(jpgFile);
+      setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
+    }
+    return jpgFile;
   };
 
   /** Helper function for reading uploaded files
