@@ -97,8 +97,8 @@ class BlueTecLanding extends React.Component {
           </div>
         </section>
 
-        <section id="section-testimonial" className='pt-0'>
-          <div className='m-auto px-3' style={{maxWidth: '1230px'}}>
+        <section id="section-testimonial" className="pt-0">
+          <div className="m-auto px-3" style={{ maxWidth: '1230px' }}>
             <h1 id="middle-title" style={{ color: '#00468f' }}>
               What our customers are saying...
             </h1>
@@ -148,6 +148,22 @@ class BlueTecLanding extends React.Component {
                   - First Name Last Initial, The [INDUSTRY] Industry
                 </h3>
               </div>
+            </div>
+            <div className='d-flex justify-content-center'>
+              <Link
+                className="btn-custom"
+                href="/signup/"
+                style={{
+                  backgroundColor: '#ffe185',
+                  borderRadius: '5px',
+                  fontSize: '20px',
+                  padding: '14px 80px',
+                  color: '#00468f',
+                  fontWeight: 'inherit',
+                }}
+              >
+                Get Started
+              </Link>
             </div>
           </div>
         </section>
