@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
   },
   HeadlinePrime: {
     fontSize: '1.25em',
-    marginBottom: '0.5em',
+    marginBottom: '0em',
     ['@media (min-width:450px)']: {
       fontSize: '1.75em',
     },
@@ -82,6 +82,7 @@ const useStyles = makeStyles(() => ({
     width: '170px',
     height: '35px',
     fontSize: '1em',
+    padding: '1.25em',
 
     ['@media (min-width:450px)']: {
       width: '224px',

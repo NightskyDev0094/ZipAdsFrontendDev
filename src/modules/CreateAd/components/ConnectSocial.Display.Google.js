@@ -7,33 +7,27 @@ const useStyles = makeStyles({
   AD: {
     fontFamily: 'Arial',
     fontWeight: 800,
-    marginRight: '0.5rem',
+    margin: '0px 0.75em 0px 0px',
     display: 'inline-block',
-    width: 'fit-content',
-
-    '@media (min-width:450px)': {
-      fontSize: '2em',
-    },
+    fontSize: '1.65em',
   },
   url: {
-    marginRight: '.5rem',
-    whiteSpace: 'wrap',
+    marginRight: '0.5rem',
     display: 'inline-block',
-    minWidth: '1.75em',
-
-    '@media (min-width:450px)': {
-      fontSize: '1.75em',
-    },
+    minWidth: '100px',
+    fontSize: '1.45em',
   },
   downArrow: {
-    fontSize: '2em',
+    fontSize: '1.65em',
     display: 'inline-block',
   },
   Heading: {
-    fontSize: '2.5em',
-    color: '#30309e',
+    fontSize: '2.35em',
+    lineHeight: '1em',
+    margin: '10px 0px',
+    color: '#0373e6',
   },
-  Description: { fontSize: '1.25em' },
+  Description: { fontSize: '1.15em', lineHeight: '1.15em' },
 });
 
 const GoogleSocialDisplay = ({ currentCampaign }) => {
@@ -41,9 +35,9 @@ const GoogleSocialDisplay = ({ currentCampaign }) => {
 
   const AdPreviewDisplayContainerProps = {
     mobileWidth: '350px',
-    mobileHeight: '115px',
-    width: '600px',
-    height: '200px',
+    mobileHeight: '100px',
+    width: '725px',
+    height: '175px',
   };
 
   return (
