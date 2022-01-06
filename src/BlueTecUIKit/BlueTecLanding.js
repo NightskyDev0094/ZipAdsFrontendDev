@@ -87,140 +87,66 @@ class BlueTecLanding extends React.Component {
         <section className="d-flex justify-content-center" style={{ paddingTop: 0 }}>
           <div className="position-relative" style={{ maxWidth: '1250px' }}>
             <img className="w-100" src={BackgroundImage2} />
-            <h1 id="middle-title" className="position-absolute" style={{top: 0, left: 0, padding: '3vw 0 0 3vw'}}>
+            <h1
+              id="middle-title"
+              className="position-absolute"
+              style={{ top: 0, left: 0, padding: '3vw 0 0 3vw' }}
+            >
               Here's <br /> how it works...
             </h1>
           </div>
         </section>
 
-        <section id="section-testimonial" data-bgimage={`url(${BackgroundImage4})  top`}>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="owl-carousel owl-theme wow fadeInUp" id="testimonial-carousel">
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          ZipAds is remarkable! The software simplifies the ad creation and
-                          publishing process and saves me a huge amount of time!
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person1} />{' '}
-                          <span>Johnny Appleseed</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          I’m not a technical person and the ZipAds platform makes creating and
-                          publishing online ads super easy! There is no technical background
-                          required and I can create a single ad and deliver it to multiple platforms
-                          in minutes!!
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person2} />{' '}
-                          <span>Jane Smith</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          I love the fact that I can deploy my digital ads to multiple platforms
-                          with one click and then manage ads running on different platforms
-                          centrally from the ZipAds dashboard. Meaning, I don’t need to log into
-                          Facebook to see how those ads are doing and then log into Google to see
-                          how those ads doing--Everything is done from one place—it’s awesome!!
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person3} />{' '}
-                          <span>Bill Johnson </span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          Great support, like i have never seen before. Thanks to the support team,
-                          they are very helpfull. This company provide customers great solution,
-                          that makes them best.
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person4} />{' '}
-                          <span>Thomas, Samsung</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          Great support, like i have never seen before. Thanks to the support team,
-                          they are very helpfull. This company provide customers great solution,
-                          that makes them best.
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person1} />{' '}
-                          <span>John, Pixar Studio</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          Great support, like i have never seen before. Thanks to the support team,
-                          they are very helpfull. This company provide customers great solution,
-                          that makes them best.
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person2} />{' '}
-                          <span>Sarah, Microsoft</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          Great support, like i have never seen before. Thanks to the support team,
-                          they are very helpfull. This company provide customers great solution,
-                          that makes them best.
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person3} />{' '}
-                          <span>Michael, Apple</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="de_testi opt-2">
-                      <blockquote>
-                        <p>
-                          Great support, like i have never seen before. Thanks to the support team,
-                          they are very helpfull. This company provide customers great solution,
-                          that makes them best.
-                        </p>
-                        <div className="de_testi_by">
-                          <img alt="" className="rounded-circle" src={Person4} />{' '}
-                          <span>Thomas, Samsung</span>
-                        </div>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
+        <section id="section-testimonial" className='pt-0'>
+          <div className='m-auto px-3' style={{maxWidth: '1230px'}}>
+            <h1 id="middle-title" style={{ color: '#00468f' }}>
+              What our customers are saying...
+            </h1>
+            <div className="row m-0 justify-content-around">
+              <div className="text-center mx-3 my-5" style={{ maxWidth: '320px' }}>
+                <img
+                  alt=""
+                  className="rounded-circle"
+                  src={Person1}
+                  style={{ width: '320px', height: '320px', border: '7px solid #00468f' }}
+                />
+                <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </h3>
+                <h3 className="font-weight-bold mt-4 font-italic" style={{ color: '#00468f' }}>
+                  - First Name Last Initial, The [INDUSTRY] Industry
+                </h3>
+              </div>
+              <div className="text-center m-3 my-5" style={{ maxWidth: '320px' }}>
+                <img
+                  alt=""
+                  className="rounded-circle"
+                  src={Person2}
+                  style={{ width: '320px', height: '320px', border: '7px solid #00468f' }}
+                />
+                <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </h3>
+                <h3 className="font-weight-bold mt-4 font-italic" style={{ color: '#00468f' }}>
+                  - First Name Last Initial, The [INDUSTRY] Industry
+                </h3>
+              </div>
+              <div className="text-center m-3 my-5" style={{ maxWidth: '320px' }}>
+                <img
+                  alt=""
+                  className="rounded-circle"
+                  src={Person3}
+                  style={{ width: '320px', height: '320px', border: '7px solid #00468f' }}
+                />
+                <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </h3>
+                <h3 className="font-weight-bold mt-4 font-italic" style={{ color: '#00468f' }}>
+                  - First Name Last Initial, The [INDUSTRY] Industry
+                </h3>
               </div>
             </div>
           </div>
