@@ -27,6 +27,7 @@ function CreateCampaignContainer({
   currentCampaign,
   socialsToPost,
   updateCampaign,
+  getTemplateImages,
   businessInfo,
   fbAccounts,
   gaAccounts,

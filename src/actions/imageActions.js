@@ -1,11 +1,5 @@
 import axios from 'axios';
 import {
-  GET_CAMPAIGNS,
-  SET_CAMPAIGN_LOADING,
-  DELETE_CAMPAIGN,
-  SAVE_CAMPAIGN,
-  UPDATE_CAMPAIGN,
-  MAKE_CURRENT,
   GET_ERRORS,
 } from './types';
 // import { createMessage, returnErrors } from "./messages";
@@ -15,17 +9,18 @@ import { SERVER_URL } from '../environmentVariables';
 const token = localStorage.getItem('token');
 const config = {
   headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Token ${token}`,
+    "Access-Control-Allow-Origin": "*",
   },
 };
 const templateImgUrlBase = 'https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/templates/'
 // Alternate Get Campaign that runs with mapDispatchToProps
-export const getTemplateImages = async (url) => {
+export const getTemplateImages = (url) => async (dispatch, _) => {
   
   await axios
     .get(`${url}`, config)
-    .then((res) => res.blob())
+    .then((res) => {
+      console.log("getTemplateImages RUNNING; res::::", res)
+      res.blob()})
     .then((blob) => {
       let n = url.lastIndexOf('/');
       let fileName = url.substring(n + 1);
@@ -37,4 +32,7 @@ export const getTemplateImages = async (url) => {
       });
       return jpgFile;
       })
+    .catch((err) => {
+      dispatch({ type: GET_ERRORS, payload: err });
+    });
 };

@@ -13,6 +13,7 @@ export const SOCIAL_NETWORK_TITLES = {
  * Manages the state of selected networks
  * Manages the state of the various campaign details form inputs and the submit form handler
  * All logic is mashed into a single hook because at the moment all uses of this hook are on a single page
+ * @param {*} getTemplateImages action for loading images
  * @param {*} updateCampaign redux action for updating the campaign
  * @param {*} currentCampaign redux state of the current campaign
  * @param {*} googleToken
@@ -20,12 +21,12 @@ export const SOCIAL_NETWORK_TITLES = {
  * @param {*} fbPages
  */
 export default function useCampaignForm(
+  getTemplateImages,
   updateCampaign,
   currentCampaign,
   googleToken,
   facebookToken,
-  fbPages,
-  getTemplateImages
+  fbPages
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
@@ -49,6 +50,7 @@ export default function useCampaignForm(
   /** Cropper Management */
   const [rectangleImgName, setRectangleImgName] = useState(null);
   const [squareImgName, setSquareImgName] = useState(null);
+
   const [rectangleImgFile, setRectangleImgFile] = useState(null);
   const [squareImgFile, setSquareImgFile] = useState(null);
   const [rectangleUpImg, setRectangleUpImg] = useState();
@@ -87,26 +89,41 @@ export default function useCampaignForm(
    * @param imageType string from the established set of form ids
    */
   const getImageFromUrl = async (url, imageType) => {
-    let jpgFile = await getTemplateImages(url)
+    console.log("URL::::", url)
+    await fetch(`${url}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        // console.log('Image function test', blob);
+        let n = url.lastIndexOf('/');
+        let fileName = url.substring(n + 1);
+        const modDate = new Date();
+        const newName = fileName;
+        const jpgFile = new File([blob], newName, {
+          type: 'image/jpg',
+          lastModified: modDate,
+        });
+        // console.log('File Creation test', jpgFile);
+        console.log('JPGFILE ', jpgFile);
+        if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
+          imageType === 'rectangle_img_upload'
+            ? setRectangleImgUpload(jpgFile)
+            : setRectangleImgUrl(jpgFile);
+          setRectangleImgName(jpgFile.name);
+          setRectangleImgFile(jpgFile);
+          setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
+        }
+        if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
+          imageType === 'square_img_upload'
+            ? setSquareImgUpload(jpgFile)
+            : setSquareImgUrl(jpgFile);
+          setSquareImgName(jpgFile.name);
+          setSquareImgFile(jpgFile);
+          setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
+        }
+        return jpgFile;
+      });
 
-    // console.log('JPGFILE ', jpgFile);
-    if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
-      imageType === 'rectangle_img_upload'
-        ? setRectangleImgUpload(jpgFile)
-        : setRectangleImgUrl(jpgFile);
-      setRectangleImgName(jpgFile.name);
-      setRectangleImgFile(jpgFile);
-      setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
-    }
-    if (imageType === 'square_img_upload' || imageType === 'square_img_url') {
-      imageType === 'square_img_upload'
-        ? setSquareImgUpload(jpgFile)
-        : setSquareImgUrl(jpgFile);
-      setSquareImgName(jpgFile.name);
-      setSquareImgFile(jpgFile);
-      setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
-    }
-    return jpgFile;
+    
   };
 
   /** Helper function for reading uploaded files
