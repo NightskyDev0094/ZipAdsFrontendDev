@@ -7,13 +7,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useWindowSize } from '../shared_logic/custom_hooks';
 import 'antd/dist/antd.css';
+import '../../../BlueTecUIKit/css/style.css';
 
 const useStyles = makeStyles(() => ({
   title: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '60px !important',
+    marginTop: '0px !important',
+    color: '#00468f',
+    fontWeight: 'bold',
     '@media (max-width:660px)': {
       fontSize: '7vw',
       marginBottom: '20px',
@@ -139,22 +142,24 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
     }
   }, [windowSize.width]);
 
+  console.log(recommendedTemplate);
+
   const columns = [
+    // {
+    //   title: 'Delete Item',
+    //   dataIndex: 'id',
+    //   key: 'id',
+    //   render: (id) => (
+    //     <div>
+    //       <DeleteIcon onClick={() => openModalAndGetData(id, templates)} />
+    //     </div>
+    //   ),
+    // },
     {
-      title: 'Delete Item',
-      dataIndex: 'id',
-      key: 'id',
-      render: (id) => (
-        <div>
-          <DeleteIcon onClick={() => openModalAndGetData(id, templates)} />
-        </div>
-      ),
-    },
-    {
-      title: 'No',
+      title: 'No.',
       dataIndex: 'index',
       key: 'index',
-      responsive: ['lg'],
+      width: '70px',
     },
     {
       title: (
@@ -164,56 +169,87 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
       ),
       dataIndex: 'campaign_name',
       key: 'campaign_name',
+      width: '190px',
       render: (value) => <p>{value}</p>,
     },
     {
       title: (
         <Tooltip placement="bottom" title="This is the headline of your campaign.">
-          Headline
+          Industry
         </Tooltip>
       ),
-      dataIndex: 'headline',
-      key: 'headline',
+      dataIndex: 'industry',
+      key: 'industry',
+      width: '110px',
       render: (value) => <p>{value}</p>,
     },
     {
       title: (
         <Tooltip placement="bottom" title="This is the headline of your campaign.">
-          Tagline
+          Last Modified
         </Tooltip>
       ),
       dataIndex: 'headline2',
       key: 'headline2',
+      width: '120px',
       render: (value) => <p>{value}</p>,
     },
-    {
-      title: (
-        <Tooltip placement="bottom" title="This is the description of your campaign.">
-          Description
-        </Tooltip>
-      ),
-      dataIndex: 'ad_description',
-      key: 'ad_description',
-      render: (value) => <p>{value}</p>,
-    },
+    // {
+    //   title: (
+    //     <Tooltip placement="bottom" title="This is the description of your campaign.">
+    //       Description
+    //     </Tooltip>
+    //   ),
+    //   dataIndex: 'ad_description',
+    //   key: 'ad_description',
+    //   render: (value) => <p>{value}</p>,
+    // },
     {
       title: (
         <Tooltip placement="bottom" title="This is the link associated with your campaign.">
-          Link
+          Preview
         </Tooltip>
       ),
-      dataIndex: 'ad_link',
-      key: 'ad_link',
-      render: (value) => <p>{value}</p>,
+      dataIndex: 'square_img_url',
+      key: 'square_img_url',
+      width: '120px',
+      render: (src) => (
+        <img
+          src={src}
+          style={{
+            maxWidth: '100px',
+            maxHeight: '100px',
+            border: '1px solid #7a746c',
+          }}
+        />
+      ),
     },
     {
-      title: 'Select Campaign',
+      title: '',
       dataIndex: 'id',
       key: 'id',
+      fixed: 'right',
+      width: '210px',
       render: (id) => (
-        <div>
-          <EditIcon onClick={() => templateTableData(id, templates, 'Draft')} />
-        </div>
+        <Button
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#00468f',
+            color: 'white',
+            borderRadius: '8px',
+            width: '220px',
+            height: '50px',
+            fontSize: '18px',
+            width: '80%',
+            maxWidth: '210px',
+          }}
+        >
+          {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
+          Select
+        </Button>
       ),
     },
   ];
@@ -278,7 +314,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
       <Typography className={classes.title} variant="h1" component="h2">
         Recommended Template
       </Typography>
-      <Typography
+      {/* <Typography
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -287,16 +323,13 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
         }}
       >
         Based on your industry your recommended template is:
-      </Typography>
+      </Typography> */}
       <Table
+        className="table-striped-rows"
+        pagination={false}
         columns={columns}
-        style={{
-          width: isMobileView ? '100%' : '60%',
-          margin: '75px auto',
-          border: ' .5px solid rgb(220,220,220, .4)',
-          padding: '10px',
-          borderRadius: '15px',
-        }}
+        scroll={{ x: 210 }}
+        sticky
         dataSource={
           recommendedTemplate &&
           [recommendedTemplate]?.map((element, index) => ({ ...element, index: index + 1 }))

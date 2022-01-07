@@ -7,13 +7,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useWindowSize } from '../shared_logic/custom_hooks';
 import 'antd/dist/antd.css';
+import '../../../BlueTecUIKit/css/style.css';
 
 const useStyles = makeStyles(() => ({
   title: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '60px !important',
+    marginTop: '0px !important',
+    color: '#00468f',
+    fontWeight: 'bold',
     '@media (max-width:660px)': {
       fontSize: '7vw',
       marginBottom: '20px',
@@ -38,8 +41,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
-  
+const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const windowSize = useWindowSize();
@@ -49,9 +51,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
     campaignName: '',
   });
 
-  
-  
-
+  console.log(campaigns);
   // when modal is opened
   //set campaign data to show user
   const openModalAndGetData = (id, data) => {
@@ -67,7 +67,6 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
     setModalOpen(false);
   });
 
-
   /**
    * Table size for antd
    */
@@ -81,22 +80,11 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
 
   const columns = [
     {
-      title: 'Delete Item',
-      dataIndex: 'id',
-      key: 'id',
-      render: (id) => (
-        // <button style={{ borderWidth: '0px !important' }}>
-        <DeleteIcon onClick={() => openModalAndGetData(id, campaigns)} />
-        // </button>
-      ),
-    },
-    {
-      title: 'No',
+      title: 'No.',
       dataIndex: 'index',
       key: 'index',
       responsive: ['lg'],
-      sortOrder: 'descend',
-      sorter: (a, b) => a.index - b.index,
+      width: '70px',
     },
     {
       title: (
@@ -106,56 +94,97 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
       ),
       dataIndex: 'campaign_name',
       key: 'campaign_name',
+      width: '190px',
+      render: (value) => <p>{value}</p>,
+    },
+    {
+      title: (
+        <Tooltip placement="bottom" title="This is the industry this template is designed for.">
+          Industry
+        </Tooltip>
+      ),
+      dataIndex: 'industry',
+      key: 'industry',
+      width: '110px',
       render: (value) => <p>{value}</p>,
     },
     {
       title: (
         <Tooltip placement="bottom" title="This is the headline of your campaign.">
-          Headline
+          Last Modified
         </Tooltip>
       ),
-      dataIndex: 'headline',
-      key: 'headline',
-      render: (value) => <p>{value}</p>,
+      dataIndex: 'upload_time',
+      key: 'upload_time',
+      width: '120px',
+      render: (value) => <p>{new Date(value).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' } )}</p>,
     },
-    {
-      title: (
-        <Tooltip placement="bottom" title="This is the tagline of your campaign.">
-          Tagline
-        </Tooltip>
-      ),
-      dataIndex: 'headline2',
-      key: 'headline2',
-      render: (value) => <p>{value}</p>,
-    },
+    // {
+    //   title: (
+    //     <Tooltip placement="bottom" title="This is the headline of your campaign.">
+    //       Tagline
+    //     </Tooltip>
+    //   ),
+    //   dataIndex: 'headline2',
+    //   key: 'headline2',
+    //   render: (value) => <p>{value}</p>,
+    // },
     {
       title: (
         <Tooltip placement="bottom" title="This is the description of your campaign.">
-          Description
+          Preview
         </Tooltip>
       ),
-      dataIndex: 'ad_description',
-      key: 'ad_description',
-      render: (value) => <p>{value}</p>,
-    },
-    {
-      title: (
-        <Tooltip placement="bottom" title="This is the link associated with your campaign.">
-          Link
-        </Tooltip>
+      dataIndex: 'square_img_url',
+      key: 'square_img_url',
+      width: '120px',
+      render: (src) => (
+        <img
+          src={src}
+          style={{
+            maxWidth: '100px',
+            maxHeight: '100px',
+            border: '1px solid #7a746c',
+          }}
+        />
       ),
-      dataIndex: 'ad_link',
-      key: 'ad_link',
-      render: (value) => <p>{value}</p>,
     },
+    // {
+    //   title: (
+    //     <Tooltip placement="bottom" title="This is the link associated with your campaign.">
+    //       Link
+    //     </Tooltip>
+    //   ),
+    //   dataIndex: 'ad_link',
+    //   key: 'ad_link',
+    //   render: (value) => <p>{value}</p>,
+    // },
     {
-      title: 'Select Campaign',
+      title: '',
       dataIndex: 'id',
       key: 'id',
+      fixed: 'right',
+      width: '210px',
       render: (id) => (
-        // <button style={{ borderWidth: '0px !important' }}>
-        <EditIcon onClick={() => submitSelectedData(id, campaigns, 'Draft')} />
-        // </button>
+        <Button
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#00468f',
+            color: 'white',
+            borderRadius: '8px',
+            width: '220px',
+            height: '50px',
+            fontSize: '18px',
+            width: '80%',
+            maxWidth: '220px',
+          }}
+        >
+          {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
+          Select
+        </Button>
       ),
     },
   ];
@@ -164,7 +193,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
     <Box>
       <div className="d-flex justify-content-center">
         <Button
-          style={{ backgroundColor: '#017DFC', color: 'white', borderRadius: '50px' }}
+          style={{ backgroundColor: '#00468f', color: 'white', borderRadius: '50px', margin: '30px 0px', fontSize: '18px', height: '50px' }}
           onClick={() => submitSelectedData(null, null, 'New')}
         >
           Create New Campaign
@@ -224,7 +253,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
       <Typography className={classes.title} variant="h1" component="h2">
         Select a Draft
       </Typography>
-      <Typography
+      {/* <Typography
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -234,16 +263,13 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData, }) => {
       >
         Select one of your previously made campaigns or drafts and edit it to create a new ad
         campaign.
-      </Typography>
+      </Typography> */}
       <Table
+        className="table-striped-rows"
+        pagination={false}
         columns={columns}
-        style={{
-          width: isMobileView ? '100%' : '60%',
-          margin: '75px auto',
-          border: ' .5px solid rgb(220,220,220, .4)',
-          padding: '10px',
-          borderRadius: '15px',
-        }}
+        scroll={{ x: 210 }}
+        sticky
         dataSource={
           campaigns.length && campaigns.map((element, index) => ({ ...element, index: index + 1 }))
         }

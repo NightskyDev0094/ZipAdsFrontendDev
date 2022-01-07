@@ -10112,7 +10112,7 @@ img {
   }
   .header-col-mid {
     position: absolute;
-    top: 90px;
+    top: 60px;
     width: 100%;
     padding: 0 0 0 0;
   }
@@ -10866,5 +10866,23 @@ img {
 .feature-sub {
   background-color: #2772dd;
   min-height: calc(100vh - 297.38px);
-  
+}
+
+.table-striped-rows td{
+  font-size: 18px;
+  padding: 8px;
+}
+
+thead > tr > th {
+  background-color: white !important;
+  font-size: 18px;
+  font-weight: bold !important;
+}
+
+.table-striped-rows tr:nth-child(n) td {
+  background-color: #bfbcbc;
+}
+
+.table-striped-rows tr:nth-child(2n) td {
+  background-color: #d9d9d9;
 }

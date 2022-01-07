@@ -6,13 +6,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useWindowSize } from '../shared_logic/custom_hooks';
 import 'antd/dist/antd.css';
+import '../../../BlueTecUIKit/css/style.css';
 
 const useStyles = makeStyles(() => ({
   title: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '60px !important',
+    marginTop: '0px !important',
+    color: '#00468f',
+    fontWeight: 'bold',
     '@media (max-width:660px)': {
       fontSize: '7vw',
       marginBottom: '20px',
@@ -37,7 +40,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
+const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const windowSize = useWindowSize();
@@ -46,7 +49,6 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
     id: 0,
     campaignName: '',
   });
-  
 
   // when modal is opened
   //set campaign data to show user
@@ -57,14 +59,12 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
       campaignName: data.filter((data) => data.id === id)[0]?.campaign_name,
     });
   };
+  console.log(templates);
 
   const deleteRow = useCallback(async () => {
     await deleteCampaign(campaignModalInfo?.id);
     setModalOpen(false);
   });
-
-  
-
 
   useLayoutEffect(() => {
     if (windowSize.width < 1500) {
@@ -76,10 +76,10 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
 
   const columns = [
     {
-      title: 'No',
+      title: 'No.',
       dataIndex: 'index',
       key: 'index',
-      responsive: ['lg'],
+      width: '70px',
     },
     {
       title: (
@@ -89,6 +89,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
       ),
       dataIndex: 'campaign_name',
       key: 'campaign_name',
+      width: '190px',
       render: (value) => <p>{value}</p>,
     },
     {
@@ -99,56 +100,86 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
       ),
       dataIndex: 'industry',
       key: 'industry',
+      width: '110px',
       render: (value) => <p>{value}</p>,
     },
     {
       title: (
         <Tooltip placement="bottom" title="This is the headline of your campaign.">
-          Headline
+          Last Modified
         </Tooltip>
       ),
       dataIndex: 'headline',
       key: 'headline',
+      width: '120px',
       render: (value) => <p>{value}</p>,
     },
-    {
-      title: (
-        <Tooltip placement="bottom" title="This is the headline of your campaign.">
-          Tagline
-        </Tooltip>
-      ),
-      dataIndex: 'headline2',
-      key: 'headline2',
-      render: (value) => <p>{value}</p>,
-    },
+    // {
+    //   title: (
+    //     <Tooltip placement="bottom" title="This is the headline of your campaign.">
+    //       Tagline
+    //     </Tooltip>
+    //   ),
+    //   dataIndex: 'headline2',
+    //   key: 'headline2',
+    //   render: (value) => <p>{value}</p>,
+    // },
     {
       title: (
         <Tooltip placement="bottom" title="This is the description of your campaign.">
-          Description
+          Preview
         </Tooltip>
       ),
-      dataIndex: 'ad_description',
-      key: 'ad_description',
-      render: (value) => <p>{value}</p>,
-    },
-    {
-      title: (
-        <Tooltip placement="bottom" title="This is the link associated with your campaign.">
-          Link
-        </Tooltip>
+      dataIndex: 'square_img_url',
+      key: 'square_img_url',
+      width: '120px',
+      render: (src) => (
+        <img
+          src={src}
+          style={{
+            maxWidth: '100px',
+            maxHeight: '100px',
+            border: '1px solid #7a746c',
+          }}
+        />
       ),
-      dataIndex: 'ad_link',
-      key: 'ad_link',
-      render: (value) => <p>{value}</p>,
     },
+    // {
+    //   title: (
+    //     <Tooltip placement="bottom" title="This is the link associated with your campaign.">
+    //       Link
+    //     </Tooltip>
+    //   ),
+    //   dataIndex: 'ad_link',
+    //   key: 'ad_link',
+    //   render: (value) => <p>{value}</p>,
+    // },
     {
-      title: 'Select Campaign',
+      title: '',
       dataIndex: 'id',
       key: 'id',
+      fixed: 'right',
+      width: '210px',
       render: (id) => (
-        // <button>
-          <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} />
-        // </button>
+        <Button
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#00468f',
+            color: 'white',
+            borderRadius: '8px',
+            width: '220px',
+            height: '50px',
+            fontSize: '18px',
+            width: '80%',
+            maxWidth: '210px',
+          }}
+        >
+          {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
+          Select
+        </Button>
       ),
     },
   ];
@@ -207,9 +238,9 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
         </Fade>
       </Modal>
       <Typography className={classes.title} variant="h1" component="h2">
-        Select a Template
+        Select Template
       </Typography>
-      <Typography
+      {/* <Typography
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -218,16 +249,13 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData,}) => {
         }}
       >
         Select one of our predesigned ad templates and customize it to Create your Ad Campaign.
-      </Typography>
+      </Typography> */}
       <Table
+        className="table-striped-rows"
+        pagination={false}
         columns={columns}
-        style={{
-          width: isMobileView ? '100%' : '60%',
-          margin: '75px auto',
-          border: ' .5px solid rgb(220,220,220, .4)',
-          padding: '10px',
-          borderRadius: '15px',
-        }}
+        scroll={{ x: 210 }}
+        sticky
         dataSource={
           templates.length && templates?.map((element, index) => ({ ...element, index: index + 1 }))
         }
