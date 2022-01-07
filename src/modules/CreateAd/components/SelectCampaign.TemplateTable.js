@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     marginTop: '60px !important',
     color: '#00468f',
+    fontWeight: 'bold',
     '@media (max-width:660px)': {
       fontSize: '7vw',
       marginBottom: '20px',
@@ -78,8 +79,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       title: 'No.',
       dataIndex: 'index',
       key: 'index',
-      responsive: ['lg'],
-      width: '5%',
+      width: '70px',
     },
     {
       title: (
@@ -89,7 +89,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       ),
       dataIndex: 'campaign_name',
       key: 'campaign_name',
-      width: '20%',
+      width: '190px',
       render: (value) => <p>{value}</p>,
     },
     {
@@ -100,7 +100,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       ),
       dataIndex: 'industry',
       key: 'industry',
-      width: '15%',
+      width: '110px',
       render: (value) => <p>{value}</p>,
     },
     {
@@ -111,7 +111,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       ),
       dataIndex: 'headline',
       key: 'headline',
-      width: '20%',
+      width: '120px',
       render: (value) => <p>{value}</p>,
     },
     // {
@@ -132,14 +132,13 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       ),
       dataIndex: 'square_img_url',
       key: 'square_img_url',
-      width: '10%',
+      width: '120px',
       render: (src) => (
         <img
           src={src}
           style={{
             maxWidth: '100px',
             maxHeight: '100px',
-            width: '80%',
             border: '1px solid #7a746c',
           }}
         />
@@ -159,6 +158,8 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       title: '',
       dataIndex: 'id',
       key: 'id',
+      fixed: 'right',
+      width: '210px',
       render: (id) => (
         <Button
           style={{
@@ -173,7 +174,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
             height: '50px',
             fontSize: '18px',
             width: '80%',
-            maxWidth: '220px',
+            maxWidth: '210px',
           }}
         >
           {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
@@ -250,20 +251,11 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
         Select one of our predesigned ad templates and customize it to Create your Ad Campaign.
       </Typography> */}
       <Table
-        rowClassName={(record, index) =>
-          index % 2 === 0 ? 'table-row-light table-style' : 'table-row-dark table-style'
-        }
+        className="table-striped-rows"
         pagination={false}
         columns={columns}
-        style={
-          {
-            // width: isMobileView ? '100%' : '60%',
-            // margin: '75px auto',
-            // border: ' .5px solid rgb(220,220,220, .4)',
-            // padding: '10px',
-            // borderRadius: '15px',
-          }
-        }
+        scroll={{ x: 210 }}
+        sticky
         dataSource={
           templates.length && templates?.map((element, index) => ({ ...element, index: index + 1 }))
         }

@@ -14,7 +14,6 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
     marginTop: '60px !important',
-    color: '#00468f',
     '@media (max-width:660px)': {
       fontSize: '7vw',
       marginBottom: '20px',
@@ -279,7 +278,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
       <Typography className={classes.title} variant="h1" component="h2">
         Recommended Template
       </Typography>
-      {/* <Typography
+      <Typography
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -288,10 +287,9 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
         }}
       >
         Based on your industry your recommended template is:
-      </Typography> */}
+      </Typography>
       <Table
         columns={columns}
-        pagination={false}
         style={{
           width: isMobileView ? '100%' : '60%',
           margin: '75px auto',
