@@ -5,7 +5,7 @@ import InstagramLogoImage from '../../../../img/instagram-logo.png';
 import FacebookLogoImage from '../../../../img/FacebookLogin/facebook.png';
 import GoogleLogoImage from '../../../../img/google-icon.png';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { SOCIAL_NETWORK_TITLES } from '../../hooks/useCampaignForm';
+import { SOCIAL_NETWORK_TITLES } from '../../hooks/useCreateCampaignForm';
 
 const useStyles = makeStyles({
   ConnectSocialsVessel: {

@@ -77,15 +77,6 @@ const TargetingContainer = ({
 
   ...props
 }) => {
-  useEffect(() => {
-    // Get info from server to populate defaults when component loads
-    getAddresses();
-    // getBusinessInfo();
-    getGaAdAccounts();
-    getFbAdAccounts();
-    getFbPages();
-  }, []);
-
   const [streetVal, setStreetVal] = useState(currentCampaign.street_address || '');
   const [cityVal, setCityVal] = useState(currentCampaign.city_name || '');
   const [stateVal, setStateVal] = useState(currentCampaign.state_code || '');
@@ -162,15 +153,15 @@ const TargetingContainer = ({
   //       }
   //     }
   //   }
-    // }
+  // }
   // };
   const setSavedVals = () => {
     // if (currentCampaign.campaign_type === 'Draft' || currentCampaign.campaign_type === 'Template') {
-      setStreetVal(currentCampaign.street_address || '');
-      setCityVal(currentCampaign.city_name || '');
-      setStateVal(currentCampaign.state_code || '');
-      setZipVal(currentCampaign.zip_code || '');
-      setInterest(currentCampaign.search_term || '');
+    setStreetVal(currentCampaign.street_address || '');
+    setCityVal(currentCampaign.city_name || '');
+    setStateVal(currentCampaign.state_code || '');
+    setZipVal(currentCampaign.zip_code || '');
+    setInterest(currentCampaign.search_term || '');
     // }
   };
   // Gate to determine which algorithm runs
@@ -180,10 +171,10 @@ const TargetingContainer = ({
     } else {
       submitExpandedTargetingInformation();
     }
-    if (submitType === 'next'){
+    if (submitType === 'next') {
       history.push('/create/budget');
     } else {
-      setAdvTargeting(true)
+      setAdvTargeting(true);
     }
   };
   // Submit Targeting Search
@@ -198,8 +189,7 @@ const TargetingContainer = ({
     formDataLocationSearch.append('locale_type', localeFormat);
     formDataLocationSearch.append('distance', distance);
     formDataLocationSearch.append('current_campaign', campaignId);
-    
-    
+
     searchFBLocations(formDataLocationSearch);
     if (distance === 'hyper-local') {
       // Search Google Locations
@@ -311,28 +301,29 @@ const TargetingContainer = ({
         setLocaleFormat={setLocaleFormat}
         googleGeoTargeting={googleGeoTargeting}
         googleKeywords={googleKeywords}
-        
       />
-      {advTargeting && <ExpandedTargetingPage 
-        googleTableState={googleTableState}
-        setGoogleTableState={setGoogleTableState}
-        setSelectedGoogleRows={setSelectedGoogleRows}
-        selectedGoogleRows={selectedGoogleRows}
-        googleGeoTargeting={googleGeoTargeting}
-        googleKeywords={googleKeywords}
-        facebookGeoTargeting={facebookGeoTargeting}
-        facebookInterestGroups={facebookInterestGroups}
-        fbTableState={fbTableState}
-        setFBTableState={setFBTableState}
-        setSelectedFacebookRows={setSelectedFacebookRows}
-        selectedFacebookRows={selectedFacebookRows}
-        error={error}
-        displayAllComponents={displayAllComponents}
-        displayGoogleComponent={displayGoogleComponent}
-        displayFacebookComponent={displayFacebookComponent} 
-        currentCampaign={currentCampaign}
-        {...props} 
-        />}
+      {advTargeting && (
+        <ExpandedTargetingPage
+          googleTableState={googleTableState}
+          setGoogleTableState={setGoogleTableState}
+          setSelectedGoogleRows={setSelectedGoogleRows}
+          selectedGoogleRows={selectedGoogleRows}
+          googleGeoTargeting={googleGeoTargeting}
+          googleKeywords={googleKeywords}
+          facebookGeoTargeting={facebookGeoTargeting}
+          facebookInterestGroups={facebookInterestGroups}
+          fbTableState={fbTableState}
+          setFBTableState={setFBTableState}
+          setSelectedFacebookRows={setSelectedFacebookRows}
+          selectedFacebookRows={selectedFacebookRows}
+          error={error}
+          displayAllComponents={displayAllComponents}
+          displayGoogleComponent={displayGoogleComponent}
+          displayFacebookComponent={displayFacebookComponent}
+          currentCampaign={currentCampaign}
+          {...props}
+        />
+      )}
     </>
   );
 };
@@ -356,7 +347,7 @@ const mapStateToProps = (state) => ({
   fbGeoLocationId: state.fbTargeting?.locationList?.plan_id,
   fbInterestsListId: state.fbTargeting?.interestList?.plan_id,
   googleKeywordListId: state.googleTargeting?.keywordList?.plan_id,
-  googleLocationId: state.googleTargeting?.locationList?.plan_id
+  googleLocationId: state.googleTargeting?.locationList?.plan_id,
 });
 
 export default connect(mapStateToProps, {

@@ -17,7 +17,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 const AdIndex = ({ currentIndex }) => {
-  // TODO: Change the fixed 6 to number of chosen campaign networks
   const classes = useStyles();
   return (
     <div className={classes.root}>

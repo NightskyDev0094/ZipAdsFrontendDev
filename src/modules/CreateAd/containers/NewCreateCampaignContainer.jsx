@@ -10,7 +10,7 @@ import { updateSocials } from '../../../actions/formInfoActions';
 import { getUserProfileInformation } from '../../../actions/connectSocial.managedAccountActions';
 import { getFbPages } from '../../../actions/account.fbPageActions';
 
-import useCampaignForm from '../hooks/useCampaignForm';
+import useCreateCampaignForm from '../hooks/useCreateCampaignForm';
 import useCheckNetwork from '../hooks/useCheckNetwork';
 
 import {
@@ -53,7 +53,7 @@ function CreateCampaignContainer({
     imgOption,
     setImgOption,
     submitCampaign,
-  } = useCampaignForm(
+  } = useCreateCampaignForm(
     updateCampaign,
     currentCampaign,
     googleToken,
@@ -66,12 +66,19 @@ function CreateCampaignContainer({
     <>
       {networkError && <ErrorFallBackPage error={networkError} />}
       <ErrorHandler>
-        <StepperWrapper pageHeading={'Choose Which Networks to Run Ads On'}>
+        <StepperWrapper
+          pageHeading={'Choose Which Networks to Run Ads On'}
+          formSubmitHandler={submitCampaign}
+        >
           <ConnectSocialPage
             selectedNetworks={selectedNetworks}
             setSelectedNetworks={setSelectedNetworks}
           />
-          <CampaignPage formInfo={formInfo} selectedNetworks={selectedNetworks} previews={previews} />
+          <CampaignPage
+            formInfo={formInfo}
+            selectedNetworks={selectedNetworks}
+            previews={previews}
+          />
         </StepperWrapper>
       </ErrorHandler>
     </>
@@ -104,7 +111,3 @@ export default connect(mapStateToProps, {
   getFbPages,
   getCampaign,
 })(CreateCampaignContainer);
-
-// TODO: incorporate the submit button with the click of the stepper
-// figure out where to place the setError
-// remove unnecessary imports and calls to state and remove outdated/isolated files

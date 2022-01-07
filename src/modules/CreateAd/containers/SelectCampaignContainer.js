@@ -5,7 +5,7 @@ import SelectCampaignPage from '../pages/SelectCampaignPage';
 import { getCampaign, addCampaign, updateCampaign } from '../../../actions/campaignActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
 import { updateSocials } from '../../../actions/formInfoActions';
-import { SOCIAL_NETWORK_TITLES } from '../hooks/useCampaignForm';
+import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
 
 import { sampleTemplateData } from '../components/SelectCampaign.TemplateData';
 

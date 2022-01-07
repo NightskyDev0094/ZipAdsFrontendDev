@@ -28,7 +28,6 @@ const GoogleAd = () => (
         </Button>
       </Box>
     </Box>
-    {/* TODO: ADD GOOGLE KEYWORD GROUPS */}
   </Box>
 );
 
