@@ -66,12 +66,19 @@ function CreateCampaignContainer({
     <>
       {networkError && <ErrorFallBackPage error={networkError} />}
       <ErrorHandler>
-        <StepperWrapper pageHeading={'Choose Which Networks to Run Ads On'}>
+        <StepperWrapper
+          pageHeading={'Choose Which Networks to Run Ads On'}
+          formSubmitHandler={submitCampaign}
+        >
           <ConnectSocialPage
             selectedNetworks={selectedNetworks}
             setSelectedNetworks={setSelectedNetworks}
           />
-          <CampaignPage formInfo={formInfo} selectedNetworks={selectedNetworks} previews={previews} />
+          <CampaignPage
+            formInfo={formInfo}
+            selectedNetworks={selectedNetworks}
+            previews={previews}
+          />
         </StepperWrapper>
       </ErrorHandler>
     </>

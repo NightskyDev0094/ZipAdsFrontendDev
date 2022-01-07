@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
     ['@media (max-width:992px)']: {
       marginTop: '4rem',
-    }
+    },
   },
   ArrowButton: {
     height: '3rem',
@@ -53,19 +53,6 @@ const useStyles = makeStyles({
     zIndex: 1,
     // },
   },
-  // ArrowIcon: {
-  //   stroke: 'inherit',
-  //   strokeWidth: '4',
-  //   fill: 'inherit',
-  //   height: '1.5em',
-  //   width: '1.5em',
-
-  //   ['@media (min-width:450px)']: {
-  //     height: '1.15em',
-  //     width: '1.15em',
-  //   },
-  // },
-  BullHorn: { position: 'absolute', bottom: 0 },
   stepLabel: {
     color: '#00468f',
     fontSize: '16px',
@@ -76,12 +63,6 @@ const useStyles = makeStyles({
     paddingBottom: '16px',
   },
 });
-
-/**
- *
- * @param {string} pageHeading Major heading text for the page
- * @param {React.Child} children the main content of this page
- */
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -148,54 +129,50 @@ function ColorlibStepIcon(props) {
   );
 }
 
-export default function StepperWrapper({ pageHeading, children }) {
+/**
+ *
+ * @param {function} formSubmitHandler optional submit function for any form on the current page, runs when clicking either nav arrow
+ * @param {string} pageHeading title text that display on top of container
+ * @param {React Node} children any react elements
+ * @returns
+ */
+export default function StepperWrapper({ formSubmitHandler, pageHeading, children }) {
   const classes = useStyles();
   const history = useHistory();
 
-  const CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
-  const headings = [
-    'Choose Which Networks to Run Ads On',
-    'Choose Your Target Audience',
-    'Choose Your Budget',
-    "Let's Get Your Ad Online!",
+  const StepperRoutes = [
+    '/create/create-campaign',
+    '/create/targeting',
+    '/create/budget',
+    '/create/summary',
   ];
-  const [activeStep, setActiveStep] = useState(0);
-  const handleStep = (step) => {
-    let path;
 
-    switch (step) {
-      case 0:
-        path = '/create/create-campaign';
-        break;
-      case 1:
-        path = '/create/targeting';
-        break;
-      case 2:
-        path = '/create/budget';
-        break;
-      case 3:
-        path = '/create/summary';
-        break;
-    }
-    history.push(path);
+  const activeStep = StepperRoutes.indexOf(history.location.pathname) ?? 0;
+
+  const CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
+
+  const handleBackArrowClick = async () => {
+    formSubmitHandler !== undefined && (await formSubmitHandler());
+    activeStep > 0 && history.push(StepperRoutes[activeStep - 1]);
   };
 
-  useEffect(() => {
-    setActiveStep(headings.indexOf(pageHeading));
-  }, [pageHeading]);
+  const handleForwardArrowClick = async () => {
+    formSubmitHandler !== undefined && (await formSubmitHandler());
+    activeStep < StepperRoutes.length - 1 && history.push(StepperRoutes[activeStep + 1]);
+  };
 
   return (
     <Container maxWidth="xl">
       <Box className={classes.PageVessel}>
         <IconButton
-          onClick={() => handleStep(activeStep - 1 < 0 ? activeStep : activeStep - 1)}
+          onClick={handleBackArrowClick}
           style={{ left: 0, top: 10 }}
           className={classes.ArrowButton}
         >
           <img src={back} className="w-100 h-100" />
         </IconButton>
         <IconButton
-          onClick={() => handleStep(activeStep + 1 > 3 ? activeStep : activeStep + 1)}
+          onClick={handleForwardArrowClick}
           style={{ right: 0, top: 10 }}
           className={classes.ArrowButton}
         >
@@ -214,9 +191,6 @@ export default function StepperWrapper({ pageHeading, children }) {
           ))}
         </Stepper>
         {children}
-        <Box className={classes.BullHorn}>
-          <div>Here goes the Bullhorn</div>
-        </Box>
       </Box>
     </Container>
   );

@@ -54,7 +54,6 @@ export const getCampaign = () => (dispatch, getState) => {
 };
 // Alternate Get Campaign that runs with mapDispatchToProps
 export const getCampaignAsync = async (dispatch) => {
-  
   await axios
     .get(`${SERVER_URL}/api/campaign/`, config)
     .then((res) => {
@@ -112,7 +111,6 @@ export const updateCampaign = (campaign, id) => async (dispatch, _) => {
   // .catch((err) => dispatch(returnErrors(err)));
 };
 
-
 // Post Add to API
 export const addCampaign = (campaign) => async (dispatch, _) => {
   setCampaignLoading();
@@ -136,7 +134,6 @@ export const addCampaign = (campaign) => async (dispatch, _) => {
       dispatch({ type: GET_ERRORS, payload: err });
     });
 };
-
 
 // // Post Add to API
 // export const addCampaign = (campaign) => (dispatch, _) => {

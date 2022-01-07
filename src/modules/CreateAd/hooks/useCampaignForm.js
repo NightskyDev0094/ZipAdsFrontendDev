@@ -26,9 +26,10 @@ export default function useCampaignForm(
   facebookToken,
   fbPages
 ) {
+  console.log('CurrentCampaign: ', currentCampaign);
+
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
-  console.log('CURRENT CAMPAIGN: ', currentCampaign);
 
   /** Create Campaign Form Inputs */
   const [campaignName, setCampaignName] = useState(currentCampaign.campaign_name || '');
@@ -85,7 +86,6 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
-        console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
@@ -166,7 +166,7 @@ export default function useCampaignForm(
         selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd) ||
         selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)
       ) {
-        formData.upload('rectangle_img_upload', rectangleImgUpload);
+        formData.append('rectangle_img_upload', rectangleImgUpload);
       }
       if (
         selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd) ||
@@ -179,6 +179,7 @@ export default function useCampaignForm(
 
     /** Grab the campaign id and update it with the forms data */
     const campaignId = currentCampaign.id;
+    console.log('Submitted Campaign Form: ', formData.get('google_display_ad'));
     await updateCampaign(formData, campaignId);
   };
 
