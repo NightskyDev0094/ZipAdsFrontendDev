@@ -219,7 +219,6 @@ const ObjectivePage = ({
               <Paper elevation={2} className={classes.objectiveContainer}>
                 <InputMainLabel>Create a Budget and Select your Objective</InputMainLabel>
                 <Typography>Select your advertising objective.</Typography>
-                {/* TODO: add timeline */}
                 <Box>
                   <InputMainLabel>Objective</InputMainLabel>
                   <RadioGroup

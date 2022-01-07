@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Radio,
   Input,
-  Button
+  Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { InputMainLabel } from '../../../sharedComponents/components';
@@ -21,8 +21,6 @@ import {
 import StepperWrapper from '../components/StepperWrapper';
 import alert from '../../../BlueTecUIKit/images/targeting.png';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
-// import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
-// import InfoButton from '../../../sharedComponents/components/InfoButton';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -136,13 +134,8 @@ const TargetingPage = ({
   });
 
   const nextClick = () => {
-    // if (hasTargetStepBeenCompleted === 'STEP_COMPLETED') {
-    //   setIsResubmitModalOpen(true);
-    // } else {
     try {
       handleSubmitTargetInfo({ distance, interest }, 'stay');
-      // completeStep(3);
-      // history.push('/create/expanded-targeting');
     } catch (e) {
       setError({ isError: true, message: e });
     }
@@ -163,43 +156,14 @@ const TargetingPage = ({
       )}
       {!error.isError && (
         <Box className={classes.pageContainer}>
-          {/* <div style={{ marginRight: 'auto', marginLeft: 'auto', textAlign: 'center' }}>
-            <Typography variant="h2" textAlign="center">
-              Targeting
-            </Typography>
-          </div>
-          <div className={classes.progressBarContainer}>
-            <StepProgress formStep={3} />
-          </div> */}
           <div className={classes.paper} elevation={2}>
-            {/* <div className={classes.nextButtonContainer}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => history.push('/create/create-campaign')}
-              >
-                Back
-              </Button>
-              <Button variant="contained" color="primary" onClick={nextClick}>
-                Next
-              </Button>
-            </div> */}
             <StepperWrapper pageHeading={'Choose Your Target Audience'}>
               <div>
                 <div elevation={2}>
                   <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                     How close to your business would you like ads to be shown?
                   </InputMainLabel>
-                  {/* <Box>
-                  <Typography className="text-center">
-                    How close to your business would you like ads to be shown?
-                  </Typography>
-                </Box> */}
                   <Box>
-                    {/* <InputMainLabel>
-                    Select the distance from your target location that your ads will be distributed
-                    to:
-                  </InputMainLabel> */}
                     <div>
                       <RadioGroup
                         aria-label="distance"
@@ -238,54 +202,11 @@ const TargetingPage = ({
                       </RadioGroup>
                     </div>
                   </Box>
-                  {/* {distance === 'hyper-local' && (
-                    <>
-                      <Box marginTop="2rem">
-                        <InputMainLabel
-                          className={classes.textStyle}
-                          style={{ fontWeight: 'bold' }}
-                        >
-                          Select how you would like to target your location.
-                        </InputMainLabel>
-                        <Box>
-                          <div>
-                            <RadioGroup
-                              aria-label="localeFormat"
-                              name="localeFormat"
-                              value={localeFormat}
-                              onChange={(e) => setLocaleFormat(e.target.value)}
-                              style={{ width: 'fit-content', minWidth: '250px' }}
-                              className="m-auto"
-                            >
-                              <FormControlLabel
-                                value="zip"
-                                control={<Radio />}
-                                label={
-                                  <Typography className={classes.textStyle}>Zip Code</Typography>
-                                }
-                              />
-                              <FormControlLabel
-                                value="city"
-                                control={<Radio />}
-                                label={
-                                  <Typography className={classes.textStyle}>
-                                    City and State
-                                  </Typography>
-                                }
-                              />
-                            </RadioGroup>
-                          </div>
-                        </Box>
-                      </Box>
-                    </>
-                  )} */}
+
                   {distance === 'hyper-local' && localeFormat === 'zip' && (
                     <Box marginTop="2rem">
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                         Enter your target location's zip code{' '}
-                        {/* <InfoButton
-                        infoText={'Putting a specific zip code will optimize your campaign.'}
-                      /> */}
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
@@ -302,9 +223,6 @@ const TargetingPage = ({
                     <Box marginTop="2rem">
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                         Enter your target location by city and state code.{' '}
-                        {/* <InfoButton
-                        infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
-                      /> */}
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
                         <Input
@@ -416,16 +334,8 @@ const TargetingPage = ({
                   <Box marginTop="2rem">
                     <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                       Enter a keyword that your customers would be interested in:
-                      {/* <InfoButton
-                      infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
-                    /> */}
                     </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
-                      {/* <Input
-                      value={interest}
-                      onChange={(e) => setInterest(e.target.value)}
-                      placeholder="add interests"
-                    /> */}
                       <Input
                         disableUnderline
                         className={classes.InputItem}
@@ -439,16 +349,8 @@ const TargetingPage = ({
                   <Box marginTop="2rem">
                     <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                       Refine your targeting selections by clicking the search button below:
-                      {/* <InfoButton
-                      infoText={'An example of a keyword is “coffee” for coffee shop owners.'}
-                    /> */}
                     </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
-                      {/* <Input
-                      value={interest}
-                      onChange={(e) => setInterest(e.target.value)}
-                      placeholder="add interests"
-                    /> */}
                       <Button variant="contained" color="primary" onClick={nextClick}>
                         Search
                       </Button>
@@ -456,7 +358,6 @@ const TargetingPage = ({
                   </Box>
                 </div>
               </div>
-              {/* <img src={alert} className="position-absolute" style={{ bottom: 0 }} /> */}
             </StepperWrapper>
           </div>
         </Box>

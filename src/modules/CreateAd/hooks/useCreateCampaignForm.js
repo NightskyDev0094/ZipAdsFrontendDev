@@ -19,7 +19,7 @@ export const SOCIAL_NETWORK_TITLES = {
  * @param {*} facebookToken
  * @param {*} fbPages
  */
-export default function useCampaignForm(
+export default function useCreateCampaignForm(
   updateCampaign,
   currentCampaign,
   googleToken,
@@ -32,6 +32,7 @@ export default function useCampaignForm(
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
 
   /** Create Campaign Form Inputs */
+  //** Taken From Create Campaign Page */
   const [campaignName, setCampaignName] = useState(currentCampaign.campaign_name || '');
   const [headline, setHeadline] = useState(currentCampaign.headline || '');
   const [headline2, setHeadline2] = useState(currentCampaign.headline2 || '');

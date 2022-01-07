@@ -6,7 +6,7 @@ import FacebookSocialDisplay from './ConnectSocial.Display.Facebook';
 import FacebookAudienceDisplay from './ConnectSocial.Display.FacebookAudience';
 import GoogleAdNetworkDisplay from './ConnectSocial.Display.GoogleNetworkAd';
 import GoogleSocialDisplay from './ConnectSocial.Display.Google';
-import { SOCIAL_NETWORK_TITLES } from '../hooks/useCampaignForm';
+import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
 
 const useStyles = makeStyles({
   CarouselContainer: {
