@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '60px !important',
+    marginTop: '0px !important',
     color: '#00468f',
     fontWeight: 'bold',
     '@media (max-width:660px)': {

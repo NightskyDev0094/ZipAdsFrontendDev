@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '60px !important',
+    marginTop: '0px !important',
     color: '#00468f',
     fontWeight: 'bold',
     '@media (max-width:660px)': {
@@ -193,7 +193,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
     <Box>
       <div className="d-flex justify-content-center">
         <Button
-          style={{ backgroundColor: '#00468f', color: 'white', borderRadius: '50px', marginTop: '60px', fontSize: '18px', height: '50px' }}
+          style={{ backgroundColor: '#00468f', color: 'white', borderRadius: '50px', margin: '30px 0px', fontSize: '18px', height: '50px' }}
           onClick={() => submitSelectedData(null, null, 'New')}
         >
           Create New Campaign
