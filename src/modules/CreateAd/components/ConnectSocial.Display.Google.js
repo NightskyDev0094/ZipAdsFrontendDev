@@ -1,64 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import { Paper, Box, Typography } from '@material-ui/core';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import AdPreviewDisplayContainer from './AdPreviewDisplayContainer';
 
 const useStyles = makeStyles({
-  root: {
-    padding: '1rem 2rem',
-    maxWidth: '500px',
-    '@media (max-width:1600px)': {
-      margin: '0px auto',
-      maxWidth: '500px',
-    },
-    '@media (max-width:500px)': {
-      width: '72vw',
-    },
-  },
   AD: {
     fontFamily: 'Arial',
     fontWeight: 800,
-    marginRight: '1rem',
-    '@media (max-width:500px)': {
-      fontSize: '1.8000000000000003vw',
-    },
-  },
-  mainDescription: {
-    fontSize: '18pt',
-    color: '#30309e',
-    height: 'fit-content',
+    margin: '0px 0.75em 0px 0px',
+    display: 'inline-block',
+    fontSize: '1.65em',
   },
   url: {
-    marginRight: '.5rem',
-    whiteSpace: 'wrap',
-    '@media (max-width:500px)': {
-      fontSize: '3.5999999999999996vw',
-    },
+    marginRight: '0.5rem',
+    display: 'inline-block',
+    minWidth: '100px',
+    fontSize: '1.45em',
   },
   downArrow: {
-    fontSize: '10pt',
+    fontSize: '1.65em',
+    display: 'inline-block',
   },
+  Heading: {
+    fontSize: '2.35em',
+    lineHeight: '1em',
+    margin: '10px 0px',
+    color: '#0373e6',
+  },
+  Description: { fontSize: '1.15em', lineHeight: '1.15em' },
 });
 
 const GoogleSocialDisplay = ({ currentCampaign }) => {
   const classes = useStyles();
+
+  const AdPreviewDisplayContainerProps = {
+    mobileWidth: '350px',
+    mobileHeight: '100px',
+    width: '725px',
+    height: '175px',
+  };
+
   return (
-    <Paper data-test="google" className={classes.root} elevation={2}>
-      <Box display="flex">
-        <Typography className={classes.AD}>Ad</Typography>
-        <Typography data-test="ad-link" className={classes.url}>{currentCampaign.ad_link}</Typography>
-        <Typography className={classes.downArrow}>&#9662;</Typography>
-      </Box>
-      <Box display="flex">
-        <Typography data-test="headline" className={classes.mainDescription}>{currentCampaign.headline}</Typography>
-        {/* <Typography>{currentCampaign?.ad_description}</Typography> */}
-      </Box>
-      <Box textAlign="left">
-        <Typography data-test="headline2-ad-description" variant="body2">
-          {currentCampaign.headline2} : {currentCampaign.ad_description}
-        </Typography>
-      </Box>
-    </Paper>
+    <AdPreviewDisplayContainer {...AdPreviewDisplayContainerProps}>
+      <div style={{ padding: '5px 10px' }}>
+        <div>
+          <h3 className={classes.AD}>Ad</h3>
+          <h3 data-test="ad-link" className={classes.url}>
+            {currentCampaign.adLink}
+          </h3>
+          <h3 className={classes.downArrow}>&#9662;</h3>
+        </div>
+        <h2 data-test="headline" className={classes.Heading}>
+          {currentCampaign.headline}
+        </h2>
+        <p data-test="headline2-ad-description" className={classes.Description}>
+          {currentCampaign.headline2} : {currentCampaign.adDescription}
+        </p>
+      </div>
+    </AdPreviewDisplayContainer>
   );
 };
 

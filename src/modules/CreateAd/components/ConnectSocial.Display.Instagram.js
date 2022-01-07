@@ -15,23 +15,13 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
-import useCustomBackgroundImage from '../hooks/useCusomBackgroundImage';
+import useCustomBackgroundImage from '../hooks/useCustomBackgroundImage';
 import AdPreviewDisplayContainer from './AdPreviewDisplayContainer';
 
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    width: '340px',
-    height: '544px', // (340 *2) - (340 *2 /5)
-    border: '1px solid black',
-
-    ['@media (min-width:450px)']: {
-      width: '450px',
-      height: '720px', // (450 *2) - (450 *2 /5)
-    },
-  },
   image: {
     width: '340px',
     height: '340px',
@@ -52,7 +42,7 @@ const useStyles = makeStyles(() => ({
   },
   HeadlinePrime: {
     fontSize: '1.25em',
-    marginBottom: '0.5em',
+    marginBottom: '0em',
     ['@media (min-width:450px)']: {
       fontSize: '1.75em',
     },
@@ -92,6 +82,7 @@ const useStyles = makeStyles(() => ({
     width: '170px',
     height: '35px',
     fontSize: '1em',
+    padding: '1.25em',
 
     ['@media (min-width:450px)']: {
       width: '224px',
