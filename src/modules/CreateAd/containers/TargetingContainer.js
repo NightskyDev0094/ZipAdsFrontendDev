@@ -243,7 +243,7 @@ const TargetingContainer = ({
         let interestArray = [];
         for (let i = 0; i < selectedInterestArray.length; i++) {
           // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbInterestGroupArray[i]));
 
           interestArray.push(toPush);
         }
@@ -254,7 +254,7 @@ const TargetingContainer = ({
         let geoArray = [];
         for (let i = 0; i < selectedGeoArray.length; i++) {
           // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = googleGeoTargetingArray[i]));
 
           geoArray.push(toPush);
         }
@@ -265,7 +265,7 @@ const TargetingContainer = ({
         let keywordArray = [];
         for (let i = 0; i < selectedKeywordArray.length; i++) {
           // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = fbGeoTargetingArray[i]));
+          let toPush = facebookGeoTargeting.find(({ name }) => (name = googleKeywordTargetingArray[i]));
           keywordArray.push(toPush);
         }
         updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);

@@ -160,6 +160,25 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
     formSubmitHandler !== undefined && (await formSubmitHandler());
     activeStep < StepperRoutes.length - 1 && history.push(StepperRoutes[activeStep + 1]);
   };
+  const handleStep = (step) => {
+    let path;
+
+    switch (step) {
+      case 0:
+        path = '/create/create-campaign';
+        break;
+      case 1:
+        path = '/create/targeting';
+        break;
+      case 2:
+        path = '/create/budget';
+        break;
+      case 3:
+        path = '/create/summary';
+        break;
+    }
+    history.push(path);
+  };
 
   return (
     <Container maxWidth="xl">

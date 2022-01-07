@@ -13,13 +13,15 @@ export const SOCIAL_NETWORK_TITLES = {
  * Manages the state of selected networks
  * Manages the state of the various campaign details form inputs and the submit form handler
  * All logic is mashed into a single hook because at the moment all uses of this hook are on a single page
+ * @param {*} getTemplateImages action for loading images
  * @param {*} updateCampaign redux action for updating the campaign
  * @param {*} currentCampaign redux state of the current campaign
  * @param {*} googleToken
  * @param {*} facebookToken
  * @param {*} fbPages
  */
-export default function useCreateCampaignForm(
+export default function useCampaignForm(
+  getTemplateImages,
   updateCampaign,
   currentCampaign,
   googleToken,
@@ -30,26 +32,28 @@ export default function useCreateCampaignForm(
 
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
+  // console.log('CURRENT CAMPAIGN: ', currentCampaign);
 
   /** Create Campaign Form Inputs */
   //** Taken From Create Campaign Page */
-  const [campaignName, setCampaignName] = useState(currentCampaign.campaign_name || '');
-  const [headline, setHeadline] = useState(currentCampaign.headline || '');
-  const [headline2, setHeadline2] = useState(currentCampaign.headline2 || '');
-  const [adDescription, setAdDescription] = useState(currentCampaign.ad_description || '');
-  const [cta, setCta] = useState(currentCampaign.cta || 'Learn More');
-  const [cta2, setCta2] = useState(currentCampaign.cta2 || 'Get Offer');
-  const [adLink, setAdLink] = useState(currentCampaign.ad_link || 'https://');
-  const [squareImgUrl, setSquareImgUrl] = useState(currentCampaign.square_img_url || '');
-  const [rectangleImgUrl, setRectangleImgUrl] = useState(currentCampaign.rectangle_img_url || '');
-  const [squareImgUpload, setSquareImgUpload] = useState(currentCampaign.square_img_upload || '');
+  const [campaignName, setCampaignName] = useState(currentCampaign?.campaign_name || '');
+  const [headline, setHeadline] = useState(currentCampaign?.headline || '');
+  const [headline2, setHeadline2] = useState(currentCampaign?.headline2 || '');
+  const [adDescription, setAdDescription] = useState(currentCampaign?.ad_description || '');
+  const [cta, setCta] = useState(currentCampaign?.cta || 'Learn More');
+  const [cta2, setCta2] = useState(currentCampaign?.cta2 || 'Get Offer');
+  const [adLink, setAdLink] = useState(currentCampaign?.ad_link || 'https://');
+  const [squareImgUrl, setSquareImgUrl] = useState(currentCampaign?.square_img_url || '');
+  const [rectangleImgUrl, setRectangleImgUrl] = useState(currentCampaign?.rectangle_img_url || '');
+  const [squareImgUpload, setSquareImgUpload] = useState(currentCampaign?.square_img_upload || '');
   const [rectangleImgUpload, setRectangleImgUpload] = useState(
-    currentCampaign.rectangle_img_upload || ''
+    currentCampaign?.rectangle_img_upload || ''
   );
 
   /** Cropper Management */
   const [rectangleImgName, setRectangleImgName] = useState(null);
   const [squareImgName, setSquareImgName] = useState(null);
+
   const [rectangleImgFile, setRectangleImgFile] = useState(null);
   const [squareImgFile, setSquareImgFile] = useState(null);
   const [rectangleUpImg, setRectangleUpImg] = useState();
@@ -60,14 +64,27 @@ export default function useCreateCampaignForm(
   const [rectangleImgPreviewUrl, setRectangleImgPreviewUrl] = useState('');
 
   /** Other */
-  const [imgOption, setImgOption] = useState(currentCampaign.img_option || 'library');
+  const [imgOption, setImgOption] = useState(currentCampaign?.img_option || 'library');
 
   useEffect(() => {
+    console.log("Use effect running", )
     /** Load campaign images */
-    if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
-    if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
-    if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
-    if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
+    // if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
+    // if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
+    // if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
+    // if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
+    if (currentCampaign?.rectangle_img_url !== null && currentCampaign?.rectangle_img_url !== '') {
+      getImageFromUrl(currentCampaign?.rectangle_img_url, 'rectangle_img_url');
+    }
+    if (currentCampaign?.square_img_url !== null && currentCampaign?.square_img_url !== '') {
+      getImageFromUrl(currentCampaign?.square_img_url, 'square_img_url');
+    }
+    if (currentCampaign?.rectangle_img_upload !== null && currentCampaign?.rectangle_img_upload !== '') {
+      getImageFromUrl(currentCampaign?.rectangle_img_upload, 'rectangle_img_upload');
+    }
+    if (currentCampaign?.square_img_upload !== null && currentCampaign?.square_img_upload !== '') {
+      getImageFromUrl(currentCampaign?.square_img_upload, 'square_img_upload');
+    }
   }, []);
 
   /**Helper function that encapsulates logic for reading and setting the image urls
@@ -75,11 +92,13 @@ export default function useCreateCampaignForm(
    * @param imageType string from the established set of form ids
    */
   const getImageFromUrl = async (url, imageType) => {
+    console.log("URL::::", url)
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
-        let n = url.lastIndexOf('/');
-        let fileName = url.substring(n + 1);
+        // console.log('Image function test', blob);
+        let n = url?.lastIndexOf('/');
+        let fileName = url?.substring(n + 1);
         const modDate = new Date();
         const newName = fileName;
         const jpgFile = new File([blob], newName, {
@@ -87,11 +106,13 @@ export default function useCreateCampaignForm(
           lastModified: modDate,
         });
 
+        // console.log('File Creation test', jpgFile);
+        // console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
             : setRectangleImgUrl(jpgFile);
-          setRectangleImgName(jpgFile.name);
+          setRectangleImgName(jpgFile?.name);
           setRectangleImgFile(jpgFile);
           setImgPreview(jpgFile, setRectangleUpImg, setRectangleImgPreviewUrl);
         }
@@ -99,12 +120,14 @@ export default function useCreateCampaignForm(
           imageType === 'square_img_upload'
             ? setSquareImgUpload(jpgFile)
             : setSquareImgUrl(jpgFile);
-          setSquareImgName(jpgFile.name);
+          setSquareImgName(jpgFile?.name);
           setSquareImgFile(jpgFile);
           setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
         }
         return jpgFile;
       });
+
+    
   };
 
   /** Helper function for reading uploaded files
@@ -115,7 +138,7 @@ export default function useCreateCampaignForm(
   const setImgPreview = (file, setUpImg, setPreviewUrl) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      let previewUrl = reader.result;
+      let previewUrl = reader?.result;
       setUpImg(previewUrl);
       setPreviewUrl(previewUrl);
     });
@@ -179,7 +202,7 @@ export default function useCreateCampaignForm(
     }
 
     /** Grab the campaign id and update it with the forms data */
-    const campaignId = currentCampaign.id;
+    const campaignId = currentCampaign?.id;
     console.log('Submitted Campaign Form: ', formData.get('google_display_ad'));
     await updateCampaign(formData, campaignId);
   };
