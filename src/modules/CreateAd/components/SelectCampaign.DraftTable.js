@@ -51,7 +51,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
     campaignName: '',
   });
 
-  console.log(campaigns);
+  console.log('Draft Tables ', campaigns);
   // when modal is opened
   //set campaign data to show user
   const openModalAndGetData = (id, data) => {
@@ -78,7 +78,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
     }
   }, [windowSize.width]);
 
-  const columns = [
+  const columnHeaders = [
     {
       title: 'No.',
       dataIndex: 'index',
@@ -117,18 +117,16 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
       dataIndex: 'upload_time',
       key: 'upload_time',
       width: '120px',
-      render: (value) => <p>{new Date(value).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' } )}</p>,
+      render: (value) => (
+        <p>
+          {new Date(value).toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          })}
+        </p>
+      ),
     },
-    // {
-    //   title: (
-    //     <Tooltip placement="bottom" title="This is the headline of your campaign.">
-    //       Tagline
-    //     </Tooltip>
-    //   ),
-    //   dataIndex: 'headline2',
-    //   key: 'headline2',
-    //   render: (value) => <p>{value}</p>,
-    // },
     {
       title: (
         <Tooltip placement="bottom" title="This is the description of your campaign.">
@@ -149,16 +147,6 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
         />
       ),
     },
-    // {
-    //   title: (
-    //     <Tooltip placement="bottom" title="This is the link associated with your campaign.">
-    //       Link
-    //     </Tooltip>
-    //   ),
-    //   dataIndex: 'ad_link',
-    //   key: 'ad_link',
-    //   render: (value) => <p>{value}</p>,
-    // },
     {
       title: '',
       dataIndex: 'id',
@@ -167,6 +155,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
       width: '210px',
       render: (id) => (
         <Button
+          onClick={() => submitSelectedData(id, campaigns, 'Draft')}
           style={{
             position: 'absolute',
             top: '50%',
@@ -182,7 +171,6 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
             maxWidth: '220px',
           }}
         >
-          {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
           Select
         </Button>
       ),
@@ -193,7 +181,14 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
     <Box>
       <div className="d-flex justify-content-center">
         <Button
-          style={{ backgroundColor: '#00468f', color: 'white', borderRadius: '50px', margin: '30px 0px', fontSize: '18px', height: '50px' }}
+          style={{
+            backgroundColor: '#00468f',
+            color: 'white',
+            borderRadius: '50px',
+            margin: '30px 0px',
+            fontSize: '18px',
+            height: '50px',
+          }}
           onClick={() => submitSelectedData(null, null, 'New')}
         >
           Create New Campaign
@@ -228,13 +223,13 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
                   justifyContent: 'space-around',
                 }}
               >
-                <div style={{}} className="accountId">
+                <div className="accountId">
                   <Typography component="h6">Account ID: </Typography>
                   <div>{campaignModalInfo.accountId}</div>
                 </div>
-                <div style={{}} className="campaignName">
+                <div className="campaignName">
                   <Typography component="h6">Campaign Name: </Typography>
-                  <div style={{}}>{campaignModalInfo.campaignName}</div>
+                  <div>{campaignModalInfo.campaignName}</div>
                 </div>
                 <div>
                   <Button
@@ -253,25 +248,15 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
       <Typography className={classes.title} variant="h1" component="h2">
         Select a Draft
       </Typography>
-      {/* <Typography
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-          padding: '0 50px',
-        }}
-      >
-        Select one of your previously made campaigns or drafts and edit it to create a new ad
-        campaign.
-      </Typography> */}
       <Table
         className="table-striped-rows"
         pagination={false}
-        columns={columns}
+        columns={columnHeaders}
         scroll={{ x: 210 }}
         sticky
         dataSource={
-          campaigns.length && campaigns.map((element, index) => ({ ...element, index: index + 1 }))
+          campaigns.length > 0 &&
+          campaigns.map((element, index) => ({ ...element, index: index + 1 }))
         }
       />
     </Box>
