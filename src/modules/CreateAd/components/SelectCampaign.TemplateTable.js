@@ -59,7 +59,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       campaignName: data.filter((data) => data.id === id)[0]?.campaign_name,
     });
   };
-  console.log(templates);
+  // console.log(templates);
 
   const deleteRow = useCallback(async () => {
     await deleteCampaign(campaignModalInfo?.id);
@@ -176,6 +176,7 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
             width: '80%',
             maxWidth: '210px',
           }}
+          onClick={() => submitSelectedData(id, templates, 'Template')}
         >
           {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
           Select

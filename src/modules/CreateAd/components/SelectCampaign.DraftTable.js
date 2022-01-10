@@ -51,7 +51,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
     campaignName: '',
   });
 
-  console.log(campaigns);
+  // console.log(campaigns);
   // when modal is opened
   //set campaign data to show user
   const openModalAndGetData = (id, data) => {
@@ -181,6 +181,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
             width: '80%',
             maxWidth: '220px',
           }}
+          onClick={() => submitSelectedData(id, campaigns, 'Draft')}
         >
           {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
           Select
