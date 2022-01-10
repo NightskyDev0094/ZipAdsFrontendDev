@@ -16,9 +16,9 @@ import './css/style.css';
 import './css/blueteclanding.css';
 
 import GuySittingAtDeskImage from './images/misc/1.png';
-import Person1 from './images/people/1.jpg';
-import Person2 from './images/people/2.jpg';
-import Person3 from './images/people/3.jpg';
+import Person1 from './images/people/portrait 1.png';
+import Person2 from './images/people/portrait 2.png';
+import Person3 from './images/people/portrait 3.png';
 import Person4 from './images/people/4.jpg';
 import Miscellanous1 from './images/misc/2.png';
 import BackgroundImage1 from './images/background/1.png';
@@ -108,7 +108,7 @@ class BlueTecLanding extends React.Component {
                   alt=""
                   className="rounded-circle"
                   src={Person1}
-                  style={{ width: '320px', height: '320px', border: '7px solid #00468f' }}
+                  style={{ width: '320px', height: '320px'}}
                 />
                 <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -123,7 +123,7 @@ class BlueTecLanding extends React.Component {
                   alt=""
                   className="rounded-circle"
                   src={Person2}
-                  style={{ width: '320px', height: '320px', border: '7px solid #00468f' }}
+                  style={{ width: '320px', height: '320px'}}
                 />
                 <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -138,7 +138,7 @@ class BlueTecLanding extends React.Component {
                   alt=""
                   className="rounded-circle"
                   src={Person3}
-                  style={{ width: '320px', height: '320px', border: '7px solid #00468f' }}
+                  style={{ width: '320px', height: '320px'}}
                 />
                 <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
