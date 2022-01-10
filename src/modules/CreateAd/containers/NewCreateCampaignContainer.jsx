@@ -9,6 +9,7 @@ import { completeStep } from '../../../actions/step.actions';
 import { updateSocials } from '../../../actions/formInfoActions';
 import { getUserProfileInformation } from '../../../actions/connectSocial.managedAccountActions';
 import { getFbPages } from '../../../actions/account.fbPageActions';
+import { getTemplateImages } from '../../../actions/imageActions';
 
 import useCreateCampaignForm from '../hooks/useCreateCampaignForm';
 import useCheckNetwork from '../hooks/useCheckNetwork';
@@ -31,6 +32,7 @@ function CreateCampaignContainer({
   gaAccounts,
   getGoogleAdAccounts,
   getFbAdAccounts,
+  getTemplateImages,
   fbPages,
   googleToken,
   facebookToken,
@@ -54,6 +56,7 @@ function CreateCampaignContainer({
     setImgOption,
     submitCampaign,
   } = useCreateCampaignForm(
+    getTemplateImages,
     updateCampaign,
     currentCampaign,
     googleToken,
@@ -106,6 +109,7 @@ export default connect(mapStateToProps, {
   getGoogleAdAccounts,
   getUserProfileInformation,
   getBusinessInfo,
+  getTemplateImages,
   completeStep,
   updateSocials,
   getFbPages,
