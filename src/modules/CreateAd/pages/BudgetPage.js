@@ -22,6 +22,7 @@ import { green, purple } from '@material-ui/core/colors';
 import { InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
 import StepperWrapper from '../components/StepperWrapper';
+import Shoutbox from '../components/Shoutbox';
 import StyledRadio from '../components/StyledRadio';
 import { getCampaignAsync, makeCurrent } from '../../../actions/campaignActions';
 import { postGoogleSearchAd } from '../../../actions/gsAdActions';
@@ -860,6 +861,7 @@ const BudgetPage = ({
                 </div>
                 {/* <img src={alert} className="position-absolute" style={{ bottom: 0 }} /> */}
               </StepperWrapper>
+              <Shoutbox>We recommend a minimun of $30 USD daily spend and a minimum of 7 days campaign length for maximum performance.</Shoutbox>
             </div>
           </Box>
         </ErrorHandler>

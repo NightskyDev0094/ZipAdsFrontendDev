@@ -21,14 +21,12 @@ export const SOCIAL_NETWORK_TITLES = {
  * @param {*} fbPages
  */
 export default function useCampaignForm(
-  getTemplateImages,
   updateCampaign,
   currentCampaign,
   googleToken,
   facebookToken,
   fbPages
 ) {
-  console.log('CurrentCampaign: ', currentCampaign);
 
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
@@ -65,9 +63,10 @@ export default function useCampaignForm(
 
   /** Other */
   const [imgOption, setImgOption] = useState(currentCampaign?.img_option || 'library');
+  const [currentLoading, setCurrentLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Use effect running');
+    // console.log("Use effect running", )
     /** Load campaign images */
     // if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
     // if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
@@ -89,6 +88,12 @@ export default function useCampaignForm(
       getImageFromUrl(currentCampaign?.square_img_upload, 'square_img_upload');
     }
   }, []);
+  useEffect(() => {
+    if (currentCampaign?.id) {
+      setCurrentLoading(false)
+    }
+    console.log('CurrentCampaign: ', currentCampaign);
+  }, [currentCampaign]);
 
   /**Helper function that encapsulates logic for reading and setting the image urls
    * @param url string url for the image

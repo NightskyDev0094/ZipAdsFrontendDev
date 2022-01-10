@@ -203,7 +203,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
         <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
           {CREATE_AD_STEPS.map((label, index) => (
             <Step key={label}>
-              <StepLabel StepIconComponent={ColorlibStepIcon}>
+              <StepLabel StepIconComponent={ColorlibStepIcon} onClick={() => handleStep(index)}>
                 <p className={classes.stepLabel}>{label}</p>
               </StepLabel>
             </Step>

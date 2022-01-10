@@ -21,6 +21,7 @@ import {
 import StepperWrapper from '../components/StepperWrapper';
 import ConnectSocialPage from '../pages/newPages/ConnectSocialPage';
 import CampaignPage from '../pages/newPages/CampaignPage';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 function CreateCampaignContainer({
   campaigns,
@@ -84,6 +85,7 @@ function CreateCampaignContainer({
           />
         </StepperWrapper>
       </ErrorHandler>
+      <BlueTecLandingFooter />
     </>
   );
 }

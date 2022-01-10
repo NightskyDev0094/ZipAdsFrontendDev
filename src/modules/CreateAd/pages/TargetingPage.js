@@ -19,6 +19,7 @@ import {
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
 import StepperWrapper from '../components/StepperWrapper';
+import Shoutbox from '../components/Shoutbox';
 import alert from '../../../BlueTecUIKit/images/targeting.png';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
@@ -346,7 +347,7 @@ const TargetingPage = ({
                     </Box>
                   </Box>
                   {/* Switch button to activate advanced targeting */}
-                  <Box marginTop="2rem">
+                  {/* <Box marginTop="2rem">
                     <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                       Refine your targeting selections by clicking the search button below:
                     </InputMainLabel>
@@ -355,10 +356,11 @@ const TargetingPage = ({
                         Search
                       </Button>
                     </Box>
-                  </Box>
+                  </Box> */}
                 </div>
               </div>
             </StepperWrapper>
+            <Shoutbox>Find people interested in your business by selecting a location and target interest.</Shoutbox>
           </div>
         </Box>
       )}
