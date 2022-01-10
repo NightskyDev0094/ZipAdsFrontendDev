@@ -1,17 +1,18 @@
 import React from 'react';
 import SignIn_Up from './images/signin&up.png';
+import CheckMark from './images/icons/green checkmark.png';
 
 import './css/style.css';
 
 const BlueTecAuthenticationSub = () => (
-  <div className='w-100 h-100 d-flex flex-column'>
+  <div className="w-100 h-100 d-flex flex-column">
     <div className="mb-4">
       <img alt="true" src={SignIn_Up} />
     </div>
     <div className="d-flex flex-column justify-content-around flex-fill">
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <i className="fa fa-check fa-3x icon-style" />
+          <img src={CheckMark} style={{width: '62px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">Seamless account</h3>
@@ -20,7 +21,7 @@ const BlueTecAuthenticationSub = () => (
       </div>
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <i className="fa fa-check fa-3x icon-style" />
+          <img src={CheckMark} style={{width: '62px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">Ability to reach audiences</h3>
@@ -29,7 +30,7 @@ const BlueTecAuthenticationSub = () => (
       </div>
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <i className="fa fa-check fa-3x icon-style" />
+          <img src={CheckMark} style={{width: '62px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">Ability to reach audiences</h3>
@@ -38,7 +39,7 @@ const BlueTecAuthenticationSub = () => (
       </div>
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <i className="fa fa-check fa-3x icon-style" />
+          <img src={CheckMark} style={{width: '62px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">24/7 real live customer</h3>

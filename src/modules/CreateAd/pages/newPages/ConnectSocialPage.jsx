@@ -6,12 +6,14 @@ import FacebookLogoImage from '../../../../img/FacebookLogin/facebook.png';
 import GoogleLogoImage from '../../../../img/google-icon.png';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { SOCIAL_NETWORK_TITLES } from '../../hooks/useCreateCampaignForm';
+import Shoutbox from '../../components/Shoutbox';
 
 const useStyles = makeStyles({
   ConnectSocialsVessel: {
     marginRight: 'auto',
     marginLeft: 'auto',
     marginTop: '5em',
+    paddingBottom: '5em',
     width: '90%',
     display: 'flex',
     flexWrap: 'wrap',
@@ -64,16 +66,19 @@ export default function ConnectSocialPage({ selectedNetworks, setSelectedNetwork
   ];
 
   return (
-    <Box className={classes.ConnectSocialsVessel}>
-      {NETWORKS.map((network) => (
-        <NetworkCheckBox
-          key={crypto.randomUUID()}
-          iconSrc={network.iconSrc}
-          titleText={network.titleText}
-          selectedNetworks={selectedNetworks}
-          setSelectedNetworks={setSelectedNetworks}
-        />
-      ))}
+    <Box className="position-relative w-100">
+      <div className={classes.ConnectSocialsVessel}>
+        {NETWORKS.map((network) => (
+          <NetworkCheckBox
+            key={crypto.randomUUID()}
+            iconSrc={network.iconSrc}
+            titleText={network.titleText}
+            selectedNetworks={selectedNetworks}
+            setSelectedNetworks={setSelectedNetworks}
+          />
+        ))}
+      </div>
+      <Shoutbox>We recommend checking off all of them to optimize your campaign.</Shoutbox>
     </Box>
   );
 }
