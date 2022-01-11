@@ -8,6 +8,7 @@ import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
 
 const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
   const [chosenSocialNetworks, setChosenSocialNetworks] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     /** Section that appends the adds status of each selected social network and sets it match the ad preview display */
@@ -25,6 +26,8 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
 
     currentCampaign['google_display_ad'] === 'True' &&
       setChosenSocialNetworks((prev) => [...prev, SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd]);
+
+    setChosenSocialNetworks((prev) => [...new Set(prev)]); // removes duplicates when rerendering from prev state
   }, []);
 
   /** Matches the naming of the items used inside of AdPreviewCarousel and fits into the accepted shape*/
@@ -42,11 +45,11 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
     rectangleImgUpload: currentCampaign?.rectangle_img_upload || '',
   };
 
-  /** Testing may be needed to figure out how campaign form manages custom images */
+  /** TODO: Testing may be needed to figure out how campaign form manages custom images */
   const previews = {
     squareImgPreviewUrl: undefined,
     rectangleImgPreviewUrl: undefined,
-  };
+  }; 
 
   return (
     <>
@@ -55,6 +58,14 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
         formInfo={formInfo}
         previews={previews}
       />
+      <h2 style={{ width: '100%', marginBottom: '3em', textAlign: 'center' }}>
+        <a
+          style={{ color: 'blue', textDecoration: 'underline' }}
+          onClick={() => history.push('/create/create-campaign')}
+        >
+          I want to change something
+        </a>
+      </h2>
     </>
   );
 };
@@ -65,4 +76,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {})(SummaryPage);
-

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SummaryPage from '../pages/SummaryPage';
@@ -29,7 +29,7 @@ const SummaryContainer = ({
   facebookToken,
   getFbAdAccounts,
   getGoogleAdAccounts,
-  getBusinessInfo,
+  getCampaignAsync,
 }) => {
   const SUBMIT_STATUS = {
     UNSET: 'UNSET',
@@ -38,6 +38,15 @@ const SummaryContainer = ({
     ERROR: 'ERROR',
   };
   const history = useHistory();
+
+  /** Necessary to request most up to date campaign as it exists in the server */
+  useEffect(() => {
+    const LoadData = async () => {
+      await getCampaignAsync();
+    };
+    LoadData();
+  }, []);
+
   const { networkError, setNetworkError } = useCheckNetwork(
     googleToken,
     facebookToken,
@@ -132,8 +141,9 @@ const SummaryContainer = ({
     setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
   };
 
-  console.log('SOCIALS TO POST: ', socialsToPost);
-  //TODO: double check socialsToPost becuase it is not updating when submitting from create/create-campaign
+  console.log('SUMMARY FACEBOOK FEED AD STATUS: ', currentCampaign['facebook_feed_ad']);
+  console.log('SUMMARY Campaign should have been updated: ', currentCampaign.id);
+  //TODO: double check socialsToPost because it is updating but only when refreshing page
 
   return (
     <>

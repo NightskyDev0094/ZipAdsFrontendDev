@@ -13,23 +13,24 @@ export const SOCIAL_NETWORK_TITLES = {
  * Manages the state of selected networks
  * Manages the state of the various campaign details form inputs and the submit form handler
  * All logic is mashed into a single hook because at the moment all uses of this hook are on a single page
- * @param {*} getTemplateImages action for loading images
  * @param {*} updateCampaign redux action for updating the campaign
  * @param {*} currentCampaign redux state of the current campaign
  * @param {*} googleToken
  * @param {*} facebookToken
  * @param {*} fbPages
+ * @param {*} markCurrent is suppose to make the formInfo the currentCampaign
  */
 export default function useCampaignForm(
   updateCampaign,
   currentCampaign,
   googleToken,
   facebookToken,
-  fbPages
+  fbPages,
+  makeCurrent
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
-  // console.log('CURRENT CAMPAIGN: ', currentCampaign);
+  console.log('CREATE CAMPAIGN FORM NETWORKS: ', selectedNetworks);
 
   /** Create Campaign Form Inputs */
   //** Taken From Create Campaign Page */
@@ -200,6 +201,9 @@ export default function useCampaignForm(
     /** Grab the campaign id and update it with the forms data */
     const campaignId = currentCampaign?.id;
     await updateCampaign(formData, campaignId);
+    makeCurrent(formData);
+    console.log('FACEBOOK FEED AD STATUS: ', formData.get('facebook_feed_ad'));
+    console.log('Campaign should have been updated: ', currentCampaign.id);
   };
 
   return {
