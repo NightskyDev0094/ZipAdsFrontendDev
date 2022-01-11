@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { updateCampaign, getCampaign } from '../../../actions/campaignActions';
+import { updateCampaign, getCampaignAsync, makeCurrent } from '../../../actions/campaignActions';
 import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
@@ -60,7 +60,7 @@ function CreateCampaignContainer({
     googleToken,
     facebookToken,
     fbPages,
-    socialsToPost
+    makeCurrent
   );
 
   return (
@@ -102,14 +102,17 @@ const mapStateToProps = (state) => ({
   hasCreateCampaignStepBeenCompleted: state.stepTracker.CREATE_CAMPAIGN_STEP,
 });
 
-export default connect(mapStateToProps, {
+const mapDispatchToProps = {
   updateCampaign,
   getFbAdAccounts,
   getGoogleAdAccounts,
+  makeCurrent,
   getUserProfileInformation,
   getBusinessInfo,
   completeStep,
   updateSocials,
   getFbPages,
-  getCampaign,
-})(CreateCampaignContainer);
+  getCampaignAsync,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCampaignContainer);
