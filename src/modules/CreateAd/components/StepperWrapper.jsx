@@ -181,7 +181,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" className="p-0">
       <Box className={classes.PageVessel}>
         <IconButton
           onClick={handleBackArrowClick}

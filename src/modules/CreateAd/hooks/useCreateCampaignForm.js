@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
+import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
 
 export const SOCIAL_NETWORK_TITLES = {
   InstagramAd: 'Instagram Ad',
@@ -21,15 +23,13 @@ export const SOCIAL_NETWORK_TITLES = {
  * @param {*} fbPages
  */
 export default function useCampaignForm(
-  getTemplateImages,
   updateCampaign,
   currentCampaign,
   googleToken,
   facebookToken,
-  fbPages
+  fbPages,
+  socialsToPost
 ) {
-  console.log('CurrentCampaign: ', currentCampaign);
-
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
   // console.log('CURRENT CAMPAIGN: ', currentCampaign);
@@ -67,7 +67,7 @@ export default function useCampaignForm(
   const [imgOption, setImgOption] = useState(currentCampaign?.img_option || 'library');
 
   useEffect(() => {
-    console.log("Use effect running", )
+    console.log('Use effect running');
     /** Load campaign images */
     // if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
     // if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
@@ -79,7 +79,10 @@ export default function useCampaignForm(
     if (currentCampaign?.square_img_url !== null && currentCampaign?.square_img_url !== '') {
       getImageFromUrl(currentCampaign?.square_img_url, 'square_img_url');
     }
-    if (currentCampaign?.rectangle_img_upload !== null && currentCampaign?.rectangle_img_upload !== '') {
+    if (
+      currentCampaign?.rectangle_img_upload !== null &&
+      currentCampaign?.rectangle_img_upload !== ''
+    ) {
       getImageFromUrl(currentCampaign?.rectangle_img_upload, 'rectangle_img_upload');
     }
     if (currentCampaign?.square_img_upload !== null && currentCampaign?.square_img_upload !== '') {
@@ -92,7 +95,9 @@ export default function useCampaignForm(
    * @param imageType string from the established set of form ids
    */
   const getImageFromUrl = async (url, imageType) => {
-    console.log("URL::::", url)
+    console.log('URL::::', url);
+    // if (!url) url = Library_1;
+
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -124,10 +129,9 @@ export default function useCampaignForm(
           setSquareImgFile(jpgFile);
           setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
         }
+        console.log(currentCampaign);
         return jpgFile;
       });
-
-    
   };
 
   /** Helper function for reading uploaded files

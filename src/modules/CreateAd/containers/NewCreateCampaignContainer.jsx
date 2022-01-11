@@ -18,6 +18,7 @@ import {
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
 import StepperWrapper from '../components/StepperWrapper';
+import ImageLibrary from '../components/ImageLibrary';
 import ConnectSocialPage from '../pages/newPages/ConnectSocialPage';
 import CampaignPage from '../pages/newPages/CampaignPage';
 
@@ -66,20 +67,23 @@ function CreateCampaignContainer({
     <>
       {networkError && <ErrorFallBackPage error={networkError} />}
       <ErrorHandler>
-        <StepperWrapper
-          pageHeading={'Choose Which Networks to Run Ads On'}
-          formSubmitHandler={submitCampaign}
-        >
-          <ConnectSocialPage
-            selectedNetworks={selectedNetworks}
-            setSelectedNetworks={setSelectedNetworks}
-          />
-          <CampaignPage
-            formInfo={formInfo}
-            selectedNetworks={selectedNetworks}
-            previews={previews}
-          />
-        </StepperWrapper>
+        <div className="m-auto" style={{ width: '88vw' }}>
+          <StepperWrapper
+            pageHeading={'Choose Which Networks to Run Ads On'}
+            formSubmitHandler={submitCampaign}
+          >
+            <ConnectSocialPage
+              selectedNetworks={selectedNetworks}
+              setSelectedNetworks={setSelectedNetworks}
+            />
+            <CampaignPage
+              formInfo={formInfo}
+              selectedNetworks={selectedNetworks}
+              previews={previews}
+            />
+          </StepperWrapper>
+        </div>
+        <ImageLibrary cropper={cropper} previews={previews} />
       </ErrorHandler>
     </>
   );
