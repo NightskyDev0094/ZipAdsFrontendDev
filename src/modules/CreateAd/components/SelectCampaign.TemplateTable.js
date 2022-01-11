@@ -59,11 +59,6 @@ const TemplateTable = ({ templates, deleteCampaign, submitSelectedData }) => {
       campaignName: data.filter((data) => data.id === id)[0]?.campaign_name,
     });
   };
-<<<<<<< HEAD
-  console.log('SELECT CAMPAIGN: ', templates);
-=======
-  // console.log(templates);
->>>>>>> 90c21321adc31dc6ee6b74fb7df037ee6be190e1
 
   const deleteRow = useCallback(async () => {
     await deleteCampaign(campaignModalInfo?.id);

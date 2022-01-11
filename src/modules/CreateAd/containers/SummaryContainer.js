@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SummaryPage from '../pages/SummaryPage';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
-import { updateCampaign, getCampaignAsync, makeCurrent } from '../../../actions/campaignActions';
-import { getTemplateImages } from '../../../actions/imageActions';
+import { getCampaignAsync, makeCurrent } from '../../../actions/campaignActions';
 import { postGoogleSearchAd } from '../../../actions/gsAdActions';
 import { postFBFeedAd } from '../../../actions/fbAdActions';
 import { completeStepByNormalFunction as completeStep } from '../../../actions/step.actions';
@@ -18,23 +18,15 @@ import {
 } from '../components/ErrorBoundary.Component';
 import StepperWrapper from '../components/StepperWrapper';
 import useCheckNetwork from '../hooks/useCheckNetwork';
-import useCreateCampaignForm from '../hooks/useCreateCampaignForm';
 
 const SummaryContainer = ({
   completeStep,
   postGoogleSearchAd,
   postFBFeedAd,
-  adInfo,
-  campaigns,
-  updateCampaign,
+  socialsToPost,
   currentCampaign,
   googleToken,
   facebookToken,
-  getTemplateImages,
-  fbPages,
-  getCampaignAsync,
-  makeCurrent,
-  socialsToPost,
   getFbAdAccounts,
   getGoogleAdAccounts,
   getBusinessInfo,
@@ -52,16 +44,6 @@ const SummaryContainer = ({
     getGoogleAdAccounts,
     getFbAdAccounts
   );
-  const { selectedNetworks, formInfo, cropper, previews, imgOption, submitCampaign } =
-    useCreateCampaignForm(
-      getTemplateImages,
-      updateCampaign,
-      currentCampaign,
-      googleToken,
-      facebookToken,
-      fbPages,
-      socialsToPost
-    );
 
   const [checkoutStatus, setCheckoutStatus] = useState(SUBMIT_STATUS.UNSET);
 
@@ -150,20 +132,18 @@ const SummaryContainer = ({
     setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
   };
 
+  console.log('SOCIALS TO POST: ', socialsToPost);
+  //TODO: double check socialsToPost becuase it is not updating when submitting from create/create-campaign
+
   return (
     <>
       {networkError && <ErrorFallBackPage error={networkError} />}
       <ErrorHandler>
         <StepperWrapper pageHeading="Let's Get Your Ad Online">
-          <SummaryPage
-            onHandleClick={onClick}
-            SUBMIT_STATUS={SUBMIT_STATUS}
-            formInfo={formInfo}
-            selectedNetworks={selectedNetworks}
-            previews={previews}
-          />
+          <SummaryPage onHandleClick={onClick} SUBMIT_STATUS={SUBMIT_STATUS} />
         </StepperWrapper>
       </ErrorHandler>
+      <BlueTecLandingFooter />
     </>
   );
 };
@@ -184,9 +164,6 @@ const mapDispatchToProps = (dispatch) => ({
   postGoogleSearchAd: (formData) => postGoogleSearchAd(formData, dispatch),
   completeStep: (stepNumber) => completeStep(dispatch, stepNumber),
   postFBFeedAd: (formData) => postFBFeedAd(formData, dispatch),
-  getTemplateImages,
-  makeCurrent,
-  updateCampaign,
   getCampaignAsync: () => getCampaignAsync(dispatch),
   getFbAdAccounts: () => getFbAdAccounts(dispatch),
   getGoogleAdAccounts: () => getGoogleAdAccounts(dispatch),
