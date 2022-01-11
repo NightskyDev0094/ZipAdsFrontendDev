@@ -27,7 +27,6 @@ export default function useCampaignForm(
   facebookToken,
   fbPages
 ) {
-
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
   // console.log('CURRENT CAMPAIGN: ', currentCampaign);
@@ -66,30 +65,27 @@ export default function useCampaignForm(
   const [currentLoading, setCurrentLoading] = useState(true);
 
   useEffect(() => {
-    // console.log("Use effect running", )
-    /** Load campaign images */
-    // if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
-    // if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
-    // if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
-    // if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
     if (currentCampaign?.rectangle_img_url !== null && currentCampaign?.rectangle_img_url !== '') {
       getImageFromUrl(currentCampaign?.rectangle_img_url, 'rectangle_img_url');
     }
     if (currentCampaign?.square_img_url !== null && currentCampaign?.square_img_url !== '') {
       getImageFromUrl(currentCampaign?.square_img_url, 'square_img_url');
     }
-    if (currentCampaign?.rectangle_img_upload !== null && currentCampaign?.rectangle_img_upload !== '') {
+    if (
+      currentCampaign?.rectangle_img_upload !== null &&
+      currentCampaign?.rectangle_img_upload !== ''
+    ) {
       getImageFromUrl(currentCampaign?.rectangle_img_upload, 'rectangle_img_upload');
     }
     if (currentCampaign?.square_img_upload !== null && currentCampaign?.square_img_upload !== '') {
       getImageFromUrl(currentCampaign?.square_img_upload, 'square_img_upload');
     }
   }, []);
+
   useEffect(() => {
     if (currentCampaign?.id) {
-      setCurrentLoading(false)
+      setCurrentLoading(false);
     }
-    console.log('CurrentCampaign: ', currentCampaign);
   }, [currentCampaign]);
 
   /**Helper function that encapsulates logic for reading and setting the image urls
@@ -97,7 +93,6 @@ export default function useCampaignForm(
    * @param imageType string from the established set of form ids
    */
   const getImageFromUrl = async (url, imageType) => {
-    console.log("URL::::", url)
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -111,8 +106,6 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
-        // console.log('File Creation test', jpgFile);
-        // console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
@@ -131,8 +124,6 @@ export default function useCampaignForm(
         }
         return jpgFile;
       });
-
-    
   };
 
   /** Helper function for reading uploaded files
@@ -208,7 +199,6 @@ export default function useCampaignForm(
 
     /** Grab the campaign id and update it with the forms data */
     const campaignId = currentCampaign?.id;
-    console.log('Submitted Campaign Form: ', formData.get('google_display_ad'));
     await updateCampaign(formData, campaignId);
   };
 
