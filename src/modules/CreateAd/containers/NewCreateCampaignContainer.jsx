@@ -21,6 +21,7 @@ import StepperWrapper from '../components/StepperWrapper';
 import ImageLibrary from '../components/ImageLibrary';
 import ConnectSocialPage from '../pages/newPages/ConnectSocialPage';
 import CampaignPage from '../pages/newPages/CampaignPage';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 function CreateCampaignContainer({
   campaigns,
@@ -85,6 +86,7 @@ function CreateCampaignContainer({
         </div>
         <ImageLibrary cropper={cropper} previews={previews} />
       </ErrorHandler>
+      <BlueTecLandingFooter />
     </>
   );
 }

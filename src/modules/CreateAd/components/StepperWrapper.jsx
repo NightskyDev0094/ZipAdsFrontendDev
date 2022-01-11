@@ -152,6 +152,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
   const CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
 
   const handleBackArrowClick = async () => {
+    
     formSubmitHandler !== undefined && (await formSubmitHandler());
     activeStep > 0 && history.push(StepperRoutes[activeStep - 1]);
   };

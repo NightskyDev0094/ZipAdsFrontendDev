@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
  *  * @param { postCampaigns: Function } - a redux action that creates new campaigns
  */
 
-const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCampaign }) => {
+const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCampaign, submitSelectedData }) => {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -246,6 +246,7 @@ const TemplateTable = ({ recommendedTemplate, templates, deleteCampaign, addCamp
             width: '80%',
             maxWidth: '210px',
           }}
+          onClick={() => submitSelectedData(id, templates, 'Template')}
         >
           {/* <EditIcon onClick={() => submitSelectedData(id, templates, 'Template')} /> */}
           Select
