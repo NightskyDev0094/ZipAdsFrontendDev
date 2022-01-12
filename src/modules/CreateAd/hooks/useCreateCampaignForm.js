@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
+import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
 
 export const SOCIAL_NETWORK_TITLES = {
   InstagramAd: 'Instagram Ad',
@@ -63,9 +65,14 @@ export default function useCampaignForm(
 
   /** Other */
   const [imgOption, setImgOption] = useState(currentCampaign?.img_option || 'library');
-  const [currentLoading, setCurrentLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Use effect running');
+    /** Load campaign images */
+    // if (!rectangleImgUrl) getImageFromUrl(rectangleImgUrl, 'rectangle_img_url');
+    // if (!squareImgUrl) getImageFromUrl(squareImgUrl, 'square_img_url');
+    // if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
+    // if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
     if (currentCampaign?.rectangle_img_url !== null && currentCampaign?.rectangle_img_url !== '') {
       getImageFromUrl(currentCampaign?.rectangle_img_url, 'rectangle_img_url');
     }
@@ -83,17 +90,14 @@ export default function useCampaignForm(
     }
   }, []);
 
-  useEffect(() => {
-    if (currentCampaign?.id) {
-      setCurrentLoading(false);
-    }
-  }, [currentCampaign]);
-
   /**Helper function that encapsulates logic for reading and setting the image urls
    * @param url string url for the image
    * @param imageType string from the established set of form ids
    */
   const getImageFromUrl = async (url, imageType) => {
+    console.log('URL::::', url);
+    // if (!url) url = Library_1;
+
     await fetch(`${url}`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -107,6 +111,8 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
+        // console.log('File Creation test', jpgFile);
+        // console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
@@ -123,6 +129,7 @@ export default function useCampaignForm(
           setSquareImgFile(jpgFile);
           setImgPreview(jpgFile, setSquareUpImg, setSquareImgPreviewUrl);
         }
+        console.log(currentCampaign);
         return jpgFile;
       });
   };
@@ -200,6 +207,7 @@ export default function useCampaignForm(
 
     /** Grab the campaign id and update it with the forms data */
     const campaignId = currentCampaign?.id;
+    console.log('Submitted Campaign Form: ', formData.get('google_display_ad'));
     await updateCampaign(formData, campaignId);
     makeCurrent(formData);
     console.log('FACEBOOK FEED AD STATUS: ', formData.get('facebook_feed_ad'));
