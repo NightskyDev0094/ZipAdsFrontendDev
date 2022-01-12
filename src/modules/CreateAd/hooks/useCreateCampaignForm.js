@@ -28,11 +28,7 @@ export default function useCampaignForm(
   googleToken,
   facebookToken,
   fbPages,
-<<<<<<< HEAD
-  socialsToPost
-=======
   makeCurrent
->>>>>>> master
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
