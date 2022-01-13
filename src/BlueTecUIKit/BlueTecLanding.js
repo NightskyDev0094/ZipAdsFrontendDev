@@ -58,7 +58,7 @@ class BlueTecLanding extends React.Component {
                   Learn More
                 </a> */}
                 <Link
-                  className="btn-custom"
+                  className="btn-custom linkToButton"
                   href="/signup/"
                   style={{
                     backgroundColor: '#ffe185',
@@ -66,7 +66,7 @@ class BlueTecLanding extends React.Component {
                     fontSize: '20px',
                     padding: '14px 80px',
                     color: '#00468f',
-                    fontWeight: 'inherit',
+                    fontWeight: '600',
                   }}
                 >
                   Get Started
@@ -102,56 +102,110 @@ class BlueTecLanding extends React.Component {
             <h1 id="middle-title" style={{ color: '#00468f' }}>
               What our customers are saying...
             </h1>
-            <div className="row m-0 justify-content-around">
-              <div className="text-center mx-3 my-5" style={{ maxWidth: '320px' }}>
+            <div className="row m-0 justify-content-around" style={{ height: '670px' }}>
+              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
                 <img
                   alt=""
-                  className="rounded-circle"
+                  className="rounded-circle p-3"
                   src={Person1}
-                  style={{ width: '320px', height: '320px'}}
+                  style={{ width: '320px', height: '320px' }}
                 />
-                <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua.
+                <h3
+                  className="mt-4"
+                  style={{
+                    color: '#00468f',
+                    fontWeight: '600',
+                    fontSize: '16px',
+                  }}
+                >
+                  "I'm not a technical person and the{' '}
+                  <b style={{ fontFamily: 'SilkaMedium' }}>ZipAds </b>
+                  platform makes creating and publishing online ads super easy! There is no
+                  technical background required and I can create a single ad and deliver it to
+                  multiple platforms in minutes!"
                 </h3>
-                <h3 className="font-weight-bold mt-4 font-italic" style={{ color: '#00468f' }}>
-                  - First Name Last Initial, The [INDUSTRY] Industry
-                </h3>
+                <h4
+                  className="font-weight-bold mt-4 position-absolute"
+                  style={{
+                    color: '#00468f',
+                    fontFamily: 'SilkaMedium',
+                    fontSize: '20px',
+                    bottom: '0',
+                    left: '50%',
+                    transform: 'translate(-50%, 0)',
+                    width: 'fit-content',
+                  }}
+                >
+                  - Jane Smith, <br /> The Beauty Industry
+                </h4>
               </div>
-              <div className="text-center m-3 my-5" style={{ maxWidth: '320px' }}>
+              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
                 <img
                   alt=""
-                  className="rounded-circle"
+                  className="rounded-circle p-3"
                   src={Person2}
-                  style={{ width: '320px', height: '320px'}}
+                  style={{ width: '320px', height: '320px' }}
                 />
-                <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua.
+                <h3
+                  className="mt-4"
+                  style={{ color: '#00468f', fontWeight: '600', fontSize: '20px' }}
+                >
+                  "<b style={{ fontFamily: 'SilkaMedium' }}>ZipAds </b>
+                  is remarkable! The software simplifies the ad creation and publishing process and
+                  saves me a huge amount of time!"
                 </h3>
-                <h3 className="font-weight-bold mt-4 font-italic" style={{ color: '#00468f' }}>
-                  - First Name Last Initial, The [INDUSTRY] Industry
-                </h3>
+                <h4
+                  className="font-weight-bold mt-4 position-absolute"
+                  style={{
+                    color: '#00468f',
+                    fontFamily: 'SilkaMedium',
+                    fontSize: '20px',
+                    bottom: '0',
+                    left: '50%',
+                    transform: 'translate(-50%, 0)',
+                    width: 'fit-content',
+                  }}
+                >
+                  - John Applessed, <br /> The Business Industry
+                </h4>
               </div>
-              <div className="text-center m-3 my-5" style={{ maxWidth: '320px' }}>
+              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
                 <img
                   alt=""
-                  className="rounded-circle"
-                  src={Person3}
-                  style={{ width: '320px', height: '320px'}}
+                  className="rounded-circle p-3"
+                  src={Person2}
+                  style={{ width: '320px', height: '320px' }}
                 />
-                <h3 className="mt-4 font-italic" style={{ color: '#00468f' }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua.
+                <h3
+                  className="mt-4"
+                  style={{ color: '#00468f', fontWeight: '600', fontSize: '16px' }}
+                >
+                  "I love the fact that I can deploy my digital ads to multiple platforms with one
+                  click and then manage ads running on different platforms centrally from the
+                  <b style={{ fontFamily: 'SilkaMedium' }}> ZipAds </b>
+                  dashboard. Meaning. I don't need to log into Facebook to see how those ads are
+                  doing and then log into Google to see how those ads doing--Everything is done from
+                  one place-it's awesome!"
                 </h3>
-                <h3 className="font-weight-bold mt-4 font-italic" style={{ color: '#00468f' }}>
-                  - First Name Last Initial, The [INDUSTRY] Industry
-                </h3>
+                <h4
+                  className="font-weight-bold mt-4 position-absolute"
+                  style={{
+                    color: '#00468f',
+                    fontFamily: 'SilkaMedium',
+                    fontSize: '20px',
+                    bottom: '0',
+                    left: '50%',
+                    transform: 'translate(-50%, 0)',
+                    width: 'fit-content',
+                  }}
+                >
+                  - Bill Johnson, <br /> The Food Industry
+                </h4>
               </div>
             </div>
-            <div className='d-flex justify-content-center'>
+            <div className="d-flex justify-content-center">
               <Link
-                className="btn-custom"
+                className="btn-custom linkToButton"
                 href="/signup/"
                 style={{
                   backgroundColor: '#ffe185',
@@ -159,7 +213,7 @@ class BlueTecLanding extends React.Component {
                   fontSize: '20px',
                   padding: '14px 80px',
                   color: '#00468f',
-                  fontWeight: 'inherit',
+                  fontWeight: '600',
                 }}
               >
                 Get Started
