@@ -36,9 +36,13 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToP
 
   /** TODO: Testing may be needed to figure out how campaign form manages custom images */
   const previews = {
-    squareImgPreviewUrl: undefined,
-    rectangleImgPreviewUrl: undefined,
+    squareImgPreviewUrl: currentCampaign?.square_img_upload,
+    rectangleImgPreviewUrl: currentCampaign?.rectangle_img_upload,
   };
+
+  console.log('CURRENT CAMPAIGN: ', currentCampaign);
+  console.log('FORM INFO: ', formInfo);
+  console.log('PREVIEWs: ', previews);
 
   return (
     <>
@@ -66,8 +70,6 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToP
   );
 };
 
-//TODO: add the onClickHandler for posting the ads
-//TODO: check the status of images not diplaying and add the createAd onClick handler
 const mapStateToProps = (state) => ({
   currentCampaign: state.campaigns.current,
   socialsToPost: state.newAdInfo.socialsToPost,
