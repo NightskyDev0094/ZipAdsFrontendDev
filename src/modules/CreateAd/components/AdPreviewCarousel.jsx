@@ -6,6 +6,7 @@ import FacebookSocialDisplay from './ConnectSocial.Display.Facebook';
 import FacebookAudienceDisplay from './ConnectSocial.Display.FacebookAudience';
 import GoogleAdNetworkDisplay from './ConnectSocial.Display.GoogleNetworkAd';
 import GoogleSocialDisplay from './ConnectSocial.Display.Google';
+import CreateCampaignButton from './CreateCampaignButton';
 import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
 
 const useStyles = makeStyles({
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
     left: 0,
     padding: '1.25em',
 
-    ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
+    // ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
 
     ['@media (min-width:450px)']: {
       top: '50%',
@@ -49,7 +50,7 @@ const useStyles = makeStyles({
     right: 0,
     padding: '1.25em',
 
-    ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
+    // ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
 
     ['@media (min-width:450px)']: {
       padding: '1.5em',
@@ -136,15 +137,21 @@ function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
       <h4 className={classes.CarouselStepNumber}>{`${currentStepIndex + 1}/${
         chosenSocialNetworks.length
       }`}</h4>
-      <button className={classes.LeftCarouselButton} onClick={() => handleArrowClick(true)}>
+      <div className={classes.LeftCarouselButton} onClick={() => handleArrowClick(true)}>
+        <CreateCampaignButton>Back</CreateCampaignButton>
+      </div>
+      <div className={classes.RightCarouselButton} onClick={() => handleArrowClick(false)}>
+        <CreateCampaignButton>Next</CreateCampaignButton>
+      </div>
+      {/* <button className={classes.LeftCarouselButton} onClick={() => handleArrowClick(true)}>
         <ForwardIcon
           style={{ '-webkit-transform': 'scaleX(-1)', transform: 'scaleX(-1)' }}
           className={classes.ArrowIcon}
         />
-      </button>
-      <button className={classes.RightCarouselButton} onClick={() => handleArrowClick(false)}>
+      </button> */}
+      {/* <button className={classes.RightCarouselButton} onClick={() => handleArrowClick(false)}>
         <ForwardIcon className={classes.ArrowIcon} />
-      </button>
+      </button> */}
       <h2 className={classes.PreviewTitle}>
         {removeAdFromTitle(chosenSocialNetworks[currentStepIndex])}
       </h2>

@@ -7,10 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
+import CreateCampaignButton from './CreateCampaignButton';
 import clsx from 'clsx';
 
 import next from '../../../BlueTecUIKit/images/next.png';
@@ -39,20 +41,7 @@ const useStyles = makeStyles({
       marginTop: '4rem',
     },
   },
-  ArrowButton: {
-    height: '3rem',
-    width: '3rem',
-    padding: '0',
-    position: 'absolute',
-    borderRadius: '0.25rem',
-    outline: 'none !important',
-    padding: '5px',
-    // ['@media (min-width:450px)']: {
-    //   height: '2.5em',
-    //   width: '2.5em',
-    zIndex: 1,
-    // },
-  },
+
   stepLabel: {
     color: '#00468f',
     fontSize: '16px',
@@ -152,7 +141,6 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
   const CREATE_AD_STEPS = ['Create Ad', 'Target Audience', 'Choose Budget', 'Post Ad'];
 
   const handleBackArrowClick = async () => {
-    
     formSubmitHandler !== undefined && (await formSubmitHandler());
     activeStep > 0 && history.push(StepperRoutes[activeStep - 1]);
   };
@@ -184,20 +172,24 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
   return (
     <Container maxWidth="xl" className="p-0">
       <Box className={classes.PageVessel}>
-        <IconButton
-          onClick={handleBackArrowClick}
-          style={{ left: 0, top: 10 }}
-          className={classes.ArrowButton}
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 10,
+          }}
         >
-          <img src={back} className="w-100 h-100" />
-        </IconButton>
-        <IconButton
-          onClick={handleForwardArrowClick}
-          style={{ right: 0, top: 10 }}
-          className={classes.ArrowButton}
+          <CreateCampaignButton>Back</CreateCampaignButton>
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 10,
+          }}
         >
-          <img src={next} className="w-100 h-100" />
-        </IconButton>
+          <CreateCampaignButton>Next</CreateCampaignButton>
+        </div>
         <Typography variant="h2" gutterBottom className={classes.BlueText}>
           {pageHeading}
         </Typography>
