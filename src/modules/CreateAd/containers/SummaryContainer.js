@@ -18,6 +18,7 @@ import {
 } from '../components/ErrorBoundary.Component';
 import StepperWrapper from '../components/StepperWrapper';
 import useCheckNetwork from '../hooks/useCheckNetwork';
+import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
 
 const SummaryContainer = ({
   completeStep,
@@ -102,35 +103,35 @@ const SummaryContainer = ({
     setCheckoutStatus(SUBMIT_STATUS.LOADING);
     // if (creditAmount >= totalBudget) {
     const adId = currentCampaign.id;
-    if (socialsToPost.includes('facebook feed ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.FacebookAd)) {
       let fbfFormData = new FormData();
       fbfFormData.append('ad_id', adId);
       fbfFormData.append('ad_type', 'feed');
       // Post Ad to Facebook
       postFBFeedAd(fbfFormData);
     }
-    if (socialsToPost.includes('facebook display ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd)) {
       let fbaFormData = new FormData();
       fbaFormData.append('ad_id', adId);
       fbaFormData.append('ad_type', 'audience');
       // Post Ad to Facebook
       postFBFeedAd(fbaFormData);
     }
-    if (socialsToPost.includes('instagram ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.InstagramAd)) {
       let igFormData = new FormData();
       igFormData.append('ad_id', adId);
       igFormData.append('ad_type', 'instagram');
       // Post Ad to Facebook
       postFBFeedAd(igFormData);
     }
-    if (socialsToPost.includes('google adwords')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.GoogleAwards)) {
       let gsaFormData = new FormData();
       gsaFormData.append('ad_id', adId);
       gsaFormData.append('ad_type', 'search');
       // Post Ad to Google
       postGoogleSearchAd(gsaFormData);
     }
-    if (socialsToPost.includes('google display ad')) {
+    if (socialsToPost.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)) {
       let gdaFormData = new FormData();
       gdaFormData.append('ad_id', adId);
       gdaFormData.append('ad_type', 'display');
@@ -140,10 +141,7 @@ const SummaryContainer = ({
     completeStep(7);
     setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
   };
-
-  console.log('SUMMARY FACEBOOK FEED AD STATUS: ', currentCampaign['facebook_feed_ad']);
-  console.log('SUMMARY Campaign should have been updated: ', currentCampaign.id);
-  //TODO: double check socialsToPost because it is updating but only when refreshing page
+  // TODO: test this once the bug with images not being sent in create campaign form is resolved
 
   return (
     <>

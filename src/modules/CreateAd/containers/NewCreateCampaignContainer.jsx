@@ -24,9 +24,7 @@ import CampaignPage from '../pages/newPages/CampaignPage';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 function CreateCampaignContainer({
-  campaigns,
   currentCampaign,
-  socialsToPost,
   updateCampaign,
   businessInfo,
   fbAccounts,
@@ -39,6 +37,7 @@ function CreateCampaignContainer({
   businessInfoLoading,
   creditAmount,
   hasCreateCampaignStepBeenCompleted,
+  updateSocials,
 }) {
   const { networkError, setNetworkError } = useCheckNetwork(
     googleToken,
@@ -61,7 +60,8 @@ function CreateCampaignContainer({
     googleToken,
     facebookToken,
     fbPages,
-    makeCurrent
+    makeCurrent,
+    updateSocials
   );
 
   return (
@@ -92,9 +92,7 @@ function CreateCampaignContainer({
 }
 
 const mapStateToProps = (state) => ({
-  campaigns: state.campaigns,
   currentCampaign: state.campaigns.current,
-  socialsToPost: state.newAdInfo.socialsToPost,
   businessInfo: state.businessInfo.businessInfos,
   fbAccounts: state.fbAdAccount.adAccounts,
   gaAccounts: state.googleAdAccount.adAccounts,

@@ -138,7 +138,7 @@ function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
       }`}</h4>
       <button className={classes.LeftCarouselButton} onClick={() => handleArrowClick(true)}>
         <ForwardIcon
-          style={{ '-webkit-transform': 'scaleX(-1)', transform: 'scaleX(-1)' }}
+          style={{ WebkitTransform: 'scaleX(-1)', transform: 'scaleX(-1)' }}
           className={classes.ArrowIcon}
         />
       </button>
