@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 
 import AdPreviewCarousel from '../components/AdPreviewCarousel';
-import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
 
-const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
-  const [chosenSocialNetworks, setChosenSocialNetworks] = useState([]);
+const useStyles = makeStyles({
+  PostAdsButton: {
+    backgroundColor: '#0be360',
+    color: '#00468f',
+    padding: '1em 1.25em',
+    borderRadius: '0.25em',
+    fontSize: '1.5em',
+  },
+});
+
+const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToPost }) => {
   const history = useHistory();
-
-  useEffect(() => {
-    /** Section that appends the adds status of each selected social network and sets it match the ad preview display */
-    currentCampaign['facebook_feed_ad'] === 'True' &&
-      setChosenSocialNetworks((prev) => [...prev, SOCIAL_NETWORK_TITLES.FacebookAd]);
-
-    currentCampaign['instagram_ad'] === 'True' &&
-      setChosenSocialNetworks((prev) => [...prev, SOCIAL_NETWORK_TITLES.InstagramAd]);
-
-    currentCampaign['facebook_display_ad'] === 'True' &&
-      setChosenSocialNetworks((prev) => [...prev, SOCIAL_NETWORK_TITLES.FacebookAudienceNetworkAd]);
-
-    currentCampaign['google_search_ad'] === 'True' &&
-      setChosenSocialNetworks((prev) => [...prev, SOCIAL_NETWORK_TITLES.GoogleAwards]);
-
-    currentCampaign['google_display_ad'] === 'True' &&
-      setChosenSocialNetworks((prev) => [...prev, SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd]);
-
-    setChosenSocialNetworks((prev) => [...new Set(prev)]); // removes duplicates when rerendering from prev state
-  }, []);
+  const classes = useStyles();
 
   /** Matches the naming of the items used inside of AdPreviewCarousel and fits into the accepted shape*/
   const formInfo = {
@@ -49,16 +38,16 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
   const previews = {
     squareImgPreviewUrl: undefined,
     rectangleImgPreviewUrl: undefined,
-  }; 
+  };
 
   return (
     <>
       <AdPreviewCarousel
-        chosenSocialNetworks={chosenSocialNetworks}
+        chosenSocialNetworks={socialsToPost}
         formInfo={formInfo}
         previews={previews}
       />
-      <h2 style={{ width: '100%', marginBottom: '3em', textAlign: 'center' }}>
+      <h2 style={{ width: '100%', marginBottom: '2em', textAlign: 'center' }}>
         <a
           style={{ color: 'blue', textDecoration: 'underline' }}
           onClick={() => history.push('/create/create-campaign')}
@@ -66,13 +55,22 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign }) => {
           I want to change something
         </a>
       </h2>
+      <div
+        style={{ width: '100%', marginBottom: '3em', display: 'flex', justifyContent: 'center' }}
+      >
+        <button onClick={onHandleClick} className={classes.PostAdsButton}>
+          Yes, post my ad!
+        </button>
+      </div>
     </>
   );
 };
 
+//TODO: add the onClickHandler for posting the ads
 //TODO: check the status of images not diplaying and add the createAd onClick handler
 const mapStateToProps = (state) => ({
   currentCampaign: state.campaigns.current,
+  socialsToPost: state.newAdInfo.socialsToPost,
 });
 
 export default connect(mapStateToProps, {})(SummaryPage);

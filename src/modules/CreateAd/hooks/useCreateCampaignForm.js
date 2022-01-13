@@ -21,6 +21,7 @@ export const SOCIAL_NETWORK_TITLES = {
  * @param {*} facebookToken
  * @param {*} fbPages
  * @param {*} markCurrent is suppose to make the formInfo the currentCampaign
+ * @param {*} updateSocials newAdInfo reducer that updates the socials to Post
  */
 export default function useCampaignForm(
   updateCampaign,
@@ -28,7 +29,8 @@ export default function useCampaignForm(
   googleToken,
   facebookToken,
   fbPages,
-  makeCurrent
+  makeCurrent,
+  updateSocials
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
@@ -207,10 +209,10 @@ export default function useCampaignForm(
 
     /** Grab the campaign id and update it with the forms data */
     const campaignId = currentCampaign?.id;
-    console.log('Submitted Campaign Form: ', formData.get('google_display_ad'));
+    console.log('CAMPAIGN BEFORE SUBMITTING: ', currentCampaign);
     await updateCampaign(formData, campaignId);
-    makeCurrent(formData);
-    console.log('FACEBOOK FEED AD STATUS: ', formData.get('facebook_feed_ad'));
+    await makeCurrent(formData);
+    await updateSocials(selectedNetworks);
     console.log('Campaign should have been updated: ', currentCampaign.id);
   };
 

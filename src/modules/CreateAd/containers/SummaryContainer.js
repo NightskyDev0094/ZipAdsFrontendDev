@@ -141,10 +141,6 @@ const SummaryContainer = ({
     setCheckoutStatus(SUBMIT_STATUS.SUCCESS);
   };
 
-  console.log('SUMMARY FACEBOOK FEED AD STATUS: ', currentCampaign['facebook_feed_ad']);
-  console.log('SUMMARY Campaign should have been updated: ', currentCampaign.id);
-  //TODO: double check socialsToPost because it is updating but only when refreshing page
-
   return (
     <>
       {networkError && <ErrorFallBackPage error={networkError} />}
