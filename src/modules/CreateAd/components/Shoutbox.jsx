@@ -1,8 +1,10 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
+import CloseIcon from '@material-ui/icons/Close';
+import tipBoxText from '../../../BlueTecUIKit/images/tip box_text.png';
 import ShoutBox from '../../../BlueTecUIKit/images/Shoutbox.png';
 import SpeechBubble from '../../../BlueTecUIKit/images/speech bubble.png';
 
@@ -14,18 +16,41 @@ const useStyles = makeStyles({
     bottom: 0,
   },
   bubbleTexts: {
-    position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: '10px',
+    fontSize: '20px',
     fontStyle: 'italic',
-    width: '120px',
-    height: '142px',
-    top: '35px',
-    left: '32px',
-    color: '#00468f',
+    color: '#005dbf',
     fontWeight: 'bold',
+    padding: '16px',
+    textAlign: 'center',
+  },
+  tipContainer: {
+    width: '264px',
+    position: 'relative',
+    marginBottom: '20px',
+    borderColor: '#005dbf',
+    borderStyle: 'solid',
+    borderWidth: '16px',
+    borderTopWidth: '48px',
+    borderRadius: '20px',
+  },
+  tipBoxText: {
+    position: 'absolute',
+    height: '180px',
+    top: '-112px',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+  },
+  tipBoxCloseBtn: {
+    position: 'absolute',
+    color: 'white',
+    top: '-40px',
+    right: '0',
+    cursor: 'pointer',
+
+    ['&:hover']: {
+      background: '#dddddd73',
+      borderRadius: '50%',
+    },
   },
 });
 
@@ -42,7 +67,7 @@ export default function Shoutbox({ children }) {
 
   return (
     <Box className={classes.BullHorn}>
-      <img src={ShoutBox} style={{ width: '100px' }} />
+      {/* <img src={ShoutBox} style={{ width: '100px' }} />
       <div className="position-relative">
         <img
           src={SpeechBubble}
@@ -51,6 +76,15 @@ export default function Shoutbox({ children }) {
         <div className={classes.bubbleTexts}>
           <p>{children}</p>
         </div>
+      </div> */}
+      <div className={classes.tipContainer}>
+        {/* <div className='position-absolute top-0'>
+          <h1>ZipAds</h1>
+          <h1>Tip</h1>
+        </div> */}
+        <img src={tipBoxText} className={classes.tipBoxText} />
+        <CloseIcon fontSize="small" className={classes.tipBoxCloseBtn} />
+        <p className={classes.bubbleTexts}>{children}</p>
       </div>
     </Box>
   );
