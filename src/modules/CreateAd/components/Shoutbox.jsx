@@ -32,6 +32,8 @@ const useStyles = makeStyles({
     borderWidth: '16px',
     borderTopWidth: '48px',
     borderRadius: '20px',
+    backgroundColor: 'white',
+    zIndex: '100',
   },
   tipBoxText: {
     position: 'absolute',
@@ -64,26 +66,15 @@ const useStyles = makeStyles({
 export default function Shoutbox({ children }) {
   const classes = useStyles();
   const history = useHistory();
+  const closeTipBox = () => {
+    document.querySelector('#tipBox').style.display = 'none';
+  };
 
   return (
     <Box className={classes.BullHorn}>
-      {/* <img src={ShoutBox} style={{ width: '100px' }} />
-      <div className="position-relative">
-        <img
-          src={SpeechBubble}
-          style={{ width: '250px', marginLeft: '-43px', marginBottom: '-23px' }}
-        />
-        <div className={classes.bubbleTexts}>
-          <p>{children}</p>
-        </div>
-      </div> */}
-      <div className={classes.tipContainer}>
-        {/* <div className='position-absolute top-0'>
-          <h1>ZipAds</h1>
-          <h1>Tip</h1>
-        </div> */}
+      <div id="tipBox" className={classes.tipContainer}>
         <img src={tipBoxText} className={classes.tipBoxText} />
-        <CloseIcon fontSize="small" className={classes.tipBoxCloseBtn} />
+        <CloseIcon fontSize="small" className={classes.tipBoxCloseBtn} onClick={closeTipBox} />
         <p className={classes.bubbleTexts}>{children}</p>
       </div>
     </Box>
