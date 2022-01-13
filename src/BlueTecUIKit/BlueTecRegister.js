@@ -115,7 +115,7 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       {} */}
       <div className="row m-0">
         <div className="col-lg-6 p-5" style={{ minHeight: 'calc(100vh - 297.38px)' }}>
-          <h1 className="text-center mb-4" style={{ color: '#00468f' }}>
+          <h1 className="text-center mb-4" style={{ color: '#00468f', fontWeight: '600' }}>
             Register
           </h1>
           <form
