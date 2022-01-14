@@ -10,6 +10,7 @@ import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 const LoadingSpinner = () => (
   <div
@@ -93,6 +94,7 @@ const ConversionFormContainer = ({
           />
         )}
       </ErrorHandler>
+      <BlueTecLandingFooter />
     </div>
   );
 };

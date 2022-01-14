@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '60px !important',
+    paddingTop: '60px !important',
     '@media (max-width:660px)': {
       fontSize: '7vw',
       marginBottom: '20px',
@@ -155,7 +155,7 @@ const ManageConversions = ({ conversions, deleteConversion }) => {
   ];
 
   return (
-    <Box>
+    <div style={{height: '100%'}}>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -244,7 +244,7 @@ const ManageConversions = ({ conversions, deleteConversion }) => {
           conversions?.map((element, index) => ({ ...element, index: index + 1 }))
         }
       />
-    </Box>
+    </div>
   );
 };
 

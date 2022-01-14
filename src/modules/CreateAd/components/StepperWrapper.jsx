@@ -179,7 +179,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
             top: 10,
           }}
         >
-          <CreateCampaignButton>Back</CreateCampaignButton>
+          {activeStep > 0 && <CreateCampaignButton>Back</CreateCampaignButton>}
         </div>
         <div
           style={{
@@ -188,7 +188,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
             top: 10,
           }}
         >
-          <CreateCampaignButton>Next</CreateCampaignButton>
+          {activeStep < 3 && <CreateCampaignButton>Next</CreateCampaignButton>}
         </div>
         <Typography variant="h2" gutterBottom className={classes.BlueText}>
           {pageHeading}

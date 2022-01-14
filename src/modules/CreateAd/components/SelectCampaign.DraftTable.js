@@ -246,7 +246,7 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
         </Fade>
       </Modal>
       <Typography className={classes.title} variant="h1" component="h2">
-        Select a Draft
+        Select Saved Draft
       </Typography>
       <Table
         className="table-striped-rows"
