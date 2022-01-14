@@ -137,14 +137,9 @@ const DraftTable = ({ campaigns, deleteCampaign, submitSelectedData }) => {
       key: 'square_img_url',
       width: '120px',
       render: (src) => (
-        <img
-          src={src}
-          style={{
-            maxWidth: '100px',
-            maxHeight: '100px',
-            border: '1px solid #7a746c',
-          }}
-        />
+        <div style={{ width: '100px', height: '100px', border: '1px solid #7a746c' }}>
+          <img className="w-100 h-100" src={src} />
+        </div>
       ),
     },
     {

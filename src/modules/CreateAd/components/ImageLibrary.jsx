@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import LibraryNextButton from '../../../BlueTecUIKit/images/library_next.png';
 import LibraryCheckmark from '../../../BlueTecUIKit/images/icons/library_green checkmark.png';
 import LibraryOpenBook from '../../../BlueTecUIKit/images/library_open book.png';
+import CreateCampaignButton from './CreateCampaignButton';
 import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
 import Library_2 from '../../../BlueTecUIKit/images/gallery/library_2.png';
 import Library_3 from '../../../BlueTecUIKit/images/gallery/library_3.png';
@@ -197,11 +197,12 @@ function ImageLibray({
             />
           </div>
         </div>
-        <img
+        <div
           className="position-absolute"
-          src={LibraryNextButton}
           style={{ top: '50%', right: '0', transform: 'translate(0, -50%)' }}
-        />
+        >
+          <CreateCampaignButton>Next</CreateCampaignButton>
+        </div>
       </div>
       <p
         className="font-italic font-weight-bold py-4"
