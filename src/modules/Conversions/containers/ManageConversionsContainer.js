@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import ManageConversionsPage from '../pages/ManageConversionsPage';
 import { getConversions, deleteConversion } from '../../../actions/conversions.gaActions';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 const ManageConversionsContainer = ({ getConversions, conversions, deleteConversion }) => {
   const [conversionData, setConversionData] = useState([]);
@@ -16,7 +17,14 @@ const ManageConversionsContainer = ({ getConversions, conversions, deleteConvers
     setConversionData(conversions);
   }, [conversions]);
 
-  return <ManageConversionsPage deleteConversion={deleteConversion} conversions={conversionData} />;
+  return (
+    <>
+      <div style={{ minHeight: 'calc(100vh - 297.38px)' }}>
+        <ManageConversionsPage deleteConversion={deleteConversion} conversions={conversionData} />
+      </div>
+      <BlueTecLandingFooter />
+    </>
+  );
 };
 
 const mapStateToProps = (state) => ({

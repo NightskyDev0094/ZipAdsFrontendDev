@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import HeaderContainerImage from './images/background/5.png';
 import FooterContainerImage from './images/background/7.png';
+import BluetecLandingFooter from './BlueTecLandingFooter';
 
 const useStyles = makeStyles(() => ({
   headerContainer: {
@@ -25,8 +26,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-// If adding or moving the collapse accordion, edit the number value of #id, data-target, aria-controls, etc to match the order and column position. 
-// Repetition triggers open and close of multiple 
+// If adding or moving the collapse accordion, edit the number value of #id, data-target, aria-controls, etc to match the order and column position.
+// Repetition triggers open and close of multiple
 // Example: "id=heading-a1" => change all instance of a1
 
 const FAQPage = () => {
@@ -63,7 +64,6 @@ const FAQPage = () => {
             <div className="row">
               <div className="col-md-6">
                 <div id="accordion-1" className="accordion accordion-style-1">
-
                   <div className="card">
                     <div id="heading-a1" className="card-header bg-white shadow-sm border-0">
                       <h6 className="mb-0 font-weight-bold">
@@ -306,13 +306,11 @@ const FAQPage = () => {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
 
               <div className="col-md-6">
                 <div id="accordion-2" className="accordion accordion-style-1">
-
                   <div className="card">
                     <div id="heading-b1" className="card-header bg-white shadow-sm border-0">
                       <h6 className="mb-0 font-weight-bold">
@@ -336,8 +334,8 @@ const FAQPage = () => {
                     >
                       <div className="card-body p-4">
                         <p className="m-0">
-                          At Zip ads you can do either! We have many templates to choose from
-                          but you can also upload your own at the standard sizes and formats.
+                          At Zip ads you can do either! We have many templates to choose from but
+                          you can also upload your own at the standard sizes and formats.
                         </p>
                       </div>
                     </div>
@@ -598,6 +596,7 @@ const FAQPage = () => {
           </div>
         </section>
       </div>
+      <BluetecLandingFooter />
     </>
   );
 };

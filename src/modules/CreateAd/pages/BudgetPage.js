@@ -109,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '2rem',
     margin: '0rem 2rem',
     '@media (max-width:1400px)': {
-      marginBottom: '100px',
       minHeight: '525px',
       margin: 0,
     },

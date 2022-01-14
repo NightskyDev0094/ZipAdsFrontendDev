@@ -98,7 +98,10 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   handleLoginSubmit(data, e);
                 })}
               >
-                <h1 className="text-center mb-4" style={{ color: '#00468f' }}>
+                <h1
+                  className="text-center"
+                  style={{ color: '#00468f', fontWeight: '600', marginBottom: '100px' }}
+                >
                   Login
                 </h1>
                 <div className="field-set">
@@ -134,6 +137,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                       padding: '10px 0',
                       backgroundColor: '#005dbf',
                       fontSize: '18px',
+                      marginTop: '100px'
                     }}
                     className="btn btn-custom color-2 w-100 border-0"
                   />
