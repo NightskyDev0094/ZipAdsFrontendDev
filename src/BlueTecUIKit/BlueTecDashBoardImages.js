@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
   },
   boardContent: {
-    fontSize: '1.15rem',
+    // fontSize: '1.15rem',
   },
 }));
 
@@ -71,9 +71,9 @@ const BlueTecDashBoardImages = () => {
                 />
               </div>
               <h4 className={classes.boardTitle}>Create an Ad Campaign</h4>
-              <p className={classes.boardContent}>
-                <strong>Click here</strong> to create a new Ad Campaign.
-              </p>
+              <h4 className={classes.boardContent}>
+                <strong>Click here</strong> to create a new ad campaign.
+              </h4>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6 mb30">
               <div
@@ -88,10 +88,10 @@ const BlueTecDashBoardImages = () => {
                 <img src={CreationImage2} className="fp-image img-fluid w-100 h-100" alt />
               </div>
               <h4 className={classes.boardTitle}>Understanding Ad Campaigns</h4>
-              <p className={classes.boardContent}>
+              <h4 className={classes.boardContent}>
                 <strong>Click here</strong> to learn more about ad campaigns and how important they
                 can be to the success of your business.
-              </p>
+              </h4>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6 mb30">
               <div
@@ -111,10 +111,10 @@ const BlueTecDashBoardImages = () => {
                 />
               </div>
               <h4 className={classes.boardTitle}>Analytics Dashboard</h4>
-              <p className={classes.boardContent}>
+              <h4 className={classes.boardContent}>
                 <strong>Click here</strong> to see real time statistics on your various ad
                 campaigns.
-              </p>
+              </h4>
             </div>
             {/* <div className="col-lg-4 col-md-6 col-sm-6 mb30">
               <div className="fp-wrap f-invert mb20">
