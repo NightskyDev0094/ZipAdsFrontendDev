@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: 'italic',
     top: '50%',
     transform: 'translate(365px, -50%)',
-    fontSize: '12px',
+    fontSize: '18px',
 
-    ['@media (max-width:987px)']: {
+    ['@media (max-width:1024px)']: {
       left: '50%',
       top: '50px',
       transform: 'translate(-50%, 0)',
@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: '#017cff',
 
-    ['@media (max-width:987px)']: {
-      paddingBottom: '21px',
+    ['@media (max-width:1024px)']: {
+      paddingBottom: '38px',
     },
   },
 }));
@@ -110,19 +110,22 @@ function ImageLibray({
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <p className="font-weight-bold py-4" style={{ color: '#1f5c9c', fontSize: '18px' }}>
-        Choose an ad image:
-      </p>
       <div className={classes.industyTextContent}>
         <div className="position-relative m-auto" style={{ width: 'fit-content' }}>
-          <h4 className="text-white m-0 py-4">Image Library: Beauty Industry</h4>
+          <h4 className="text-white m-0 py-2" style={{fontSize: '30px'}}>Image Library: Beauty</h4>
           <a className={classes.industyImageText} style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={LibraryOpenBook} style={{ width: '15px', marginRight: '5px' }} />
-            <ins>Click here to view other industry images</ins>
+            <img src={LibraryOpenBook} style={{ width: '28px', marginRight: '5px' }} />
+            <ins>View other industry images</ins>
           </a>
         </div>
       </div>
-      <div className="py-5 position-relative" style={{ paddingLeft: '10vw', paddingRight: '10vw' }}>
+      <p className="font-weight-bold pt-4 m-0" style={{ color: '#1f5c9c', fontSize: '30px' }}>
+        Choose an Ad Image:
+      </p>
+      <div
+        className="py-4 position-relative"
+        style={{ paddingLeft: '100px', paddingRight: '100px' }}
+      >
         <div className={classes.imageLibrary}>
           <div className="position-relative">
             <img

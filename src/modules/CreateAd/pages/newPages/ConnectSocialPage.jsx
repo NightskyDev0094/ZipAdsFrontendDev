@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     ['& > *']: {
       flex: '1 1 33%',
     },
+    '@media (max-width:1540px)': {
+      paddingBottom: '0',
+    },
   },
 
   CampaignVessel: {

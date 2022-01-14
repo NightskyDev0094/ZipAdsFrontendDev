@@ -14,6 +14,10 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'end',
     bottom: 0,
+
+    '@media (max-width:1540px)': {
+      position: 'relative',
+    },
   },
   bubbleTexts: {
     fontSize: '20px',
