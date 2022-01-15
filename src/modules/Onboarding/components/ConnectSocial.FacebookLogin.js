@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import PropTypes from 'prop-types';
+import {FACEBOOK_KEY} from '../../../environmentVariables';
 
 const FacebookConnect = ({ handleFacebookLogin }) => {
   const [code, setCode] = React.useState('');
@@ -14,7 +15,7 @@ const FacebookConnect = ({ handleFacebookLogin }) => {
   return (
     <>
       <FacebookLogin
-        appId="338696654226361"
+        appId={FACEBOOK_KEY}
         buttonText="Connect to Facebook"
         autoLoad={false}
         fields="name,email,picture"
