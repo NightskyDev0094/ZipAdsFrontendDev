@@ -83,7 +83,7 @@ export const defaultOptions = {
   },
 };
 
-const SuccessMessage = ({clearCreditSuccess}) => {
+const SuccessMessage = ({clearPaymentSuccess}) => {
   const classes = useStyles();
   const history = useHistory();
   const size = useWindowSize();
@@ -113,7 +113,7 @@ const SuccessMessage = ({clearCreditSuccess}) => {
       <div className={classes.linkContainer}>
         <Typography
           onClick={() => {
-            clearCreditSuccess(); 
+            clearPaymentSuccess(); 
             history.push('/analytics') 
           }}
           component="h5"
@@ -124,7 +124,7 @@ const SuccessMessage = ({clearCreditSuccess}) => {
         </Typography>
         <Typography
           onClick={() => {
-            clearCreditSuccess(); 
+            clearPaymentSuccess(); 
             history.push('/analytics') 
           }}
           component="h5"

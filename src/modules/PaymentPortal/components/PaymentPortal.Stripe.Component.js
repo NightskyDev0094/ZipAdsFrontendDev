@@ -88,16 +88,16 @@ const PAYMENT_RESULT_STATUS = {
   ERROR: 'ERROR',
 };
 
-const CreditStripeComponent = ({
+const PaymentStripeComponent = ({
   preExistingAmount,
   amountToPurchase,
-  createCreditAmount,
+  createPaymentAmount,
   getClientId,
   stripeCheckoutToken,
-  creditError,
+  PaymentError,
   purchaseButtonDisabled,
-  updateCreditAmount,
-  clearCreditErrors,
+  updatePaymentAmount,
+  clearPaymentErrors,
 }) => {
   const classes = useStyles();
   const stripe = useStripe();
@@ -179,34 +179,34 @@ const CreditStripeComponent = ({
   }, [stripeCheckoutToken, stripeCheckoutToken?.client_secret]);
 
   /**
-   * Checks for a credit error or failure to process
-   * credit or debit card
+   * Checks for a Payment error or failure to process
+   * Payment or debit card
    */
   useEffect(() => {
-    if (creditError) {
+    if (paymentError) {
       setStripeStatus(STRIPE_STATUS.ERROR);
       setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
     }
-  }, [creditError]);
+  }, [paymentError]);
 
   /**
    * Check payment result and if so submit amount
    * and notify users, this hook is watching for the payment result
-   * It will then clear errors, and update credit amount or create a new amount
+   * It will then clear errors, and update payment amount or create a new amount
    */
   useEffect(() => {
     try {
       const submitOrUpdateClosure = async () => {
         if (paymentResultStatus === PAYMENT_RESULT_STATUS.SUCCEED) {
-          await clearCreditErrors();
+          await clearPaymentErrors();
           if (preExistingAmount > 0) {
             const combinedAmount = formatAmountForSubmisson();
-            //updateCreditAmount will chagne too
-            await createCreditAmount(combinedAmount);
+            //updatePaymentAmount will chagne too
+            await createPaymentAmount(combinedAmount);
             setStripeStatus(STRIPE_STATUS.SUCCESS);
           } else {
             const amount = formatAmountForSubmisson();
-            await createCreditAmount(amount);
+            await createPaymentAmount(amount);
             setStripeStatus(STRIPE_STATUS.SUCCESS);
           }
         } else if (paymentResultStatus === PAYMENT_RESULT_STATUS.ERROR) {
@@ -251,7 +251,7 @@ const CreditStripeComponent = ({
         <div className={classes.cartStatusContainer}>
           {stripeStatus === STRIPE_STATUS.SUCCESS && (
             <Alert severity="success">
-              You Successfully Purchased Credits!, Feel free to go to the next page.
+              You Successfully Purchased Payments!, Feel free to go to the next page.
             </Alert>
           )}
           {stripeStatus === STRIPE_STATUS.LOADING && (
@@ -281,7 +281,7 @@ const CreditStripeComponent = ({
               type="submit"
               disabled={!stripe || purchaseButtonDisabled}
             >
-              Purchase credits and continue
+              Purchase Payments and continue
             </Button>
           </div>
         </form>
@@ -290,28 +290,28 @@ const CreditStripeComponent = ({
   );
 };
 
-CreditStripeComponent.propTypes = {
+PaymentStripeComponent.propTypes = {
   preExistingAmount: PropTypes.string,
   amountToPurchase: PropTypes.string,
-  createCreditAmount: PropTypes.func,
+  createPaymentAmount: PropTypes.func,
   getClientId: PropTypes.func,
   stripeCheckoutToken: PropTypes.string,
-  creditError: PropTypes.string,
+  paymentError: PropTypes.string,
   purchaseButtonDisabled: PropTypes.bool,
-  updateCreditAmount: PropTypes.func,
-  clearCreditErrors: PropTypes.func
+  updatePaymentAmount: PropTypes.func,
+  clearPaymentErrors: PropTypes.func
 };
 
-CreditStripeComponent.defaultProps = {
+PaymentStripeComponent.defaultProps = {
   preExistingAmount: '0',
   amountToPurchase: '',
-  createCreditAmount: () => alert('createCreditAction not passed'),
+  createPaymentAmount: () => alert('createPaymentAction not passed'),
   getClientId: () => alert('client id not passed'),
   stripeCheckoutToken: '',
-  creditError: '',
+  paymentError: '',
   purchaseButtonDisabled: true,
-  updateCreditAmount: () => alert('update credit amount not passed'),
-  clearCreditErrors: () => alert('clear credit errors')
+  updatePaymentAmount: () => alert('update Payment amount not passed'),
+  clearPaymentErrors: () => alert('clear Payment errors')
 };
 
-export default CreditStripeComponent;
+export default PaymentStripeComponent;

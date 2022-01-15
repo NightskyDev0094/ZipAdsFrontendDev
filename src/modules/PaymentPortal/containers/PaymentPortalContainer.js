@@ -7,18 +7,18 @@ import Background1 from '../../../BlueTecUIKit/images/background/1.png';
 import { completeStepByNormalFunction } from '../../../actions/step.actions';
 import { getCampaignAsync } from '../../../actions/campaignActions';
 
-import CreditPage from '../pages/';
+import PaymentPortalPage from '../pages/';
 import {
-  getCreditAmount,
-  updateCreditAmount,
-  createCreditAmount,
-  clearCreditSuccess,
+  getPaymentAmount,
+  updatePaymentAmount,
+  createPaymentAmount,
+  clearPaymentSuccess,
   getClientId,
-  clearCreditErrors,
-} from '../../../actions/credit.actions';
+  clearPaymentErrors,
+} from '../../../actions/payment.actions';
 
 const useStyles = makeStyles(() => ({
-  creditPageContainer: {
+  paymentPortalPageContainer: {
     backgroundSize: 'contain !important',
     backgroundImage: `url(${Background1})`,
     backgroundRepeat: 'no-repeat',
@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CreditContainer = (
+const PaymentContainer = (
   { currentCampaign, socialsToPost, getCampaignAsync, completeStep, ...props}
 ) => {
   const getCampaignData = useCallback(async () => await getCampaignAsync());
@@ -68,39 +68,39 @@ const CreditContainer = (
   }, [currentCampaign]);
   const classes = useStyles();
   return (
-    <div className={classes.creditPageContainer}>
-      <CreditPage completeStep={completeStep} amount={amount} setAmount={setAmount} {...props} />
+    <div className={classes.paymentPortalPageContainer}>
+      <PaymentPortalPage completeStep={completeStep} amount={amount} setAmount={setAmount} {...props} />
     </div>
   );
 };
 
-CreditContainer.propTypes = {
+PaymentContainer.propTypes = {
   campaignInfo: PropTypes.shape({}),
 };
 
-CreditContainer.defaultProps = {
+PaymentContainer.defaultProps = {
   campaignInfo: {},
 };
 
 const mapStateToProps = (state) => ({
   campaignInfo: state.newAdInfo,
-  userCredits: state.credits.userCredits,
-  stripeCheckoutToken: state.credits.userClientId,
-  creditsError: state.credits.error,
-  creditsSuccess: state.credits.success,
+  userPayments: state.payments.userPayments,
+  stripeCheckoutToken: state.payments.userClientId,
+  paymentsError: state.payments.error,
+  paymentsSuccess: state.payments.success,
   currentCampaign: state.campaigns.current,
   socialsToPost: state.newAdInfo.socialsToPost,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createCreditAmount: (amount) => createCreditAmount(amount, dispatch),
+  createPaymentAmount: (amount) => createPaymentAmount(amount, dispatch),
   getCampaignAsync: () => getCampaignAsync(dispatch),
-  updateCreditAmount: (amount) => updateCreditAmount(amount, dispatch),
-  getCreditAmount: () => getCreditAmount(dispatch),
+  updatePaymentAmount: (amount) => updatePaymentAmount(amount, dispatch),
+  getPaymentAmount: () => getPaymentAmount(dispatch),
   getClientId: (amount, preExistingAmount) => getClientId(amount, preExistingAmount, dispatch),
-  clearCreditSuccess,
-  clearCreditErrors: () => clearCreditErrors(dispatch),
+  clearPaymentSuccess,
+  clearPaymentErrors: () => clearPaymentErrors(dispatch),
   completeStep: () => completeStepByNormalFunction(dispatch, 7),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreditContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentContainer);

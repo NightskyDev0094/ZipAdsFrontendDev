@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddCreditsModal = ({ setHideElement, ...props }) => {
+const AddPaymentsModal = ({ setHideElement, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -49,7 +49,7 @@ const AddCreditsModal = ({ setHideElement, ...props }) => {
           setHideElement(true);
         }}
       >
-        Choose Credit Options
+        Choose Payment Options
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -76,12 +76,12 @@ const AddCreditsModal = ({ setHideElement, ...props }) => {
   );
 };
 
-AddCreditsModal.propTypes = {
+AddPaymentsModal.propTypes = {
   setHideElement: PropTypes.func,
 };
 
-AddCreditsModal.defaultProps = {
+AddPaymentsModal.defaultProps = {
   setHideElement: () => {},
 };
 
-export default AddCreditsModal;
+export default AddPaymentsModal;

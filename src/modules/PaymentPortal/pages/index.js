@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import StepProgress from '../../CreateAd/components/StepProgress';
-const CreditPageForm = lazy(() => import('../components/Credits.Page.Form'));
+const PaymentPortalPageForm = lazy(() => import('../components/PaymentPortal.Page.Form'));
 
 const useStyles = makeStyles(() => ({
   outerPaper: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
       width: '100%'
     },  
   },
-  creditPageContainer: {
+  PaymentPortalPageContainer: {
     width: '800px',
     margin: '50px auto',
     padding: '0px 50px 50px 50px',
@@ -48,7 +48,7 @@ const FallbackPage = () => (
   </div>
 );
 
-const CreditPage = ({completeStep, ...props}) => {
+const PaymentPortalPage = ({completeStep, ...props}) => {
   const classes = useStyles();
   const history = useHistory();
   return (
@@ -76,9 +76,9 @@ const CreditPage = ({completeStep, ...props}) => {
             Next
           </Button>
         </div>
-        <Paper elevation={3} className={classes.creditPageContainer}>
+        <Paper elevation={3} className={classes.PaymentPortalPageContainer}>
           <Suspense fallback={FallbackPage}>
-            <CreditPageForm {...props} />
+            <PaymentPortalPageForm {...props} />
           </Suspense>
         </Paper>
       </Paper>
@@ -86,8 +86,8 @@ const CreditPage = ({completeStep, ...props}) => {
   );
 };
 
-CreditPage.propTypes = {};
+PaymentPortalPage.propTypes = {};
 
-CreditPage.defaultProps = {};
+PaymentPortalPage.defaultProps = {};
 
-export default CreditPage;
+export default PaymentPortalPage;
