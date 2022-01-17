@@ -94,7 +94,7 @@ const PaymentStripeComponent = ({
   createPaymentAmount,
   getClientId,
   stripeCheckoutToken,
-  PaymentError,
+  paymentError,
   purchaseButtonDisabled,
   updatePaymentAmount,
   clearPaymentErrors,

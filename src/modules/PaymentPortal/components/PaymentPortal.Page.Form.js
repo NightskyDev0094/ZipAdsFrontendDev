@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import PaymentPortalStripeComponent from './PaymentPortal.Stripe.Component';
+import PaymentStripeComponent from './PaymentPortal.Stripe.Component';
 import SuccessMessage from './PaymentPortal.Success.Component';
 import InformationModal from './PaymentPortal.Information.Modal';
 

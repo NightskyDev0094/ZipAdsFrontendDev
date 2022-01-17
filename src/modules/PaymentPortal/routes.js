@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import CreditContainer from './containers/CreditContainer';
+import PaymentContainer from './containers/PaymentPortalContainer';
 
-const CreditRoutes = () => (
+const PaymentPortalRoutes = () => (
   <>
-    <Route exact path="/credits/" component={CreditContainer} />
+    <Route exact path="/payment-portal/" component={PaymentContainer} />
   </>
 );
 
-export default CreditRoutes;
+export default PaymentPortalRoutes;
