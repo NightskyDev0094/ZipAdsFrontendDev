@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 import GoogleLogin from 'react-google-login';
+import {GOOGLE_KEY} from '../../../environmentVariables';
 
 // const CLIENT_ID =
 //   "1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com";
@@ -25,7 +26,7 @@ const GoogleConnect = ({ handleGoogleLogin }) => {
       <div className="row ">
         <div className="form-group mx-auto my-2">
           <GoogleLogin
-            clientId="1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com"
+            clientId={GOOGLE_KEY}
             buttonText="Login"
             accessType="offline"
             responseType="code"
