@@ -1,6 +1,8 @@
+
 //npx eslint 'src/**/*.{js,jsx}' to get errors list
 //npx eslint 'src/**/*.{js,jsx}' --fix to fix and reformat simple errors
 //https://www.andrewmin.info/blog/react-setup/
+
 {
     "env": {
         "browser": true,
@@ -9,7 +11,7 @@
     "parser": "babel-eslint",
     "extends": [
         "plugin:react/recommended",
-        // "airbnb",
+        "airbnb",
         "prettier"
     ],
     "parserOptions": {
@@ -24,36 +26,9 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": "warn",
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx"
-                ]
-            }
-        ], //allow js extensions
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], //allow js extensions
         "react/state-in-constructor": "off",
-        "react/jsx-props-no-spreading": "off",
-        "no-unused-vars": [
-            "warn"
-        ],
-        "react/prop-types": "warn",
-        "react/no-unescaped-entities": "warn",
-        "react/display-name": "warn",
-        "react/jsx-key": "warn",
-        "react/jsx-no-duplicate-props": "warn",
-        // "import/extensions": "warn",
-        "no-prototype-builtins": "warn",
-        "no-param-reassign": "warn",
-        // "no-param-assign": "warn",
-        "no-shadow": "warn",
-        "no-extend-native": "warn",
-        // "import/no-cycle": "warn",
-        // "camelCase": "warn",
-        // "import/prefer-default-export": "warn",
-        "object-shorthand": "warn",
-        "react/forbid-prop-types": "warn"
+        "react/jsx-props-no-spreading": ["disabled"]
     }
 }
