@@ -7,6 +7,7 @@ import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux';
 import { addGoogleToken } from '../../../actions/oauth.googleActions';
 import { addFacebookToken } from '../../../actions/oauth.facebookActions';
+import { GOOGLE_KEY, FACEBOOK_KEY } from '../../../environmentVariables';
 
 const useStyles = makeStyles({
   ConnectNetworkButtonContainer: {
@@ -65,7 +66,7 @@ function ConnectSocialNetworkButton({ socialNetworkName, addGoogleToken, addFace
 
     window.fbAsyncInit = function () {
       window.FB.init({
-        appId: '338696654226361',
+        appId: { FACEBOOK_KEY },
         cookie: true, // enable cookies to allow the server to access the session
         xfbml: true, // parse social plugins on this page
         version: 'v10.0',
@@ -141,7 +142,7 @@ function ConnectSocialNetworkButton({ socialNetworkName, addGoogleToken, addFace
     <div className={classes.ConnectNetworkButtonContainer}>
       {socialNetworkName === 'Google' ? (
         <GoogleLogin
-          clientId="1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com"
+          clientId={GOOGLE_KEY}
           render={(renderProps) => (
             <CustomSocialNetworkButton
               onClick={renderProps.onClick}
