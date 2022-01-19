@@ -83,36 +83,35 @@ const PaymentPlanForm = ({
   ...props
 }) => {
   const classes = useStyles();
-  const [purchaseButtonDisabled, setPurchaseButtonDisabled] = useState(true);
-  const [preExistingAmount, setPreExistingAmount] = useState(0);
+  // const [purchaseButtonDisabled, setPurchaseButtonDisabled] = useState(true);
+  // const [preExistingAmount, setPreExistingAmount] = useState(0);
 
-  useEffect(() => {
-    getPaymentAmount();
-  }, []);
+  // useEffect(() => {
+  //   getPaymentAmount();
+  // }, []);
 
-  useEffect(() => {
-    if (amount === 0 || !amount || parseInt(amount) < 1) {
-      setPurchaseButtonDisabled(true);
-    } else {
-      setPurchaseButtonDisabled(false);
-    }
-  }, [amount]);
+  // useEffect(() => {
+  //   if (amount === 0 || !amount || parseInt(amount) < 1) {
+  //     setPurchaseButtonDisabled(true);
+  //   } else {
+  //     setPurchaseButtonDisabled(false);
+  //   }
+  // }, [amount]);
 
   //get sum of users Payments
-  useEffect(() => {
-    if (!userPayments || !userPayments?.length) return;
-    if (userPayments?.length >= 1) {
-      const highestAmount = userPayments?.pop()['amount'];
-      setPreExistingAmount(highestAmount);
-    }
-  }, [userPayments]);
+  // useEffect(() => {
+  //   if (!userPayments || !userPayments?.length) return;
+  //   if (userPayments?.length >= 1) {
+  //     const highestAmount = userPayments?.pop()['amount'];
+  //     setPreExistingAmount(highestAmount);
+  //   }
+  // }, [userPayments]);
 
   return (
     <>
-      {!arePaymentsSuccessfullyPurchased ? (
         <div styles={{ ...styles.root }} className={classes.root}>
           <div className={classes.titleSubContainer}>
-            <Typography className={classes.title}>Purchase Payments</Typography>
+            <Typography className={classes.title}>Choose a Payment Plan</Typography>
             <Typography className={classes.subTitle}>
               Purchase Payments to checkout with, this is the preferred method of checkout.
               <InformationModal
@@ -129,7 +128,7 @@ const PaymentPlanForm = ({
               />
             </Typography>
           </div>
-          <FormControl fullWidth className={classes.formControl} variant="outlined">
+          {/* <FormControl fullWidth className={classes.formControl} variant="outlined">
             <div className={classes.inputsContainer}>
               <div className={classes.inputs}>
                 <Typography className={classes.inputLabel}>Your Existing Payments:</Typography>
@@ -155,17 +154,14 @@ const PaymentPlanForm = ({
                 />
               </div>
             </div>
-          </FormControl>
+          </FormControl> */}
           <PaymentStripeComponent
             amountToPurchase={amount}
-            preExistingAmount={preExistingAmount}
-            purchaseButtonDisabled={purchaseButtonDisabled}
+            // preExistingAmount={preExistingAmount}
+            // purchaseButtonDisabled={purchaseButtonDisabled}
             {...props}
           />
         </div>
-      ) : (
-        <SuccessMessage clearPaymentSuccess={clearPaymentSuccess} />
-      )}
     </> 
   );
 };

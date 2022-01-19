@@ -89,13 +89,13 @@ const PAYMENT_RESULT_STATUS = {
 };
 
 const PaymentStripeComponent = ({
-  preExistingAmount,
+  // preExistingAmount,
   amountToPurchase,
   createPaymentAmount,
   getClientId,
   stripeCheckoutToken,
   paymentError,
-  purchaseButtonDisabled,
+  // purchaseButtonDisabled,
   updatePaymentAmount,
   clearPaymentErrors,
 }) => {
@@ -109,26 +109,26 @@ const PaymentStripeComponent = ({
 
   const [name, setName] = useState('');
 
-  const combinePreExistingAmountToAmount = () => {
-    const [preExistinAmountParsed, amountParsed] = [
-      parseFloat(preExistingAmount),
-      parseFloat(amountToPurchase),
-    ];
-    return preExistinAmountParsed + amountParsed;
-  };
+  // const combinePreExistingAmountToAmount = () => {
+  //   const [preExistinAmountParsed, amountParsed] = [
+  //     parseFloat(preExistingAmount),
+  //     parseFloat(amountToPurchase),
+  //   ];
+  //   return preExistinAmountParsed + amountParsed;
+  // };
 
   const formatAmountForSubmisson = () => {
     const formData = new FormData();
     const intToFloat = (num, decPlaces) => num + '.' + Array(decPlaces + 1).join('0');
     try {
-      if(!preExistingAmount){
-        formData.append('amount', intToFloat(amountToPurchase, 2));
-        formData.append('pending', false);  
-      } else {
-        const budget = intToFloat((parseInt(amountToPurchase) + parseInt(preExistingAmount)), 2);
-        formData.append('amount', budget);
-        formData.append('pending', false);
-      }
+      // if(!preExistingAmount){
+      formData.append('amount', intToFloat(amountToPurchase, 2));
+      formData.append('pending', false);  
+      // } else {
+      //   const budget = intToFloat((parseInt(amountToPurchase) + parseInt(preExistingAmount)), 2);
+      //   formData.append('amount', budget);
+      //   formData.append('pending', false);
+      // }
     } catch (e) {
       setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
     }
@@ -199,16 +199,16 @@ const PaymentStripeComponent = ({
       const submitOrUpdateClosure = async () => {
         if (paymentResultStatus === PAYMENT_RESULT_STATUS.SUCCEED) {
           await clearPaymentErrors();
-          if (preExistingAmount > 0) {
-            const combinedAmount = formatAmountForSubmisson();
-            //updatePaymentAmount will chagne too
-            await createPaymentAmount(combinedAmount);
-            setStripeStatus(STRIPE_STATUS.SUCCESS);
-          } else {
-            const amount = formatAmountForSubmisson();
-            await createPaymentAmount(amount);
-            setStripeStatus(STRIPE_STATUS.SUCCESS);
-          }
+          // if (preExistingAmount > 0) {
+          //   const combinedAmount = formatAmountForSubmisson();
+          //   //updatePaymentAmount will chagne too
+          //   await createPaymentAmount(combinedAmount);
+          //   setStripeStatus(STRIPE_STATUS.SUCCESS);
+          // } else {
+          const amount = formatAmountForSubmisson();
+          await createPaymentAmount(amount);
+          setStripeStatus(STRIPE_STATUS.SUCCESS);
+          // }
         } else if (paymentResultStatus === PAYMENT_RESULT_STATUS.ERROR) {
           setStripeStatus(STRIPE_STATUS.ERROR);
           setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
@@ -235,7 +235,7 @@ const PaymentStripeComponent = ({
         setErrorMessage(ERROR_MESSAGE.STRIPE_LOAD_FAILURE);
         return;
       } else {
-        await getClientId(amountToPurchase, preExistingAmount);
+        await getClientId(amountToPurchase, 0);
       }
     } catch (e) {
       setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
@@ -279,7 +279,7 @@ const PaymentStripeComponent = ({
               variant="contained"
               color="primary"
               type="submit"
-              disabled={!stripe || purchaseButtonDisabled}
+              // disabled={!stripe || purchaseButtonDisabled}
             >
               Purchase Payments and continue
             </Button>
@@ -291,25 +291,25 @@ const PaymentStripeComponent = ({
 };
 
 PaymentStripeComponent.propTypes = {
-  preExistingAmount: PropTypes.string,
+  // preExistingAmount: PropTypes.string,
   amountToPurchase: PropTypes.string,
   createPaymentAmount: PropTypes.func,
   getClientId: PropTypes.func,
   stripeCheckoutToken: PropTypes.string,
   paymentError: PropTypes.string,
-  purchaseButtonDisabled: PropTypes.bool,
+  // purchaseButtonDisabled: PropTypes.bool,
   updatePaymentAmount: PropTypes.func,
   clearPaymentErrors: PropTypes.func
 };
 
 PaymentStripeComponent.defaultProps = {
-  preExistingAmount: '0',
+  // preExistingAmount: '0',
   amountToPurchase: '',
   createPaymentAmount: () => alert('createPaymentAction not passed'),
   getClientId: () => alert('client id not passed'),
   stripeCheckoutToken: '',
   paymentError: '',
-  purchaseButtonDisabled: true,
+  // purchaseButtonDisabled: true,
   updatePaymentAmount: () => alert('update Payment amount not passed'),
   clearPaymentErrors: () => alert('clear Payment errors')
 };
