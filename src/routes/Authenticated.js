@@ -14,6 +14,7 @@ import NotFound404 from '../modules/ErrorHandling/404Handler';
 import AccountRoutes from '../modules/Account/routes';
 import FAQPage from '../BlueTecUIKit/BlueTecFAQPage';
 import SuccessPage from '../modules/CreateAd/pages/SuccessPage';
+import PaymentPortalRoutes from '../modules/PaymentPortal/routes';
 
 
 const AuthenticatedRoutes = ({ isAuthenticated }) => (
@@ -34,6 +35,7 @@ const AuthenticatedRoutes = ({ isAuthenticated }) => (
               <AnalyticsRoutes />
               <ProfileRoutes />
               <AccountRoutes />
+              <PaymentPortalRoutes />
             </Box>
           </Switch>
         </Router>

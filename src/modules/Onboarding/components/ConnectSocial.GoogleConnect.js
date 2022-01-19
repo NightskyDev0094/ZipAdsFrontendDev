@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 import GoogleLogin from 'react-google-login';
+import {GOOGLE_KEY} from '../../../environmentVariables';
 
 // const CLIENT_ID =
 //   "1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com";
@@ -24,20 +25,27 @@ const GoogleConnect = ({ handleGoogleLogin, CustomButton }) => {
     handleGoogleLogin(formData);
   };
   return (
-    <GoogleLogin
-      clientId="1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com"
-      render={(renderProps) => (
-        <CustomButton onClick={renderProps.onClick} disabled={renderProps.disabled} />
-      )}
-      buttonText="Login"
-      accessType="offline"
-      responseType="code"
-      approvalPrompt="force"
-      prompt="consent"
-      scope="https://www.googleapis.com/auth/adwords"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
-    />
+    <>
+      <h3 style={{ textAlign: 'center' }} className="mt-4" id="login-msg">
+        Connect to Google.
+      </h3>
+      <div className="row ">
+        <div className="form-group mx-auto my-2">
+          <GoogleLogin
+            clientId={GOOGLE_KEY}
+            buttonText="Login"
+            accessType="offline"
+            responseType="code"
+            approvalPrompt="force"
+            prompt="consent"
+            scope="https://www.googleapis.com/auth/adwords"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />
+        </div>
+      </div>
+      {/* <button onClick={getUserInfo}>get info</button> */}
+    </>
   );
 };
 export default GoogleConnect;

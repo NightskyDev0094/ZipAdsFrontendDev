@@ -82,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
 const ConnectSocialPage = ({
   createFacebookAccount,
   connectGoogleAuth,
+  
   connectFacebookAuth,
   currentBusinessName,
   fbAdAccounts,
