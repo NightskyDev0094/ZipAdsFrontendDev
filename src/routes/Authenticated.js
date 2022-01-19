@@ -15,6 +15,7 @@ import AccountRoutes from '../modules/Account/routes';
 import FAQPage from '../BlueTecUIKit/BlueTecFAQPage';
 import SuccessPage from '../modules/CreateAd/pages/SuccessPage';
 import PaymentPortalRoutes from '../modules/PaymentPortal/routes';
+import PaymentPlanRoutes from '../modules/PaymentPlans/routes';
 
 
 const AuthenticatedRoutes = ({ isAuthenticated }) => (
@@ -36,6 +37,7 @@ const AuthenticatedRoutes = ({ isAuthenticated }) => (
               <ProfileRoutes />
               <AccountRoutes />
               <PaymentPortalRoutes />
+              <PaymentPlanRoutes />
             </Box>
           </Switch>
         </Router>

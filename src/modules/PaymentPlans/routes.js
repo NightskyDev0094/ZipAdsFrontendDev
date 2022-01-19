@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import CreditContainer from './containers/CreditContainer';
+import PaymentPlanContainer from './containers/PaymentPlanContainer';
 
-const CreditRoutes = () => (
+const PaymentPlanRoutes = () => (
   <>
-    <Route exact path="/credits/" component={CreditContainer} />
+    <Route exact path="/subscription-plan/" component={PaymentPlanContainer} />
   </>
 );
 
-export default CreditRoutes;
+export default PaymentPlanRoutes;

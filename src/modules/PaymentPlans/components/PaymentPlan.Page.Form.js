@@ -8,9 +8,9 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import CreditStripeComponent from './Credits.Stripe.Component';
-import SuccessMessage from './Credits.Success.Component';
-import InformationModal from './Credits.Information.Modal';
+import PaymentStripeComponent from './PaymentPlan.Stripe.Component';
+import SuccessMessage from './PaymentPlan.Success.Component';
+import InformationModal from './PaymentPlan.Information.Modal';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -72,12 +72,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CreditForm = ({
+const PaymentPlanForm = ({
   styles,
-  areCreditsSuccessfullyPurchased,
-  userCredits,
-  getCreditAmount,
-  clearCreditSuccess,
+  arePaymentsSuccessfullyPurchased,
+  userPayments,
+  getPaymentAmount,
+  clearPaymentSuccess,
   amount,
   setAmount,
   ...props
@@ -87,7 +87,7 @@ const CreditForm = ({
   const [preExistingAmount, setPreExistingAmount] = useState(0);
 
   useEffect(() => {
-    getCreditAmount();
+    getPaymentAmount();
   }, []);
 
   useEffect(() => {
@@ -98,27 +98,27 @@ const CreditForm = ({
     }
   }, [amount]);
 
-  //get sum of users credits
+  //get sum of users Payments
   useEffect(() => {
-    if (!userCredits || !userCredits?.length) return;
-    if (userCredits?.length >= 1) {
-      const highestAmount = userCredits?.pop()['amount'];
+    if (!userPayments || !userPayments?.length) return;
+    if (userPayments?.length >= 1) {
+      const highestAmount = userPayments?.pop()['amount'];
       setPreExistingAmount(highestAmount);
     }
-  }, [userCredits]);
+  }, [userPayments]);
 
   return (
     <>
-      {!areCreditsSuccessfullyPurchased ? (
+      {!arePaymentsSuccessfullyPurchased ? (
         <div styles={{ ...styles.root }} className={classes.root}>
           <div className={classes.titleSubContainer}>
-            <Typography className={classes.title}>Purchase Credits</Typography>
+            <Typography className={classes.title}>Purchase Payments</Typography>
             <Typography className={classes.subTitle}>
-              Purchase Credits to checkout with, this is the preferred method of checkout.
+              Purchase Payments to checkout with, this is the preferred method of checkout.
               <InformationModal
-                title={`Credits`}
-                text="Credits, used in dollar amounts,
-                help you run your ads. Depending on the amount of credits (USD) you want to spend on a campaign,
+                title={`Payments`}
+                text="Payments, used in dollar amounts,
+                help you run your ads. Depending on the amount of Payments (USD) you want to spend on a campaign,
                 you can run your campaign for a longer or shorter period of time. 
                 The result of your spending will be shown in the analytics page and you can upload more at any time. "
                 styles={{
@@ -132,7 +132,7 @@ const CreditForm = ({
           <FormControl fullWidth className={classes.formControl} variant="outlined">
             <div className={classes.inputsContainer}>
               <div className={classes.inputs}>
-                <Typography className={classes.inputLabel}>Your Existing Credits:</Typography>
+                <Typography className={classes.inputLabel}>Your Existing Payments:</Typography>
                 <OutlinedInput
                   disabled={true}
                   id="outlined-adornment-amount"
@@ -143,7 +143,7 @@ const CreditForm = ({
                 />
               </div>
               <div className={classes.inputs}>
-                <Typography className={classes.inputLabel}>Credits to purchase:</Typography>
+                <Typography className={classes.inputLabel}>Payments to purchase:</Typography>
                 <OutlinedInput
                   id="outlined-adornment-amount"
                   value={parseInt(amount) || 0}
@@ -156,7 +156,7 @@ const CreditForm = ({
               </div>
             </div>
           </FormControl>
-          <CreditStripeComponent
+          <PaymentStripeComponent
             amountToPurchase={amount}
             preExistingAmount={preExistingAmount}
             purchaseButtonDisabled={purchaseButtonDisabled}
@@ -164,32 +164,32 @@ const CreditForm = ({
           />
         </div>
       ) : (
-        <SuccessMessage clearCreditSuccess={clearCreditSuccess} />
+        <SuccessMessage clearPaymentSuccess={clearPaymentSuccess} />
       )}
     </> 
   );
 };
 
-CreditForm.propTypes = {
+PaymentPlanForm.propTypes = {
   styles: PropTypes.object,
   amount: PropTypes.number,
   setAmount: PropTypes.func,
-  submitCreditAmount: PropTypes.func,
-  areCreditsSuccessfullyPurchased: PropTypes.func,
-  userCredits: PropTypes.array,
+  submitPaymentAmount: PropTypes.func,
+  arePaymentsSuccessfullyPurchased: PropTypes.func,
+  userPayments: PropTypes.array,
   setError: PropTypes.func,
-  getCreditAmount: PropTypes.func,
-  clearCreditSuccess: PropTypes.func,
+  getPaymentAmount: PropTypes.func,
+  clearPaymentSuccess: PropTypes.func,
 };
 
-CreditForm.defaultProps = {
+PaymentPlanForm.defaultProps = {
   styles: {},
-  submitCreditAmount: () => alert('submitCreditAmount was not passed'),
-  areCreditsSuccessfullyPurchased: false,
-  userCredits: [],
+  submitPaymentAmount: () => alert('submitPaymentAmount was not passed'),
+  arePaymentsSuccessfullyPurchased: false,
+  userPayments: [],
   setError: () => alert('Set error was not passed'),
-  getCreditAmount: () => alert('getCreditAmount not passed'),
-  clearCreditSuccess: () => alert('clear Credit Succcess was not passed'),
+  getPaymentAmount: () => alert('getPaymentAmount not passed'),
+  clearPaymentSuccess: () => alert('clear Payment Succcess was not passed'),
 };
 
-export default CreditForm;
+export default PaymentPlanForm;

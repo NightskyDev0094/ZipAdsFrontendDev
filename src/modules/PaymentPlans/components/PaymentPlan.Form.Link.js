@@ -15,14 +15,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AddCreditsModalLink = styles => {
+const MakePaymentModalLink = styles => {
   const classes = useStyles();
   const history = useHistory();
   return (
     <div className={classes.root}>
       <h5
         onClick={() => {
-          history.push('/credits');
+          history.push('/payments');
         }}
         className={classes.link}
       >
@@ -32,12 +32,12 @@ const AddCreditsModalLink = styles => {
   );
 };
 
-AddCreditsModalLink.propTypes = {
+MakePaymentModalLink.propTypes = {
   styles: PropTypes.object,
 };
 
-AddCreditsModalLink.defaultProps = {
+MakePaymentModalLink.defaultProps = {
   styles: {},
 };
 
-export default AddCreditsModalLink;
+export default MakePaymentModalLink;
