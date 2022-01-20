@@ -1,5 +1,4 @@
 
-
 //npx eslint 'src/**/*.{js,jsx}' to get errors list
 //npx eslint 'src/**/*.{js,jsx}' --fix to fix and reformat simple errors
 //https://www.andrewmin.info/blog/react-setup/
