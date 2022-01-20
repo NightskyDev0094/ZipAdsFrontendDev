@@ -19,3 +19,34 @@ button:hover {
 *{
   font-family: 'SilkaLight'
 }
+
+.paymenForm input {
+  font-size: 20px !important;
+}
+
+.form-border input[type=text], .form-border input[type=number], .form-border textarea, .form-underline input[type=email], .form-border input[type=password], .form-border select {
+	padding: 8px;
+	margin-bottom: 20px;
+	border: none;
+	border: solid 1px #cccccc;
+	background: none;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	height: auto;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	color:#333;
+}
+
+.form-border input::-webkit-outer-spin-button,
+.form-border input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.form-border input[type=number] {
+  -moz-appearance: textfield;
+}
