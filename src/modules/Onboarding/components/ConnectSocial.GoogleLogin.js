@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 import GoogleLogin from 'react-google-login';
+import {GOOGLE_KEY} from '../../../environmentVariables';
 
 const GoogleConnect = ({ handleGoogleLogin }) => {
   const responseGoogle = (response) => {
+    console.log('responseGoogle running!!!!!')
     const formData = new FormData();
     formData.append('code', response.code);
     handleGoogleLogin(formData);
@@ -11,7 +13,7 @@ const GoogleConnect = ({ handleGoogleLogin }) => {
   return (
     <>
       <GoogleLogin
-        clientId="1062228155409-ggkaciv0u6dc23l2235o3jfidnv65rg1.apps.googleusercontent.com"
+        clientId={GOOGLE_KEY}
         buttonText="Connect to Google"
         accessType="offline"
         responseType="code"

@@ -8,17 +8,19 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import { RadioGroup } from '@material-ui/core';
+import ConnectSocialNetworkButton from '../components/ConnectSocialNetworkButton';
 
 const useStyles = makeStyles(() => ({
   BlueText: { color: '#0b6ea5', 'font-weight': 600, width: '100%', textAlign: 'center' },
   InputItem: {
     width: '100%',
     height: '3rem',
-    fontSize: '1.25rem',
     padding: '0.5rem 1rem',
     border: 'solid 1px #cccccc',
     borderRadius: '0.25rem',
-    'margin-bottom': '1em',
+    fontSize: '1.25rem',
+    marginBottom: '1em',
 
     ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
   },
@@ -29,16 +31,61 @@ const useStyles = makeStyles(() => ({
     marginBottom: '4em',
     ['@media (min-width: 450px)']: { width: '45em' },
   },
+  SelectItem: {
+    width: '100%',
+    height: '3rem',
+    padding: '0.5rem 1rem',
+    border: 'solid 1px #cccccc',
+    borderRadius: '0.25rem',
+    marginBottom: '1em',
+    fontSize: '1.25rem',
+    display: 'inline-block',
+    cursor: 'pointer',
+
+    ['& > option']: { padding: '1.75em 0px' },
+
+    ['@media (min-width: 450px)']: { height: '3.5rem', width: '85%', fontSize: '1.7rem' },
+  },
+  AToZ: {
+    display: 'none',
+    ['@media (min-width: 450px)']: {
+      display: 'inline-block',
+      padding: '0.5rem 1rem',
+      border: '1px solid #cccccc',
+      color: '#cccccc',
+      borderRadius: '0.25rem',
+      textAlign: 'center',
+      height: '3.5rem',
+      width: '13%',
+      marginLeft: '2%',
+      fontSize: '1.7rem',
+    },
+  },
+  RadioItem: {
+    width: '100%',
+    fontSize: '1.75rem',
+    display: 'flex',
+    alignItems: 'center',
+    ['& > input']: {
+      height: '1em',
+      width: '1em',
+      marginLeft: '25%',
+      padding: '0.5em',
+      cursor: 'pointer',
+    },
+    ['& > label']: { marginLeft: '1.25em' },
+  },
+
   SubmitButton: {
     width: '40%',
     height: '3rem',
-    fontSize: '1.25rem',
     padding: '0.5rem 1rem',
     border: 'solid 1px #cccccc',
     backgroundColor: '#0b6ea5',
     color: '#cccccc',
     borderRadius: '0.5rem',
-    marginBottom: '1em',
+    margin: '1em auto',
+    display: 'block',
 
     ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
   },
@@ -109,6 +156,13 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
     'Other',
   ];
 
+  const AdvertisingFamiliarity = [
+    { id: 'not-familiar', label: "I'm not at all familiar", value: 'not-familiar' },
+    { id: 'know-a-few', label: 'I know a few things', value: 'know-a-few' },
+    { id: 'know-solid-amount', label: 'I know a solid amount', value: 'know-solid-amount' },
+    { id: 'very-familiar', label: "I'm very familiar", value: 'very-familiar' },
+  ];
+
   const [businessName, setBusinessName] = React.useState();
   const [industry, setIndustry] = React.useState(IndustryOptions[0]);
   const [businessUrl, setBusinessUrl] = React.useState();
@@ -117,6 +171,7 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
   const [stateCode, setStateCode] = React.useState();
   const [zipCode, setZipCode] = React.useState();
   const [apartment, setApartment] = React.useState('');
+  const [advertisingFamiliarity, setAdvertisingFamiliarity] = React.useState('');
 
   return (
     <Container maxWidth="md" sx={{ marginTop: '20em' }}>
@@ -183,7 +238,7 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
         {/* SELECT INDUSTRY SECTION  */}
         <Box className={classes.FormSection}>
           <select
-            className={classes.InputItem}
+            className={classes.SelectItem}
             label="Industry"
             value={industry}
             onChange={(e) => setIndustry(e.target.value)}
@@ -194,6 +249,37 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
               </option>
             ))}
           </select>
+          <div className={classes.AToZ}>A-Z</div>
+        </Box>
+        {/* ADVERTISING FAMILIARITY SECTION  */}
+        <Box className={classes.FormSection}>
+          <h2 style={{ width: '100%', textAlign: 'center' }}>
+            How familiar are you with online advertising?
+          </h2>
+          {AdvertisingFamiliarity.map((item) => (
+            <div key={crypto.randomUUID()} className={classes.RadioItem}>
+              <input
+                type="radio"
+                name="advertising-familiarity"
+                value={item.value}
+                id={item.id}
+                checked={advertisingFamiliarity === item.value}
+                onChange={(e) => setAdvertisingFamiliarity(e.target.value)}
+              />
+              <label htmlFor={item.id}>{item.label}</label>
+            </div>
+          ))}
+        </Box>
+        {/* CONNECT SOCIAL NETWORKS SECTION  */}
+        <Box className={classes.FormSection}>
+          <h2 style={{ width: '100%', textAlign: 'center' }}>
+            Let's connect your social accounts:
+          </h2>
+          <ConnectSocialNetworkButton socialNetworkName="Facebook" />
+          <ConnectSocialNetworkButton socialNetworkName="Google" />
+          <p style={{ width: '100%', textAlign: 'center', fontSize: '1em' }}>
+            <a style={{ textDecoration: 'underline' }}>Need help?</a>
+          </p>
         </Box>
         <Box className={classes.FormSection}>
           <button type="submit" className={classes.SubmitButton}>

@@ -23,6 +23,9 @@ import businessInfoReducer from './businessInfoReducer';
 import googelAdSenseReducer from './accounts.GoogleAdSenseReducer';
 import managedBusinessAccountsReducer from './socialConnect.ManagedAccountReducer';
 import creditsReducer from './creditsReducer';
+import paymentsReducer from './paymentsReducer';
+import subscriptionsReducer from './subscriptionsReducer';
+import cardsReducer from './cardsReducer';
 import stepReducer from './step.reducer';
 
 const appReducer = combineReducers({
@@ -48,6 +51,9 @@ const appReducer = combineReducers({
   businessInfo: businessInfoReducer,
   googelAdSenseData: googelAdSenseReducer,
   credits: creditsReducer,
+  payments: paymentsReducer,
+  subscriptions: subscriptionsReducer,
+  cards: cardsReducer,
   stepTracker: stepReducer
 });
 

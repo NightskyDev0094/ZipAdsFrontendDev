@@ -31,10 +31,12 @@ const ConnectSocialContainer = ({
   }, []);
 
   const handleFacebookLogin = (formData) => {
+    
     addFacebookToken(formData);
   };
 
   const handleGoogleLogin = (formData) => {
+    
     addGoogleToken(formData);
   };
   return (

@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ImageLibray({
+function ImageLibrary({
   cropper,
   previews,
   campaigns,
@@ -248,4 +248,4 @@ const mapStateToProps = (state) => ({
   hasBudgetStepBeenCompleted: state.stepTracker.BUDGET_STEP,
 });
 
-export default connect(mapStateToProps, {})(ImageLibray);
+export default connect(mapStateToProps, {})(ImageLibrary);

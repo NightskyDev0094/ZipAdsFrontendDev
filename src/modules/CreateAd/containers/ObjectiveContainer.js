@@ -12,6 +12,7 @@ const ObjectiveContainer = ({
   completeStep,
   hasObjectiveStepBeenCompleted,
 }) => {
+  // Updates campaign and proceeds to next step
   const submitObjective = (objectiveInfo) => {
     const formData = new FormData();
     formData.append('objective', objectiveInfo.objective);
@@ -21,6 +22,7 @@ const ObjectiveContainer = ({
     // Save Targeting options to Campaign_Info
     updateCampaign(formData, campaignId);
   };
+  // form state
   const [objective, setObjective] = useState(currentCampaign.objective || 'Conversions');
 
   return (

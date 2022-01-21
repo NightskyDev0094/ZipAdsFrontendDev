@@ -20,6 +20,7 @@ import BusinessInfo from '../modules/Contact/components/BusinessInfo';
 import SignInInfo from '../modules/Contact/components/SignInInfo';
 import Subscription from '../modules/Contact/components/Subscription';
 import PaymentPortal from '../modules/Contact/components/PaymentPortal';
+import PaymentPlanRoutes from '../modules/PaymentPlans/routes';
 
 const routes = [
   {
@@ -86,6 +87,8 @@ const AuthenticatedRoutes = ({ isAuthenticated }) => (
               <ProfileRoutes />
               <AccountRoutes />
               {/* <ContactRoutes /> */}
+              <PaymentPortalRoutes />
+              <PaymentPlanRoutes />
             </Box>
           </Switch>
         </Router>

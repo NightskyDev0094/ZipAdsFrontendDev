@@ -134,6 +134,7 @@ const ConnectOrCreateManagedAccountComponent = ({
     addFacebookToken(formData);
   };
   const handleGoogleLogin = (formData) => {
+    console.log('addGoogleToken running!!!!!')
     addGoogleToken(formData);
   };
   return (
@@ -151,7 +152,7 @@ const ConnectOrCreateManagedAccountComponent = ({
         }}
       >
         {title == 'Connect to Facebook' ? (
-          <FacebookConnect handleGoogleLogin={handleGoogleLogin} />
+          <FacebookConnect handleFacebookLogin={handleFacebookLogin} />
         ) : (
           <GoogleConnect handleGoogleLogin={handleGoogleLogin} />
         )}

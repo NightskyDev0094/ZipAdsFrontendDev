@@ -16,7 +16,12 @@ const DEFAULT_IMAGE =
 
 /**
  * @param { campaigns: CampaignInfo }  - redux state that contains information about the users campaigns, including the current one
- * @param { postCampaigns: Function } - a redux action that creates new campaigns
+ * @param { currentCampaign: CampaignInfo }  - Current campaign that is being edited.
+ * @param { businessInfo: CampaignInfo }  - Action that retrieves business info from the backend for autofill.
+ * @param { socialsToPost: CampaignInfo }  - redux state that contains a list of selected ad networks.
+ * @param { completeStep: Function }  - Action that changes the steper state to complete.
+ * @param { updateCampaign: Function } - a redux action that edits the current campaign
+ * @param { updateSocials: Function } - a redux action Updates currently selected ad networks.
  */
 const CreateCampaignContainer = ({
   completeStep,
@@ -68,7 +73,7 @@ const CreateCampaignContainer = ({
   // preview urls
   const [squareImgPreviewUrl, setSquareImgPreviewUrl] = useState('');
   const [rectangleImgPreviewUrl, setRectangleImgPreviewUrl] = useState('');
-
+  // Load business info for autofill
   useEffect(() => {
     getFbAdAccounts();
     getGoogleAdAccounts();
@@ -111,7 +116,7 @@ const CreateCampaignContainer = ({
       getImageFromUrl(formInfo.square_img_upload, 'square_img_upload');
     }
   }, []);
-
+  // Takes in the url of an image and loads the image into state
   const getImageFromUrl = async (url, imageType) => {
     await fetch(`${url}`)
       .then((res) => res.blob())
@@ -140,7 +145,7 @@ const CreateCampaignContainer = ({
         return jpgFile;
       });
   };
-
+  // Set preview url for images.
   const setImgPreview = async (file, setUpImg, setPreviewUrl) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
@@ -150,7 +155,7 @@ const CreateCampaignContainer = ({
     });
     reader.readAsDataURL(file);
   };
-
+  // Updates campaign with new info from form
   const submitCampaign = async () => {
     const formData = new FormData();
     formData.append('campaign_name', formInfo.campaign_name);

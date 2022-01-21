@@ -21,6 +21,7 @@ export const SOCIAL_NETWORK_TITLES = {
  * @param {*} facebookToken
  * @param {*} fbPages
  * @param {*} markCurrent is suppose to make the formInfo the currentCampaign
+ * @param {*} updateSocials newAdInfo reducer that updates the socials to Post
  */
 export default function useCampaignForm(
   updateCampaign,
@@ -28,7 +29,8 @@ export default function useCampaignForm(
   googleToken,
   facebookToken,
   fbPages,
-  makeCurrent
+  makeCurrent,
+  updateSocials
 ) {
   /** Selected Networks Management */
   const [selectedNetworks, setSelectedNetworks] = useState(Object.values(SOCIAL_NETWORK_TITLES));
@@ -74,18 +76,22 @@ export default function useCampaignForm(
     // if (!rectangleImgUpload) getImageFromUrl(rectangleImgUpload, 'rectangle_img_upload');
     // if (!squareImgUpload) getImageFromUrl(squareImgUpload, 'square_img_upload');
     if (currentCampaign?.rectangle_img_url !== null && currentCampaign?.rectangle_img_url !== '') {
+      console.log("THIS")
       getImageFromUrl(currentCampaign?.rectangle_img_url, 'rectangle_img_url');
     }
     if (currentCampaign?.square_img_url !== null && currentCampaign?.square_img_url !== '') {
+      console.log("THIS IS ")
       getImageFromUrl(currentCampaign?.square_img_url, 'square_img_url');
     }
     if (
       currentCampaign?.rectangle_img_upload !== null &&
       currentCampaign?.rectangle_img_upload !== ''
     ) {
+      console.log("THIS IS A")
       getImageFromUrl(currentCampaign?.rectangle_img_upload, 'rectangle_img_upload');
     }
     if (currentCampaign?.square_img_upload !== null && currentCampaign?.square_img_upload !== '') {
+      console.log("this is a ")
       getImageFromUrl(currentCampaign?.square_img_upload, 'square_img_upload');
     }
   }, []);
@@ -96,7 +102,6 @@ export default function useCampaignForm(
    */
   const getImageFromUrl = async (url, imageType) => {
     console.log('URL::::', url);
-    // if (!url) url = Library_1;
 
     await fetch(`${url}`)
       .then((res) => res.blob())
@@ -111,8 +116,6 @@ export default function useCampaignForm(
           lastModified: modDate,
         });
 
-        // console.log('File Creation test', jpgFile);
-        // console.log('JPGFILE ', jpgFile);
         if (imageType === 'rectangle_img_upload' || imageType === 'rectangle_img_url') {
           imageType === 'rectangle_img_upload'
             ? setRectangleImgUpload(jpgFile)
@@ -189,7 +192,7 @@ export default function useCampaignForm(
       : formData.append('google_display_ad', 'False');
 
     /** Section of the form that manages the addition of custom images to specific networks */
-    if ((squareImgUpload || rectangleImgUpload) && imgOption === 'custom') {
+    if ((squareImgUpload || rectangleImgUpload)) {
       if (
         selectedNetworks.includes(SOCIAL_NETWORK_TITLES.FacebookAd) ||
         selectedNetworks.includes(SOCIAL_NETWORK_TITLES.GoogleDisplayNetworkAd)
@@ -207,10 +210,14 @@ export default function useCampaignForm(
 
     /** Grab the campaign id and update it with the forms data */
     const campaignId = currentCampaign?.id;
-    console.log('Submitted Campaign Form: ', formData.get('google_display_ad'));
+    console.log('CREATE CAMPAIGN FORM SQUARE IMG Upload: ', formData.get('square_img_upload'));
+    console.log(
+      'CREATE CAMPAIGN FORM Rectangle IMG Upload: ',
+      formData.get('rectangle_img_upload')
+    );
     await updateCampaign(formData, campaignId);
-    makeCurrent(formData);
-    console.log('FACEBOOK FEED AD STATUS: ', formData.get('facebook_feed_ad'));
+    await makeCurrent(formData);
+    await updateSocials(selectedNetworks);
     console.log('Campaign should have been updated: ', currentCampaign.id);
   };
 
