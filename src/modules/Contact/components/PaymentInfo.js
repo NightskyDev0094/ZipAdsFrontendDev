@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
@@ -33,6 +34,7 @@ const useStyles = makeStyles(() => ({
 
 const PaymentInfo = () => {
   const classes = useStyles();
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="w-100 h-100">

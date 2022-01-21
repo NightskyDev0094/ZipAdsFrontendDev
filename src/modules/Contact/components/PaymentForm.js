@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 import clsx from 'clsx';
@@ -26,6 +27,7 @@ const useStyles = makeStyles(() => ({
 
 const PaymentForm = ({ paymentCallback }) => {
   const classes = useStyles();
+  const [edit, setEdit] = useState(false);
   const [formState, setFormState] = React.useState({
     isFormSubmitted: false,
     fields: {
