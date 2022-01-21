@@ -10,6 +10,8 @@ import Input from '@material-ui/core/Input';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { RadioGroup } from '@material-ui/core';
 import ConnectSocialNetworkButton from '../components/ConnectSocialNetworkButton';
+import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
+import BlueTecAppBarAuthorizedAppBar from '../../../BlueTecUIKit/BlueTecAppBarAuthorizedAppBar';
 
 const useStyles = makeStyles(() => ({
   BlueText: { color: '#0b6ea5', 'font-weight': 600, width: '100%', textAlign: 'center' },
@@ -51,7 +53,6 @@ const useStyles = makeStyles(() => ({
     ['@media (min-width: 450px)']: {
       display: 'inline-block',
       padding: '0.5rem 1rem',
-      border: '1px solid #cccccc',
       color: '#cccccc',
       borderRadius: '0.25rem',
       textAlign: 'center',
@@ -174,120 +175,124 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
   const [advertisingFamiliarity, setAdvertisingFamiliarity] = React.useState('');
 
   return (
-    <Container maxWidth="md" sx={{ marginTop: '20em' }}>
-      <form
-        style={{ width: '100%', paddingTop: '3em', paddingBottom: '3em' }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          submitHandler();
-        }}
-      >
-        <Typography variant="h2" gutterBottom className={classes.BlueText}>
-          Let's Get to Know Your Business
-        </Typography>
-        {/* GET TO KNOW BUSINESS SECTION  */}
-        <Box className={classes.FormSection}>
-          <Input
-            disableUnderline
-            autoFocus
-            className={classes.InputItem}
-            placeholder="Business Name"
-            value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
-          />
-          <Input
-            disableUnderline
-            className={classes.InputItem}
-            placeholder="Your Website URL (http://example.com)"
-            value={businessUrl}
-            onChange={(e) => setBusinessUrl(e.target.value)}
-          />
-          <Input
-            disableUnderline
-            className={classes.InputItem}
-            placeholder="Business Street Address (555 Main St)"
-            value={streetAddress}
-            onChange={(e) => setStreetAddress(e.target.value)}
-          />
-          <Input
-            disableUnderline
-            className={classes.InputItem}
-            placeholder="Business City"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <Input
-            disableUnderline
-            className={classes.InputItem}
-            placeholder="Business State"
-            value={stateCode}
-            onChange={(e) => setStateCode(e.target.value)}
-          />
-          <Input
-            disableUnderline
-            className={classes.InputItem}
-            placeholder="Business Zip Code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-          />
-        </Box>
+    <>
+      <BlueTecAppBarAuthorizedAppBar /> 
+      <Container maxWidth="md" sx={{ marginTop: '20em' }}>
+        <form
+          style={{ width: '100%', paddingTop: '3em', paddingBottom: '3em' }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitHandler();
+          }}
+        >
+          <Typography variant="h2" gutterBottom className={classes.BlueText}>
+            Let's Get to Know Your Business
+          </Typography>
+          {/* GET TO KNOW BUSINESS SECTION  */}
+          <Box className={classes.FormSection}>
+            <Input
+              disableUnderline
+              autoFocus
+              className={classes.InputItem}
+              placeholder="Business Name"
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
+            />
+            <Input
+              disableUnderline
+              className={classes.InputItem}
+              placeholder="Your Website URL"
+              value={businessUrl}
+              onChange={(e) => setBusinessUrl(e.target.value)}
+            />
+            <Input
+              disableUnderline
+              className={classes.InputItem}
+              placeholder="Business Street Address"
+              value={streetAddress}
+              onChange={(e) => setStreetAddress(e.target.value)}
+            />
+            <Input
+              disableUnderline
+              className={classes.InputItem}
+              placeholder="Business City"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            <Input
+              disableUnderline
+              className={classes.InputItem}
+              placeholder="Business State"
+              value={stateCode}
+              onChange={(e) => setStateCode(e.target.value)}
+            />
+            <Input
+              disableUnderline
+              className={classes.InputItem}
+              placeholder="Business Zip Code"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+            />
+          </Box>
 
-        <Typography variant="h2" gutterBottom className={classes.BlueText}>
-          Select Your Industry
-        </Typography>
-        {/* SELECT INDUSTRY SECTION  */}
-        <Box className={classes.FormSection}>
-          <select
-            className={classes.SelectItem}
-            label="Industry"
-            value={industry}
-            onChange={(e) => setIndustry(e.target.value)}
-          >
-            {IndustryOptions.map((item) => (
-              <option key={crypto.randomUUID()} value={item}>
-                {item}
-              </option>
+          <Typography variant="h2" gutterBottom className={classes.BlueText}>
+            Select Your Industry
+          </Typography>
+          {/* SELECT INDUSTRY SECTION  */}
+          <Box className={classes.FormSection}>
+            <select
+              className={classes.SelectItem}
+              label="Industry"
+              value={industry}
+              onChange={(e) => setIndustry(e.target.value)}
+            >
+              {IndustryOptions.map((item) => (
+                <option key={crypto.randomUUID()} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+            <div className={classes.AToZ}>A-Z</div>
+          </Box>
+          {/* ADVERTISING FAMILIARITY SECTION  */}
+          <Box className={classes.FormSection}>
+            <h2 style={{ width: '100%', textAlign: 'center' }}>
+              How familiar are you with online advertising?
+            </h2>
+            {AdvertisingFamiliarity.map((item) => (
+              <div key={crypto.randomUUID()} className={classes.RadioItem}>
+                <input
+                  type="radio"
+                  name="advertising-familiarity"
+                  value={item.value}
+                  id={item.id}
+                  checked={advertisingFamiliarity === item.value}
+                  onChange={(e) => setAdvertisingFamiliarity(e.target.value)}
+                />
+                <label htmlFor={item.id}>{item.label}</label>
+              </div>
             ))}
-          </select>
-          <div className={classes.AToZ}>A-Z</div>
-        </Box>
-        {/* ADVERTISING FAMILIARITY SECTION  */}
-        <Box className={classes.FormSection}>
-          <h2 style={{ width: '100%', textAlign: 'center' }}>
-            How familiar are you with online advertising?
-          </h2>
-          {AdvertisingFamiliarity.map((item) => (
-            <div key={crypto.randomUUID()} className={classes.RadioItem}>
-              <input
-                type="radio"
-                name="advertising-familiarity"
-                value={item.value}
-                id={item.id}
-                checked={advertisingFamiliarity === item.value}
-                onChange={(e) => setAdvertisingFamiliarity(e.target.value)}
-              />
-              <label htmlFor={item.id}>{item.label}</label>
-            </div>
-          ))}
-        </Box>
-        {/* CONNECT SOCIAL NETWORKS SECTION  */}
-        <Box className={classes.FormSection}>
-          <h2 style={{ width: '100%', textAlign: 'center' }}>
-            Let's connect your social accounts:
-          </h2>
-          <ConnectSocialNetworkButton socialNetworkName="Facebook" />
-          <ConnectSocialNetworkButton socialNetworkName="Google" />
-          <p style={{ width: '100%', textAlign: 'center', fontSize: '1em' }}>
-            <a style={{ textDecoration: 'underline' }}>Need help?</a>
-          </p>
-        </Box>
-        <Box className={classes.FormSection}>
-          <button type="submit" className={classes.SubmitButton}>
-            Submit
-          </button>
-        </Box>
-      </form>
-    </Container>
+          </Box>
+          {/* CONNECT SOCIAL NETWORKS SECTION  */}
+          <Box className={classes.FormSection}>
+            <h2 style={{ width: '100%', textAlign: 'center' }}>
+              Let's connect your social accounts:
+            </h2>
+            <ConnectSocialNetworkButton socialNetworkName="Facebook" />
+            <ConnectSocialNetworkButton socialNetworkName="Google" />
+            <p style={{ width: '100%', textAlign: 'center', fontSize: '1em' }}>
+              <a style={{ textDecoration: 'underline' }}>Need help?</a>
+            </p>
+          </Box>
+          <Box className={classes.FormSection}>
+            <button type="submit" className={classes.SubmitButton}>
+              Submit
+            </button>
+          </Box>
+        </form>
+      </Container>
+      <BlueTecLandingFooter />
+    </>
   );
 }
 
