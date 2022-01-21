@@ -21,6 +21,7 @@ import SignInInfo from '../modules/Contact/components/SignInInfo';
 import Subscription from '../modules/Contact/components/Subscription';
 import PaymentPortal from '../modules/Contact/components/PaymentPortal';
 import PaymentPlanRoutes from '../modules/PaymentPlans/routes';
+import PaymentPortalRoutes from '../modules/PaymentPortal/routes';
 
 const routes = [
   {
