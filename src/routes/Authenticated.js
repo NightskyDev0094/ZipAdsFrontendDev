@@ -87,7 +87,7 @@ const AuthenticatedRoutes = ({ isAuthenticated }) => (
               <ProfileRoutes />
               <AccountRoutes />
               {/* <ContactRoutes /> */}
-              <PaymentPortalRoutes />
+              {/* <PaymentPortalRoutes /> */}
               <PaymentPlanRoutes />
             </Box>
           </Switch>

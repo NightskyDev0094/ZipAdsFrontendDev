@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import PaymentForm from './PaymentForm';
 import PaymentInfo from './PaymentInfo';
@@ -30,10 +31,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const PaymentPortal = () => {
-  const [paymentFields, setPaymentFields] = React.useState();
-  const paymentCallback = React.useCallback((form) => {
+  const [paymentFields, setPaymentFields] = useState();
+  const [edit, setEdit] = useState(false);
+  const paymentCallback = useCallback((form) => {
     setPaymentFields(form);
-    console.log(form);
+    // console.log(form);
   }, []);
 
   return (
