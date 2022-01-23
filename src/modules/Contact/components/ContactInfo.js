@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
@@ -44,93 +44,93 @@ const ContactInfo = () => {
           Contact Information
         </p>
         {edit === false ? (
-          <>
-        <div className={classes.info}>
           <div>
-            <p className="font-weight-light m-0">First Name:</p>
-            <p>JOHN</p>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">First Name:</p>
+                <p>JOHN</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Last Name:</p>
+                <p>APPLESEED</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Phone Number:</p>
+                <p>(555) 555-5555</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Email Address:</p>
+                <p>jappleseed@gmail.com</p>
+              </div>
+            </div>
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light font-weight-bold border-0Z"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '120px',
+                  height: '55px',
+                  fontSize: '18px',
+                }}
+                onClick={(e) => setEdit(true)}
+              >
+                Edit
+              </Button>
+            </div>
           </div>
-          <div>
-            <p className="font-weight-light m-0">Last Name:</p>
-            <p>APPLESEED</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Phone Number:</p>
-            <p>(555) 555-5555</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Email Address:</p>
-            <p>jappleseed@gmail.com</p>
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            paddingBottom: '25px',
-          }}
-        >
-          <Button
-            className="text-light font-weight-bold border-0Z"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '120px',
-              height: '55px',
-              fontSize: '18px',
-            }}
-            onClick={setEdit(true)}
-          >
-            Edit
-          </Button>
-        </div>
-        </>
         ) : (
-          <>
-        <div className={classes.info}>
           <div>
-            <p className="font-weight-light m-0">First Name:</p>
-            <p>JOHN</p>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">First Name:</p>
+                <p>JOHN</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Last Name:</p>
+                <p>APPLESEED</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Phone Number:</p>
+                <p>(555) 555-5555</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Email Address:</p>
+                <p>jappleseed@gmail.com</p>
+              </div>
+            </div>
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light font-weight-bold border-0Z"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '120px',
+                  height: '55px',
+                  fontSize: '18px',
+                }}
+                onClick={(e) => setEdit(false)}
+              >
+                Save Changes
+              </Button>
+            </div>
           </div>
-          <div>
-            <p className="font-weight-light m-0">Last Name:</p>
-            <p>APPLESEED</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Phone Number:</p>
-            <p>(555) 555-5555</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Email Address:</p>
-            <p>jappleseed@gmail.com</p>
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            paddingBottom: '25px',
-          }}
-        >
-          <Button
-            className="text-light font-weight-bold border-0Z"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '120px',
-              height: '55px',
-              fontSize: '18px',
-            }}
-            onClick={setEdit(false)}
-          >
-            Save Changes
-          </Button>
-        </div>
-        </>
         )}
       </div>
     </div>
