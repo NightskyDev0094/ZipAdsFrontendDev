@@ -152,6 +152,13 @@ export const ADD_CAMPAIGN = 'ADD_CAMPAIGN';
 export const DELETE_CAMPAIGN = 'DELETE_CAMPAIGN';
 export const UPDATE_CAMPAIGN = 'UPDATE_CAMPAIGN';
 export const SET_CAMPAIGN_LOADING = 'SET_CAMPAIGN_LOADING';
+// campaign actions
+export const GET_USER = 'GET_USER';
+export const SAVE_USER = 'SAVE_USER';
+export const ADD_USER = 'ADD_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const SET_USER_LOADING = 'SET_USER_LOADING';
 // Conversion Actions
 export const GET_GA_CONVERSIONS = 'GET_GA_CONVERSIONS';
 export const SAVE_GA_CONVERSION = 'SAVE_GA_CONVERSION';

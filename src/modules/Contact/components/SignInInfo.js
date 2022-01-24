@@ -80,4 +80,8 @@ const SignInInfo = () => {
   );
 };
 
-export default SignInInfo;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(SignInInfo);

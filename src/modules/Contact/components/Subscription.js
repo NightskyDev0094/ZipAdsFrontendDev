@@ -80,4 +80,8 @@ const Subscription = () => {
   );
 };
 
-export default Subscription;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(Subscription);

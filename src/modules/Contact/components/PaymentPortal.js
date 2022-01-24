@@ -45,4 +45,8 @@ const PaymentPortal = () => {
   );
 };
 
-export default PaymentPortal;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(PaymentPortal);

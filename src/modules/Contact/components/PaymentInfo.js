@@ -108,4 +108,8 @@ const PaymentInfo = () => {
   );
 };
 
-export default PaymentInfo;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(PaymentInfo);

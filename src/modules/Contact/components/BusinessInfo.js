@@ -89,4 +89,8 @@ const BusinessInfo = () => {
   );
 };
 
-export default BusinessInfo;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(BusinessInfo);

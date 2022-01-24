@@ -88,4 +88,8 @@ const ContactInfo = () => {
   );
 };
 
-export default ContactInfo;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(ContactInfo);
