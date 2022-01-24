@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 
     ['@media (min-width:450px)']: {
       top: '50%',
-      padding: '1.5em',
+      padding: '0',
     },
   },
   RightCarouselButton: {
@@ -53,8 +53,8 @@ const useStyles = makeStyles({
     // ['&:hover']: { backgroundColor: 'rgb(202, 202, 202)' },
 
     ['@media (min-width:450px)']: {
-      padding: '1.5em',
       top: '50%',
+      padding: '0',
     },
   },
   ArrowIcon: {

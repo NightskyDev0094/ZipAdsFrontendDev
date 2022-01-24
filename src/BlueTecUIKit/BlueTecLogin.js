@@ -130,7 +130,6 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   <button
                     type="submit"
                     id="send_message"
-                    defaultValue="Login"
                     style={{
                       border: 'solid 1px #cccccc',
                       color: 'white',
