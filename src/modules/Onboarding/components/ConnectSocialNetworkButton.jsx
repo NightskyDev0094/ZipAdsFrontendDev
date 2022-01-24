@@ -31,7 +31,11 @@ const useStyles = makeStyles({
     ['& > img']: { width: '2em', height: '2em', margin: '0px 1.25em 0px 0px' },
     ['& > h3']: { fontSize: '1.25em', color: 'white' },
   },
-  Input: { width: '2em', height: '2em', margin: '0px 0px 0px 1em' },
+  Input: {
+    width: '2em',
+    height: '2em',
+    margin: '0px 0px 0px 1em',
+  },
 });
 
 /**
@@ -125,6 +129,7 @@ function ConnectSocialNetworkButton({ socialNetworkName, addGoogleToken, addFace
     handleGoogleLogin(formData);
   };
 
+  //TODO: the check status should change when the user is authenticated with the social network
   /** This is the display for both the social networks */
   const CustomSocialNetworkButton = ({ onClick, disabled }) => {
     return (

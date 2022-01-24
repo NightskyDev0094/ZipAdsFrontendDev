@@ -127,20 +127,21 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   </div>
                 </div>
                 <div id="submit" className="pull-left w-100">
-                  <input
+                  <button
                     type="submit"
                     id="send_message"
-                    defaultValue="Login"
                     style={{
                       border: 'solid 1px #cccccc',
                       color: 'white',
                       padding: '10px 0',
                       backgroundColor: '#005dbf',
                       fontSize: '18px',
-                      marginTop: '100px'
+                      marginTop: '100px',
                     }}
                     className="btn btn-custom color-2 w-100 border-0"
-                  />
+                  >
+                    Login
+                  </button>
                   <p
                     className="text-right"
                     style={{ margin: '1rem 0', color: '#a6a6a6', cursor: 'pointer' }}
@@ -174,21 +175,6 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   )}
                   <div className="clearfix" />
                   <div className="spacer-single" />
-                  {
-                    // <ul className="list s3">
-                    //   <li>Or login with:</li>
-                    //   <li>
-                    //     <a href="#">Facebook</a>
-                    //   </li>
-                    //   <li>
-                    //     <a href="#">Google</a>
-                    //   </li>
-                    //   <li>
-                    //     <a href="#">Instagram</a>
-                    //   </li>
-                    // </ul>
-                  }
-                  {}
                 </div>
               </form>
             </div>
