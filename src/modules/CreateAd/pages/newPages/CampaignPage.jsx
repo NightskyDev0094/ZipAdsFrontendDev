@@ -10,7 +10,6 @@ const useStyles = makeStyles({
     display: 'grid',
     gridTemplateColumns: '1fr',
     margin: '2em 0px',
-    overflow: 'hidden',
 
     ['@media (min-width:1250px)']: {
       gridTemplateColumns: '1fr 1fr',

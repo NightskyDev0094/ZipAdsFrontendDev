@@ -14,25 +14,32 @@ const useStyles = makeStyles({
     },
   },
   TitleText: {
-    fontSize: '3rem',
+    fontSize: '2.5rem',
     width: '100%',
     textAlign: 'center',
     color: '#00468f',
-    fontWeight: 'bold',
+    fontFamily: 'sans-serif',
+
+    ['@media (max-width:576px)']: {
+      fontSize: '2rem',
+    },
   },
   InputItem: {
     display: 'block',
     width: '100%',
     fontSize: '1.25rem',
     margin: '0.75em auto 0px auto',
-    padding: '0.5rem',
+    padding: '0.8rem',
     backgroundColor: 'inherit',
     border: '1px solid #b7b7b7',
     borderRadius: '0.25rem',
 
     ['@media (min-width:750px)']: {
-      fontSize: '1.75rem',
       margin: '1em auto 0px auto',
+    },
+
+    '&:focus-visible': {
+      outline: 'none',
     },
   },
   InputLabel: {
@@ -47,6 +54,7 @@ const useStyles = makeStyles({
   ClearAllButton: {
     display: 'flex',
     justifyContent: 'start',
+    alignItems: 'center',
     alignItems: 'middle',
     backgroundColor: 'inherit',
     border: '0px',
@@ -54,15 +62,18 @@ const useStyles = makeStyles({
     textDecoration: 'underline #00468f',
     marginTop: '1em',
     fontSize: '1.15rem',
+    fontStyle: 'italic',
+    fontSize: '20px',
   },
   ClearIcon: {
     color: 'white',
-    height: '1em',
-    width: '1em',
+    height: '1.2em',
+    width: '1.2em',
     marginRight: '0.25em',
     backgroundColor: '#00468f',
     borderRadius: '100%',
     display: 'inline-block',
+    padding: '2px',
   },
 });
 
@@ -85,43 +96,34 @@ export default function CampaignForm({ formInfo }) {
 
       <input
         className={classes.InputItem}
-        placeholder="Campaign Name"
+        placeholder="Campaign name (seen only by you)"
         name="campaign_name"
         id="campaign_name"
         value={formInfo.campaignName}
         onChange={(e) => formInfo.setCampaignName(e.target.value)}
       />
-      <label className={classes.InputLabel} htmlFor="campaign_name">
-        The name of your campaign (seen only by you)
-      </label>
 
       <input
         className={classes.InputItem}
-        placeholder="Headline"
+        placeholder="Your headline"
         name="headline"
         id="headline"
         value={formInfo.headline}
         onChange={(e) => formInfo.setHeadline(e.target.value)}
       />
-      <label className={classes.InputLabel} htmlFor="headline">
-        Your Headline
-      </label>
 
       <input
         className={classes.InputItem}
-        placeholder="Sub-Headline"
+        placeholder="Your sub-headline"
         name="headline2"
         id="headline2"
         value={formInfo.headline2}
         onChange={(e) => formInfo.setHeadline2(e.target.value)}
       />
-      <label className={classes.InputLabel} htmlFor="headline2">
-        Your Sub-Headline (Does not appear for ads 2, 5, and 6)
-      </label>
 
       <textarea
         className={classes.InputItem}
-        placeholder="Description"
+        placeholder="One or two sentences describing your business and why people should engage with it"
         rows={4}
         cols={33}
         maxLength={160}
@@ -130,21 +132,15 @@ export default function CampaignForm({ formInfo }) {
         value={formInfo.adDescription}
         onChange={(e) => formInfo.setAdDescription(e.target.value)}
       />
-      <label className={classes.InputLabel} htmlFor="ad_description">
-        One or two sentences describing your business and why people should engage with it.
-      </label>
 
       <input
         className={classes.InputItem}
-        placeholder="Web Address"
+        placeholder="URL that your ad will link to"
         name="ad_link"
-        id="ad_link"
+        id="ad_htmlLink"
         value={formInfo.adLink}
         onChange={(e) => formInfo.setAdLink(e.target.value)}
       />
-      <label className={classes.InputLabel} htmlFor="ad_link">
-        The URL that your ad will link to. Enter in the format: https://www.example.com
-      </label>
 
       <select
         style={{
@@ -179,7 +175,7 @@ export default function CampaignForm({ formInfo }) {
         <option>Subscribe</option>
         <option>Watch More</option>
       </select>
-      <label className={classes.InputLabel} htmlFor="cta">
+      <label style={{ padding: '0.8rem 0', fontSize: '1.25rem', color: 'grey' }}>
         Text that will appear on the clickable button
       </label>
 
@@ -216,13 +212,13 @@ export default function CampaignForm({ formInfo }) {
         <option>Subscribe</option>
         <option>Watch More</option>
       </select>
-      <label className={classes.InputLabel} htmlFor="cta">
-        Text that will appear on the second clickable button
+      <label style={{ padding: '0.8rem 0', fontSize: '1.25rem', color: 'grey' }}>
+        Text that will appear on a second clickable button
       </label>
 
       <button className={classes.ClearAllButton} onClick={handleClearForm}>
         <ClearIcon className={classes.ClearIcon} />
-        Clear All
+        Clear Form
       </button>
     </div>
   );

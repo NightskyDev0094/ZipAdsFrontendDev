@@ -426,7 +426,7 @@ const BudgetPage = ({
                                 className={classes.textStyle}
                                 style={{ fontWeight: 'bold' }}
                               >
-                                For how many doays would you like your campaign to run?
+                                For how many days would you like your campaign to run?
                               </InputMainLabel>
 
                               <Input
@@ -771,7 +771,7 @@ const BudgetPage = ({
                     </Box>
                     <Box className={classes.dailyFacebookAdsBudgetInput}>
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                        What is your main advertising objective for your business?
+                        What is your main advertising objective?
                       </InputMainLabel>
                       <RadioGroup
                         aria-label="distance"
@@ -819,7 +819,7 @@ const BudgetPage = ({
                     </Box>
                     <Box className={classes.dailyFacebookAdsBudgetInput}>
                       <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                        Please confirm your total ad spend for this campaign:
+                        Confirm your total ad spend for this campaign:
                       </InputMainLabel>
                       <InputMainLabel
                         style={{

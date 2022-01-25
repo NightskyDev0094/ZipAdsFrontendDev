@@ -35,10 +35,14 @@ const useStyles = makeStyles({
     textAlign: 'center',
     color: '#00468f',
     fontWeight: 600,
-    fontSize: '3rem',
+    fontSize: '2.5rem',
 
     ['@media (max-width:992px)']: {
       marginTop: '4rem',
+    },
+
+    ['@media (max-width:576px)']: {
+      fontSize: '2rem',
     },
   },
 

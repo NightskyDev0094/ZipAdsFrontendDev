@@ -7,11 +7,21 @@ import AdPreviewCarousel from '../components/AdPreviewCarousel';
 
 const useStyles = makeStyles({
   PostAdsButton: {
-    backgroundColor: '#0be360',
     color: '#00468f',
-    padding: '1em 1.25em',
-    borderRadius: '0.25em',
+    padding: '1rem 4rem',
     fontSize: '1.5em',
+    borderRadius: '0.25em',
+    backgroundColor: '#0be360',
+    fontFamily: 'sans-serif',
+    border: 'none',
+
+    '&:hover': {
+      backgroundColor: 'rgba(11, 227, 96, .7)',
+    },
+  },
+  summaryCarouselContainer: {
+    maxWidth: '1000px',
+    margin: 'auto',
   },
 });
 
@@ -45,7 +55,7 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToP
   console.log('PREVIEWs: ', previews);
 
   return (
-    <>
+    <div className={classes.summaryCarouselContainer}>
       <AdPreviewCarousel
         chosenSocialNetworks={socialsToPost}
         formInfo={formInfo}
@@ -53,10 +63,16 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToP
       />
       <h2 style={{ width: '100%', marginBottom: '2em', textAlign: 'center' }}>
         <a
-          style={{ color: 'blue', textDecoration: 'underline' }}
+          style={{
+            color: '#00468f',
+            textDecoration: 'underline',
+            fontSize: '1.8rem',
+            fontStyle: 'italic',
+            fontFamily: 'unset',
+          }}
           onClick={() => history.push('/create/create-campaign')}
         >
-          I want to change something
+          I want to change something.
         </a>
       </h2>
       <div
@@ -66,7 +82,7 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToP
           Yes, post my ad!
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

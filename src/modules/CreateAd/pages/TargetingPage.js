@@ -25,21 +25,14 @@ import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
-    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
   paper: {
     width: '88vw',
-    // height: '1100px',
-    // marginBottom: '200px',
     position: 'relative',
     margin: '0 auto',
-    '@media (max-width:700px)': {
-      // height: '1400px',
-      // marginBottom: '300px',
-    },
   },
   pageBody: {
     display: 'flex',
@@ -63,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     height: '900px',
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'space-evenly',
     '@media (max-width:700px)': {
       height: '1300px',
     },
@@ -119,6 +111,8 @@ const TargetingPage = ({
   setZipVal,
   distance,
   setDistance,
+  range,
+  setRange,
   interest,
   setInterest,
   localeFormat,
@@ -190,9 +184,7 @@ const TargetingPage = ({
                           value="drive"
                           control={<StyledRadio />}
                           label={
-                            <Typography className={classes.textStyle}>
-                              A Drive Away (15 miles)
-                            </Typography>
+                            <Typography className={classes.textStyle}>Custom miles</Typography>
                           }
                         />
                         <FormControlLabel
@@ -332,6 +324,23 @@ const TargetingPage = ({
                     </Box>
                   )}
 
+                  {distance === 'drive' && (
+                    <Box marginTop="2rem">
+                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                        Enter the range (in miles) that you would like your ad to be shown:
+                      </InputMainLabel>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          className={classes.InputItem}
+                          placeholder="Miles"
+                          value={range}
+                          onChange={(e) => setRange(e.target.value)}
+                        />
+                      </Box>
+                    </Box>
+                  )}
+
                   <Box marginTop="2rem">
                     <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
                       Enter a keyword that your customers would be interested in:
@@ -360,7 +369,9 @@ const TargetingPage = ({
                 </div>
               </div>
             </StepperWrapper>
-            <Shoutbox>Find people interested in your business by selecting a location and target interest.</Shoutbox>
+            <Shoutbox>
+              Find people interested in your business by selecting a location and target interest.
+            </Shoutbox>
           </div>
         </Box>
       )}

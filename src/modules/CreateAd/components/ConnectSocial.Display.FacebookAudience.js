@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 import AdPreviewDisplayContainer from './AdPreviewDisplayContainer';
 import useCustomBackgroundImage from '../hooks/useCustomBackgroundImage';
@@ -25,18 +27,19 @@ const useStyles = makeStyles({
     alignItems: 'center',
     textAlign: 'center',
   },
-  Headline: { padding: '10px', fontSize: '2em', color: 'blue' },
-  Description: { fontSize: '1.25em', lineHeight: '1.26em' },
+  Headline: { padding: '10px', fontSize: '1.9em', color: '#4e4e4e', margin: 0 },
+  Description: { fontSize: '1.2em', lineHeight: '1.26em', color: 'black', fontWeight: '600' },
   Button: {
+    backgroundColor: '#3c5997',
     height: '2em',
-    padding: '0.25em 0.5em',
-    backgroundColor: 'blue',
-    color: 'white',
+    color: '#3c5997',
     borderRadius: '0.25em',
-    border: '1px solid black',
+    fontSize: '11px',
+    padding: '1.4em 1.5em',
+    color: 'white',
 
-    ['&:hover']: {
-      backgroundColor: 'rgb(13, 71, 239)',
+    '&:hover': {
+      backgroundColor: '#3c5997',
     },
   },
 });
@@ -61,7 +64,9 @@ const FacebookAudienceDisplay = ({ currentCampaign, previewUrl }) => {
       <section className={classes.AdContext}>
         <h2 className={classes.Headline}>{currentCampaign.headline}</h2>
         <p className={classes.Description}>{currentCampaign.adDescription}</p>
-        <button className={classes.Button}>ShopNow</button>
+        <Button className={classes.Button} startIcon={<GetAppIcon />}>
+          Shop Now
+        </Button>
       </section>
     </AdPreviewDisplayContainer>
   );

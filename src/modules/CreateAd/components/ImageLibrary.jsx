@@ -29,6 +29,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  titleStyle: {
+    paddingTop: '20px',
+    color: '#1f5c9c',
+    fontSize: '3rem',
+    fontFamily: 'sans-serif',
+    margin: 0,
+
+    ['@media (max-width:1250px)']: {
+      fontSize: '2.5rem',
+    },
+
+    ['@media (max-width:576px)']: {
+      fontSize: '2rem',
+    },
+  },
+
   industyImageText: {
     position: 'absolute',
     width: 'fit-content',
@@ -112,16 +128,16 @@ function ImageLibrary({
     <div className="d-flex flex-column align-items-center">
       <div className={classes.industyTextContent}>
         <div className="position-relative m-auto" style={{ width: 'fit-content' }}>
-          <h4 className="text-white m-0 py-2" style={{fontSize: '30px'}}>Image Library: Beauty</h4>
+          <h4 className="text-white m-0 py-2" style={{ fontSize: '30px' }}>
+            Image Library: Beauty
+          </h4>
           <a className={classes.industyImageText} style={{ display: 'flex', alignItems: 'center' }}>
             <img src={LibraryOpenBook} style={{ width: '28px', marginRight: '5px' }} />
             <ins>View other industry images</ins>
           </a>
         </div>
       </div>
-      <p className="font-weight-bold pt-4 m-0" style={{ color: '#1f5c9c', fontSize: '30px' }}>
-        Choose an Ad Image:
-      </p>
+      <p className={classes.titleStyle}>Choose an Ad Image:</p>
       <div
         className="py-4 position-relative"
         style={{ paddingLeft: '100px', paddingRight: '100px' }}

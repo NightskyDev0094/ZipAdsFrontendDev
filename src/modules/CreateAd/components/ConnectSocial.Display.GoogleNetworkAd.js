@@ -9,28 +9,42 @@ const useStyles = makeStyles({
   TopSection: {
     width: '100%',
     minHeight: '80px',
-    padding: '8px 0px',
+    padding: '10px',
     display: 'flex',
     alignItems: 'center',
     ['& h1']: { fontSize: '2.5em', lineHeight: '1em', margin: '0px 0px 0px 15px' },
+    ['& div']: {
+      width: 'fit-content',
+      fontSize: '24px',
+      fontWeight: '600',
+      padding: '0px 20px',
+    },
   },
-  Avatar: { width: '3em', height: '1.5em' },
-  AdImage: { height: '436px', width: '436px' },
+  Avatar: { width: '5em', height: '2.5em' },
+  AdImage: { height: '430px', width: '430px' },
   BottomSection: {
     width: '100%',
     height: '124px',
-    padding: '8px 0px 0px 0px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    ['& p']: { fontSize: '1.5em', lineHeight: '1.25em', width: '100%' },
+    padding: '14px 14px 0 14px',
+    ['& p']: {
+      color: 'black',
+      fontSize: '1.2em',
+      fontWeight: '600',
+      lineHeight: '1.26em',
+      margin: 0,
+    },
     ['& button']: {
       background: '#0373e6',
       borderRadius: '0.25em',
+      fontSize: '16px',
       color: 'white',
-      padding: '8px',
+      padding: '6px',
       margin: '0px 5px',
       width: '7em',
+      border: 0,
     },
   },
 });
@@ -46,15 +60,15 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, previewUrl }) => {
     mobileWidth: '340px',
     mobileHeight: '444px', // (340 *2) - (340 *2 /5)
     width: '450px',
-    height: '680px', // (450 *2) - (450 *2 /5)
+    height: '670px', // (450 *2) - (450 *2 /5)
   };
 
   return (
     <AdPreviewDisplayContainer {...AdPreviewDisplayContainerProps}>
-      <div style={{ padding: '4px 6px' }}>
+      <div style={{ padding: '10px' }}>
         <section className={classes.TopSection}>
           <Avatar className={classes.Avatar} variant="square" />
-          <h1>{currentCampaign.headline}</h1>
+          <div>{currentCampaign.headline}</div>
         </section>
         <img className={classes.AdImage} src={backgroundImageProp} />
         <section className={classes.BottomSection}>

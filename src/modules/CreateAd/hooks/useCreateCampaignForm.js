@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
 
 export const SOCIAL_NETWORK_TITLES = {
-  InstagramAd: 'Instagram Ad',
   FacebookAd: 'Facebook Ad',
-  FacebookAudienceNetworkAd: 'Facebook Audience Network Ad',
-  GoogleAwards: 'Google Awards',
-  GoogleDisplayNetworkAd: 'Google Display Network Ad',
+  InstagramAd: 'Instagram Ad',
+  FacebookAudienceNetworkAd: 'Facebook Audience Ad',
+  GoogleAwards: 'Google Ad',
+  GoogleDisplayNetworkAd: 'Google Ad Network',
 };
 
 /**
