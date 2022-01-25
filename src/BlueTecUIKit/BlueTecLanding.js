@@ -102,12 +102,15 @@ class BlueTecLanding extends React.Component {
             <h1 id="middle-title" style={{ color: '#00468f' }}>
               What our customers are saying...
             </h1>
-            <div className="row m-0 justify-content-around" style={{ height: '670px' }}>
+            <div
+              className="row m-0 justify-content-around"
+              style={{ height: '100%', minHeight: '670px' }}
+            >
               <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
                 <img
                   alt=""
                   className="rounded-circle p-3"
-                  src={Person1}
+                  src={Person2}
                   style={{ width: '320px', height: '320px' }}
                 />
                 <h3
@@ -143,7 +146,7 @@ class BlueTecLanding extends React.Component {
                 <img
                   alt=""
                   className="rounded-circle p-3"
-                  src={Person2}
+                  src={Person1}
                   style={{ width: '320px', height: '320px' }}
                 />
                 <h3
@@ -166,14 +169,14 @@ class BlueTecLanding extends React.Component {
                     width: 'fit-content',
                   }}
                 >
-                  - John Applessed, <br /> The Business Industry
+                  - John Appleseed, <br /> The Business Industry
                 </h4>
               </div>
               <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
                 <img
                   alt=""
                   className="rounded-circle p-3"
-                  src={Person2}
+                  src={Person3}
                   style={{ width: '320px', height: '320px' }}
                 />
                 <h3

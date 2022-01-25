@@ -20,8 +20,8 @@ const useStyles = makeStyles({
       padding: '0px 20px',
     },
   },
-  Avatar: { width: '5em', height: '2.5em' },
-  AdImage: { height: '430px', width: '430px' },
+  Avatar: { width: '3em', height: '1.5em' },
+  AdImage: { height: '435px', width: '435px' },
   BottomSection: {
     width: '100%',
     height: '124px',
@@ -60,7 +60,7 @@ const GoogleAdNetworkDisplay = ({ currentCampaign, previewUrl }) => {
     mobileWidth: '340px',
     mobileHeight: '444px', // (340 *2) - (340 *2 /5)
     width: '450px',
-    height: '670px', // (450 *2) - (450 *2 /5)
+    height: '690px', // (450 *2) - (450 *2 /5)
   };
 
   return (
