@@ -43,46 +43,95 @@ const ContactInfo = () => {
         <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
           Contact Information
         </p>
-        <div className={classes.info}>
+        {edit === false ? (
           <div>
-            <p className="font-weight-light m-0">First Name:</p>
-            <p>JOHN</p>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">First Name:</p>
+                <p>JOHN</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Last Name:</p>
+                <p>APPLESEED</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Phone Number:</p>
+                <p>(555) 555-5555</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Email Address:</p>
+                <p>jappleseed@gmail.com</p>
+              </div>
+            </div>
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light font-weight-bold border-0Z"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '120px',
+                  height: '55px',
+                  fontSize: '18px',
+                }}
+                onClick={(e) => setEdit(true)}
+              >
+                Edit
+              </Button>
+            </div>
           </div>
+        ) : (
           <div>
-            <p className="font-weight-light m-0">Last Name:</p>
-            <p>APPLESEED</p>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">First Name:</p>
+                <p>JOHN</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Last Name:</p>
+                <p>APPLESEED</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Phone Number:</p>
+                <p>(555) 555-5555</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Email Address:</p>
+                <p>jappleseed@gmail.com</p>
+              </div>
+            </div>
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light font-weight-bold border-0Z"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '120px',
+                  height: '55px',
+                  fontSize: '18px',
+                }}
+                onClick={(e) => setEdit(false)}
+              >
+                Save Changes
+              </Button>
+            </div>
           </div>
-          <div>
-            <p className="font-weight-light m-0">Phone Number:</p>
-            <p>(555) 555-5555</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Email Address:</p>
-            <p>jappleseed@gmail.com</p>
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            paddingBottom: '25px',
-          }}
-        >
-          <Button
-            className="text-light font-weight-bold border-0Z"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '120px',
-              height: '55px',
-              fontSize: '18px',
-            }}
-          >
-            Edit
-          </Button>
-        </div>
+        )}
       </div>
     </div>
   );

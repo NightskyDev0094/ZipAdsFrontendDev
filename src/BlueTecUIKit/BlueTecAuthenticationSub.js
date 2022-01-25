@@ -33,8 +33,8 @@ const BlueTecAuthenticationSub = () => (
           <img src={CheckMark} style={{width: '62px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
-          <h3 className="m-0 text-white font-italic">Ability to reach audiences</h3>
-          <h3 className="m-0 text-white font-italic">on all social platforms</h3>
+          <h3 className="m-0 text-white font-italic">Affordable pricing with</h3>
+          <h3 className="m-0 text-white font-italic">various payment options</h3>
         </div>
       </div>
       <div className="d-flex py-4">
