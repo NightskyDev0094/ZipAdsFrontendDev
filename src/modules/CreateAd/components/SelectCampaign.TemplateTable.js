@@ -16,8 +16,9 @@ const useStyles = makeStyles(() => ({
     marginTop: '0px !important',
     color: '#00468f',
     fontWeight: 'bold',
-    '@media (max-width:660px)': {
-      fontSize: '7vw',
+    fontSize: '2.5rem',
+    '@media (max-width:576px)': {
+      fontSize: '2rem',
       marginBottom: '20px',
     },
   },
