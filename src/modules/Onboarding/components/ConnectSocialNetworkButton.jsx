@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import FacebookLogoRoundedIcon from '../../../img/facebook-logo-rounded.png';
+import FacebookLogoRoundedIcon from '../../../img/facebook-logo.svg';
 import GoogleLogoIcon from '../../../img/googleIcon.png';
 import GoogleLogin from 'react-google-login';
 
@@ -11,30 +11,32 @@ import { GOOGLE_KEY, FACEBOOK_KEY } from '../../../environmentVariables';
 
 const useStyles = makeStyles({
   ConnectNetworkButtonContainer: {
+    position: 'relative',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '1em auto',
+    marginBottom: '2.3rem',
   },
   Button: {
     backgroundColor: (props) => props.buttonColor,
-    width: '17em',
     border: 'none',
-    borderRadius: '0.25em',
+    borderRadius: '6px',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '1em',
+    padding: '18px 40px 18px 30px',
     ['&:hover']: { backgroundColor: (props) => props.hoverButtonColor },
 
-    ['& > img']: { width: '2em', height: '2em', margin: '0px 1.25em 0px 0px' },
-    ['& > h3']: { fontSize: '1.25em', color: 'white' },
+    ['& > img']: { width: '2em', height: '2em', margin: '0px 12px 0px 0px' },
+    ['& > h3']: { fontSize: '21px', width: '172px', color: 'white' },
   },
   Input: {
     width: '2em',
     height: '2em',
     margin: '0px 0px 0px 1em',
+    position: 'absolute',
+    left: 'calc(50% + 160px)',
   },
 });
 
@@ -44,8 +46,8 @@ const useStyles = makeStyles({
  * @returns
  */
 function ConnectSocialNetworkButton({ socialNetworkName, addGoogleToken, addFacebookToken }) {
-  const buttonColor = socialNetworkName === 'Google' ? '#bebebe' : '#4267B2';
-  const hoverButtonColor = socialNetworkName === 'Google' ? '#a4a4a4' : '#365595';
+  const buttonColor = socialNetworkName === 'Google' ? '#bebebe' : '#3d5a98';
+  const hoverButtonColor = socialNetworkName === 'Google' ? '#a4a4a4' : '#2e4474';
   const classes = useStyles({ buttonColor, hoverButtonColor });
   const socialNetworkIcon =
     socialNetworkName === 'Google' ? GoogleLogoIcon : FacebookLogoRoundedIcon;
@@ -138,7 +140,7 @@ function ConnectSocialNetworkButton({ socialNetworkName, addGoogleToken, addFace
           <img src={socialNetworkIcon} alt={`${socialNetworkName} logo img`} />
           <h3>{`Connect ${socialNetworkName}`}</h3>
         </button>
-        <input type="checkbox" className={classes.Input} checked={false} />
+        <input type="checkbox" className={classes.Input} />
       </>
     );
   };

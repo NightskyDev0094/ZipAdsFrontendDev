@@ -81,14 +81,14 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   className="text-center"
                   style={{
                     color: '#00468f',
-                    fontWeight: '600',
+                    fontFamily: 'sans-serif',
                     marginBottom: '80px',
                     fontSize: '42px',
                   }}
                 >
                   Login
                 </h1>
-                <div className="field-set input-type">
+                <div className="field-set input-type mb-2">
                   <Controller
                     as={<LargeInput placeholder="Username" />}
                     name="username"
@@ -97,8 +97,14 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   />
                 </div>
                 <div className="field-set input-type">
-                  <Controller
+                  {/* <Controller
                     as={<LargeInput passwordMasked={!password} placeholder="Password" />}
+                    name="password"
+                    control={control}
+                    rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
+                  /> */}
+                  <Controller
+                    as={<LargeInput isPasswordMasked={!password} placeholder="Password" />}
                     name="password"
                     control={control}
                     rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
