@@ -47,6 +47,8 @@ const useStyles = makeStyles({
   },
 
   stepLabel: {
+    display: 'flex',
+    justifyContent: 'center',
     color: '#00468f',
     fontSize: '16px',
     fontWeight: 'bold',
@@ -74,14 +76,14 @@ const ColorlibConnector = withStyles({
   line: {
     height: 3,
     border: 0,
-    backgroundColor: '#eaeaf0',
+    backgroundColor: '#a6a6a6',
     borderRadius: 1,
   },
 })(StepConnector);
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#a6a6a6',
     zIndex: 1,
     color: '#fff',
     width: 55,

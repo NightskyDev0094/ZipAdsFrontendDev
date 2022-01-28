@@ -30,11 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   titleStyle: {
-    paddingTop: '20px',
-    color: '#1f5c9c',
-    fontSize: '3rem',
-    fontFamily: 'sans-serif',
+    color: '#00468f',
     margin: 0,
+    fontSize: '32px',
+    letterSpacing: '1px',
+    fontFamily: 'sans-serif',
+    paddingTop: '20px',
 
     ['@media (max-width:1250px)']: {
       fontSize: '2.5rem',
@@ -52,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: 'italic',
     top: '50%',
     transform: 'translate(365px, -50%)',
-    fontSize: '18px',
+    fontSize: '20px',
+    fontFamily: 'sans-serif',
 
     ['@media (max-width:1024px)']: {
       left: '50%',
@@ -63,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
   industyTextContent: {
     width: '100%',
-    backgroundColor: '#017cff',
+    backgroundColor: '#00468f',
 
     ['@media (max-width:1024px)']: {
       paddingBottom: '38px',
@@ -128,11 +130,11 @@ function ImageLibrary({
     <div className="d-flex flex-column align-items-center">
       <div className={classes.industyTextContent}>
         <div className="position-relative m-auto" style={{ width: 'fit-content' }}>
-          <h4 className="text-white m-0 py-2" style={{ fontSize: '30px' }}>
+          <h4 className="text-white m-0 py-2" style={{ fontSize: '32px', fontFamily: 'sans-serif' }}>
             Image Library: Beauty
           </h4>
           <a className={classes.industyImageText} style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={LibraryOpenBook} style={{ width: '28px', marginRight: '5px' }} />
+            <img src={LibraryOpenBook} style={{ width: '36px', marginRight: '5px' }} />
             <ins>View other industry images</ins>
           </a>
         </div>
@@ -225,9 +227,9 @@ function ImageLibrary({
       </div>
       <p
         className="font-italic font-weight-bold py-4"
-        style={{ color: '#1f5c9c', fontSize: '18px' }}
+        style={{ color: '#00468f', fontSize: '18px' }}
       >
-        or Upload your own
+        Upload Your Own
       </p>
       <div className="pb-4">
         <input

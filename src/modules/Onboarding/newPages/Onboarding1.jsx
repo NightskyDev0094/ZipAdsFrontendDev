@@ -63,15 +63,15 @@ const useStyles = makeStyles(() => ({
     },
   },
   RadioItem: {
-    width: '100%',
+    width: '260px',
     fontSize: '1.75rem',
     display: 'flex',
     alignItems: 'center',
+    margin: 'auto',
     marginBottom: '1.5rem !important',
     ['& > input']: {
       height: '1em',
       width: '1em',
-      marginLeft: '25%',
       padding: '0.5em',
       cursor: 'pointer',
     },
@@ -193,7 +193,7 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
           }}
           className="input-placeholder"
         >
-          <Typography variant="h2" gutterBottom className={classes.BlueText} style={{margin: '0px 10px 0px 20px'}}>
+          <Typography variant="h2" gutterBottom className={classes.BlueText} style={{margin: '10px 0px 20px 0px'}}>
             Let's Get to Know Your Business
           </Typography>
           {/* GET TO KNOW BUSINESS SECTION  */}

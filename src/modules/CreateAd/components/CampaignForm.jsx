@@ -1,18 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ClearIcon from '@material-ui/icons/Clear';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
-  FormVessel: {
-    width: '100%',
-    backgroundColor: 'inherit',
-    margin: 'auto auto',
-
-    ['@media (min-width:750px)']: {
-      width: '90%',
-      padding: '2em',
-    },
-  },
   TitleText: {
     fontSize: '2.5rem',
     width: '100%',
@@ -29,7 +20,7 @@ const useStyles = makeStyles({
     width: '100%',
     fontSize: '1.25rem',
     margin: '0.75em auto 0px auto',
-    padding: '0.8rem',
+    padding: '14px 8px',
     backgroundColor: 'inherit',
     border: '1px solid #b7b7b7',
     borderRadius: '0.25rem',
@@ -40,6 +31,23 @@ const useStyles = makeStyles({
 
     '&:focus-visible': {
       outline: 'none',
+    },
+  },
+  selectItem: {
+    borderColor: '#c7c7c7',
+    borderWidth: '2px',
+    borderRadius: 'inherit',
+    padding: '5px 2px',
+    width: '150px !important',
+    fontFamily: 'Nunito',
+    color: 'grey',
+    fontSize: '20px',
+
+    ['& > option']: {
+      fontFamily: 'Nunito',
+      color: 'grey',
+      fontSize: '20px',
+      padding: '10px 5px',
     },
   },
   InputLabel: {
@@ -53,6 +61,7 @@ const useStyles = makeStyles({
   },
   ClearAllButton: {
     display: 'flex',
+    fontFamily: 'Nunito',
     justifyContent: 'start',
     alignItems: 'center',
     alignItems: 'middle',
@@ -91,8 +100,8 @@ export default function CampaignForm({ formInfo }) {
   };
 
   return (
-    <div className={classes.FormVessel}>
-      <h2 className={classes.TitleText}>Enter Your Content</h2>
+    <div className="form-vessel create-input">
+      <h2 className={classes.TitleText}>Enter Your Ad Content</h2>
 
       <input
         className={classes.InputItem}
@@ -150,7 +159,7 @@ export default function CampaignForm({ formInfo }) {
           borderLeft: '0px',
           marginLeft: '0px',
         }}
-        className={classes.InputItem}
+        className={clsx(classes.InputItem, classes.selectItem)}
         name="cta"
         id="cta"
         value={formInfo.cta}
@@ -175,7 +184,15 @@ export default function CampaignForm({ formInfo }) {
         <option>Subscribe</option>
         <option>Watch More</option>
       </select>
-      <label style={{ padding: '0.8rem 0', fontSize: '1.25rem', color: 'grey' }}>
+      <label
+        style={{
+          padding: '0.8rem 0',
+          fontSize: '1.25rem',
+          color: 'grey',
+          fontFamily: 'Nunito',
+          fontSize: '20px',
+        }}
+      >
         Text that will appear on the clickable button
       </label>
 
@@ -186,8 +203,9 @@ export default function CampaignForm({ formInfo }) {
           borderRight: '0px',
           borderLeft: '0px',
           marginLeft: '0px',
+          marginTop: '0px',
         }}
-        className={classes.InputItem}
+        className={clsx(classes.InputItem, classes.selectItem)}
         name="cta2"
         id="cta2"
         value={formInfo.cta2}
@@ -212,7 +230,15 @@ export default function CampaignForm({ formInfo }) {
         <option>Subscribe</option>
         <option>Watch More</option>
       </select>
-      <label style={{ padding: '0.8rem 0', fontSize: '1.25rem', color: 'grey' }}>
+      <label
+        style={{
+          padding: '0.8rem 0',
+          fontSize: '1.25rem',
+          color: 'grey',
+          fontFamily: 'Nunito',
+          fontSize: '20px',
+        }}
+      >
         Text that will appear on a second clickable button
       </label>
 

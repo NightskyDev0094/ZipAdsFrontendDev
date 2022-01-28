@@ -3,7 +3,10 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles({
-  Vessel: { marginBottom: '3em', textAlign: 'center' },
+  Vessel: {
+    marginBottom: '3em',
+    textAlign: 'center',
+  },
   CheckVessel: {
     marginBottom: '0.75rem',
     display: 'flex',

@@ -10894,7 +10894,7 @@ thead > tr > th {
   text-decoration: none;
 }
 
-.input-type input {
+.input-type input, .create-input input, .create-input textarea {
   font-size: 20px !important;
   border: 2px solid #c7c7c7 !important;
 }
@@ -10903,6 +10903,25 @@ thead > tr > th {
   font-weight: bold !important;
 }
 
+.create-input input::placeholder, .create-input textarea::placeholder {
+  font-family: 'Nunito';
+  font-size: 20px;
+  color: #aeaeae;
+}
+
 .ads-feature h3 {
   font-size: 26px;
+}
+
+.form-vessel {
+  width: 100%;
+  background-color: inherit;
+  margin: auto auto;
+}
+
+@media (min-width:750px) {
+  .form-vessel {
+    width: 90%;
+    padding: 2em;
+  }
 }

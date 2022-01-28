@@ -5,9 +5,9 @@ import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
 export const SOCIAL_NETWORK_TITLES = {
   FacebookAd: 'Facebook Ad',
   InstagramAd: 'Instagram Ad',
-  FacebookAudienceNetworkAd: 'Facebook Audience Ad',
-  GoogleAwards: 'Google Ad',
-  GoogleDisplayNetworkAd: 'Google Ad Network',
+  FacebookAudienceNetworkAd: 'Facebook Audience Network Ad',
+  GoogleAwards: 'Google Awards',
+  GoogleDisplayNetworkAd: 'Google Display Network Ad',
 };
 
 /**
