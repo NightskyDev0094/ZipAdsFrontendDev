@@ -47,11 +47,15 @@ class BlueTecLanding extends React.Component {
               <div className="col-lg-6 wow fadeInRight" data-wow-delay=".5s">
                 <div className="spacer-10"></div>
                 <h1 id="main-title">
-                  Let's take <span className="id-color">your business</span> to new heights!
+                  Let's take <span className="id-color font-weight-bold">your business</span> to new
+                  heights!
                 </h1>
-                <p id="sub-title" className="lead">
-                  <span className="id-color">ZipAds</span> is here to help. Easily create, post and
-                  track your online ads from our simple application.
+                <p id="sub-title" className="lead font-weight-normal">
+                  <span className="id-color font-weight-bold" style={{ fontFamily: 'SilkaMedium' }}>
+                    ZipAds
+                  </span>{' '}
+                  is here to help. Easily create, post and track your online ads from our simple
+                  application.
                 </p>
                 <div className="spacer-20"></div>
                 {/* <a className="btn-custom" href="#">
@@ -64,7 +68,7 @@ class BlueTecLanding extends React.Component {
                     backgroundColor: '#ffe185',
                     borderRadius: '5px',
                     fontSize: '20px',
-                    padding: '14px 80px',
+                    padding: '18px 90px',
                     color: '#00468f',
                     fontWeight: '600',
                   }}
@@ -99,14 +103,14 @@ class BlueTecLanding extends React.Component {
 
         <section id="section-testimonial" className="pt-0">
           <div className="m-auto px-3" style={{ maxWidth: '1230px' }}>
-            <h1 id="middle-title" style={{ color: '#00468f' }}>
+            <h1 className="customer-title" style={{ color: '#00468f' }}>
               What our customers are saying...
             </h1>
             <div
               className="row m-0 justify-content-around"
-              style={{ height: '100%', minHeight: '670px' }}
+              style={{ height: '100%' }}
             >
-              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
+              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px', minHeight: '600px' }}>
                 <img
                   alt=""
                   className="rounded-circle p-3"
@@ -142,7 +146,7 @@ class BlueTecLanding extends React.Component {
                   - Jane Smith, <br /> The Beauty Industry
                 </h4>
               </div>
-              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
+              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px', minHeight: '600px' }}>
                 <img
                   alt=""
                   className="rounded-circle p-3"
@@ -172,7 +176,7 @@ class BlueTecLanding extends React.Component {
                   - John Appleseed, <br /> The Business Industry
                 </h4>
               </div>
-              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px' }}>
+              <div className="text-center my-5 position-relative" style={{ maxWidth: '320px', minHeight: '600px' }}>
                 <img
                   alt=""
                   className="rounded-circle p-3"

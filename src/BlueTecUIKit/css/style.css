@@ -10053,13 +10053,28 @@ img {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1280px) {
   .wow {
     padding-right: 9vw !important;
   }
 
   .lead {
     padding-right: 5vw !important;
+  }
+}
+
+@media only screen and (max-width: 1005px) {
+  .header-col-mid {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    padding: 0 0 0 0;
+  }
+  header.header-mobile #mainmenu li {
+    border-bottom: solid 1px #eee;
+    margin: 0;
+    width: 100%;
+    display: block;
   }
 }
 
@@ -10109,12 +10124,6 @@ img {
   .header-col-left,
   .header-col-right {
     padding-top: 16px;
-  }
-  .header-col-mid {
-    position: absolute;
-    top: 60px;
-    width: 100%;
-    padding: 0 0 0 0;
   }
   header div#logo {
     line-height: 32px;
@@ -10356,12 +10365,6 @@ img {
     position: inherit;
     margin: 0;
     width: 100%;
-  }
-  header.header-mobile #mainmenu li {
-    border-bottom: solid 1px #eee;
-    margin: 0;
-    width: 100%;
-    display: block;
   }
   header.header-mobile #mainmenu li ul.mega ul {
     height: auto;
@@ -10889,4 +10892,17 @@ thead > tr > th {
 
 .linkToButton:hover {
   text-decoration: none;
+}
+
+.input-type input {
+  font-size: 20px !important;
+  border: 2px solid #c7c7c7 !important;
+}
+
+.input-type input::placeholder {
+  font-weight: bold !important;
+}
+
+.ads-feature h3 {
+  font-size: 26px;
 }
