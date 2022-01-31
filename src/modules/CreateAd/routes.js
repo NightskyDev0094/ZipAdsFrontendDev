@@ -26,7 +26,7 @@ const CreateAdRoutes = () => (
     <Route exact path="/create/targeting" component={TargetingContainer} />
     <Route exact path="/create/expanded-targeting" component={ExpandedTargetingContainer} />
     <Route exact path="/create/credits" component={CreditsContainer} />
-    <Route exact path="/create/create-campaign" component={CreateCampaignContainer} />
+    <Route exact path="/create/campaign" component={CreateCampaignContainer} />
     <Route exact path="/create" component={CreateCampaignContainer} />
     <Route exact path="/select-campaign" component={SelectCampaignContainer} />
   </Switch>

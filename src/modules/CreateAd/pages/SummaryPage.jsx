@@ -7,8 +7,9 @@ import AdPreviewCarousel from '../components/AdPreviewCarousel';
 
 const useStyles = makeStyles({
   PostAdsButton: {
+    width: '190px',
     color: '#00468f',
-    padding: '1rem 4rem',
+    padding: '14px 0px',
     fontSize: '1.5em',
     borderRadius: '0.25em',
     backgroundColor: '#0be360',
@@ -20,8 +21,40 @@ const useStyles = makeStyles({
     },
   },
   summaryCarouselContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     maxWidth: '1000px',
     margin: 'auto',
+  },
+  summaryInfo: {
+    width: '100vw',
+    backgroundColor: '#ededed',
+    padding: '50px 40px 0px 40px',
+    display: 'grid',
+    gridGap: '100px',
+    gridTemplateColumns: '1fr 1fr',
+    fontSize: '20px',
+    color: '#00468f',
+
+    ['@media (max-width:992px)']: {
+      gridTemplateColumns: '1fr',
+      gridGap: '0px',
+    },
+  },
+  infoContent: {
+    ['& > div']: {
+      ['& > p']: {
+        '&:nth-child(odd)': {
+          fontFamily: 'Nunito',
+          margin: 0,
+        },
+        '&:nth-child(even)': {
+          fontFamily: 'SilkaMedium',
+          paddingBottom: '30px',
+        },
+      },
+    },
   },
 });
 
@@ -61,25 +94,74 @@ const SummaryPage = ({ onHandleClick, SUBMIT_STATUS, currentCampaign, socialsToP
         formInfo={formInfo}
         previews={previews}
       />
-      <h2 style={{ width: '100%', marginBottom: '2em', textAlign: 'center' }}>
-        <a
-          style={{
-            color: '#00468f',
-            textDecoration: 'underline',
-            fontSize: '1.8rem',
-            fontStyle: 'italic',
-            fontFamily: 'unset',
-          }}
-          onClick={() => history.push('/create/create-campaign')}
-        >
-          I want to change something.
-        </a>
-      </h2>
-      <div
-        style={{ width: '100%', marginBottom: '3em', display: 'flex', justifyContent: 'center' }}
-      >
+      <div className={classes.summaryInfo}>
+        <div className={classes.infoContent}>
+          <div>
+            <p>Networks:</p>
+            <p>
+              Instagram Ad, Facebook Ad, Facebook Audience Network Ad, Google Awards, Google Display
+              Network Ad
+            </p>
+          </div>
+          <div>
+            <p>Campaign Name:</p>
+            <p>Maria's Mascara</p>
+          </div>
+          <div>
+            <p>Headline:</p>
+            <p>Long Lashes in One Click!</p>
+          </div>
+          <div>
+            <p>Sub-headline:</p>
+            <p>Buy One Get One Free</p>
+          </div>
+          <div>
+            <p>Description:</p>
+            <p>
+              Maria's Mascara will have your lashes looking so long that they'll be doing double
+              takes when checking your ID.
+            </p>
+          </div>
+          <div>
+            <p>URL:</p>
+            <p>www.mariasmascara.com</p>
+          </div>
+        </div>
+        <div className={classes.infoContent}>
+          <div>
+            <p>Button 1:</p>
+            <p>Shop Now</p>
+          </div>
+          <div>
+            <p>Button 2:</p>
+            <p>Learn More</p>
+          </div>
+          <div>
+            <p>Targeting Preference:</p>
+            <p>Specific Address</p>
+          </div>
+          <div>
+            <p>Address:</p>
+            <p>555 Main St, State, ST 12345</p>
+          </div>
+          <div>
+            <p>Radius:</p>
+            <p>15 miles</p>
+          </div>
+          <div>
+            <p>Keyword:</p>
+            <p>Mascara</p>
+          </div>
+          <div>
+            <p>Total Spend:</p>
+            <p>$210</p>
+          </div>
+        </div>
+      </div>
+      <div style={{ width: '100%', margin: '3em 0', display: 'flex', justifyContent: 'center', gap: '12px' }}>
+        <button className={classes.PostAdsButton} style={{backgroundColor: '#00468f', color: 'white'}}>Edit</button>
         <button onClick={onHandleClick} className={classes.PostAdsButton}>
-          Yes, post my ad!
+          Post my ad!
         </button>
       </div>
     </div>

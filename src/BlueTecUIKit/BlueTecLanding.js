@@ -41,7 +41,7 @@ class BlueTecLanding extends React.Component {
       <div className="no-bottom no-top" id="content" data-component="landing">
         <div id="top"></div>
 
-        <section className="vertical-center" style={{ padding: '90px 0px', minHeight: 'auto' }}>
+        <section className="vertical-center landing-main">
           <div style={{ width: '90%', margin: '0 auto' }}>
             <div className="row align-items-center">
               <div className="col-lg-6 wow fadeInRight" data-wow-delay=".5s">

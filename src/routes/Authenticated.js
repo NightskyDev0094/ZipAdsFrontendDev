@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import CreateAdRoutes from '../modules/CreateAd/routes';
 import ConversionsRoutes from '../modules/Conversions/routes';
 import DashboardRoutes from '../modules/Dashboard/routes';
-import ContactRoutes from '../modules/Contact/index';
+import InfoRoutes from '../modules/Info/index';
 import BlueTecAppBarAuthorized from '../BlueTecUIKit/BlueTecAppBarAuthorizedAppBar';
 import AnalyticsRoutes from '../modules/Analytics/routes';
 import ProfileRoutes from '../modules/Profile/routes';
@@ -15,42 +15,42 @@ import NotFound404 from '../modules/ErrorHandling/404Handler';
 import AccountRoutes from '../modules/Account/routes';
 import FAQPage from '../BlueTecUIKit/BlueTecFAQPage';
 import SuccessPage from '../modules/CreateAd/pages/SuccessPage';
-import ContactInfo from '../modules/Contact/components/ContactInfo';
-import BusinessInfo from '../modules/Contact/components/BusinessInfo';
-import SignInInfo from '../modules/Contact/components/SignInInfo';
-import Subscription from '../modules/Contact/components/Subscription';
-import PaymentPortal from '../modules/Contact/components/PaymentPortal';
+import ContactInfo from '../modules/Info/components/ContactInfo';
+import BusinessInfo from '../modules/Info/components/BusinessInfo';
+import SignInInfo from '../modules/Info/components/SignInInfo';
+import Subscription from '../modules/Info/components/Subscription';
+import PaymentPortal from '../modules/Info/components/PaymentPortal';
 import PaymentPlanRoutes from '../modules/PaymentPlans/routes';
 import PaymentPortalRoutes from '../modules/PaymentPortal/routes';
 
 const routes = [
   {
-    path: '/contact',
-    component: ContactRoutes,
+    path: '/info',
+    component: InfoRoutes,
     exact: true,
     routes: [
       {
-        path: '/contact/contact-info',
+        path: '/info/contact-Info',
         component: ContactInfo,
         exact: true,
       },
       {
-        path: '/contact/business-info',
+        path: '/info/business-Info',
         component: BusinessInfo,
         exact: true,
       },
       {
-        path: '/contact/login-info',
+        path: '/info/login-Info',
         component: SignInInfo,
         exact: true,
       },
       {
-        path: '/contact/subscription-info',
+        path: '/info/subscription-Info',
         component: Subscription,
         exact: true,
       },
       {
-        path: '/contact/payment-portal',
+        path: '/info/payment-portal',
         component: PaymentPortal,
         exact: true,
       },

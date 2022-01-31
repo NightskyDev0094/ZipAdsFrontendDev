@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
@@ -31,6 +31,16 @@ const useStyles = makeStyles(() => ({
       gridGap: '50px',
     },
   },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    margin: '0',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
+  },
 }));
 
 const BusinessInfo = () => {
@@ -40,9 +50,7 @@ const BusinessInfo = () => {
   return (
     <div className="w-100 h-100">
       <div className={clsx(classes.InfoContainer, classes.textStyle)}>
-        <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
-          Business Information
-        </p>
+        <p className={classes.infoTitle}>Business Information</p>
         <div className={classes.info}>
           <div>
             <p className="font-weight-light m-0">Business Name:</p>
@@ -54,7 +62,7 @@ const BusinessInfo = () => {
           </div>
           <div>
             <p className="font-weight-light m-0">Business Address:</p>
-            <p>555 Main St</p>
+            <p className='m-0'>555 Main St</p>
             <p>Townsville, CA 10101</p>
           </div>
           <div>

@@ -9,14 +9,23 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
+
+    '@media (max-width:768px)': {
+      flexDirection: 'column',
+    },
   },
   contactContent: {
     width: 'calc(100vw - 260px)',
     minHeight: 'calc(100vh - 297.38px)',
-    padding: '20px',
+    padding: '20px 0px',
 
-    '@media (max-width:718px)': {
+    '@media (max-width:992px)': {
       width: 'calc(100vw - 190px)',
+    },
+
+    '@media (max-width:768px)': {
+      width: '100%',
+      minHeight: 'initial',
     },
   },
 }));
@@ -41,9 +50,9 @@ const Contact = ({ routes }) => {
           <Switch>
             <Route
               exact
-              path="/contact"
+              path="/info"
               render={() => {
-                return <Redirect to="/contact/contact-info" />;
+                return <Redirect to="/info/contact-info" />;
               }}
             />
             {routes.map((route, i) => (

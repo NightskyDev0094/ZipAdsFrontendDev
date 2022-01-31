@@ -171,7 +171,7 @@ const SelectCampaignContainer = ({
   useEffect(() => {
     // Go to next page when images are finished loading
     if (dataLoading === false) {
-      history.push('create/create-campaign');
+      history.push('create/campaign');
     }
   }, [dataLoading]);
   // useEffect(() => {
@@ -311,7 +311,7 @@ const SelectCampaignContainer = ({
       setDataLoading(false);
     } else if (campaignType === 'New') {
       await createNewCampaign();
-      history.push('create/create-campaign');
+      history.push('create/campaign');
     }
   };
 

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     },
   },
   Avatar: { width: '3em', height: '1.5em' },
-  AdImage: { height: '435px', width: '435px' },
+  AdImage: { height: '430px', width: '430px' },
   BottomSection: {
     width: '100%',
     height: '124px',

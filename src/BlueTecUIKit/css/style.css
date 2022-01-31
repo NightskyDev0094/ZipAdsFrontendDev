@@ -10871,39 +10871,141 @@ img {
   min-height: calc(100vh - 297.38px);
 }
 
-.table-striped-rows td{
+/* table on /select-campaign */
+.select-campaign .table-striped-rows td {
   font-size: 18px;
   padding: 8px;
 }
 
-thead > tr > th {
+.select-campaign thead > tr > th {
   background-color: white !important;
   font-size: 18px;
   font-weight: bold !important;
 }
 
-.table-striped-rows tr:nth-child(n) td {
+.select-campaign .table-striped-rows tr:nth-child(n) td {
   background-color: #bfbcbc;
 }
 
-.table-striped-rows tr:nth-child(2n) td {
+.select-campaign .table-striped-rows tr:nth-child(2n) td {
   background-color: #d9d9d9;
+}
+
+/* table on /subscription */
+.table-container {
+  position: absolute;
+  width: calc(100% + 77px);
+  right: 0;
+}
+
+.subscription .ant-table .ant-table-selection-col {
+  width: 0px !important;
+}
+
+.subscription thead tr th:last-of-type {
+  text-align: center;
+}
+
+.subscription thead tr th {
+  background: white;
+  font-family: 'Nunito';
+  font-weight: lighter !important;
+  font-size: 20px;
+}
+
+.subscription tbody tr td {
+  background-color: #d9d9d9;
+  font-size: 20px;
+  font-family: 'SilkaMedium';
+  font-weight: lighter;
+}
+
+.subscription tbody tr:hover td {
+  background-color: #d9d9d9 !important;
+}
+
+.subscription tr.ant-table-row-selected > td {
+  background-color: #9ad1f8 !important;
+}
+
+.subscription tr.ant-table-row-selected:hover > td {
+  background-color: #9ad1f8 !important;
+}
+
+/* .ant-table-selection-column {
+  display: none;
+} */
+
+@media only screen and (min-width: 1280px) {
+  .subscription thead tr th,
+  .subscription tbody tr td {
+    font-size: 26px;
+  }
+}
+
+.ant-pagination-item-link {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Switch */
+.subscription .ant-switch-checked {
+  background-color: #00468f !important;
+}
+
+.subscription .ant-switch {
+  display: block;
+  background-color: #737373;
+  min-width: 74px;
+  height: 32px;
+  line-height: 26px;
+  margin: auto;
+}
+
+.subscription .ant-switch-inner {
+  font-size: 16px;
+  font-family: 'Nunito';
+  margin: 0 7px 0 30px;
+}
+
+.subscription .ant-switch-checked .ant-switch-inner {
+  margin: 0 30px 0 7px;
+}
+
+.subscription .ant-switch-handle {
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+}
+
+.subscription .ant-switch-checked .ant-switch-handle {
+  left: calc(100% - 27px - 2px);
+}
+
+.subscription .ant-switch-handle::before {
+  border-radius: 100%;
 }
 
 .linkToButton:hover {
   text-decoration: none;
 }
 
-.input-type input, .create-input input, .create-input textarea {
+.input-type input,
+.create-input input,
+.create-input textarea {
   font-size: 20px !important;
   border: 2px solid #c7c7c7 !important;
 }
 
-.input-type input::placeholder, .input-placeholder input::placeholder {
+.input-type input::placeholder,
+.input-placeholder input::placeholder {
   font-weight: bold !important;
 }
 
-.create-input input::placeholder, .create-input textarea::placeholder {
+.create-input input::placeholder,
+.create-input textarea::placeholder {
   font-family: 'Nunito';
   font-size: 20px;
   color: #aeaeae;
@@ -10919,7 +11021,7 @@ thead > tr > th {
   margin: auto auto;
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .form-vessel {
     width: 90%;
     padding: 2em;

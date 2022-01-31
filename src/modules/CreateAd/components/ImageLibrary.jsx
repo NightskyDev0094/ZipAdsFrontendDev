@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import LibraryCheckmark from '../../../BlueTecUIKit/images/icons/library_green checkmark.png';
+import LibraryCheckmark from '../../../BlueTecUIKit/images/icons/green checkmark.png';
 import LibraryOpenBook from '../../../BlueTecUIKit/images/library_open book.png';
 import CreateCampaignButton from './CreateCampaignButton';
 import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
@@ -154,7 +154,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -166,7 +166,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -178,7 +178,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -190,7 +190,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -202,7 +202,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -214,7 +214,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
         </div>

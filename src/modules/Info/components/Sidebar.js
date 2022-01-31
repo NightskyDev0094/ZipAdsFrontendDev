@@ -13,9 +13,12 @@ const useStyles = makeStyles(() => ({
     '& div': {
       display: 'contents',
     },
-
-    '@media (max-width:718px)': {
+    '@media (max-width:992px)': {
       width: '190px',
+    },
+    '@media (max-width:768px)': {
+      width: '100%',
+      minHeight: 'initial',
     },
   },
   menuItem: {
@@ -29,6 +32,10 @@ const useStyles = makeStyles(() => ({
       backgroundColor: '#a6a6a6',
       color: 'white',
       textDecoration: 'none',
+    },
+    '@media (max-width:768px)': {
+      padding: '12px 30px',
+      textAlign: 'center',
     },
   },
   activeTab: {
@@ -49,28 +56,44 @@ const Sidebar = () => {
         <Link
           className={classes.menuItem}
           style={{ background: checkRoute('contact-info') ? '#a6a6a6' : '' }}
-          to="/contact/contact-info"
+          to="/info/contact-info"
         >
           Contact Information
         </Link>
       </div>
       <div>
-        <Link className={classes.menuItem} style={{ background: checkRoute('business-info') ? '#a6a6a6' : '' }} to="/contact/business-info">
+        <Link
+          className={classes.menuItem}
+          style={{ background: checkRoute('business-info') ? '#a6a6a6' : '' }}
+          to="/info/business-info"
+        >
           Business Information
         </Link>
       </div>
       <div>
-        <Link className={classes.menuItem} style={{ background: checkRoute('login-info') ? '#a6a6a6' : '' }} to="/contact/login-info">
+        <Link
+          className={classes.menuItem}
+          style={{ background: checkRoute('login-info') ? '#a6a6a6' : '' }}
+          to="/info/login-info"
+        >
           Sign-In Information
         </Link>
       </div>
       <div>
-        <Link className={classes.menuItem} style={{ background: checkRoute('subscription-info') ? '#a6a6a6' : '' }} to="/contact/subscription-info">
-          Subscription
+        <Link
+          className={classes.menuItem}
+          style={{ background: checkRoute('subscription-info') ? '#a6a6a6' : '' }}
+          to="/info/subscription-info"
+        >
+          Subscription Details
         </Link>
       </div>
       <div>
-        <Link className={classes.menuItem} style={{ background: checkRoute('payment-portal') ? '#a6a6a6' : '' }} to="/contact/payment-portal">
+        <Link
+          className={classes.menuItem}
+          style={{ background: checkRoute('payment-portal') ? '#a6a6a6' : '' }}
+          to="/info/payment-portal"
+        >
           Payment Portal
         </Link>
       </div>

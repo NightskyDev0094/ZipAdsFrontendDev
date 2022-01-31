@@ -86,12 +86,13 @@ const useStyles = makeStyles({
     width: '100%',
     textAlign: 'center',
     marginTop: '0.5em',
-    fontSize: '2.5rem',
+    fontSize: '32px',
     color: '#00468f',
     fontFamily: 'sans-serif',
+    letterSpacing: '1px',
 
     ['@media (max-width:576px)']: {
-      fontSize: '2rem',
+      fontSize: '24px',
     },
   },
   PreviewContainer: {
@@ -173,7 +174,7 @@ function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
       {!isSummaryPage ? (
         <h2 className={classes.PreviewTitle}>{chosenSocialNetworks[currentStepIndex]}</h2>
       ) : (
-        <h2 className={classes.SummaryPreviewTitle}>Does Everything Look Good?</h2>
+        <h2 className={classes.SummaryPreviewTitle}>Before we go live, please confirm that everything looks right:</h2>
       )}
       <section className={classes.PreviewContainer}>
       {/* === SOCIAL_NETWORK_TITLES.InstagramAd */}

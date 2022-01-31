@@ -69,6 +69,10 @@
   .customer-title {
     font-size: 38px !important;
   }
+
+  .landing-main {
+    padding: 0px !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -80,7 +84,18 @@
   }
 }
 
+@media screen and (max-width: 576px) {
+  #main-title, .customer-title {
+    font-size: 32px !important;
+  }
+}
+
 .customer-title {
   font-size: 48px;
   font-family: sans-serif;
+}
+
+.landing-main {
+  min-height: auto;
+  padding: 90px 0px;
 }

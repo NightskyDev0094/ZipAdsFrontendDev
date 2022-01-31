@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
@@ -31,26 +31,77 @@ const useStyles = makeStyles(() => ({
       gridGap: '50px',
     },
   },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    margin: '0',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
+  },
+
+  passwordCheckBox: {
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    userSelect: 'none',
+
+    '& > input': {
+      width: '25px',
+      height: '25px',
+      marginRight: '0.5rem',
+
+      '@media (max-width:576px)': {
+        width: '20px',
+        height: '20px',
+      },
+    },
+
+    '& > p': {
+      fontSize: '20px',
+      fontWeight: 'lighter',
+      margin: 0,
+
+      '@media (max-width:576px)': {
+        fontSize: '16px',
+      },
+    },
+  },
 }));
 
 const SignInInfo = () => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
+  const [password, setPassword] = React.useState(false);
 
   return (
     <div className="w-100 h-100">
       <div className={clsx(classes.SignInInfoContainer, classes.textStyle)}>
-        <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
+        <p className={classes.infoTitle}>
           Sign-In Information
         </p>
         <div className={classes.info}>
           <div>
-            <p className="font-weight-light m-0">Email:</p>
+            <p className="font-weight-light m-0">Username:</p>
             <p>jappleseed@gmail.com</p>
           </div>
           <div>
             <p className="font-weight-light m-0">Password:</p>
-            <p style={{ webkitTextSecurity: 'disc' }}>Password</p>
+            <p style={{ webkitTextSecurity: password ? 'initial' : 'disc' }}>Password</p>
+            <div
+              className={classes.passwordCheckBox}
+              onClick={() => {
+                setPassword(!password);
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={password}
+              />
+              <p>Show Password</p>
+            </div>
           </div>
         </div>
         <div

@@ -14,9 +14,8 @@ export const SelectCampaignPage = ({
   recommendedTemplate,
   ...props
 }) => {
-
   return (
-    <div>
+    <div className="select-campaign">
       {recommendedTemplate && (
         <RecommendedTable recommendedTemplate={recommendedTemplate} {...props} />
       )}
