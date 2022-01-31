@@ -177,11 +177,11 @@ const ConnectSocialPage = ({
         getUserProfileInformation();
       } else if (addresses !== undefined) {
         /** Re-route either way  */
-        history.push('/create/create-campaign');
+        history.push('/create/campaign');
       } else {
         history.push('/onboarding/1');
       }
-      history.push('/create/create-campaign');
+      history.push('/create/campaign');
     } catch (e) {
       setError({ isError: true, message: e });
     }
@@ -201,11 +201,11 @@ const ConnectSocialPage = ({
         getUserProfileInformation();
       } else if (addresses !== undefined) {
         /** Re-route either way  */
-        history.push('/create/create-campaign');
+        history.push('/create/campaign');
       } else {
         history.push('/onboarding/1');
       }
-      history.push('/create/create-campaign');
+      history.push('/create/campaign');
     } catch (e) {
       setError({ isError: true, message: e });
     }
@@ -220,7 +220,7 @@ const ConnectSocialPage = ({
           isResubmitModalOpen={isResubmitModalOpen}
           setIsResubmitModalOpen={setIsResubmitModalOpen}
           handleSubmitAction={goToNextForModal}
-          nextRoute={'/create/create-campaign'}
+          nextRoute={'/create/campaign'}
           formData={{}}
         />
       )}

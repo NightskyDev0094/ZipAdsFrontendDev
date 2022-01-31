@@ -16,6 +16,7 @@ import {
   Input,
 } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
 import { green, purple } from '@material-ui/core/colors';
 
@@ -177,20 +178,25 @@ const useStyles = makeStyles((theme) => ({
   },
   InputItem: {
     width: '100%',
-    height: '3rem',
-    fontSize: '1.25rem !important',
-    padding: '0.5rem 1rem',
-    border: 'solid 1px #cccccc',
-    borderRadius: '0.25rem',
-    'margin-bottom': '1em',
-    maxWidth: '250px',
-    marginTop: '20px',
+    maxWidth: '300px',
+    marginBottom: '1em',
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
 
-    ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
+    ['& > input']: {
+      padding: '0 !important',
+
+      '&::placeholder': {
+        fontWeight: 'bold !important',
+      },
+    },
   },
   textStyle: {
-    fontSize: '1.25rem',
-    maxWidth: '600px',
+    fontSize: '20px',
+    maxWidth: '400px',
     margin: 'auto',
     textAlign: 'center',
   },
@@ -200,6 +206,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
     fontWeight: 'bold',
     boxShadow: 'none',
+  },
+  titleStyle: {
+    fontSize: '22px !important',
+    fontFamily: 'sans-serif !important',
+    fontWeight: 'normal !important',
+    letterSpacing: '0.5px',
+    lineHeight: 'initial',
+    marginBottom: '15px',
+  },
+  maxWidthNone: {
+    maxWidth: 'none',
   },
 }));
 
@@ -401,7 +418,7 @@ const BudgetPage = ({
                           <>
                             <Box className={classes.dailyFacebookAdsBudgetInput}>
                               <InputMainLabel
-                                className={classes.textStyle}
+                                className={clsx(classes.textStyle, classes.titleStyle)}
                                 style={{ fontWeight: 'bold' }}
                               >
                                 What's the total amount (in USD) that you would like to spend on
@@ -421,12 +438,15 @@ const BudgetPage = ({
                               What is the max amount you want to spend on ads daily (in USD)?
                             </InputSmallLabel> */}
                             </Box>
-                            <Box className={classes.facebookAdsCampaignLength}>
+                            <Box
+                              className={classes.facebookAdsCampaignLength}
+                              style={{ marginBottom: '0px' }}
+                            >
                               <InputMainLabel
-                                className={classes.textStyle}
+                                className={clsx(classes.textStyle, classes.titleStyle)}
                                 style={{ fontWeight: 'bold' }}
                               >
-                                For how many doays would you like your campaign to run?
+                                For how many days would you like your campaign to run?
                               </InputMainLabel>
 
                               <Input
@@ -749,8 +769,9 @@ const BudgetPage = ({
                           fontStyle: 'italic',
                           color: '#0b4d93',
                           textDecoration: 'underline',
-                          fontWeight: 'bold',
-                          fontSize: '1.25rem',
+                          fontFamily: 'Nunito',
+                          fontWeight: 'initial',
+                          fontSize: '22px',
                         }}
                       >
                         Advanced Options
@@ -770,8 +791,11 @@ const BudgetPage = ({
                       </RadioGroup> */}
                     </Box>
                     <Box className={classes.dailyFacebookAdsBudgetInput}>
-                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                        What is your main advertising objective for your business?
+                      <InputMainLabel
+                        className={clsx(classes.textStyle, classes.titleStyle, classes.maxWidthNone)}
+                        style={{ fontWeight: 'bold' }}
+                      >
+                        What is your main advertising objective?
                       </InputMainLabel>
                       <RadioGroup
                         aria-label="distance"
@@ -783,7 +807,7 @@ const BudgetPage = ({
                           value="Conversions"
                           control={<StyledRadio />}
                           label={
-                            <Typography className={classes.textStyle}>
+                            <Typography className={clsx(classes.textStyle, classes.maxWidthNone)}>
                               Generate sales or signups
                             </Typography>
                           }
@@ -792,7 +816,7 @@ const BudgetPage = ({
                           value="Brand Awareness"
                           control={<StyledRadio />}
                           label={
-                            <Typography className={classes.textStyle}>
+                            <Typography className={clsx(classes.textStyle, classes.maxWidthNone)}>
                               Make people aware of my business
                             </Typography>
                           }
@@ -801,7 +825,7 @@ const BudgetPage = ({
                           value="Store Traffic"
                           control={<StyledRadio />}
                           label={
-                            <Typography className={classes.textStyle}>
+                            <Typography className={clsx(classes.textStyle, classes.maxWidthNone)}>
                               Increase visits to my business's physical location
                             </Typography>
                           }
@@ -810,7 +834,7 @@ const BudgetPage = ({
                           value="Traffic"
                           control={<StyledRadio />}
                           label={
-                            <Typography className={classes.textStyle}>
+                            <Typography className={clsx(classes.textStyle, classes.maxWidthNone)}>
                               Generate web traffic
                             </Typography>
                           }
@@ -818,12 +842,14 @@ const BudgetPage = ({
                       </RadioGroup>
                     </Box>
                     <Box className={classes.dailyFacebookAdsBudgetInput}>
-                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                        Please confirm your total ad spend for this campaign:
+                      <InputMainLabel
+                        className={clsx(classes.textStyle, classes.titleStyle, classes.maxWidthNone)}
+                        style={{ fontWeight: 'bold' }}
+                      >
+                        Confirm your total ad spend for this campaign:
                       </InputMainLabel>
                       <InputMainLabel
                         style={{
-                          margin: '3rem 0 1rem 0',
                           color: '#00468f',
                           fontWeight: 'bold',
                           fontSize: '2rem',
@@ -831,7 +857,15 @@ const BudgetPage = ({
                       >
                         ${allCampaignLength * totalBudget}
                       </InputMainLabel>
-                      <Typography className={classes.textStyle} style={{ color: '#00468f' }}>
+                      <Typography
+                        className={clsx(classes.textStyle, classes.maxWidthNone)}
+                        style={{
+                          color: '#0b4d93',
+                          fontFamily: 'Nunito',
+                          fontWeight: 'initial',
+                          fontSize: '22px',
+                        }}
+                      >
                         Based on ${totalBudget} daily spend x {allCampaignLength} days campaign
                         length.
                       </Typography>
@@ -860,7 +894,10 @@ const BudgetPage = ({
                 </div>
                 {/* <img src={alert} className="position-absolute" style={{ bottom: 0 }} /> */}
               </StepperWrapper>
-              <Shoutbox>We recommend a minimun of $30 USD daily spend and a minimum of 7 days campaign length for maximum performance.</Shoutbox>
+              <Shoutbox>
+                We recommend a minimun of $30 USD daily spend and a minimum of 7 days campaign
+                length for maximum performance.
+              </Shoutbox>
             </div>
           </Box>
         </ErrorHandler>

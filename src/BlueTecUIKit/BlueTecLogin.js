@@ -37,6 +37,8 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
     errorMessage: '',
     isErrors: false,
   });
+  const [password, setPassword] = React.useState(false);
+  const [remember, setRemember] = React.useState(false);
   const INPUT_MAX_LENGTH = 80;
 
   const handleLoginSubmit = async (data, event) => {
@@ -64,32 +66,9 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
   return (
     <>
       <div className="no-bottom no-top" id="content">
-        {/* <div id="top" />
-        {}
-        <section
-          id="subheader"
-          // data-bgimage="url(images/background/5.png) bottom"
-        >
-          <div className="center-y relative text-center" data-scroll-speed={4}>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-8 offset-md-2">
-                  <form className="row" id="form_subscribe" method="post" name="myForm">
-                    <div className="col-md-12 text-center">
-                      <h1>Login</h1>
-                      <p />
-                    </div>
-                    <div className="clearfix" />
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {} */}
         <section className="no-top p-0">
           <div className="row m-0">
-            <div className="col-lg-6 p-5" style={{ minHeight: '526px' }}>
+            <div className="col-lg-6 px-5 pt-5" style={{ minHeight: '526px' }}>
               <form
                 name="contactForm"
                 className="form-border"
@@ -100,11 +79,16 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
               >
                 <h1
                   className="text-center"
-                  style={{ color: '#00468f', fontWeight: '600', marginBottom: '100px' }}
+                  style={{
+                    color: '#00468f',
+                    fontFamily: 'sans-serif',
+                    marginBottom: '80px',
+                    fontSize: '42px',
+                  }}
                 >
                   Login
                 </h1>
-                <div className="field-set">
+                <div className="field-set input-type mb-2">
                   <Controller
                     as={<LargeInput placeholder="Username" />}
                     name="username"
@@ -112,18 +96,68 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                     rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
                   />
                 </div>
-                <div className="field-set">
+                <div className="field-set input-type">
+                  {/* <Controller
+                    as={<LargeInput passwordMasked={!password} placeholder="Password" />}
+                    name="password"
+                    control={control}
+                    rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
+                  /> */}
                   <Controller
-                    as={<LargeInput isPasswordMasked="true" placeholder="Password" />}
+                    as={<LargeInput isPasswordMasked={!password} placeholder="Password" />}
                     name="password"
                     control={control}
                     rules={{ required: true, maxLength: INPUT_MAX_LENGTH }}
                   />
                 </div>
-                <div>
-                  <div className="d-flex align-items-center" style={{ padding: '25px 0' }}>
-                    <input type="checkbox" className="mr-2" />
-                    <p>Remember Me</p>
+                <div className="d-flex justify-content-between">
+                  <div
+                    className="d-flex align-items-center"
+                    style={{ padding: '25px 0', cursor: 'pointer', userSelect: 'none' }}
+                    onClick={() => {
+                      setPassword(!password);
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      className="mr-2"
+                      style={{ width: '17px', height: '17px' }}
+                      checked={password}
+                    />
+                    <p
+                      style={{
+                        color: '#5c5c5c',
+                        fontSize: '17px',
+                        fontWeight: 600,
+                        fontFamily: 'Nunito',
+                      }}
+                    >
+                      Show Password
+                    </p>
+                  </div>
+                  <div
+                    className="d-flex align-items-center"
+                    style={{ padding: '25px 0', cursor: 'pointer', userSelect: 'none' }}
+                    onClick={() => {
+                      setRemember(!remember);
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      className="mr-2"
+                      style={{ width: '17px', height: '17px' }}
+                      checked={remember}
+                    />
+                    <p
+                      style={{
+                        color: '#5c5c5c',
+                        fontSize: '17px',
+                        fontWeight: 600,
+                        fontFamily: 'Nunito',
+                      }}
+                    >
+                      Remember Me
+                    </p>
                   </div>
                 </div>
                 <div id="submit" className="pull-left w-100">
@@ -133,10 +167,11 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                     style={{
                       border: 'solid 1px #cccccc',
                       color: 'white',
-                      padding: '10px 0',
-                      backgroundColor: '#005dbf',
-                      fontSize: '18px',
-                      marginTop: '100px',
+                      padding: '14px 0',
+                      backgroundColor: '#00468f',
+                      fontSize: '23px',
+                      marginTop: '80px',
+                      borderRadius: '6px',
                     }}
                     className="btn btn-custom color-2 w-100 border-0"
                   >
@@ -144,7 +179,13 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
                   </button>
                   <p
                     className="text-right"
-                    style={{ margin: '1rem 0', color: '#a6a6a6', cursor: 'pointer' }}
+                    style={{
+                      margin: '1rem 0',
+                      color: '#a6a6a6',
+                      cursor: 'pointer',
+                      fontSize: '17px',
+                      fontFamily: 'sans-serif',
+                    }}
                   >
                     Forgot password?
                   </p>
@@ -180,7 +221,7 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
             </div>
             <div
               className="col-lg-6 text-center d-flex flex-column feature-sub"
-              style={{ padding: '40px 5vw' }}
+              style={{ padding: '40px 7vw' }}
             >
               <BlueTecAuthenticationSub />
             </div>

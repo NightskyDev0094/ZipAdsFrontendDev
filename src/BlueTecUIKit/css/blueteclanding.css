@@ -1,74 +1,101 @@
-#section-highlight{
-    background-image: url('../images/background/3b.png');
+#section-highlight {
+  background-image: url('../images/background/3b.png');
 }
 
-#section-pricing{
-    background-image: url('../images/background/3c.png') !important;
+#section-pricing {
+  background-image: url('../images/background/3c.png') !important;
 }
 
-#section-text{
-    background-image: url('../images/background/3d.png') !important;
+#section-text {
+  background-image: url('../images/background/3d.png') !important;
 }
 
-#microscope-people-landing{
-    width: 540px !important;
+#microscope-people-landing {
+  width: 540px !important;
 }
 
-#main-title{
-    font-size: 3.2vw;
-    color: #00468f
+#main-title {
+  font-size: 40px;
+  font-family: sans-serif;
+  color: #00468f;
 }
 
 #middle-title {
-    font-size: 65px;
-    color: #00468f
+  font-size: 60px;
+  font-family: sans-serif;
+  color: #00468f;
 }
 
-#sub-title{
-    font-size: 1.7vw;
-    margin: 50px 0;
-    color: #00468f
+#sub-title {
+  font-size: 24px;
+  margin: 50px 0;
+  color: #00468f;
+  font-family: sans-serif;
 }
 
-#heres-how-it-works-text{
-    color: #1890ff;
-    font-size: 3.5vw;
+#heres-how-it-works-text {
+  color: #1890ff;
+  font-size: 3.5vw;
 }
 
-#heres-how-it-works-sub-text{
-    color: #1890ff;
-    font-size: 2.5vw;
+#heres-how-it-works-sub-text {
+  color: #1890ff;
+  font-size: 2.5vw;
 }
 
-#heres-what-our-customers-are-saying{
-    font-size: 3.3vw;
-    margin-bottom: 25px;
-}
-
-
-@media screen and (max-width: 1200px) {
-    #middle-title {
-        font-size: 3.2vw;
-    }
+#heres-what-our-customers-are-saying {
+  font-size: 3.3vw;
+  margin-bottom: 25px;
 }
 
 @media screen and (max-width: 1200px) {
-    #middle-title {
-        font-size: 5vw;
-    }
+  #middle-title {
+    font-size: 5vw;
+  }
+}
+
+@media screen and (max-width: 692px) {
+  #middle-title {
+    font-size: 34px;
+  }
 }
 
 @media screen and (max-width: 992px) {
-    #middle-title {
-        font-size: 5vw;
-    }
+  #middle-title {
+    padding: 0vw 0px 0px 3vw !important;
+    font-size: 6vw;
+  }
+
+  .customer-title {
+    font-size: 38px !important;
+  }
+
+  .landing-main {
+    padding: 0px !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    #main-title{
-        font-size: 7vw;
-    } 
-    #sub-title{
-        font-size: 3vw; 
-    }  
+  #main-title {
+    font-size: 38px;
+  }
+  #sub-title {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #main-title, .customer-title {
+    font-size: 32px !important;
+  }
+}
+
+.customer-title {
+  font-size: 48px;
+  font-family: sans-serif;
+}
+
+.landing-main {
+  min-height: auto;
+  padding: 90px 0px;
 }

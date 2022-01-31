@@ -83,6 +83,7 @@ const TargetingContainer = ({
   const [zipVal, setZipVal] = useState(currentCampaign.zip_code || '');
   const [distance, setDistance] = useState(currentCampaign.geotargeting || 'hyper-local');
   const [interest, setInterest] = useState(currentCampaign.search_term || '');
+  const [range, setRange] = useState(currentCampaign.range_in_miles || '');
   const [localeFormat, setLocaleFormat] = useState(currentCampaign.locale_type || 'zip');
   const [advTargeting, setAdvTargeting] = useState(false);
   // Advanced targeting state
@@ -265,7 +266,9 @@ const TargetingContainer = ({
         let keywordArray = [];
         for (let i = 0; i < selectedKeywordArray.length; i++) {
           // Search for index value in array of
-          let toPush = facebookGeoTargeting.find(({ name }) => (name = googleKeywordTargetingArray[i]));
+          let toPush = facebookGeoTargeting.find(
+            ({ name }) => (name = googleKeywordTargetingArray[i])
+          );
           keywordArray.push(toPush);
         }
         updateGoogleKeywordsRequest(keywordArray[0], googleLocationId);
@@ -297,6 +300,8 @@ const TargetingContainer = ({
         setDistance={setDistance}
         interest={interest}
         setInterest={setInterest}
+        range={range}
+        setRange={setRange}
         localeFormat={localeFormat}
         setLocaleFormat={setLocaleFormat}
         googleGeoTargeting={googleGeoTargeting}

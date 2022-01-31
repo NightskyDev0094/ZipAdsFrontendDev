@@ -31,6 +31,16 @@ const useStyles = makeStyles(() => ({
       gridGap: '50px',
     },
   },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    margin: '0',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
+  },
 }));
 
 const ContactInfo = () => {
@@ -40,9 +50,7 @@ const ContactInfo = () => {
   return (
     <div className="w-100 h-100">
       <div className={clsx(classes.contactInfo, classes.textStyle)}>
-        <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
-          Contact Information
-        </p>
+        <p className={classes.infoTitle}>Contact Information</p>
         {edit === false ? (
           <div>
             <div className={classes.info}>

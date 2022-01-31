@@ -10,9 +10,9 @@ const BlueTecAuthenticationSub = () => (
       <img alt="true" src={SignIn_Up} />
     </div>
     <div className="d-flex flex-column justify-content-around flex-fill">
-      <div className="d-flex py-4">
+      <div className="d-flex py-4 ads-feature">
         <div className="d-flex align-items-center">
-          <img src={CheckMark} style={{width: '62px'}} />
+          <img src={CheckMark} style={{width: '52px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">Seamless account</h3>
@@ -21,7 +21,7 @@ const BlueTecAuthenticationSub = () => (
       </div>
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <img src={CheckMark} style={{width: '62px'}} />
+          <img src={CheckMark} style={{width: '52px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">Ability to reach audiences</h3>
@@ -30,7 +30,7 @@ const BlueTecAuthenticationSub = () => (
       </div>
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <img src={CheckMark} style={{width: '62px'}} />
+          <img src={CheckMark} style={{width: '52px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">Affordable pricing with</h3>
@@ -39,7 +39,7 @@ const BlueTecAuthenticationSub = () => (
       </div>
       <div className="d-flex py-4">
         <div className="d-flex align-items-center">
-          <img src={CheckMark} style={{width: '62px'}} />
+          <img src={CheckMark} style={{width: '52px'}} />
         </div>
         <div className="text-left ml-3 d-flex flex-column justify-content-between">
           <h3 className="m-0 text-white font-italic">24/7 real live customer</h3>

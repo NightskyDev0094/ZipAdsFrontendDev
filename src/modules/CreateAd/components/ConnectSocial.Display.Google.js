@@ -9,13 +9,13 @@ const useStyles = makeStyles({
     fontWeight: 800,
     margin: '0px 0.75em 0px 0px',
     display: 'inline-block',
-    fontSize: '1.65em',
+    fontSize: '1.3em',
   },
   url: {
     marginRight: '0.5rem',
     display: 'inline-block',
     minWidth: '100px',
-    fontSize: '1.45em',
+    fontSize: '1.3em',
   },
   downArrow: {
     fontSize: '1.65em',
@@ -25,9 +25,9 @@ const useStyles = makeStyles({
     fontSize: '2.35em',
     lineHeight: '1em',
     margin: '10px 0px',
-    color: '#0373e6',
+    color: '#5d5cb3',
   },
-  Description: { fontSize: '1.15em', lineHeight: '1.15em' },
+  Description: { fontSize: '1.15em', lineHeight: '1.15em', fontFamily: 'sans-serif' ,color: '#686868' },
 });
 
 const GoogleSocialDisplay = ({ currentCampaign }) => {
@@ -36,13 +36,13 @@ const GoogleSocialDisplay = ({ currentCampaign }) => {
   const AdPreviewDisplayContainerProps = {
     mobileWidth: '350px',
     mobileHeight: '100px',
-    width: '725px',
+    width: '680px',
     height: '175px',
   };
 
   return (
     <AdPreviewDisplayContainer {...AdPreviewDisplayContainerProps}>
-      <div style={{ padding: '5px 10px' }}>
+      <div className='h-100 d-flex flex-column justify-content-center' style={{ padding: '0px 35px' }}>
         <div>
           <h3 className={classes.AD}>Ad</h3>
           <h3 data-test="ad-link" className={classes.url}>

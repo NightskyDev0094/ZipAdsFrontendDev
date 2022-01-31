@@ -10,6 +10,8 @@ import {
   Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+
 import { InputMainLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
 import StyledRadio from '../components/StyledRadio';
@@ -25,21 +27,14 @@ import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
-    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'inherit',
   },
   paper: {
     width: '88vw',
-    // height: '1100px',
-    // marginBottom: '200px',
     position: 'relative',
     margin: '0 auto',
-    '@media (max-width:700px)': {
-      // height: '1400px',
-      // marginBottom: '300px',
-    },
   },
   pageBody: {
     display: 'flex',
@@ -63,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
     height: '900px',
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'space-evenly',
     '@media (max-width:700px)': {
       height: '1300px',
     },
@@ -82,25 +76,38 @@ const useStyles = makeStyles((theme) => ({
   targetLocationInputContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '20px',
   },
   InputItem: {
     width: '100%',
-    height: '3rem',
-    fontSize: '1.25rem !important',
-    padding: '0.5rem 1rem',
-    border: 'solid 1px #cccccc',
-    borderRadius: '0.25rem',
-    'margin-bottom': '1em',
-    maxWidth: '250px',
+    maxWidth: '300px',
+    marginBottom: '1em',
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
 
-    ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
+    ['& > input']: {
+      padding: '0 !important',
+
+      '&::placeholder': {
+        fontWeight: 'bold !important'
+      },
+    },
   },
   textStyle: {
-    fontSize: '1.25rem',
-    maxWidth: '600px',
+    fontSize: '20px',
+    maxWidth: '400px',
     margin: 'auto',
     textAlign: 'center',
+  },
+  titleStyle: {
+    fontSize: '22px !important',
+    fontFamily: 'sans-serif !important',
+    fontWeight: 'normal !important',
+    letterSpacing: '0.5px',
+    lineHeight: 'initial',
+    marginBottom: '15px',
   },
 }));
 
@@ -119,6 +126,8 @@ const TargetingPage = ({
   setZipVal,
   distance,
   setDistance,
+  range,
+  setRange,
   interest,
   setInterest,
   localeFormat,
@@ -161,8 +170,11 @@ const TargetingPage = ({
             <StepperWrapper pageHeading={'Choose Your Target Audience'}>
               <div>
                 <div elevation={2}>
-                  <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
-                    How close to your business would you like ads to be shown?
+                  <InputMainLabel
+                    className={clsx(classes.textStyle, classes.titleStyle)}
+                    style={{ fontWeight: 'bold' }}
+                  >
+                    Where would you like to advertise?
                   </InputMainLabel>
                   <Box>
                     <div>
@@ -174,7 +186,7 @@ const TargetingPage = ({
                         style={{ width: 'fit-content', minWidth: '250px' }}
                         className="m-auto"
                       >
-                        <FormControlLabel
+                        {/* <FormControlLabel
                           value="hyper-local"
                           control={<StyledRadio />}
                           label={<Typography className={classes.textStyle}>Hyper Local</Typography>}
@@ -185,14 +197,12 @@ const TargetingPage = ({
                           label={
                             <Typography className={classes.textStyle}>Local (5 miles)</Typography>
                           }
-                        />
+                        /> */}
                         <FormControlLabel
                           value="drive"
                           control={<StyledRadio />}
                           label={
-                            <Typography className={classes.textStyle}>
-                              A Drive Away (15 miles)
-                            </Typography>
+                            <Typography className={classes.textStyle}>Near a Specific Address</Typography>
                           }
                         />
                         <FormControlLabel
@@ -206,7 +216,10 @@ const TargetingPage = ({
 
                   {distance === 'hyper-local' && localeFormat === 'zip' && (
                     <Box marginTop="2rem">
-                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                      <InputMainLabel
+                        className={clsx(classes.textStyle, classes.titleStyle)}
+                        style={{ fontWeight: 'bold' }}
+                      >
                         Enter your target location's zip code{' '}
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
@@ -247,7 +260,10 @@ const TargetingPage = ({
                   )}
                   {distance === 'drive' && (
                     <Box marginTop="2rem">
-                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                      <InputMainLabel
+                        className={clsx(classes.textStyle, classes.titleStyle)}
+                        style={{ fontWeight: 'bold' }}
+                      >
                         Enter your target location's address:
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
@@ -290,7 +306,10 @@ const TargetingPage = ({
                   )}
                   {distance === 'local' && (
                     <Box marginTop="2rem">
-                      <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                      <InputMainLabel
+                        className={clsx(classes.textStyle, classes.titleStyle)}
+                        style={{ fontWeight: 'bold' }}
+                      >
                         Enter your target location's address:
                       </InputMainLabel>
                       <Box className={classes.targetLocationInputContainer}>
@@ -332,8 +351,31 @@ const TargetingPage = ({
                     </Box>
                   )}
 
+                  {distance === 'drive' && (
+                    <Box marginTop="2rem">
+                      <InputMainLabel
+                        className={clsx(classes.textStyle, classes.titleStyle)}
+                        style={{ fontWeight: 'bold' }}
+                      >
+                        How far from this location (in miles) would you like your ad to reach?
+                      </InputMainLabel>
+                      <Box className={classes.targetLocationInputContainer}>
+                        <Input
+                          disableUnderline
+                          className={classes.InputItem}
+                          placeholder="Miles"
+                          value={range}
+                          onChange={(e) => setRange(e.target.value)}
+                        />
+                      </Box>
+                    </Box>
+                  )}
+
                   <Box marginTop="2rem">
-                    <InputMainLabel className={classes.textStyle} style={{ fontWeight: 'bold' }}>
+                    <InputMainLabel
+                      className={clsx(classes.textStyle, classes.titleStyle)}
+                      style={{ fontWeight: 'bold' }}
+                    >
                       Enter a keyword that your customers would be interested in:
                     </InputMainLabel>
                     <Box className={classes.targetLocationInputContainer}>
@@ -360,7 +402,9 @@ const TargetingPage = ({
                 </div>
               </div>
             </StepperWrapper>
-            <Shoutbox>Find people interested in your business by selecting a location and target interest.</Shoutbox>
+            <Shoutbox>
+              Find people interested in your business by selecting a location and target interest.
+            </Shoutbox>
           </div>
         </Box>
       )}

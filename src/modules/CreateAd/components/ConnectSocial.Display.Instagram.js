@@ -82,11 +82,17 @@ const useStyles = makeStyles(() => ({
     width: '170px',
     height: '35px',
     fontSize: '1em',
-    padding: '1.25em',
+    padding: '0',
+    marginRight: '16px',
+
+    '&:hover': {
+      borderColor: '#8ABBE6',
+      background: 'white',
+    },
 
     ['@media (min-width:450px)']: {
-      width: '224px',
-      height: '50px',
+      width: '210px',
+      height: '45px',
       fontSize: '1.25em',
     },
   },
@@ -106,7 +112,7 @@ const useStyles = makeStyles(() => ({
   },
   AdHeadline: {
     fontSize: '1.1em',
-    color: '1D447B',
+    color: 'rgb(0, 70, 143)',
 
     ['@media (min-width:450px)']: {
       fontSize: '1.15em',
@@ -115,6 +121,7 @@ const useStyles = makeStyles(() => ({
   adDescription: {
     fontSize: '0.9em',
     padding: '5px',
+    color: '#686868',
 
     ['@media (min-width:450px)']: {
       fontSize: '1em',
@@ -185,8 +192,8 @@ const InstagramSocialDisplay = ({ currentCampaign, previewUrl }) => {
       </CardActions>
       <CardContent>
         <Typography className={classes.adDescription} variant="body2" component="p">
-          <strong className={classes.AdHeadline}>{currentCampaign.headline2}</strong>:
-          {currentCampaign.adDescription}
+          <strong className={classes.AdHeadline}>{currentCampaign.headline2}</strong>
+          {': ' + currentCampaign.adDescription}
         </Typography>
       </CardContent>
     </AdPreviewDisplayContainer>

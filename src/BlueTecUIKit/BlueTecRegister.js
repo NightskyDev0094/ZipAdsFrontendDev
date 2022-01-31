@@ -46,6 +46,8 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       },
     },
   });
+  const [password, setPassword] = React.useState(false);
+  const [remember, setRemember] = React.useState(false);
 
   const parseErrorMessage = (errorResponse) => {
     let errorMessage = '';
@@ -115,7 +117,7 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       {} */}
       <div className="row m-0">
         <div className="col-lg-6 p-5" style={{ minHeight: 'calc(100vh - 297.38px)' }}>
-          <h1 className="text-center mb-4" style={{ color: '#00468f', fontWeight: '600' }}>
+          <h1 className="text-center mb-4" style={{ color: '#00468f', fontFamily: 'sans-serif', fontSize: '42px' }}>
             Register
           </h1>
           <form
@@ -129,8 +131,8 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
             }}
           >
             <div className="row">
-              <div className="col-md-12">
-                <div className="field-set">
+              <div className="col-md-12 mb-2">
+                <div className="field-set input-type">
                   {/* <label>User Name:</label> */}
                   <TextField
                     type="text"
@@ -157,8 +159,8 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                   />
                 </div>
               </div>
-              <div className="col-md-12">
-                <div className="field-set">
+              <div className="col-md-12 mb-2">
+                <div className="field-set input-type">
                   {/* <label>Email Address:</label> */}
                   <TextField
                     type="text"
@@ -184,11 +186,11 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                   />
                 </div>
               </div>
-              <div className="col-md-12">
-                <div className="field-set">
+              <div className="col-md-12 mb-2">
+                <div className="field-set input-type">
                   {/* <label>Password:</label> */}
                   <TextField
-                    type="password"
+                    type={!password ? 'password' : 'text'}
                     name="password"
                     id="password"
                     placeholder="Create a Password"
@@ -212,10 +214,10 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                 </div>
               </div>
               <div className="col-md-12">
-                <div className="field-set">
+                <div className="field-set input-type">
                   {/* <label>Re-enter Password:</label> */}
                   <TextField
-                    type="password"
+                    type={!password ? 'password' : 'text'}
                     name="re-password"
                     id="re-password"
                     placeholder="Re-Enter Password"
@@ -238,10 +240,52 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                   />
                 </div>
               </div>
-              <div className="col-md-12">
-                <div className="d-flex align-items-center" style={{ padding: '25px 0' }}>
-                  <input type="checkbox" className="mr-2" />
-                  <p>Remember Me</p>
+              <div className="col-md-12 d-flex justify-content-between">
+                <div
+                  className="d-flex align-items-center"
+                  style={{ padding: '25px 0', cursor: 'pointer', userSelect: 'none' }}
+                  onClick={() => setPassword(!password)}
+                >
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    style={{ width: '17px', height: '17px' }}
+                    checked={password}
+                  />
+                  <p
+                    style={{
+                      color: '#5c5c5c',
+                      fontSize: '17px',
+                      fontWeight: 600,
+                      fontFamily: 'Nunito',
+                    }}
+                  >
+                    Show Password
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center"
+                  style={{ padding: '25px 0', cursor: 'pointer', userSelect: 'none' }}
+                  onClick={() => {
+                    setRemember(!remember);
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    style={{ width: '17px', height: '17px' }}
+                    checked={remember}
+                  />
+                  <p
+                    style={{
+                      color: '#5c5c5c',
+                      fontSize: '17px',
+                      fontWeight: 600,
+                      fontFamily: 'Nunito',
+                    }}
+                  >
+                    Remember Me
+                  </p>
                 </div>
               </div>
               <div className="col-md-12">
@@ -250,9 +294,11 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
                     style={{
                       border: 'solid 1px #cccccc',
                       color: 'white',
-                      padding: '10px 0',
-                      backgroundColor: '#005dbf',
-                      fontSize: '18px',
+                      padding: '14px 0',
+                      backgroundColor: '#00468f',
+                      fontSize: '23px',
+                      marginTop: '20px',
+                      borderRadius: '6px',
                     }}
                     type="submit"
                     className="btn btn-custom color-2 w-100 border-0"

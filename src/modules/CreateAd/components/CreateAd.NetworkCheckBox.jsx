@@ -3,7 +3,10 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles({
-  Vessel: { marginBottom: '3em', textAlign: 'center' },
+  Vessel: {
+    marginBottom: '3em',
+    textAlign: 'center',
+  },
   CheckVessel: {
     marginBottom: '0.75rem',
     display: 'flex',
@@ -17,8 +20,8 @@ const useStyles = makeStyles({
     width: '1.25rem',
     cursor: 'pointer',
     ['@media (min-width:450px)']: {
-      height: '2.5rem',
-      width: '2.5rem',
+      height: '2rem',
+      width: '2rem',
     },
   },
   Image: {
@@ -31,8 +34,8 @@ const useStyles = makeStyles({
       height: '3.5em',
     },
     ['@media (min-width:1200px)']: {
-      width: '5em',
-      height: '5em',
+      width: '4.3em',
+      height: '4.3em',
     },
   },
   TitleText: {
@@ -40,11 +43,14 @@ const useStyles = makeStyles({
     marginLeft: 'auto',
     width: '75%',
     fontSize: '1rem',
+    fontFamily: 'sans-serif',
+    maxWidth: '250px',
+
     ['@media (min-width:450px)']: {
-      fontSize: '1.5rem',
+      fontSize: '1.3rem',
     },
     ['@media (min-width:1200px)']: {
-      fontSize: '2rem',
+      fontSize: '1.8rem',
     },
   },
 });

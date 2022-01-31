@@ -8,19 +8,22 @@ import GoogleAdNetworkDisplay from './ConnectSocial.Display.GoogleNetworkAd';
 import GoogleSocialDisplay from './ConnectSocial.Display.Google';
 import CreateCampaignButton from './CreateCampaignButton';
 import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
+import { typeOf } from 'react-is';
 
 const useStyles = makeStyles({
   CarouselContainer: {
     position: 'relative',
     marginTop: '2em',
+    overflow: 'hidden',
   },
   CarouselStepNumber: {
     position: 'absolute',
-    top: -10,
     left: 10,
-    fontSize: '1rem',
-    color: '#394044',
-    ['@media (min-width:450px)']: {
+    fontSize: '1.8rem',
+    color: '#00468f',
+    fontFamily: 'sans-serif',
+
+    ['@media (max-width:576px)']: {
       fontSize: '1.5rem',
       top: 0,
     },
@@ -69,14 +72,27 @@ const useStyles = makeStyles({
       width: '2em',
     },
   },
-
   PreviewTitle: {
     width: '100%',
     textAlign: 'center',
-    marginTop: '0.5em',
+    marginTop: '3em',
+    marginBottom: '0',
     fontSize: '2rem',
-    ['@media (min-width:450px)']: {
-      fontSize: '3rem',
+    fontWeight: '600',
+    color: '#00468f',
+    fontFamily: 'sans-serif',
+  },
+  SummaryPreviewTitle: {
+    width: '100%',
+    textAlign: 'center',
+    marginTop: '0.5em',
+    fontSize: '32px',
+    color: '#00468f',
+    fontFamily: 'sans-serif',
+    letterSpacing: '1px',
+
+    ['@media (max-width:576px)']: {
+      fontSize: '24px',
     },
   },
   PreviewContainer: {
@@ -95,7 +111,7 @@ const useStyles = makeStyles({
     ['@media (min-width:450px)']: {
       padding: '50px 0px',
       width: '80%',
-      height: '60em',
+      height: '55em',
       margin: '0px auto',
     },
   },
@@ -120,6 +136,7 @@ function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
     const AdWordStartIndex = title ? title.lastIndexOf(wordToRemove) : -1;
     return AdWordStartIndex === -1 ? title : title.substring(0, AdWordStartIndex);
   };
+  const isSummaryPage = window.location.href.toString().includes('summary');
 
   const handleArrowClick = (leftClick) => {
     const networksLength = chosenSocialNetworks.length;
@@ -134,9 +151,11 @@ function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
 
   return (
     <div className={classes.CarouselContainer}>
-      <h4 className={classes.CarouselStepNumber}>{`${currentStepIndex + 1}/${
-        chosenSocialNetworks.length
-      }`}</h4>
+      {!isSummaryPage && (
+        <h4 className={classes.CarouselStepNumber}>{`${currentStepIndex + 1}/${
+          chosenSocialNetworks.length
+        }`}</h4>
+      )}
       <div className={classes.LeftCarouselButton} onClick={() => handleArrowClick(true)}>
         <CreateCampaignButton>Back</CreateCampaignButton>
       </div>
@@ -152,11 +171,14 @@ function AdPreviewCarousel({ chosenSocialNetworks, formInfo, previews }) {
       {/* <button className={classes.RightCarouselButton} onClick={() => handleArrowClick(false)}>
         <ForwardIcon className={classes.ArrowIcon} />
       </button> */}
-      <h2 className={classes.PreviewTitle}>
-        {removeAdFromTitle(chosenSocialNetworks[currentStepIndex])}
-      </h2>
+      {!isSummaryPage ? (
+        <h2 className={classes.PreviewTitle}>{chosenSocialNetworks[currentStepIndex]}</h2>
+      ) : (
+        <h2 className={classes.SummaryPreviewTitle}>Before we go live, please confirm that everything looks right:</h2>
+      )}
       <section className={classes.PreviewContainer}>
-        {chosenSocialNetworks[currentStepIndex] === SOCIAL_NETWORK_TITLES.InstagramAd && (
+      {/* === SOCIAL_NETWORK_TITLES.InstagramAd */}
+        {!chosenSocialNetworks[currentStepIndex] && (
           <InstagramSocialDisplay
             currentCampaign={formInfo}
             previewUrl={previews.squareImgPreviewUrl}

@@ -32,6 +32,7 @@ import BackgroundImage1 from './images/background/7.png';
 
 const useStyles = makeStyles((theme) => ({
   boardTitle: {
+    marginBottom: '22px',
     fontWeight: '600',
   },
   boardContent: {

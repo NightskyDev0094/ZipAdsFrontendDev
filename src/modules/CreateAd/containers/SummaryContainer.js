@@ -19,6 +19,15 @@ import {
 import StepperWrapper from '../components/StepperWrapper';
 import useCheckNetwork from '../hooks/useCheckNetwork';
 import { SOCIAL_NETWORK_TITLES } from '../hooks/useCreateCampaignForm';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  summaryContainer: {
+    width: '88vw',
+    margin: '0 auto',
+    position: 'relative',
+  },
+});
 
 const SummaryContainer = ({
   completeStep,
@@ -38,6 +47,7 @@ const SummaryContainer = ({
     SUCCESS: 'SUCCESS',
     ERROR: 'ERROR',
   };
+  const classes = useStyles();
   const history = useHistory();
 
   /** Necessary to request most up to date campaign as it exists in the server */
@@ -147,9 +157,11 @@ const SummaryContainer = ({
     <>
       {networkError && <ErrorFallBackPage error={networkError} />}
       <ErrorHandler>
-        <StepperWrapper pageHeading="Let's Get Your Ad Online">
-          <SummaryPage onHandleClick={onClick} SUBMIT_STATUS={SUBMIT_STATUS} />
-        </StepperWrapper>
+        <div className={classes.summaryContainer}>
+          <StepperWrapper pageHeading="Let's Get Your Ad Online">
+            <SummaryPage onHandleClick={onClick} SUBMIT_STATUS={SUBMIT_STATUS} />
+          </StepperWrapper>
+        </div>
       </ErrorHandler>
       <BlueTecLandingFooter />
     </>

@@ -23,7 +23,7 @@
 }
 
 #header #mainmenu {
-  font-size: 25px;
+  font-size: 28px;
   line-height: 60px;
 }
 
@@ -42,7 +42,7 @@
 @media screen and (max-width: 1000px) {
   #header {
     /* background-color: blue !important; */
-    height: 500px !important;
+    height: 400px !important;
     position: relative !important;
     margin-bottom: 30px;
   }

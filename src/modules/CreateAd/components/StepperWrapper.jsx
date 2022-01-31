@@ -35,14 +35,20 @@ const useStyles = makeStyles({
     textAlign: 'center',
     color: '#00468f',
     fontWeight: 600,
-    fontSize: '3rem',
+    fontSize: '32px',
 
     ['@media (max-width:992px)']: {
       marginTop: '4rem',
     },
+
+    ['@media (max-width:576px)']: {
+      fontSize: '24px',
+    },
   },
 
   stepLabel: {
+    display: 'flex',
+    justifyContent: 'center',
     color: '#00468f',
     fontSize: '16px',
     fontWeight: 'bold',
@@ -51,11 +57,20 @@ const useStyles = makeStyles({
     margin: 'auto',
     paddingBottom: '16px',
   },
+  stepper: {
+    ['@media (max-width:576px)']: {
+      padding: '0px',
+    },
+  },
 });
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
     top: 88,
+
+    ['@media (max-width:576px)']: {
+      top: 82,
+    },
   },
   active: {
     '& $line': {
@@ -70,14 +85,14 @@ const ColorlibConnector = withStyles({
   line: {
     height: 3,
     border: 0,
-    backgroundColor: '#eaeaf0',
+    backgroundColor: '#a6a6a6',
     borderRadius: 1,
   },
 })(StepConnector);
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#a6a6a6',
     zIndex: 1,
     color: '#fff',
     width: 55,
@@ -89,6 +104,12 @@ const useColorlibStepIconStyles = makeStyles({
     fontWeight: 'bold',
     fontSize: '2.5rem',
     cursor: 'pointer',
+
+    ['@media (max-width:576px)']: {
+      width: 45,
+      height: 45,
+      fontSize: '2rem'
+    },
   },
   active: {
     backgroundColor: '#017cff',
@@ -96,6 +117,12 @@ const useColorlibStepIconStyles = makeStyles({
     height: 65,
     marginTop: '-5px',
     fontSize: '3rem',
+
+    ['@media (max-width:576px)']: {
+      width: 55,
+      height: 55,
+      fontSize: '2.5rem',
+    },
   },
   completed: {
     backgroundColor: '#017cff',
@@ -130,7 +157,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
   const history = useHistory();
 
   const StepperRoutes = [
-    '/create/create-campaign',
+    '/create/campaign',
     '/create/targeting',
     '/create/budget',
     '/create/summary',
@@ -154,7 +181,7 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
 
     switch (step) {
       case 0:
-        path = '/create/create-campaign';
+        path = '/create/campaign';
         break;
       case 1:
         path = '/create/targeting';
@@ -193,7 +220,12 @@ export default function StepperWrapper({ formSubmitHandler, pageHeading, childre
         <Typography variant="h2" gutterBottom className={classes.BlueText}>
           {pageHeading}
         </Typography>
-        <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        <Stepper
+          alternativeLabel
+          activeStep={activeStep}
+          connector={<ColorlibConnector />}
+          className={classes.stepper}
+        >
           {CREATE_AD_STEPS.map((label, index) => (
             <Step key={label}>
               <StepLabel StepIconComponent={ColorlibStepIcon} onClick={() => handleStep(index)}>

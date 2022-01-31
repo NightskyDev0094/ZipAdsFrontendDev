@@ -94,7 +94,7 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
 
   return (
     <div id="wrapper" style={{ backgroundColor: '#080934' }}>
-      <header className="header-light transparent scroll-light" style={{padding: '10px'}}>
+      <header className="header-light transparent scroll-light" style={{ padding: '10px' }}>
         <div style={{ width: '90%', margin: 'auto' }}>
           <div style={{ height: '100%' }} className="row">
             <div className="col-md-12">
@@ -109,10 +109,15 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                 <div className="align-self-center ml-auto header-col-mid">
                   <ul id="mainmenu">
                     <li>
-                      <Link to="/select-campaign">Create Ad</Link>
+                      <Link to="/select-campaign" style={{ color: 'rgb(255, 225, 133)' }}>
+                        Create Ad
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/analytics">Analytics</Link>
+                      <Link to="/analytics" style={{ color: 'white' }}>
+                        {' '}
+                        Analytics
+                      </Link>
                     </li>
                     <li>
                       <div

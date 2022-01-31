@@ -11,84 +11,92 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import { RadioGroup } from '@material-ui/core';
 import ConnectSocialNetworkButton from '../components/ConnectSocialNetworkButton';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
-import BlueTecAppBarAuthorizedAppBar from '../../../BlueTecUIKit/BlueTecAppBarAuthorizedAppBar';
 
 const useStyles = makeStyles(() => ({
-  BlueText: { color: '#0b6ea5', 'font-weight': 600, width: '100%', textAlign: 'center' },
-  InputItem: {
+  BlueText: {
+    color: '#00468f',
     width: '100%',
-    height: '3rem',
-    padding: '0.5rem 1rem',
-    border: 'solid 1px #cccccc',
-    borderRadius: '0.25rem',
-    fontSize: '1.25rem',
+    textAlign: 'center',
+    fontSize: '32px',
+    fontFamily: 'sans-serif',
+    letterSpacing: '0.5px',
+  },
+  InputItem: {
     marginBottom: '1em',
-
-    ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
+    ['& > input']: {
+      padding: '0 !important',
+    },
   },
   FormSection: {
     width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: '4em',
-    ['@media (min-width: 450px)']: { width: '45em' },
   },
   SelectItem: {
-    width: '100%',
+    fontSize: '14px',
     height: '3rem',
     padding: '0.5rem 1rem',
     border: 'solid 1px #cccccc',
-    borderRadius: '0.25rem',
+    borderRadius: '5px',
     marginBottom: '1em',
-    fontSize: '1.25rem',
     display: 'inline-block',
     cursor: 'pointer',
 
-    ['& > option']: { padding: '1.75em 0px' },
-
-    ['@media (min-width: 450px)']: { height: '3.5rem', width: '85%', fontSize: '1.7rem' },
+    ['& > option']: { padding: '10px 0px' },
   },
   AToZ: {
     display: 'none',
     ['@media (min-width: 450px)']: {
       display: 'inline-block',
-      padding: '0.5rem 1rem',
-      color: '#cccccc',
       borderRadius: '0.25rem',
       textAlign: 'center',
-      height: '3.5rem',
-      width: '13%',
-      marginLeft: '2%',
-      fontSize: '1.7rem',
+      marginLeft: '10px',
+      fontSize: '14px',
+      fontStyle: 'italic',
+      marginBottom: '1em',
     },
   },
   RadioItem: {
-    width: '100%',
+    width: '260px',
     fontSize: '1.75rem',
     display: 'flex',
     alignItems: 'center',
+    margin: 'auto',
+    marginBottom: '1.5rem !important',
     ['& > input']: {
       height: '1em',
       width: '1em',
-      marginLeft: '25%',
       padding: '0.5em',
       cursor: 'pointer',
     },
-    ['& > label']: { marginLeft: '1.25em' },
+    ['& > label']: {
+      fontSize: '21px',
+      fontFamily: 'system-ui',
+      letterSpacing: '0.5px',
+      margin: 0,
+      paddingLeft: '20px',
+    },
   },
 
   SubmitButton: {
-    width: '40%',
-    height: '3rem',
-    padding: '0.5rem 1rem',
-    border: 'solid 1px #cccccc',
-    backgroundColor: '#0b6ea5',
-    color: '#cccccc',
-    borderRadius: '0.5rem',
-    margin: '1em auto',
-    display: 'block',
+    width: '282px',
+    fontFamily: 'Nunito',
+    color: 'white',
+    padding: '14px 0px',
+    backgroundColor: 'rgb(0, 70, 143)',
+    fontSize: '23px',
+    borderRadius: '6px',
+    border: 'none',
 
-    ['@media (min-width: 450px)']: { height: '3.5rem', fontSize: '1.7rem' },
+    '&:hover': {
+      backgroundColor: '#002d5c',
+    },
   },
 }));
 
@@ -176,20 +184,20 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
 
   return (
     <>
-      <BlueTecAppBarAuthorizedAppBar /> 
       <Container maxWidth="md" sx={{ marginTop: '20em' }}>
         <form
-          style={{ width: '100%', paddingTop: '3em', paddingBottom: '3em' }}
+          style={{ width: '100%' }}
           onSubmit={(e) => {
             e.preventDefault();
             submitHandler();
           }}
+          className="input-placeholder"
         >
-          <Typography variant="h2" gutterBottom className={classes.BlueText}>
+          <Typography variant="h2" gutterBottom className={classes.BlueText} style={{margin: '10px 0px 20px 0px'}}>
             Let's Get to Know Your Business
           </Typography>
           {/* GET TO KNOW BUSINESS SECTION  */}
-          <Box className={classes.FormSection}>
+          <Box className={classes.FormSection} style={{ display: 'flex', flexDirection: 'column' }}>
             <Input
               disableUnderline
               autoFocus
@@ -239,7 +247,10 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
             Select Your Industry
           </Typography>
           {/* SELECT INDUSTRY SECTION  */}
-          <Box className={classes.FormSection}>
+          <Box
+            className={classes.FormSection}
+            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          >
             <select
               className={classes.SelectItem}
               label="Industry"
@@ -256,7 +267,16 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
           </Box>
           {/* ADVERTISING FAMILIARITY SECTION  */}
           <Box className={classes.FormSection}>
-            <h2 style={{ width: '100%', textAlign: 'center' }}>
+            <h2
+              className="mb-4"
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                fontSize: '22px',
+                fontFamily: 'sans-serif',
+                letterSpacing: '0.5px',
+              }}
+            >
               How familiar are you with online advertising?
             </h2>
             {AdvertisingFamiliarity.map((item) => (
@@ -269,22 +289,46 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
                   checked={advertisingFamiliarity === item.value}
                   onChange={(e) => setAdvertisingFamiliarity(e.target.value)}
                 />
-                <label htmlFor={item.id}>{item.label}</label>
+                <label
+                  htmlFor={item.id}
+                  style={{ fontSize: '21px', fontFamily: 'system-ui', letterSpacing: '0.5px' }}
+                >
+                  {item.label}
+                </label>
               </div>
             ))}
           </Box>
           {/* CONNECT SOCIAL NETWORKS SECTION  */}
           <Box className={classes.FormSection}>
-            <h2 style={{ width: '100%', textAlign: 'center' }}>
+            <h2
+              className="mb-4"
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                fontSize: '22px',
+                fontFamily: 'sans-serif',
+                letterSpacing: '0.5px',
+              }}
+            >
               Let's connect your social accounts:
             </h2>
             <ConnectSocialNetworkButton socialNetworkName="Facebook" />
             <ConnectSocialNetworkButton socialNetworkName="Google" />
-            <p style={{ width: '100%', textAlign: 'center', fontSize: '1em' }}>
-              <a style={{ textDecoration: 'underline' }}>Need help?</a>
+            <p style={{ width: '100%', textAlign: 'center' }}>
+              <a
+                style={{
+                  textDecoration: 'underline',
+                  color: '#00468f',
+                  fontSize: '21px',
+                  fontFamily: 'sans-serif',
+                  fontStyle: 'italic',
+                }}
+              >
+                Need help?
+              </a>
             </p>
           </Box>
-          <Box className={classes.FormSection}>
+          <Box className={classes.FormSection} style={{display: 'flex', justifyContent: 'center'}}>
             <button type="submit" className={classes.SubmitButton}>
               Submit
             </button>

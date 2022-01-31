@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import LibraryCheckmark from '../../../BlueTecUIKit/images/icons/library_green checkmark.png';
+import LibraryCheckmark from '../../../BlueTecUIKit/images/icons/green checkmark.png';
 import LibraryOpenBook from '../../../BlueTecUIKit/images/library_open book.png';
 import CreateCampaignButton from './CreateCampaignButton';
 import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
@@ -29,6 +29,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  titleStyle: {
+    color: '#00468f',
+    margin: 0,
+    fontSize: '32px',
+    letterSpacing: '1px',
+    fontFamily: 'sans-serif',
+    paddingTop: '20px',
+
+    ['@media (max-width:1250px)']: {
+      fontSize: '2.5rem',
+    },
+
+    ['@media (max-width:576px)']: {
+      fontSize: '2rem',
+    },
+  },
+
   industyImageText: {
     position: 'absolute',
     width: 'fit-content',
@@ -36,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: 'italic',
     top: '50%',
     transform: 'translate(365px, -50%)',
-    fontSize: '18px',
+    fontSize: '20px',
+    fontFamily: 'sans-serif',
 
     ['@media (max-width:1024px)']: {
       left: '50%',
@@ -47,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
   industyTextContent: {
     width: '100%',
-    backgroundColor: '#017cff',
+    backgroundColor: '#00468f',
 
     ['@media (max-width:1024px)']: {
       paddingBottom: '38px',
@@ -112,16 +130,16 @@ function ImageLibrary({
     <div className="d-flex flex-column align-items-center">
       <div className={classes.industyTextContent}>
         <div className="position-relative m-auto" style={{ width: 'fit-content' }}>
-          <h4 className="text-white m-0 py-2" style={{fontSize: '30px'}}>Image Library: Beauty</h4>
+          <h4 className="text-white m-0 py-2" style={{ fontSize: '32px', fontFamily: 'sans-serif' }}>
+            Image Library: Beauty
+          </h4>
           <a className={classes.industyImageText} style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={LibraryOpenBook} style={{ width: '28px', marginRight: '5px' }} />
+            <img src={LibraryOpenBook} style={{ width: '36px', marginRight: '5px' }} />
             <ins>View other industry images</ins>
           </a>
         </div>
       </div>
-      <p className="font-weight-bold pt-4 m-0" style={{ color: '#1f5c9c', fontSize: '30px' }}>
-        Choose an Ad Image:
-      </p>
+      <p className={classes.titleStyle}>Choose an Ad Image:</p>
       <div
         className="py-4 position-relative"
         style={{ paddingLeft: '100px', paddingRight: '100px' }}
@@ -136,7 +154,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -148,7 +166,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -160,7 +178,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -172,7 +190,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -184,7 +202,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
           <div className="position-relative">
@@ -196,7 +214,7 @@ function ImageLibrary({
             <img
               className="position-absolute libraryCheckmark d-none"
               src={LibraryCheckmark}
-              style={{ width: '60px', bottom: '0', left: '0' }}
+              style={{ width: '40px', margin: '5px', bottom: '0', left: '0' }}
             />
           </div>
         </div>
@@ -209,9 +227,9 @@ function ImageLibrary({
       </div>
       <p
         className="font-italic font-weight-bold py-4"
-        style={{ color: '#1f5c9c', fontSize: '18px' }}
+        style={{ color: '#00468f', fontSize: '18px' }}
       >
-        or Upload your own
+        Upload Your Own
       </p>
       <div className="pb-4">
         <input
