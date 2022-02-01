@@ -62,7 +62,7 @@ const BusinessInfo = () => {
           </div>
           <div>
             <p className="font-weight-light m-0">Business Address:</p>
-            <p className='m-0'>555 Main St</p>
+            <p className="m-0">555 Main St</p>
             <p>Townsville, CA 10101</p>
           </div>
           <div>
@@ -80,13 +80,12 @@ const BusinessInfo = () => {
           }}
         >
           <Button
-            className="text-light font-weight-bold border-0"
+            className="text-light border-0"
             style={{
               backgroundColor: '#00468f',
               borderRadius: '8px',
-              width: '120px',
+              width: '140px',
               height: '55px',
-              fontSize: '18px',
             }}
           >
             Edit

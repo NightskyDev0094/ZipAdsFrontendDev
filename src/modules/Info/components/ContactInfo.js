@@ -81,13 +81,12 @@ const ContactInfo = () => {
               }}
             >
               <Button
-                className="text-light font-weight-bold border-0Z"
+                className="text-light border-0Z"
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '120px',
+                  width: '140px',
                   height: '55px',
-                  fontSize: '18px',
                 }}
                 onClick={(e) => setEdit(true)}
               >
@@ -125,13 +124,12 @@ const ContactInfo = () => {
               }}
             >
               <Button
-                className="text-light font-weight-bold border-0Z"
+                className="text-light border-0Z"
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '120px',
+                  width: '140px',
                   height: '55px',
-                  fontSize: '18px',
                 }}
                 onClick={(e) => setEdit(false)}
               >

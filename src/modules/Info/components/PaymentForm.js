@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
@@ -23,6 +23,16 @@ const useStyles = makeStyles(() => ({
       fontSize: '20px',
     },
   },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    marginBottom: '20px',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
+  },
 }));
 
 const PaymentForm = ({ paymentCallback }) => {
@@ -31,11 +41,13 @@ const PaymentForm = ({ paymentCallback }) => {
   const [formState, setFormState] = React.useState({
     isFormSubmitted: false,
     fields: {
+      fullName: '',
       cardNumber: '',
       date: '',
       CVCNumber: '',
       zipCode: '',
       fieldHasWhitepace: {
+        fullName: false,
         cardNumber: false,
         date: false,
         CVCNumber: false,
@@ -47,12 +59,7 @@ const PaymentForm = ({ paymentCallback }) => {
   return (
     <div className="w-100 h-100 paymenForm">
       <div className={clsx(classes.PaymentFormContainer, classes.textStyle)}>
-        <p
-          className="text-center"
-          style={{ color: '#00468f', fontSize: '30px', marginBottom: '64px' }}
-        >
-          Payment Portal
-        </p>
+        <p className={classes.infoTitle}>Payment Portal</p>
         <form
           name="contactForm"
           className="form-border d-flex flex-column"
@@ -64,7 +71,31 @@ const PaymentForm = ({ paymentCallback }) => {
             }
           }}
         >
-          <div className="field-set">
+          <div className="field-set input-type">
+            {/* <label>User Name:</label> */}
+            <TextField
+              type="text"
+              name="fullName"
+              placeholder="First and Last Name"
+              id="fullName"
+              required
+              variant="standard"
+              value={formState.fields.fullName}
+              InputProps={{ disableUnderline: true }}
+              onChange={(e) => {
+                if (e.target.value.includes(' ')) return;
+                setFormState({
+                  ...formState,
+                  fields: {
+                    ...formState.fields,
+                    fullName: e.target.value,
+                  },
+                });
+              }}
+              className="form-control form-style"
+            />
+          </div>
+          <div className="field-set input-type">
             {/* <label>User Name:</label> */}
             <TextField
               type="number"
@@ -88,7 +119,7 @@ const PaymentForm = ({ paymentCallback }) => {
               className="form-control form-style"
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Email Address:</label> */}
             <TextField
               type="text"
@@ -113,7 +144,7 @@ const PaymentForm = ({ paymentCallback }) => {
               style={{ marginBottom: '32px !important', marginTop: '0 !important' }}
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Password:</label> */}
             <TextField
               type="number"
@@ -138,7 +169,7 @@ const PaymentForm = ({ paymentCallback }) => {
               style={{ marginBottom: '32px !important', marginTop: '0 !important' }}
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Re-enter Password:</label> */}
             <TextField
               type="number"
@@ -172,13 +203,12 @@ const PaymentForm = ({ paymentCallback }) => {
               style={{
                 backgroundColor: '#00468f',
                 borderRadius: '8px',
-                width: '120px',
+                width: '140px',
                 height: '55px',
-                fontSize: '18px',
               }}
               type="submit"
               value="Add Card"
-              className="btn btn-custom border-0 text-light font-weight-bold"
+              className="btn btn-custom border-0 text-light"
             />
           </div>
         </form>

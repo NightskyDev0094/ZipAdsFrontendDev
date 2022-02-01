@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
@@ -30,6 +30,16 @@ const useStyles = makeStyles(() => ({
       gridTemplateColumns: '1fr',
     },
   },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    marginBottom: '20px',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
+  },
 }));
 
 const PaymentInfo = () => {
@@ -39,44 +49,7 @@ const PaymentInfo = () => {
   return (
     <div className="w-100 h-100">
       <div className={clsx(classes.paymentInfoContainer, classes.textStyle)}>
-        <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
-          Payment Portal
-        </p>
-        <div className={classes.info}>
-          <div>
-            <p className="font-weight-light m-0">Preferred Card:</p>
-            <p>AMEX ending in 5555</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Expiration Date:</p>
-            <p>08/24</p>
-          </div>
-        </div>
-        <div
-          style={{
-            paddingTop: '25px',
-            textAlign: 'center',
-          }}
-        >
-          <Button
-            className="text-light font-weight-bold border-0"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '120px',
-              height: '55px',
-              fontSize: '18px',
-            }}
-          >
-            Edit
-          </Button>
-        </div>
-        <p
-          className="text-center m-0"
-          style={{ color: '#00468f', fontSize: '30px', paddingTop: '80px' }}
-        >
-          Make a Payment
-        </p>
+        <p className={classes.infoTitle}>Make a Payment</p>
         <div className={classes.info}>
           <div>
             <p className="font-weight-light m-0">Amount Due:</p>
@@ -90,13 +63,12 @@ const PaymentInfo = () => {
           }}
         >
           <Button
-            className="font-weight-bold border-0"
+            className="border-0"
             style={{
               backgroundColor: '#4bf067',
               borderRadius: '8px',
-              width: '120px',
+              width: '140px',
               height: '55px',
-              fontSize: '18px',
               color: '#00468f',
             }}
           >

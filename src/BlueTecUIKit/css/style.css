@@ -2444,12 +2444,6 @@ hr {
   -webkit-box-shadow: none;
   color: #333;
 }
-.form-border input[type='text']:focus,
-.form-border textarea:focus,
-.form-underline input[type='email']:focus,
-.form-border select:focus {
-  background: #f5f9fd;
-}
 
 .form-subscribe {
   display: table;
@@ -10898,37 +10892,44 @@ img {
   right: 0;
 }
 
-.subscription .ant-table .ant-table-selection-col {
+.subscription .ant-table .ant-table-selection-col,
+.payment-list .ant-table .ant-table-selection-col {
   width: 0px !important;
 }
 
-.subscription thead tr th:last-of-type {
+.subscription thead tr th:last-of-type,
+.payment-list thead tr th:last-of-type {
   text-align: center;
 }
 
-.subscription thead tr th {
+.subscription thead tr th,
+.payment-list thead tr th {
   background: white;
   font-family: 'Nunito';
   font-weight: lighter !important;
   font-size: 20px;
 }
 
-.subscription tbody tr td {
+.subscription tbody tr td,
+.payment-list tbody tr td {
   background-color: #d9d9d9;
   font-size: 20px;
   font-family: 'SilkaMedium';
   font-weight: lighter;
 }
 
-.subscription tbody tr:hover td {
+.subscription tbody tr:hover td,
+.payment-list tbody tr:hover td {
   background-color: #d9d9d9 !important;
 }
 
-.subscription tr.ant-table-row-selected > td {
+.subscription tr.ant-table-row-selected > td,
+.payment-list tr.ant-table-row-selected > td {
   background-color: #9ad1f8 !important;
 }
 
-.subscription tr.ant-table-row-selected:hover > td {
+.subscription tr.ant-table-row-selected:hover > td,
+.payment-list tr.ant-table-row-selected:hover > td {
   background-color: #9ad1f8 !important;
 }
 
@@ -10938,7 +10939,9 @@ img {
 
 @media only screen and (min-width: 1280px) {
   .subscription thead tr th,
-  .subscription tbody tr td {
+  .subscription tbody tr td,
+  .payment-list thead tr th,
+  .payment-list tbody tr td {
     font-size: 26px;
   }
 }
@@ -10950,41 +10953,51 @@ img {
 }
 
 /* Switch */
-.subscription .ant-switch-checked {
+.subscription .ant-switch-checked,
+.payment-list .ant-switch-checked {
   background-color: #00468f !important;
 }
 
-.subscription .ant-switch {
-  display: block;
+.subscription .ant-switch,
+.payment-list .ant-switch {
   background-color: #737373;
   min-width: 74px;
   height: 32px;
   line-height: 26px;
+}
+
+.subscription .ant-switch {
+  display: block;
   margin: auto;
 }
 
-.subscription .ant-switch-inner {
+.subscription .ant-switch-inner,
+.payment-list .ant-switch-inner {
   font-size: 16px;
   font-family: 'Nunito';
   margin: 0 7px 0 30px;
 }
 
-.subscription .ant-switch-checked .ant-switch-inner {
+.subscription .ant-switch-checked .ant-switch-inner,
+.payment-list .ant-switch-checked .ant-switch-inner {
   margin: 0 30px 0 7px;
 }
 
-.subscription .ant-switch-handle {
+.subscription .ant-switch-handle,
+.payment-list .ant-switch-handle {
   top: 3px;
   left: 3px;
   width: 26px;
   height: 26px;
 }
 
-.subscription .ant-switch-checked .ant-switch-handle {
+.subscription .ant-switch-checked .ant-switch-handle,
+.payment-list .ant-switch-checked .ant-switch-handle {
   left: calc(100% - 27px - 2px);
 }
 
-.subscription .ant-switch-handle::before {
+.subscription .ant-switch-handle::before,
+.payment-list .ant-switch-handle::before {
   border-radius: 100%;
 }
 
@@ -11026,4 +11039,40 @@ img {
     width: 90%;
     padding: 2em;
   }
+}
+
+.ant-btn span {
+  font-family: 'Nunito';
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.payment-history thead > tr > th{
+  background-color: white !important;
+  font-size: 18px;
+  font-weight: bold !important;
+}
+
+.payment-history tbody > tr > td{
+  height: 117px;
+  font-family: 'SilkaLight';
+  font-weight: lighter;
+  font-size: 18px;
+  padding: 8px;
+}
+
+.payment-history col:first-of-type{
+  width: 30px
+}
+
+.payment-history thead > tr > th:first-of-type, .payment-history tbody > tr > td:first-of-type, .payment-history tbody > tr > td:last-of-type{
+  text-align: center;
+}
+
+.payment-history tbody > tr:nth-child(n) > td, .payment-history tbody > tr:nth-child(n):hover > td{
+  background-color: #d9d9d9;
+}
+
+.payment-history tbody > tr:nth-child(2n) > td, .payment-history tbody > tr:nth-child(2n):hover > td{
+  background-color: #9ad1f8;
 }

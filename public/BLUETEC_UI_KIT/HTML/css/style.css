@@ -2395,9 +2395,6 @@ hr {
 	-webkit-box-shadow: none;
 	color:#333;
 }
-.form-border input[type=text]:focus, .form-border textarea:focus, .form-underline input[type=email]:focus, .form-border select:focus{
-background: #F5F9FD;
-}
 
 .form-subscribe{
 	display:table;

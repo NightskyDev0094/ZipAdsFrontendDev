@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import PaymentForm from './PaymentForm';
 import PaymentInfo from './PaymentInfo';
+import PaymentList from './PaymentList';
+import PaymentHistory from './PaymentHistory';
 
 const useStyles = makeStyles(() => ({
   PaymentPortalContainer: {
@@ -40,7 +42,8 @@ const PaymentPortal = () => {
 
   return (
     <div className="w-100 h-100">
-      {!paymentFields ? <PaymentForm paymentCallback={paymentCallback} /> : <PaymentInfo />}
+      {/* {!paymentFields ? <PaymentForm paymentCallback={paymentCallback} /> : <PaymentInfo />} */}
+      <PaymentHistory />
     </div>
   );
 };
