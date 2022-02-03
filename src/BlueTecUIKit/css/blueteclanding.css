@@ -1,74 +1,73 @@
-#section-highlight{
-    background-image: url('../images/background/3b.png');
+#section-highlight {
+  background-image: url('https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/3b.png');
 }
 
-#section-pricing{
-    background-image: url('../images/background/3c.png') !important;
+#section-pricing {
+  background-image: url('https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/3c.png') !important;
 }
 
-#section-text{
-    background-image: url('../images/background/3d.png') !important;
+#section-text {
+  background-image: url('https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/3d.png') !important;
 }
 
-#microscope-people-landing{
-    width: 540px !important;
+#microscope-people-landing {
+  width: 540px !important;
 }
 
-#main-title{
-    font-size: 3.2vw;
-    color: #00468f
+#main-title {
+  font-size: 3.2vw;
+  color: #00468f;
 }
 
 #middle-title {
-    font-size: 65px;
-    color: #00468f
+  font-size: 65px;
+  color: #00468f;
 }
 
-#sub-title{
-    font-size: 1.7vw;
-    margin: 50px 0;
-    color: #00468f
+#sub-title {
+  font-size: 1.7vw;
+  margin: 50px 0;
+  color: #00468f;
 }
 
-#heres-how-it-works-text{
-    color: #1890ff;
-    font-size: 3.5vw;
+#heres-how-it-works-text {
+  color: #1890ff;
+  font-size: 3.5vw;
 }
 
-#heres-how-it-works-sub-text{
-    color: #1890ff;
-    font-size: 2.5vw;
+#heres-how-it-works-sub-text {
+  color: #1890ff;
+  font-size: 2.5vw;
 }
 
-#heres-what-our-customers-are-saying{
-    font-size: 3.3vw;
-    margin-bottom: 25px;
-}
-
-
-@media screen and (max-width: 1200px) {
-    #middle-title {
-        font-size: 3.2vw;
-    }
+#heres-what-our-customers-are-saying {
+  font-size: 3.3vw;
+  margin-bottom: 25px;
 }
 
 @media screen and (max-width: 1200px) {
-    #middle-title {
-        font-size: 5vw;
-    }
+  #middle-title {
+    font-size: 3.2vw;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #middle-title {
+    font-size: 5vw;
+  }
 }
 
 @media screen and (max-width: 992px) {
-    #middle-title {
-        font-size: 5vw;
-    }
+  #middle-title {
+    font-size: 5vw;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    #main-title{
-        font-size: 7vw;
-    } 
-    #sub-title{
-        font-size: 3vw; 
-    }  
+  #main-title {
+    font-size: 7vw;
+  }
+  #sub-title {
+    font-size: 3vw;
+  }
 }

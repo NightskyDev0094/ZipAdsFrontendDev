@@ -3,9 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { SERVER_URL } from '../environmentVariables';
 import { TextField } from '@material-ui/core';
-import SubHeaderBackgroundImage from './images/background/5.png';
-import SignIn_Up from './images/signin&up.png';
-import RegisterSectionImage from './images/background/3.png';
 import BlueTecAuthenticationSub from './BlueTecAuthenticationSub';
 
 import './css/colors/scheme-02.css';
@@ -24,6 +21,11 @@ import './css/colors/scheme-01.css';
 
 import './css/blueteclogin.css';
 import { bool } from 'prop-types';
+import { STATIC_URL } from '../environmentVariables';
+
+const SubHeaderBackgroundImage = STATIC_URL + 'images/background/5.png';
+const SignIn_Up = STATIC_URL + 'images/signin&up.png';
+const RegisterSectionImage = STATIC_URL + 'images/background/3.png';
 
 const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirectAfterSignUp }) => {
   const INPUT_MAX_LENGTH = 80;

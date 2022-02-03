@@ -32,14 +32,15 @@ import { getFbAdAccounts } from '../../../actions/account.fbAdActions';
 import { getGoogleAdAccounts } from '../../../actions/account.googleAdActions';
 import { getBusinessInfo } from '../../../actions/businessInfoActions';
 
-import backgroundImage from '../../../BlueTecUIKit/images/background/3.png';
 import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
-import alert from '../../../BlueTecUIKit/images/budget.png';
+import { STATIC_URL } from '../../../environmentVariables';
+const alert = STATIC_URL + 'images/budget.png';
+const backgroundImage = STATIC_URL + 'images/background/3.png';
 
 const useStyles = makeStyles((theme) => ({
   page: {

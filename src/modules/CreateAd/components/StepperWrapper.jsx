@@ -14,9 +14,10 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import CreateCampaignButton from './CreateCampaignButton';
 import clsx from 'clsx';
+import { STATIC_URL } from '../../../environmentVariables'
 
-import next from '../../../BlueTecUIKit/images/next.png';
-import back from '../../../BlueTecUIKit/images/back.png';
+const next = STATIC_URL + 'images/next.png';
+const back = STATIC_URL + 'images/back.png';
 
 const useStyles = makeStyles({
   PageVessel: {

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import NetworkCheckBox from '../../components/CreateAd.NetworkCheckBox';
-import InstagramLogoImage from '../../../../img/instagram-logo.png';
-import FacebookLogoImage from '../../../../img/FacebookLogin/facebook.png';
-import GoogleLogoImage from '../../../../img/google-icon.png';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { SOCIAL_NETWORK_TITLES } from '../../hooks/useCreateCampaignForm';
 import Shoutbox from '../../components/Shoutbox';
+import { STATIC_URL } from '../../../../environmentVariables';
+
+const InstagramLogoImage = STATIC_URL + 'img/instagram-logo.png';
+const FacebookLogoImage = STATIC_URL + 'img/FacebookLogin/facebook.png';
+const GoogleLogoImage = STATIC_URL + 'img/google-icon.png';
 
 const useStyles = makeStyles({
   ConnectSocialsVessel: {
