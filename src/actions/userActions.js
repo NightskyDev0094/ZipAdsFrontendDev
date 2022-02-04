@@ -24,7 +24,7 @@ const config = {
 //   setUserLoading();
 //   console.log('Running get Users');
 //   axios
-//     .get(`${SERVER_URL}/api/user/`, tokenConfig(getState))
+//     .get(`${SERVER_URL}/api/auth/user/`, tokenConfig(getState))
 //     .then((res) => {
 //       dispatch({
 //         type: GET_USER,
@@ -40,7 +40,7 @@ const config = {
 export const getUser = () => (dispatch, getState) => {
   setUserLoading();
   axios
-    .get(`${SERVER_URL}/api/user/`, tokenConfig(getState))
+    .get(`${SERVER_URL}/api/auth/user`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_USER,
@@ -54,7 +54,7 @@ export const getUser = () => (dispatch, getState) => {
 // Alternate Get User that runs with mapDispatchToProps
 export const getUserAsync = async (dispatch) => {
   await axios
-    .get(`${SERVER_URL}/api/user/`, config)
+    .get(`${SERVER_URL}/api/auth/user`, config)
     .then((res) => {
       dispatch({
         type: GET_USER,
@@ -72,7 +72,7 @@ export const getUserAsync = async (dispatch) => {
 export const deleteUser = (id) => (dispatch, getState) => {
   setUserLoading();
   axios
-    .delete(`${SERVER_URL}/api/user/${id}/`, tokenConfig(getState))
+    .delete(`${SERVER_URL}/api/auth/user/${id}`, tokenConfig(getState))
     .then((res) => {
       // dispatch(createMessage({ deleteUser: "Ad Deleted" }));
       dispatch({
@@ -96,7 +96,7 @@ export const updateUser = (user, id) => async (dispatch, _) => {
     },
   };
   await axios
-    .put(`${SERVER_URL}/api/user/${id}/`, user, config)
+    .put(`${SERVER_URL}/api/auth/user/${id}/`, user, config)
     .then((res) => {
       // dispatch(createMessage({ updateUser: "Ad Updated" }));
       dispatch({
@@ -122,7 +122,7 @@ export const addUser = (user) => async (dispatch, _) => {
     },
   };
   await axios
-    .post(`${SERVER_URL}/api/user/`, user, config)
+    .post(`${SERVER_URL}/api/auth/user`, user, config)
     .then((res) => {
       dispatch({
         type: SAVE_USER,

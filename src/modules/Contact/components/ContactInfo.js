@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
+import { getUser, updateUser } from '../../../actions/userActions';
 import {Input} from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -40,6 +41,10 @@ const ContactInfo = ({
   updateBusinessInfo,
   businessInfo,
   businessInfoLoading,
+  getUser,
+  updateUser,
+  user,
+  userLoading,
 }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
@@ -47,6 +52,7 @@ const ContactInfo = ({
   const [lastName, setLastName] = useState(false);
   const [phone, setPhone] = useState(false);
   const [email, setEmail] = useState(false);
+  // Get and set business info data
   useEffect(() => {
     // Get Contact Info values
     getBusinessInfo();
@@ -54,27 +60,45 @@ const ContactInfo = ({
   useEffect(() => {
     // Set Contact Info values
     if(!businessInfoLoading){
-      setSavedVals();
+      setSavedBusinessVals();
     }
   }, [businessInfo]);
+  // Get and set user data
+  useEffect(() => {
+    // Get Contact Info values
+    getUser();
+  }, []);
+  useEffect(() => {
+    // Set Contact Info values
+    if(!userLoading){
+      setSavedUserVals();
+    }
+  }, [user]);
 
   const submitContactInfos = () => {
     // Submit updated values to business info
-    let formData = new FormData();
-    formData.append('first_name', firstName);
-    formData.append('last_name', lastName);
-    formData.append('phone', phone);
-    formData.append('email', email);
-    updateBusinessInfo(formData);
+    let formDataBusinessInfo = new FormData();
+    formDataBusinessInfo.append('phone', phone);
+    updateBusinessInfo(formDataBusinessInfo);
+    // Submit updated values to business info
+    let formDataUser = new FormData();
+    formDataUser.append('first_name', firstName);
+    formDataUser.append('last_name', lastName);
+    formDataUser.append('email', email);
+    updateUser(formDataUser);
     // Update form state
     setEdit(false)
   }
-  const setSavedVals = () => {
+  const setSavedBusinessVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setFirstName(businessInfo.first_name || '');
-    setLastName(businessInfo.last_name || '');
     setPhone(businessInfo.phone || '');
-    setEmail(businessInfo.email || '');
+    // }
+  };
+  const setSavedUserVals = () => {
+    // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
+    setFirstName(user.first_name || '');
+    setLastName(user.last_name || '');
+    setEmail(user.email || '');
     // }
   };
 
@@ -213,9 +237,13 @@ const ContactInfo = ({
 const mapStateToProps = (state) => ({
   businessInfo: state.businessInfo.businessInfos[0],
   businessInfoLoading: state.businessInfo.businessInfoLoading,
+  user: state.user.user,
+  userLoading: state.user.userLoading,
 });
 
 export default connect(mapStateToProps, {
   getBusinessInfo,
-  updateBusinessInfo
+  updateBusinessInfo,
+  getUser,
+  updateUser
 })(ContactInfo);
