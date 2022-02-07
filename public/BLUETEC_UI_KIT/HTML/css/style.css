@@ -10067,9 +10067,6 @@ a, img {
 	header.header-mobile #mainmenu li ul li:last-child a {
 		border-bottom: none;
 	}
-	header.header-mobile #mainmenu li a {
-		color: #888;
-	}
 	header.header-mobile #mainmenu li a:hover {
 		color: #333;
 	}
