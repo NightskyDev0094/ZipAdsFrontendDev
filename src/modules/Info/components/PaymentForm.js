@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    padding: '0px 20px',
   },
   textStyle: {
     fontSize: '25px',
@@ -197,7 +198,7 @@ const PaymentForm = ({ paymentCallback }) => {
           <div
             id="submit"
             className="pull-left w-100 d-flex align-items-end justify-content-center"
-            style={{ flex: 1, paddingBottom: '25px' }}
+            style={{ flex: 1, padding: '25px 0' }}
           >
             <input
               style={{

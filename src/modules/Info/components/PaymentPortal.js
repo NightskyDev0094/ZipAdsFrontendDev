@@ -43,7 +43,7 @@ const PaymentPortal = () => {
   return (
     <div className="w-100 h-100">
       {/* {!paymentFields ? <PaymentForm paymentCallback={paymentCallback} /> : <PaymentInfo />} */}
-      <PaymentHistory />
+      <PaymentForm />
     </div>
   );
 };
