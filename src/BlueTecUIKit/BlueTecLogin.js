@@ -29,7 +29,7 @@ const errorParsing = (errorMessage) =>
   errorMessage.length > 100 ? errorMessage.substring(0, 50) : errorMessage;
 
 const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, setValue } = useForm();
   const history = useHistory();
   const [formState, setFormState] = React.useState({
     userName: '',
@@ -41,14 +41,24 @@ const Login = ({ loginSuccessAndRedirect, loginError, loginLoading }) => {
   const [remember, setRemember] = React.useState(false);
   const INPUT_MAX_LENGTH = 80;
 
+  React.useEffect(() => {
+    let account = JSON.parse(localStorage.getItem('account'));
+    
+    setValue('username', account.username);
+    setValue('password', account.password);
+    handleSubmit(account);
+  }, []);
+
   const handleLoginSubmit = async (data, event) => {
     event.preventDefault();
     loginLoading(true);
-    // console.log('Login Data Test', data);
+
     const submitLoginCredentials = axios
       .post(`${SERVER_URL}/api/auth/login`, data)
       .then((res) => {
         localStorage.setItem('token', res.data.token);
+        if (remember) localStorage.setItem('account', JSON.stringify(data));
+
         history.push('/dashboard');
         loginSuccessAndRedirect(res.data);
       })

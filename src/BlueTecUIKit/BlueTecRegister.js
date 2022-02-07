@@ -27,7 +27,7 @@ import { bool } from 'prop-types';
 
 const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirectAfterSignUp }) => {
   const INPUT_MAX_LENGTH = 80;
-  const [formState, setFormState] = React.useState({
+  const [formState, setFormState, setValue] = React.useState({
     successMessage: 'You have been registered, welcome to EzAd!',
     errorMessage: '',
     isError: false,
@@ -84,6 +84,8 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
         const formData = new FormData();
         formData.append('username', username);
         formData.append('password', password);
+        if (remember) localStorage.setItem('account', JSON.stringify(data));
+        
         handleLogin(formData);
         // redirectAfterSignUp(response.data);
       })
