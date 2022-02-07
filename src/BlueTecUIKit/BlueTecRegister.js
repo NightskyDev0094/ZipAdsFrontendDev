@@ -84,8 +84,12 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
         const formData = new FormData();
         formData.append('username', username);
         formData.append('password', password);
-        if (remember) localStorage.setItem('account', JSON.stringify(data));
-        
+        if (remember)
+          localStorage.setItem(
+            'account',
+            JSON.stringify({ username: username, password: password })
+          );
+
         handleLogin(formData);
         // redirectAfterSignUp(response.data);
       })
@@ -119,7 +123,10 @@ const BlueTecRegister = ({ handleLogin, handleFbSignup, isAuthenticated, redirec
       {} */}
       <div className="row m-0">
         <div className="col-lg-6 p-5" style={{ minHeight: 'calc(100vh - 297.38px)' }}>
-          <h1 className="text-center mb-4" style={{ color: '#00468f', fontFamily: 'sans-serif', fontSize: '42px' }}>
+          <h1
+            className="text-center mb-4"
+            style={{ color: '#00468f', fontFamily: 'sans-serif', fontSize: '42px' }}
+          >
             Register
           </h1>
           <form
