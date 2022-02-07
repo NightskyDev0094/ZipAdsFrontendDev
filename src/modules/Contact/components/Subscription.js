@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
-import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
-import {Input} from '@material-ui/core';
+import { getSubscription, updateSubscription } from '../../../actions/subscriptionActions';
+import {Input, Switch} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   SubscriptionContainer: {
@@ -36,39 +36,49 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Subscription = ({
-  getBusinessInfo,
-  updateBusinessInfo,
-  businessInfo,
-  businessInfoLoading,
+  getSubscription, 
+  updateSubscription,
+  subscription,
+  subscriptionLoading,
 }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [plan, setPlan] = useState('');
-  const [autoRenew, setAutoRenew] = useState('');
+  const [autoRenew, setAutoRenew] = useState(false);
   useEffect(() => {
     // Get Subscription Info values
-    getBusinessInfo();
+    getSubscription();
   }, []);
   useEffect(() => {
     // Set Subscription Info values
-    if(!businessInfoLoading){
+    if(!subscriptionLoading){
       setSavedVals();
     }
-  }, [businessInfo]);
+  }, [subscription]);
 
   const submitSubscriptionInfos = () => {
     // Submit updated values to business info
     let formData = new FormData();
     formData.append('plan', plan);
     formData.append('auto_renew', autoRenew);
-    updateBusinessInfo(formData);
+    if(!autoRenew) {
+      formData.append('auto_renew', 'false');
+    }else {
+      formData.append('auto_renew', 'true');
+    }
+    updateSubscription(formData);
     // Update form state
     setEdit(false)
   }
   const setSavedVals = () => {
-    // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setPlan(businessInfo.plan || '');
-    setAutoRenew(businessInfo.auto_renew || '');
+    // if (subscription.campaign_type === 'Draft' || subscription.campaign_type === 'Template') {
+    setPlan(subscription?.plan || '');
+    if(subscription?.auto_renew === 'false') {
+      setAutoRenew(false);
+    }else if (subscription?.auto_renew === 'true') {
+      setAutoRenew(true);
+    }
+
     // }
   };
 
@@ -83,11 +93,11 @@ const Subscription = ({
         <div className={classes.info}>
           <div>
             <p className="font-weight-light m-0">Plan:</p>
-            <p>Basic - $9.99/month</p>
+            <p>{plan}</p>
           </div>
           <div>
             <p className="font-weight-light m-0">Auto Renew:</p>
-            <p>ON</p>
+            <p>{autoRenew}</p>
           </div>
         </div>
         <div
@@ -119,25 +129,25 @@ const Subscription = ({
                   <div>
                     <p className="font-weight-light m-0">Plan:</p>
                     <p>
-                    <Input
-                      value={plan}
-                      onChange={(e) =>
-                        setPlan(e.target.value)
-                      }
-                      placeholder="Plan"
-                    />
+                      <select
+                        value={plan}
+                        onChange={(e) =>
+                          setPlan(e.target.value)
+                        }
+                        placeholder="Plan"
+                      >
+                        <option>Basic - $9.99</option>
+                      </select>
                     </p>
                   </div>
                   <div>
                     <p className="font-weight-light m-0">Auto Renew:</p>
                     <p>
-                    <Input
-                      value={autoRenew}
-                      onChange={(e) =>
-                        setAutoRenew(e.target.value)
-                      }
-                      placeholder="AutoRenew"
-                    />
+                      OFF <Switch
+                        onChange={(e) => {
+                          setAutoRenew(!autoRenew)
+                        }}
+                      /> ON
                     </p>
                   </div>
                   <div
@@ -171,11 +181,11 @@ const Subscription = ({
 };
 
 const mapStateToProps = (state) => ({
-  businessInfo: state.businessInfo.businessInfos[0],
-  businessInfoLoading: state.businessInfo.businessInfoLoading,
+  subscription: state.subscriptions.userSubscription,
+  subscriptionLoading: state.subscriptions.subscriptionLoading,
 });
 
 export default connect(mapStateToProps, {
-  getBusinessInfo,
-  updateBusinessInfo
+  getSubscription, 
+  updateSubscription
 })(Subscription);
