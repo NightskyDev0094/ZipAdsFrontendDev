@@ -11,7 +11,6 @@ import StepProgress from '../components/StepProgress';
 import ExpandedFacebookTargetingComponent from '../components/ExpandedTargeting.Display.Facebook';
 import ExpandedGoogleTargetingComponent from '../components/ExpandedTargeting.Display.Google';
 import { ExpandedTargetingPageMenu } from '../components/ExpandedTargeting.SharedComponents.PageMenu';
-import backgroundImage from '../../../BlueTecUIKit/images/background/5.png';
 import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
@@ -19,6 +18,9 @@ import {
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
 import { completeStep } from '../../../actions/step.actions';
 import { connectGoogleOAuth } from '../../../actions/authActions';
+import { STATIC_URL } from '../../../environmentVariables';
+
+const backgroundImage = STATIC_URL + 'images/background/5.png';
 
 const useStyles = makeStyles((theme) => ({
   page: {

@@ -15,16 +15,9 @@ import './css/jquery.countdown.css';
 import './css/style.css';
 import './css/blueteclanding.css';
 
-import GuySittingAtDeskImage from './images/misc/1.png';
-import Person1 from './images/people/portrait 1.png';
-import Person2 from './images/people/portrait 2.png';
-import Person3 from './images/people/portrait 3.png';
-import Person4 from './images/people/4.jpg';
-import Miscellanous1 from './images/misc/2.png';
-import BackgroundImage1 from './images/background/1.png';
-import BackgroundImage2 from './images/background/2.png';
-import BackgroundImage3 from './images/background/3.png';
-import BackgroundImage4 from './images/background/4.png';
+import { STATIC_URL } from '../environmentVariables';
+
+
 
 const styles = (theme) => ({
   tesimonials: {
@@ -37,6 +30,16 @@ const styles = (theme) => ({
 class BlueTecLanding extends React.Component {
   render() {
     const { classes } = this.props;
+    const GuySittingAtDeskImage = `${STATIC_URL}images/misc/1.png`;
+    const Person1 = `${STATIC_URL}images/people/portrait 1.png`;
+    const Person2 = `${STATIC_URL}images/people/portrait 2.png`;
+    const Person3 = `${STATIC_URL}images/people/portrait 3.png`;
+    const Person4 = `${STATIC_URL}images/people/4.jpg`;
+    const Miscellanous1 = `${STATIC_URL}images/misc/2.png`;
+    const BackgroundImage1 = `${STATIC_URL}images/background/1.png`;
+    const BackgroundImage2 = `${STATIC_URL}images/background/2.png`;
+    const BackgroundImage3 = `${STATIC_URL}images/background/3.png`;
+    const BackgroundImage4 = `${STATIC_URL}images/background/4.png`;
     return (
       <div className="no-bottom no-top" id="content" data-component="landing">
         <div id="top"></div>

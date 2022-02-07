@@ -1,8 +1,10 @@
 import React from 'react';
-import SignIn_Up from './images/signin&up.png';
-import CheckMark from './images/icons/green checkmark.png';
+import { STATIC_URL } from '../environmentVariables';
 
 import './css/style.css';
+
+const SignIn_Up = STATIC_URL + 'images/signin&up.png';
+const CheckMark = STATIC_URL + 'images/icons/green checkmark.png';
 
 const BlueTecAuthenticationSub = () => (
   <div className="w-100 h-100 d-flex flex-column">

@@ -1,8 +1,11 @@
 import React from 'react';
+import { STATIC_URL } from '../environmentVariables';
+
+const backgroundImg = STATIC_URL + 'images/background/5.png'
 
 const BlueTecCampaignHeader = () => (
   <>
-    <section id="subheader" data-bgimage="url(images/background/5.png) bottom">
+    <section id="subheader" data-bgimage="url(https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/5.png) bottom">
       <div className="center-y relative text-center" data-scroll-speed={4}>
         <div className="container">
           <div className="row">

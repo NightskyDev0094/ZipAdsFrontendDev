@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import CloseIcon from '@material-ui/icons/Close';
-import tipBoxText from '../../../BlueTecUIKit/images/tip box_text.png';
-import ShoutBox from '../../../BlueTecUIKit/images/Shoutbox.png';
-import SpeechBubble from '../../../BlueTecUIKit/images/speech bubble.png';
+import { STATIC_URL } from '../../../environmentVariables';
+const tipBoxText = STATIC_URL + 'images/tip box_text.png';
+const ShoutBox = STATIC_URL + 'images/Shoutbox.png';
+const SpeechBubble = STATIC_URL + 'images/speech bubble.png';
 
 const useStyles = makeStyles({
   BullHorn: {

@@ -16,6 +16,7 @@ import authReducer from './authReducer';
 import errorsReducer from './errorsReducer';
 import messagesReducer from './messagesReducer';
 import campaignReducer from './campaignReducer';
+import userReducer from './userReducer';
 import conversions_gaReducer from './conversions.GAReducer';
 import conversions_fbReducer from './conversions.fbReducer';
 import createFormReducer from './ads.createFormReducer';
@@ -42,6 +43,7 @@ const appReducer = combineReducers({
   messages: messagesReducer,
   auth: authReducer,
   campaigns: campaignReducer,
+  user: userReducer,
   gaConversions: conversions_gaReducer,
   fbPixels: conversions_fbReducer,
   newAdInfo: createFormReducer,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
@@ -108,4 +108,8 @@ const PaymentInfo = () => {
   );
 };
 
-export default PaymentInfo;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(PaymentInfo);

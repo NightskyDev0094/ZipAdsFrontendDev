@@ -18,17 +18,19 @@ import './css/colors/scheme-01.css';
 
 import './css/blueteclogin.css';
 
-import FirstImage from './images/services/1.jpg';
-import SecondImage from './images/services/2.jpg';
-import ThirdImage from './images/services/3.jpg';
-import FourthImage from './images/services/4.jpg';
-import FifthImage from './images/services/5.jpg';
-import SixthImage from './images/services/6.jpg';
-import CreationImage1 from './images/creation1.png';
-import CreationImage2 from './images/creation2.png';
-import CreationImage3 from './images/creation3.png';
-// import CreationImage4 from './images/creation4.png';
-import BackgroundImage1 from './images/background/7.png';
+import { STATIC_URL } from '../environmentVariables';
+
+const FirstImage = STATIC_URL + 'images/services/1.jpg';
+const SecondImage = STATIC_URL + 'images/services/2.jpg';
+const ThirdImage = STATIC_URL + 'images/services/3.jpg';
+const FourthImage = STATIC_URL + 'images/services/4.jpg';
+const FifthImage = STATIC_URL + 'images/services/5.jpg';
+const SixthImage = STATIC_URL + 'images/services/6.jpg';
+const CreationImage1 = STATIC_URL + 'images/creation1.png';
+const CreationImage2 = STATIC_URL + 'images/creation2.png';
+const CreationImage3 = STATIC_URL + 'images/creation3.png';
+// const CreationImage4 = STATIC_URL + 'images/creation4.png';
+const BackgroundImage1 = STATIC_URL + 'images/background/7.png';
 
 const useStyles = makeStyles((theme) => ({
   boardTitle: {

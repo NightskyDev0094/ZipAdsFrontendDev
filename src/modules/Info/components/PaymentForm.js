@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
@@ -187,4 +187,8 @@ const PaymentForm = ({ paymentCallback }) => {
   );
 };
 
-export default PaymentForm;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(PaymentForm);

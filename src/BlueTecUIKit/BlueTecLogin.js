@@ -3,7 +3,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import SignIn_Up from './images/signin&up.png';
 
 import LargeInput from '../sharedComponents/components/LargeInput';
 import './css/colors/scheme-02.css';
@@ -24,7 +23,10 @@ import './css/blueteclogin.css';
 import { SERVER_URL } from '../environmentVariables';
 import { func } from 'prop-types';
 import BlueTecAuthenticationSub from './BlueTecAuthenticationSub';
+import { STATIC_URL } from '../environmentVariables';
 
+const SignIn_Up = STATIC_URL + 'images/signin&up.png'
+;
 const errorParsing = (errorMessage) =>
   errorMessage.length > 100 ? errorMessage.substring(0, 50) : errorMessage;
 

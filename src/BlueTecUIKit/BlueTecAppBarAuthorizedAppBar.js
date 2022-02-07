@@ -2,16 +2,18 @@ import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, Menu, MenuItem, Fade, makeStyles } from '@material-ui/core';
-
-import BlueTecLogo from './images/logo-2.png';
-import LandingRocketShip from './images/misc/3.png';
-import GenericBackgroundImageOne from './images/background/3b.png';
-import ZipAdsLogo from './images/ZipAdsLogo.png';
-import NavButtonLink from '../modules/Navbar/components/NavButtonLink';
 import { logout } from '../actions/authActions';
 import { completeStepByCurryingWithMultipleParams as completeStep } from '../actions/step.actions';
+import NavButtonLink from '../modules/Navbar/components/NavButtonLink';
 
 import './css/bluetecauthorizedappbar.css';
+
+import { STATIC_URL } from '../environmentVariables';
+
+const BlueTecLogo = STATIC_URL + 'images/logo-2.png';
+const LandingRocketShip = STATIC_URL + 'images/misc/3.png';
+const GenericBackgroundImageOne = STATIC_URL + 'images/background/3b.png';
+const ZipAdsLogo = STATIC_URL + 'images/ZipAdsLogo.png';
 
 const useStyles = makeStyles(() => ({
   mockedLinkStyle: {
@@ -170,13 +172,28 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         TransitionComponent={Fade}
                       >
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/edit-account-info">
-                            Edit Account Info
+                          <Link className={classes.innerLink} to="/contact/contact-info">
+                            Contact Info
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/manage-ad-networks">
-                            Manage Ad Networks
+                          <Link className={classes.innerLink} to="/contact/business-info">
+                            Business Info
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link className={classes.innerLink} to="/contact/login-info">
+                            Login Info
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link className={classes.innerLink} to="/contact/subscription-info">
+                            Subscription Info
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link className={classes.innerLink} to="/contact/payment-portal">
+                            Payment Portal
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>

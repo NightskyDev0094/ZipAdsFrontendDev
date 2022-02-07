@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Button, makeStyles, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
-import SuccessImageSmall from '../../../img/successImageSmall.jpg';
 import { useWindowSize } from '../shared_logic/custom_hooks';
+import { STATIC_URL } from '../../../environmentVariables';
+
+
+const SuccessImageSmall = STATIC_URL + 'img/successImageSmall.jpg';
 
 const useStyles = makeStyles(() => ({
   container: {

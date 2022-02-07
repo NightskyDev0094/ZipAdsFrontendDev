@@ -1,13 +1,13 @@
 #section-highlight {
-  background-image: url('../images/background/3b.png');
+  background-image: url('https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/3b.png');
 }
 
 #section-pricing {
-  background-image: url('../images/background/3c.png') !important;
+  background-image: url('https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/3c.png') !important;
 }
 
 #section-text {
-  background-image: url('../images/background/3d.png') !important;
+  background-image: url('https://auto-ads-media-storage.s3.us-west-2.amazonaws.com/frontend-static/images/background/3d.png') !important;
 }
 
 #microscope-people-landing {
@@ -85,7 +85,8 @@
 }
 
 @media screen and (max-width: 576px) {
-  #main-title, .customer-title {
+  #main-title,
+  .customer-title {
     font-size: 32px !important;
   }
 }

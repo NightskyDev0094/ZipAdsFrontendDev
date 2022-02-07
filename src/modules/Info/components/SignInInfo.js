@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
+import { getUser, updateUser } from '../../../actions/userActions';
+import {Input} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   SignInInfoContainer: {
@@ -71,10 +73,45 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SignInInfo = () => {
+const SignInInfo = ({
+  getUser,
+  updateUser,
+  user,
+  userLoading,
+}) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
+<<<<<<< HEAD:src/modules/Info/components/SignInInfo.js
   const [password, setPassword] = React.useState(false);
+=======
+  const [password, setPassword] = useState(false);
+  const [username, setUsername] = useState(false);
+  useEffect(() => {
+    // Get Contact Info values
+    getUser();
+  }, []);
+  useEffect(() => {
+    // Set Contact Info values
+    if(!userLoading){
+      setSavedVals();
+    }
+  }, [user]);
+
+  const submitSignInInfos = () => {
+    // Submit updated values to business info
+    let formData = new FormData();
+    formData.append('username', username);
+    updateUser(formData);
+    // Update form state
+    setEdit(false)
+  }
+  const setSavedVals = () => {
+    // if (user.campaign_type === 'Draft' || user.campaign_type === 'Template') {
+    // setPassword(user.password || '');
+    setUsername(user.username || '');
+    // }
+  };
+>>>>>>> tony_ui_algorithms_120:src/modules/Contact/components/SignInInfo.js
 
   return (
     <div className="w-100 h-100">
@@ -82,8 +119,11 @@ const SignInInfo = () => {
         <p className={classes.infoTitle}>
           Sign-In Information
         </p>
+        {edit === false ? (
+        <>
         <div className={classes.info}>
           <div>
+<<<<<<< HEAD:src/modules/Info/components/SignInInfo.js
             <p className="font-weight-light m-0">Username:</p>
             <p>jappleseed@gmail.com</p>
           </div>
@@ -102,16 +142,24 @@ const SignInInfo = () => {
               />
               <p>Show Password</p>
             </div>
+=======
+            <p className="font-weight-light m-0">username:</p>
+            <p>{username}</p>
+          </div>
+          <div>
+            <p className="font-weight-light m-0">Password:</p>
+            <p style={{ webkitTextSecurity: 'disc' }}>{password}</p>
+>>>>>>> tony_ui_algorithms_120:src/modules/Contact/components/SignInInfo.js
           </div>
         </div>
         <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            paddingBottom: '25px',
-          }}
+        style={{
+          flex: 1,
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          paddingBottom: '25px',
+        }}
         >
           <Button
             className="text-light font-weight-bold border-0"
@@ -122,13 +170,74 @@ const SignInInfo = () => {
               height: '55px',
               fontSize: '18px',
             }}
+            onClick={(e) => setEdit(true)}
           >
             Edit
           </Button>
         </div>
+        </>
+        ) : (
+          <>
+              <div>
+                <p className="font-weight-light m-0">Username:</p>
+                <p>
+                <Input
+                  value={username}
+                  onChange={(e) =>
+                    setUsername(e.target.value)
+                  }
+                  placeholder="Username"
+                />
+                </p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Password:</p>
+                <p>
+                <Input
+                  value={password}
+                  onChange={(e) =>
+                    setPassword(e.target.value)
+                  }
+                  placeholder="Password"
+                />
+                </p>
+              </div>
+              <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light font-weight-bold border-0Z"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '120px',
+                  height: '55px',
+                  fontSize: '18px',
+                }}
+                onClick={(e) => submitSignInInfos()}
+              >
+                Save Changes
+              </Button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
 };
 
-export default SignInInfo;
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+  userLoading: state.user.userLoading,
+});
+
+export default connect(mapStateToProps, {
+  getUser,
+  updateUser
+})(SignInInfo);
