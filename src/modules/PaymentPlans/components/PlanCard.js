@@ -12,6 +12,13 @@ const useStyles = makeStyles((plan) => ({
     borderRadius: '30px',
     textAlign: 'center',
     color: plan.bestSeller ? 'white' : 'black',
+
+    '@media (max-width:1009px)': {
+      transform: 'scale(0.9)'
+    },
+    '@media (max-width:898px)': {
+      transform: 'scale(1)'
+    },
   }),
   planTitle: {
     fontSize: '24px',

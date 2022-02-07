@@ -6,9 +6,17 @@ import PlanCard from '../components/PlanCard';
 const useStyles = makeStyles(() => ({
   planContainer: {
     display: 'flex',
+    width: '100%',
+    maxWidth: '1100px',
     padding: '20px',
-    maxWidth: '1200px',
-    gap: '125px',
+    justifyContent: 'space-between',
+    margin: 'auto',
+
+    '@media (max-width:898px)': {
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '30px'
+    },
   },
   infoTitle: {
     color: '#00468f',
@@ -46,7 +54,7 @@ const PlanContainer = ({ planCallback }) => {
     },
   };
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: '20px', margin: 'auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: '20px', margin: 'auto', width: '100%' }}>
       <p className={classes.infoTitle}>Choose a Payment Plan</p>
       <div style={{display: 'flex', alignItems: 'center', flex: 1}}>
         <div className={classes.planContainer}>
