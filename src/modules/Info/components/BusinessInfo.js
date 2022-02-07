@@ -104,15 +104,11 @@ const BusinessInfo = ({
   return (
     <div className="w-100 h-100">
       <div className={clsx(classes.InfoContainer, classes.textStyle)}>
-<<<<<<< HEAD:src/modules/Info/components/BusinessInfo.js
-        <p className={classes.infoTitle}>Business Information</p>
-=======
         <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
           Business Information
         </p>
         {edit === false ? (
           <>
->>>>>>> tony_ui_algorithms_120:src/modules/Contact/components/BusinessInfo.js
         <div className={classes.info}>
           <div>
             <p className="font-weight-light m-0">Business Name:</p>
@@ -125,16 +121,11 @@ const BusinessInfo = ({
           </div>
           <div>
             <p className="font-weight-light m-0">Business Address:</p>
-<<<<<<< HEAD:src/modules/Info/components/BusinessInfo.js
-            <p className='m-0'>555 Main St</p>
-            <p>Townsville, CA 10101</p>
-=======
             <p>{street}</p>
             <p>{apartment}</p>
             <p>{city}</p>
             <p>{state}</p>
             <p>{zip}</p>
->>>>>>> tony_ui_algorithms_120:src/modules/Contact/components/BusinessInfo.js
           </div>
           <div>
             <p className="font-weight-light m-0">Industry:</p>

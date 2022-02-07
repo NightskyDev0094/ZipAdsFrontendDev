@@ -81,9 +81,6 @@ const SignInInfo = ({
 }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
-<<<<<<< HEAD:src/modules/Info/components/SignInInfo.js
-  const [password, setPassword] = React.useState(false);
-=======
   const [password, setPassword] = useState(false);
   const [username, setUsername] = useState(false);
   useEffect(() => {
@@ -111,7 +108,6 @@ const SignInInfo = ({
     setUsername(user.username || '');
     // }
   };
->>>>>>> tony_ui_algorithms_120:src/modules/Contact/components/SignInInfo.js
 
   return (
     <div className="w-100 h-100">
@@ -123,13 +119,12 @@ const SignInInfo = ({
         <>
         <div className={classes.info}>
           <div>
-<<<<<<< HEAD:src/modules/Info/components/SignInInfo.js
             <p className="font-weight-light m-0">Username:</p>
-            <p>jappleseed@gmail.com</p>
+            <p>{username}</p>
           </div>
           <div>
             <p className="font-weight-light m-0">Password:</p>
-            <p style={{ webkitTextSecurity: password ? 'initial' : 'disc' }}>Password</p>
+            <p style={{ webkitTextSecurity: password ? 'initial' : 'disc' }}>{password}</p>
             <div
               className={classes.passwordCheckBox}
               onClick={() => {
@@ -142,14 +137,6 @@ const SignInInfo = ({
               />
               <p>Show Password</p>
             </div>
-=======
-            <p className="font-weight-light m-0">username:</p>
-            <p>{username}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Password:</p>
-            <p style={{ webkitTextSecurity: 'disc' }}>{password}</p>
->>>>>>> tony_ui_algorithms_120:src/modules/Contact/components/SignInInfo.js
           </div>
         </div>
         <div

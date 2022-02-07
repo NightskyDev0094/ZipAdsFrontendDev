@@ -10874,12 +10874,8 @@ img {
   min-height: calc(100vh - 297.38px);
 }
 
-<<<<<<< HEAD
 /* table on /select-campaign */
 .select-campaign .table-striped-rows td {
-=======
-.table-striped-rows td {
->>>>>>> tony_ui_algorithms_120
   font-size: 18px;
   padding: 8px;
 }
