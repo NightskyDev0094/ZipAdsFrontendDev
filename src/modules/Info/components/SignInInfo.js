@@ -105,7 +105,7 @@ const SignInInfo = ({
   const setSavedVals = () => {
     // if (user.campaign_type === 'Draft' || user.campaign_type === 'Template') {
     // setPassword(user.password || '');
-    setUsername(user.username || '');
+    setUsername(user?.username || '');
     // }
   };
 

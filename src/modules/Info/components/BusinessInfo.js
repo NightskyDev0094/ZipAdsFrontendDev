@@ -88,17 +88,14 @@ const BusinessInfo = ({
     setEdit(false)
   }
   const setSavedVals = () => {
-    // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setBusinessName(businessInfo.business_name || '');
-    setWebsite(businessInfo.business_url || '');
-    setIndustry(businessInfo.industry || '');
-    setStreet(businessInfo.street || '');
-    setApartment(businessInfo.apartment || '');
-    setCity(businessInfo.city || '');
-    setState(businessInfo.state || '');
-    setZip(businessInfo.zip || '');
-    console.log("Business info value::::", businessInfo.business_url)
-    // }
+    setBusinessName(businessInfo?.business_name || '');
+    setWebsite(businessInfo?.business_url || '');
+    setIndustry(businessInfo?.industry || '');
+    setStreet(businessInfo?.street || '');
+    setApartment(businessInfo?.apartment || '');
+    setCity(businessInfo?.city || '');
+    setState(businessInfo?.state || '');
+    setZip(businessInfo?.zip || '');
   };
 
   return (

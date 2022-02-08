@@ -30,22 +30,22 @@ const routes = [
     exact: true,
     routes: [
       {
-        path: '/info/contact-Info',
+        path: '/info/contact-info',
         component: ContactInfo,
         exact: true,
       },
       {
-        path: '/info/business-Info',
+        path: '/info/business-info',
         component: BusinessInfo,
         exact: true,
       },
       {
-        path: '/info/login-Info',
+        path: '/info/login-info',
         component: SignInInfo,
         exact: true,
       },
       {
-        path: '/info/subscription-Info',
+        path: '/info/subscription-info',
         component: Subscription,
         exact: true,
       },

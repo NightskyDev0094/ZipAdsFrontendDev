@@ -67,8 +67,8 @@ const PaymentPortal = ({
   }
   const setSavedVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setPassword(businessInfo.password || '');
-    setEmail(businessInfo.email || '');
+    setPassword(businessInfo?.password || '');
+    setEmail(businessInfo?.email || '');
     // }
   };
 

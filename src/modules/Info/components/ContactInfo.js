@@ -101,14 +101,14 @@ const ContactInfo = ({
   }
   const setSavedBusinessVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setPhone(businessInfo.phone || '');
+    setPhone(businessInfo?.phone || '');
     // }
   };
   const setSavedUserVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setFirstName(user.first_name || '');
-    setLastName(user.last_name || '');
-    setEmail(user.email || '');
+    setFirstName(user?.first_name || '');
+    setLastName(user?.last_name || '');
+    setEmail(user?.email || '');
     // }
   };
 
