@@ -4,15 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
 import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
-import {Input} from '@material-ui/core';
+import { Input } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   InfoContainer: {
     margin: 'auto',
-    width: 'fit-content',
+    width: '100%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center'
   },
   textStyle: {
     fontSize: '25px',
@@ -43,8 +44,15 @@ const useStyles = makeStyles(() => ({
       fontSize: '24px',
     },
   },
+  formContainer: {
+    maxWidth: '800px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
   InputItem: {
-    marginBottom: '1em',
+    width: '100%',
     padding: '14px 8px',
     fontSize: '20px',
     border: '2px solid #c7c7c7',
@@ -53,6 +61,11 @@ const useStyles = makeStyles(() => ({
     ['& > input']: {
       padding: '0 !important',
     },
+  },
+  formText: {
+    height: '56px',
+    display: 'flex',
+    alignItems: 'center',
   },
 }));
 
@@ -113,13 +126,13 @@ const BusinessInfo = ({
   };
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" style={{padding: '0px 20px'}}>
       <div className={clsx(classes.InfoContainer, classes.textStyle)}>
         <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
           Business Information
         </p>
         {edit === false ? (
-          <>
+          <div className={classes.formContainer}>
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">Business Name:</p>
@@ -156,7 +169,7 @@ const BusinessInfo = ({
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '140px',
+                  width: '160px',
                   height: '55px',
                 }}
                 onClick={(e) => setEdit(true)}
@@ -164,9 +177,9 @@ const BusinessInfo = ({
                 Edit
               </Button>
             </div>
-          </>
+          </div>
         ) : (
-          <div>
+          <div className={classes.formContainer}>
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">Business Name:</p>
@@ -191,6 +204,8 @@ const BusinessInfo = ({
                 <p className="font-weight-light m-0">Website:</p>
                 <p>
                   <Input
+                    disableUnderline
+                    className={classes.InputItem}
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
                     placeholder="Website"
@@ -201,6 +216,8 @@ const BusinessInfo = ({
                 <p className="font-weight-light m-0">Business Address:</p>
                 <p>
                   <Input
+                    disableUnderline
+                    className={classes.InputItem}
                     value={street}
                     onChange={(e) => setStreet(e.target.value)}
                     placeholder="Address Line 1"
@@ -208,6 +225,8 @@ const BusinessInfo = ({
                 </p>
                 <p>
                   <Input
+                    disableUnderline
+                    className={classes.InputItem}
                     value={apartment}
                     onChange={(e) => setApartment(e.target.value)}
                     placeholder="Address Line 2"
@@ -215,6 +234,8 @@ const BusinessInfo = ({
                 </p>
                 <p>
                   <Input
+                    disableUnderline
+                    className={classes.InputItem}
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="City"
@@ -222,19 +243,29 @@ const BusinessInfo = ({
                 </p>
                 <p>
                   <Input
+                    disableUnderline
+                    className={classes.InputItem}
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                     placeholder="State"
                   />
                 </p>
                 <p>
-                  <Input value={zip} onChange={(e) => setZip(e.target.value)} placeholder="Zip" />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
+                    placeholder="Zip"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Industry:</p>
                 <p>
                   <Input
+                    disableUnderline
+                    className={classes.InputItem}
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
                     placeholder="Industry"
@@ -256,7 +287,7 @@ const BusinessInfo = ({
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '120px',
+                  width: '160px',
                   height: '55px',
                   fontSize: '18px',
                 }}
