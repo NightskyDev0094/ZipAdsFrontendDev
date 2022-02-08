@@ -43,6 +43,17 @@ const useStyles = makeStyles(() => ({
       fontSize: '24px',
     },
   },
+  InputItem: {
+    marginBottom: '1em',
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
+    ['& > input']: {
+      padding: '0 !important',
+    },
+  },
 }));
 
 const BusinessInfo = ({
@@ -67,7 +78,7 @@ const BusinessInfo = ({
   }, []);
   useEffect(() => {
     // Set Contact Info values
-    if(!businessInfoLoading){
+    if (!businessInfoLoading) {
       setSavedVals();
     }
   }, [businessInfo]);
@@ -85,8 +96,8 @@ const BusinessInfo = ({
     formData.append('zip', zip);
     updateBusinessInfo(formData);
     // Update form state
-    setEdit(false)
-  }
+    setEdit(false);
+  };
   const setSavedVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
     setBusinessName(businessInfo.business_name || '');
@@ -97,7 +108,7 @@ const BusinessInfo = ({
     setCity(businessInfo.city || '');
     setState(businessInfo.state || '');
     setZip(businessInfo.zip || '');
-    console.log("Business info value::::", businessInfo.business_url)
+    console.log('Business info value::::', businessInfo.business_url);
     // }
   };
 
@@ -109,137 +120,125 @@ const BusinessInfo = ({
         </p>
         {edit === false ? (
           <>
-        <div className={classes.info}>
-          <div>
-            <p className="font-weight-light m-0">Business Name:</p>
-            <p>{businessName}</p>
-            
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Website:</p>
-            <p>{website}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Business Address:</p>
-            <p>{street}</p>
-            <p>{apartment}</p>
-            <p>{city}</p>
-            <p>{state}</p>
-            <p>{zip}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Industry:</p>
-            <p>{industry}</p>
-          </div>
-        </div>
-        <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          paddingBottom: '25px',
-        }}
-        >
-          <Button
-            className="text-light border-0"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '140px',
-              height: '55px',
-            }}
-            onClick={(e) => setEdit(true)}
-          >
-            Edit
-          </Button>
-        </div>
-        </>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">Business Name:</p>
+                <p>{businessName}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Website:</p>
+                <p>{website}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Business Address:</p>
+                <p>{street}</p>
+                <p>{apartment}</p>
+                <p>{city}</p>
+                <p>{state}</p>
+                <p>{zip}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Industry:</p>
+                <p>{industry}</p>
+              </div>
+            </div>
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light border-0"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '140px',
+                  height: '55px',
+                }}
+                onClick={(e) => setEdit(true)}
+              >
+                Edit
+              </Button>
+            </div>
+          </>
         ) : (
           <div>
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">Business Name:</p>
                 <p>
-                <Input
-                  value={businessName}
-                  onChange={(e) =>
-                    setBusinessName(e.target.value)
-                  }
-                  placeholder="Business Name"
-                />
+                  {/* <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
+                    placeholder="Business Name"
+                  /> */}
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    placeholder="Business Name"
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Website:</p>
                 <p>
-                <Input
-                  value={website}
-                  onChange={(e) =>
-                    setWebsite(e.target.value)
-                  }
-                  placeholder="Website"
-                />
+                  <Input
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    placeholder="Website"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Business Address:</p>
                 <p>
-                <Input
-                  value={street}
-                  onChange={(e) =>
-                    setStreet(e.target.value)
-                  }
-                  placeholder="Address Line 1"
-                />
+                  <Input
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                    placeholder="Address Line 1"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={apartment}
-                  onChange={(e) =>
-                    setApartment(e.target.value)
-                  }
-                  placeholder="Address Line 2"
-                />
+                  <Input
+                    value={apartment}
+                    onChange={(e) => setApartment(e.target.value)}
+                    placeholder="Address Line 2"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={city}
-                  onChange={(e) =>
-                    setCity(e.target.value)
-                  }
-                  placeholder="City"
-                />
+                  <Input
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="City"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={state}
-                  onChange={(e) =>
-                    setState(e.target.value)
-                  }
-                  placeholder="State"
-                />
+                  <Input
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    placeholder="State"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={zip}
-                  onChange={(e) =>
-                    setZip(e.target.value)
-                  }
-                  placeholder="Zip"
-                />
+                  <Input value={zip} onChange={(e) => setZip(e.target.value)} placeholder="Zip" />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Industry:</p>
                 <p>
-                <Input
-                  value={industry}
-                  onChange={(e) =>
-                    setIndustry(e.target.value)
-                  }
-                  placeholder="Industry"
-                />
+                  <Input
+                    value={industry}
+                    onChange={(e) => setIndustry(e.target.value)}
+                    placeholder="Industry"
+                  />
                 </p>
               </div>
             </div>
@@ -280,5 +279,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getBusinessInfo,
-  updateBusinessInfo
+  updateBusinessInfo,
 })(BusinessInfo);

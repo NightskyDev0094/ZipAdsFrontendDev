@@ -4,16 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
 import { getUser, updateUser } from '../../../actions/userActions';
-import {Input} from '@material-ui/core';
+import { Input } from '@material-ui/core';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
   contactInfo: {
     margin: 'auto',
-    width: 'fit-content',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: "center",
   },
   textStyle: {
     fontSize: '25px',
@@ -26,12 +26,13 @@ const useStyles = makeStyles(() => ({
   info: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    gridGap: '80px',
+    gridGap: '50px',
     margin: '50px 0',
+    gridAutoRows: 'minmax(100px, auto)',
 
     '@media (max-width:965px)': {
       gridTemplateColumns: '1fr',
-      gridGap: '50px',
+      gridGap: '20px',
     },
   },
   infoTitle: {
@@ -44,6 +45,29 @@ const useStyles = makeStyles(() => ({
       fontSize: '24px',
     },
   },
+  formContainer: {
+    maxWidth: '800px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  InputItem: {
+    width: '100%',
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
+    ['& > input']: {
+      padding: '0 !important',
+    },
+  },
+  formText: {
+    height: '56px',
+    display: 'flex',
+    alignItems: 'center'
+  }
 }));
 
 const ContactInfo = ({
@@ -69,7 +93,7 @@ const ContactInfo = ({
   }, []);
   useEffect(() => {
     // Set Contact Info values
-    if(!businessInfoLoading){
+    if (!businessInfoLoading) {
       setSavedBusinessVals();
     }
   }, [businessInfo]);
@@ -80,7 +104,7 @@ const ContactInfo = ({
   }, []);
   useEffect(() => {
     // Set Contact Info values
-    if(!userLoading){
+    if (!userLoading) {
       setSavedUserVals();
     }
   }, [user]);
@@ -97,8 +121,8 @@ const ContactInfo = ({
     formDataUser.append('email', email);
     updateUser(formDataUser);
     // Update form state
-    setEdit(false)
-  }
+    setEdit(false);
+  };
   const setSavedBusinessVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
     setPhone(businessInfo.phone || '');
@@ -113,27 +137,27 @@ const ContactInfo = ({
   };
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" style={{padding: '0px 20px'}}>
       <div className={clsx(classes.contactInfo, classes.textStyle)}>
         <p className={classes.infoTitle}>Contact Information</p>
         {edit === false ? (
-          <div>
+          <div className={classes.formContainer}>
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">First Name:</p>
-                <p>{firstName}</p>
+                <p className={classes.formText}>{firstName}</p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Last Name:</p>
-                <p>{lastName}</p>
+                <p className={classes.formText}>{lastName}</p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Phone Number:</p>
-                <p>{phone}</p>
+                <p className={classes.formText}>{phone}</p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Email Address:</p>
-                <p>{email}</p>
+                <p className={classes.formText}>{email}</p>
               </div>
             </div>
             <div
@@ -150,7 +174,7 @@ const ContactInfo = ({
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '140px',
+                  width: '160px',
                   height: '55px',
                 }}
                 onClick={(e) => setEdit(true)}
@@ -160,54 +184,54 @@ const ContactInfo = ({
             </div>
           </div>
         ) : (
-          <div>
+          <div className={classes.formContainer}>
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">First Name:</p>
                 <p>
-                <Input
-                  value={firstName}
-                  onChange={(e) =>
-                    setFirstName(e.target.value)
-                  }
-                  placeholder="First Name"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First Name"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Last Name:</p>
                 <p>
-                <Input
-                  value={lastName}
-                  onChange={(e) =>
-                    setLastName(e.target.value)
-                  }
-                  placeholder="Last Name"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="Last Name"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Phone Number:</p>
                 <p>
-                <Input
-                  value={phone}
-                  onChange={(e) =>
-                    setPhone(e.target.value)
-                  }
-                  placeholder="Phone"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Email Address:</p>
                 <p>
-                <Input
-                  value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value)
-                  }
-                  placeholder="Email"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                  />
                 </p>
               </div>
             </div>
@@ -225,7 +249,7 @@ const ContactInfo = ({
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '140px',
+                  width: '160px',
                   height: '55px',
                 }}
                 onClick={(e) => submitContactInfos()}
@@ -251,5 +275,5 @@ export default connect(mapStateToProps, {
   getBusinessInfo,
   updateBusinessInfo,
   getUser,
-  updateUser
+  updateUser,
 })(ContactInfo);
