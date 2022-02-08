@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import PaymentList from './PaymentList';
 import PaymentForm from './PaymentForm';
 import PaymentInfo from './PaymentInfo';
+import PaymentHistory from './PaymentHistory';
 import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
 
 const useStyles = makeStyles(() => ({
@@ -39,12 +41,16 @@ const PaymentPortal = ({
 }) => {
   const [paymentFields, setPaymentFields] = useState();
   const [edit, setEdit] = useState(false);
+  const [editCard, setEditCard] = useState(false);
   const [password, setPassword] = useState(false);
   const [email, setEmail] = useState(false);
-  
+
   const paymentCallback = useCallback((form) => {
     setPaymentFields(form);
     // console.log(form);
+  }, []);
+  const addCardCallback = useCallback((status) => {
+    setEditCard(status);
   }, []);
   useEffect(() => {
     // Get Contact Info values
@@ -52,7 +58,7 @@ const PaymentPortal = ({
   }, []);
   useEffect(() => {
     // Set Contact Info values
-    if(!businessInfoLoading){
+    if (!businessInfoLoading) {
       setSavedVals();
     }
   }, [businessInfo]);
@@ -63,8 +69,8 @@ const PaymentPortal = ({
     formData.append('email', email);
     updateBusinessInfo(formData);
     // Update form state
-    setEdit(false)
-  }
+    setEdit(false);
+  };
   const setSavedVals = () => {
     // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
     setPassword(businessInfo?.password || '');
@@ -74,7 +80,13 @@ const PaymentPortal = ({
 
   return (
     <div className="w-100 h-100">
-      {!paymentFields ? <PaymentForm paymentCallback={paymentCallback} /> : <PaymentInfo />}
+      {!editCard ? (
+        <PaymentList addCardCallback={addCardCallback} />
+      ) : (
+        <PaymentForm paymentCallback={paymentCallback} addCardCallback={addCardCallback} />
+      )}
+      <PaymentInfo />
+      <PaymentHistory />
     </div>
   );
 };
@@ -86,5 +98,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getBusinessInfo,
-  updateBusinessInfo
+  updateBusinessInfo,
 })(PaymentPortal);

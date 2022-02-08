@@ -9,7 +9,6 @@ const useStyles = makeStyles(() => ({
   PaymentFormContainer: {
     margin: 'auto',
     width: 'fit-content',
-    maxWidth: '600px',
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -21,6 +20,16 @@ const useStyles = makeStyles(() => ({
 
     '@media (max-width:718px)': {
       fontSize: '20px',
+    },
+  },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    marginBottom: '20px',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
     },
   },
 }));
@@ -47,18 +56,17 @@ const PlanForm = ({ paymentCallback }) => {
   });
 
   return (
-    <div style={{ width: '100%', flex: 1, padding: '20px', margin: 'auto' }}>
+    <div style={{ width: '100%', height: 'calc(100vh - 298px)', padding: '20px', margin: 'auto' }}>
       <div className={clsx(classes.PaymentFormContainer, classes.textStyle)}>
         <p
-          className="text-center"
-          style={{ color: '#00468f', fontSize: '30px', marginBottom: '10px' }}
+          className={classes.infoTitle}
         >
           Add a Card to Activate Your Free Trial
         </p>
         <form
           name="contactForm"
           className="form-border d-flex flex-column"
-          style={{ flex: 1 }}
+          style={{ flex: 1, maxWidth: '600px', width: '100%', margin: 'auto' }}
           onSubmit={(e) => {
             e.preventDefault();
             if (e.target.checkValidity()) {
@@ -66,7 +74,7 @@ const PlanForm = ({ paymentCallback }) => {
             }
           }}
         >
-          <div className="field-set">
+          <div className="field-set input-type">
             <TextField
               type="text"
               name="fullName"
@@ -89,7 +97,7 @@ const PlanForm = ({ paymentCallback }) => {
               className="form-control form-style"
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>User Name:</label> */}
             <TextField
               type="number"
@@ -113,7 +121,7 @@ const PlanForm = ({ paymentCallback }) => {
               className="form-control form-style"
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Email Address:</label> */}
             <TextField
               type="text"
@@ -138,7 +146,7 @@ const PlanForm = ({ paymentCallback }) => {
               style={{ marginBottom: '32px !important', marginTop: '0 !important' }}
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Password:</label> */}
             <TextField
               type="number"
@@ -163,7 +171,7 @@ const PlanForm = ({ paymentCallback }) => {
               style={{ marginBottom: '32px !important', marginTop: '0 !important' }}
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Re-enter Password:</label> */}
             <TextField
               type="number"
@@ -191,19 +199,19 @@ const PlanForm = ({ paymentCallback }) => {
           <div
             id="submit"
             className="pull-left w-100 d-flex align-items-end justify-content-center"
-            style={{ flex: 1, paddingTop: '25px' }}
+            style={{ flex: 1, paddingBottom: '25px' }}
           >
             <input
               style={{
                 backgroundColor: '#00468f',
                 borderRadius: '8px',
-                width: '120px',
+                width: '140px',
                 height: '55px',
-                fontSize: '18px',
+                fontSize: '20px',
               }}
               type="submit"
               value="Add Card"
-              className="btn btn-custom border-0 text-light font-weight-bold"
+              className="btn btn-custom border-0 text-light"
             />
           </div>
         </form>

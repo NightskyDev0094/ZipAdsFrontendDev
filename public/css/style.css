@@ -2394,9 +2394,6 @@ hr {
 	-webkit-box-shadow: none;
 	color:#333;
 }
-.form-border input[type=text]:focus, .form-border textarea:focus, .form-underline input[type=email]:focus, .form-border select:focus{
-background: #F5F9FD;
-}
 
 .form-subscribe{
 	display:table;
@@ -10066,9 +10063,6 @@ a, img {
 	}
 	header.header-mobile #mainmenu li ul li:last-child a {
 		border-bottom: none;
-	}
-	header.header-mobile #mainmenu li a {
-		color: #888;
 	}
 	header.header-mobile #mainmenu li a:hover {
 		color: #333;

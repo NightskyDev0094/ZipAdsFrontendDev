@@ -4,15 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
 import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
-import {Input} from '@material-ui/core';
+import { Input } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   InfoContainer: {
     margin: 'auto',
-    width: 'fit-content',
+    width: '100%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center'
   },
   textStyle: {
     fontSize: '25px',
@@ -43,6 +44,29 @@ const useStyles = makeStyles(() => ({
       fontSize: '24px',
     },
   },
+  formContainer: {
+    maxWidth: '800px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  InputItem: {
+    width: '100%',
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
+    ['& > input']: {
+      padding: '0 !important',
+    },
+  },
+  formText: {
+    height: '56px',
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 const BusinessInfo = ({
@@ -67,7 +91,7 @@ const BusinessInfo = ({
   }, []);
   useEffect(() => {
     // Set Contact Info values
-    if(!businessInfoLoading){
+    if (!businessInfoLoading) {
       setSavedVals();
     }
   }, [businessInfo]);
@@ -85,8 +109,8 @@ const BusinessInfo = ({
     formData.append('zip', zip);
     updateBusinessInfo(formData);
     // Update form state
-    setEdit(false)
-  }
+    setEdit(false);
+  };
   const setSavedVals = () => {
     setBusinessName(businessInfo?.business_name || '');
     setWebsite(businessInfo?.business_url || '');
@@ -99,145 +123,150 @@ const BusinessInfo = ({
   };
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" style={{padding: '0px 20px'}}>
       <div className={clsx(classes.InfoContainer, classes.textStyle)}>
         <p className="text-center m-0" style={{ color: '#00468f', fontSize: '30px' }}>
           Business Information
         </p>
         {edit === false ? (
-          <>
-        <div className={classes.info}>
-          <div>
-            <p className="font-weight-light m-0">Business Name:</p>
-            <p>{businessName}</p>
-            
+          <div className={classes.formContainer}>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">Business Name:</p>
+                <p className={classes.formText}>{businessName}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Website:</p>
+                <p className={classes.formText}>{website}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Business Address:</p>
+                <p className={classes.formText}>{street}</p>
+                <p className={classes.formText}>{apartment}</p>
+                <p className={classes.formText}>{city}</p>
+                <p className={classes.formText}>{state}</p>
+                <p className={classes.formText}>{zip}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Industry:</p>
+                <p className={classes.formText}>{industry}</p>
+              </div>
+            </div>
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
+              }}
+            >
+              <Button
+                className="text-light border-0"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '160px',
+                  height: '55px',
+                }}
+                onClick={(e) => setEdit(true)}
+              >
+                Edit
+              </Button>
+            </div>
           </div>
-          <div>
-            <p className="font-weight-light m-0">Website:</p>
-            <p>{website}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Business Address:</p>
-            <p>{street}</p>
-            <p>{apartment}</p>
-            <p>{city}</p>
-            <p>{state}</p>
-            <p>{zip}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Industry:</p>
-            <p>{industry}</p>
-          </div>
-        </div>
-        <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          paddingBottom: '25px',
-        }}
-        >
-          <Button
-            className="text-light font-weight-bold border-0"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '120px',
-              height: '55px',
-              fontSize: '18px',
-            }}
-            onClick={(e) => setEdit(true)}
-          >
-            Edit
-          </Button>
-        </div>
-        </>
         ) : (
-          <div>
+          <div className={classes.formContainer}>
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">Business Name:</p>
                 <p>
-                <Input
-                  value={businessName}
-                  onChange={(e) =>
-                    setBusinessName(e.target.value)
-                  }
-                  placeholder="Business Name"
-                />
+                  {/* <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
+                    placeholder="Business Name"
+                  /> */}
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    placeholder="Business Name"
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Website:</p>
                 <p>
-                <Input
-                  value={website}
-                  onChange={(e) =>
-                    setWebsite(e.target.value)
-                  }
-                  placeholder="Website"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    placeholder="Website"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Business Address:</p>
                 <p>
-                <Input
-                  value={street}
-                  onChange={(e) =>
-                    setStreet(e.target.value)
-                  }
-                  placeholder="Address Line 1"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                    placeholder="Address Line 1"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={apartment}
-                  onChange={(e) =>
-                    setApartment(e.target.value)
-                  }
-                  placeholder="Address Line 2"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={apartment}
+                    onChange={(e) => setApartment(e.target.value)}
+                    placeholder="Address Line 2"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={city}
-                  onChange={(e) =>
-                    setCity(e.target.value)
-                  }
-                  placeholder="City"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="City"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={state}
-                  onChange={(e) =>
-                    setState(e.target.value)
-                  }
-                  placeholder="State"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    placeholder="State"
+                  />
                 </p>
                 <p>
-                <Input
-                  value={zip}
-                  onChange={(e) =>
-                    setZip(e.target.value)
-                  }
-                  placeholder="Zip"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
+                    placeholder="Zip"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Industry:</p>
                 <p>
-                <Input
-                  value={industry}
-                  onChange={(e) =>
-                    setIndustry(e.target.value)
-                  }
-                  placeholder="Industry"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={industry}
+                    onChange={(e) => setIndustry(e.target.value)}
+                    placeholder="Industry"
+                  />
                 </p>
               </div>
             </div>
@@ -255,7 +284,7 @@ const BusinessInfo = ({
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '120px',
+                  width: '160px',
                   height: '55px',
                   fontSize: '18px',
                 }}
@@ -278,5 +307,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getBusinessInfo,
-  updateBusinessInfo
+  updateBusinessInfo,
 })(BusinessInfo);

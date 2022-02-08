@@ -26,9 +26,8 @@ const LargeInput = React.forwardRef(({ isPasswordMasked = false, ...props }, ref
   );
 });
 
-LargeInput.propTypes = {
-  isPasswordMasked: PropTypes.boolean
-}
+// LargeInput.propTypes = {
+//   isPasswordMasked: PropTypes.boolean
+// }
 
 export default LargeInput;
-

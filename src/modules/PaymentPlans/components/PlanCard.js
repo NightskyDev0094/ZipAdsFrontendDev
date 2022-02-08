@@ -12,6 +12,13 @@ const useStyles = makeStyles((plan) => ({
     borderRadius: '30px',
     textAlign: 'center',
     color: plan.bestSeller ? 'white' : 'black',
+
+    '@media (max-width:1009px)': {
+      transform: 'scale(0.9)'
+    },
+    '@media (max-width:898px)': {
+      transform: 'scale(1)'
+    },
   }),
   planTitle: {
     fontSize: '24px',
@@ -50,6 +57,9 @@ const PlanCard = ({ plan, planCallback }) => {
       <div>
         <p
           style={{
+            width: 'fit-content',
+            margin: 'auto',
+            position: 'relative',
             color: plan.bestSeller ? 'white' : '#1b3061',
             fontWeight: 'bold',
             fontSize: '48px',
@@ -57,8 +67,8 @@ const PlanCard = ({ plan, planCallback }) => {
           }}
         >
           ${plan.price}
+          <p style={{ position: 'absolute', fontSize: '20px', bottom: '12px', right: '-50px' }}>/mo</p>
         </p>
-        <p style={{ position: 'absolute' }}>/mo</p>
       </div>
       <p className="font-italic font-weight-bold" style={{ fontSize: '18px' }}>
         7 Day Free Trial

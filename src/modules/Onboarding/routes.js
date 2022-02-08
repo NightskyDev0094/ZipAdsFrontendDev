@@ -8,7 +8,6 @@ import ConnectSocial from './containers/ConnectSocialContainer';
 const OnboardingRoutes = () => (
   <>
     <Route path="/onboarding/1" component={OnboardingPageOne} />
-    {/* <Route path="/onboarding/2" component={ConnectSocial} /> */}
     <Route path="/onboarding/2" component={OnboardingCompleted} />
   </>
 );

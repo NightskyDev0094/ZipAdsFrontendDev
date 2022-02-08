@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    padding: '0px 20px',
   },
   textStyle: {
     fontSize: '25px',
@@ -23,19 +24,31 @@ const useStyles = makeStyles(() => ({
       fontSize: '20px',
     },
   },
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    marginBottom: '20px',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
+  },
 }));
 
-const PaymentForm = ({ paymentCallback }) => {
+const PaymentForm = ({ paymentCallback, addCardCallback }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [formState, setFormState] = React.useState({
     isFormSubmitted: false,
     fields: {
+      fullName: '',
       cardNumber: '',
       date: '',
       CVCNumber: '',
       zipCode: '',
       fieldHasWhitepace: {
+        fullName: false,
         cardNumber: false,
         date: false,
         CVCNumber: false,
@@ -45,26 +58,43 @@ const PaymentForm = ({ paymentCallback }) => {
   });
 
   return (
-    <div className="w-100 h-100 paymenForm">
+    <div className="w-100 paymenForm">
       <div className={clsx(classes.PaymentFormContainer, classes.textStyle)}>
-        <p
-          className="text-center"
-          style={{ color: '#00468f', fontSize: '30px', marginBottom: '64px' }}
-        >
-          Payment Portal
-        </p>
+        <p className={classes.infoTitle}>Payment Portal</p>
         <form
           name="contactForm"
           className="form-border d-flex flex-column"
-          style={{ flex: 1 }}
           onSubmit={(e) => {
             e.preventDefault();
             if (e.target.checkValidity()) {
               paymentCallback(formState.fields);
+              addCardCallback(false);
             }
           }}
         >
-          <div className="field-set">
+          <div className="field-set input-type">
+            {/* <label>User Name:</label> */}
+            <TextField
+              name="fullName"
+              placeholder="First and Last Name"
+              id="fullName"
+              required
+              variant="standard"
+              value={formState.fields.fullName}
+              InputProps={{ disableUnderline: true }}
+              onChange={(e) => {
+                setFormState({
+                  ...formState,
+                  fields: {
+                    ...formState.fields,
+                    fullName: e.target.value,
+                  },
+                });
+              }}
+              className="form-control form-style"
+            />
+          </div>
+          <div className="field-set input-type">
             {/* <label>User Name:</label> */}
             <TextField
               type="number"
@@ -88,7 +118,7 @@ const PaymentForm = ({ paymentCallback }) => {
               className="form-control form-style"
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Email Address:</label> */}
             <TextField
               type="text"
@@ -113,7 +143,7 @@ const PaymentForm = ({ paymentCallback }) => {
               style={{ marginBottom: '32px !important', marginTop: '0 !important' }}
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Password:</label> */}
             <TextField
               type="number"
@@ -138,7 +168,7 @@ const PaymentForm = ({ paymentCallback }) => {
               style={{ marginBottom: '32px !important', marginTop: '0 !important' }}
             />
           </div>
-          <div className="field-set">
+          <div className="field-set input-type">
             {/* <label>Re-enter Password:</label> */}
             <TextField
               type="number"
@@ -166,19 +196,18 @@ const PaymentForm = ({ paymentCallback }) => {
           <div
             id="submit"
             className="pull-left w-100 d-flex align-items-end justify-content-center"
-            style={{ flex: 1, paddingBottom: '25px' }}
+            style={{ padding: '25px 0' }}
           >
             <input
               style={{
                 backgroundColor: '#00468f',
                 borderRadius: '8px',
-                width: '120px',
+                width: '140px',
                 height: '55px',
-                fontSize: '18px',
               }}
               type="submit"
               value="Add Card"
-              className="btn btn-custom border-0 text-light font-weight-bold"
+              className="btn btn-custom border-0 text-light"
             />
           </div>
         </form>
@@ -187,8 +216,6 @@ const PaymentForm = ({ paymentCallback }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-});
+const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {
-})(PaymentForm);
+export default connect(mapStateToProps, {})(PaymentForm);

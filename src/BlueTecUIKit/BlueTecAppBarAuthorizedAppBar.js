@@ -172,27 +172,27 @@ const BlueTecAppBarAuthorized = ({ logoutUser, completeStep }) => {
                         TransitionComponent={Fade}
                       >
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/contact/contact-info">
+                          <Link className={classes.innerLink} to="/info/contact-info">
                             Contact Info
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/contact/business-info">
+                          <Link className={classes.innerLink} to="/info/business-info">
                             Business Info
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/contact/login-info">
+                          <Link className={classes.innerLink} to="/info/login-info">
                             Login Info
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/contact/subscription-info">
+                          <Link className={classes.innerLink} to="/info/subscription-info">
                             Subscription Info
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                          <Link className={classes.innerLink} to="/contact/payment-portal">
+                          <Link className={classes.innerLink} to="/info/payment-portal">
                             Payment Portal
                           </Link>
                         </MenuItem>
