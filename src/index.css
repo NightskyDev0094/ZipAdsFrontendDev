@@ -43,10 +43,6 @@ button:hover {
   color: #333;
 }
 
-.form-border input[type='number']:focus {
-  background: #f5f9fd;
-}
-
 .form-border input::-webkit-outer-spin-button,
 .form-border input::-webkit-inner-spin-button {
   -webkit-appearance: none;
