@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { InputMainLabel, FacebookIcon, GoogleIcon } from '../../../sharedComponents/components';
 
-import mailChimpIcom from '../../../img/mailChimp.png';
 import SocialItem from './ConnectSocial.SocialItem';
 import { ManagedAccountComponent } from './ConnectSocial.ManagedAccount';
 import GoogleConnect from './ConnectSocial.GoogleConnect';

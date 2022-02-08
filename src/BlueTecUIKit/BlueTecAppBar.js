@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import ZipAdsLogo from './images/ZipAdsLogo.png';
+import { STATIC_URL } from '../environmentVariables';
 
 import './css/bluetecappbar.css';
 import './css/fonts.css';
 
+const ZipAdsLogo = STATIC_URL + 'images/ZipAdsLogo.png';
 export default function BlueTecHeader() {
   const [visible, setVisible] = useState(false);
   return (

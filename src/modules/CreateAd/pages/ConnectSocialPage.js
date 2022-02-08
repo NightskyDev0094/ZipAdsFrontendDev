@@ -18,8 +18,10 @@ import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
-import backgroundImage from '../../../BlueTecUIKit/images/background/4.png';
 import { completeStep } from '../../../actions/step.actions';
+import { STATIC_URL } from '../../../environmentVariables';
+
+const backgroundImage = STATIC_URL + 'images/background/4.png';
 
 const useStyles = makeStyles((theme) => ({
   container: {

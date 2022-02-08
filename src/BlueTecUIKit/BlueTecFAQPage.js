@@ -1,8 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import HeaderContainerImage from './images/background/5.png';
-import FooterContainerImage from './images/background/7.png';
 import BluetecLandingFooter from './BlueTecLandingFooter';
+import { STATIC_URL } from '../environmentVariables';
+
+const HeaderContainerImage = STATIC_URL + 'images/background/5.png';
+const FooterContainerImage = STATIC_URL + 'images/background/7.png';
 
 const useStyles = makeStyles(() => ({
   headerContainer: {

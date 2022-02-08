@@ -218,4 +218,8 @@ const PaymentForm = ({ paymentCallback }) => {
   );
 };
 
-export default PaymentForm;
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, {
+})(PaymentForm);

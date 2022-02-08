@@ -3,9 +3,10 @@ import BlueTecLandingFooter from './BlueTecLandingFooter';
 import BlueTecDashBoardImages from './BlueTecDashBoardImages';
 import BlueTecDashBoardHeader from './BlueTecDashBoardHeader';
 import BlueTecProgressBar from './BlueTecProgressBar';
-import backgroundImage from './images/background/1.png';
 import './css/bluetecdashboard.css';
 import { makeStyles } from '@material-ui/core/';
+import { STATIC_URL } from '../environmentVariables';
+const backgroundImage = STATIC_URL + 'images/background/1.png';
 
 const useStyles = makeStyles((theme) => ({
   container: {

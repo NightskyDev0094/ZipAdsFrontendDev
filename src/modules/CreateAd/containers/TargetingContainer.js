@@ -307,7 +307,7 @@ const TargetingContainer = ({
         googleGeoTargeting={googleGeoTargeting}
         googleKeywords={googleKeywords}
       />
-      {advTargeting && (
+      {/* {advTargeting && ( */}
         <ExpandedTargetingPage
           googleTableState={googleTableState}
           setGoogleTableState={setGoogleTableState}
@@ -328,7 +328,7 @@ const TargetingContainer = ({
           currentCampaign={currentCampaign}
           {...props}
         />
-      )}
+      {/* )} */}
     </>
   );
 };

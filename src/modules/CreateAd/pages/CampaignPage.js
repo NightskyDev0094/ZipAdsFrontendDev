@@ -6,13 +6,16 @@ import { useHistory } from 'react-router-dom';
 import CampaignImageDisplay from '../components/Campaign.ImageDisplay';
 import CreateCampaignForm from '../components/Campaign.Form';
 import StepProgress from '../components/StepProgress';
-import backgroundImage from '../../../BlueTecUIKit/images/background/2.png';
+
 import AdPreviewCarousel from '../components/Campaign.Display.AdCarousel';
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
 import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
+import { STATIC_URL } from '../../../environmentVariables';
+
+const backgroundImage = STATIC_URL + 'images/background/2.png';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {

@@ -3,9 +3,8 @@ import {
   GET_SUBSCRIPTIONS,
   SET_SUBSCRIPTION_LOADING,
   DELETE_SUBSCRIPTION,
-  SAVE_SUBSCRIPTION,
+  CREATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION,
-  MAKE_CURRENT,
   GET_ERRORS,
 } from './types';
 // import { createMessage, returnErrors } from "./messages";
@@ -112,7 +111,7 @@ export const updateSubscription = (subscription, id) => async (dispatch, _) => {
 };
 
 // Post Add to API
-export const addSubscription = (Subscription) => async (dispatch, _) => {
+export const addSubscription = (subscription) => async (dispatch, _) => {
   setSubscriptionLoading();
   const token = localStorage.getItem('token');
   // console.log("ADDSubscription RUNNING!!!!")
@@ -126,7 +125,7 @@ export const addSubscription = (Subscription) => async (dispatch, _) => {
     .post(`${SERVER_URL}/api/subscription/`, subscription, config)
     .then((res) => {
       dispatch({
-        type: SAVE_SUBSCRIPTION,
+        type: CREATE_SUBSCRIPTION,
         payload: res.data,
       });
     })
@@ -150,7 +149,7 @@ export const addSubscription = (Subscription) => async (dispatch, _) => {
 //     .post(`${SERVER_URL}/api/subscription/`, subscription, config)
 //     .then((res) => {
 //       dispatch({
-//         type: SAVE_SUBSCRIPTION,
+//         type: CREATE_SUBSCRIPTION,
 //         payload: res.data,
 //       });
 //     })

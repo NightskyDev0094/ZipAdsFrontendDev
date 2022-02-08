@@ -17,8 +17,10 @@ import {
 import { login, connectGoogleOAuth, connectFacebookAuth } from '../../../actions/authActions';
 
 import { ConnectSocialMenu } from '../components/ConnectSocial.HandleUserAccount.Components';
-import backgroundImage from '../../../BlueTecUIKit/images/background/4.png';
 import StepProgress from '../components/StepProgress';
+import { STATIC_URL } from '../../../environmentVariables';
+
+const backgroundImage = STATIC_URL + 'images/background/4.png';
 
 const useStyles = makeStyles((theme) => ({
   container: {

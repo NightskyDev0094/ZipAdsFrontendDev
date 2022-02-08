@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import Background1 from '../../../BlueTecUIKit/images/background/1.png';
+
 import { completeStepByNormalFunction } from '../../../actions/step.actions';
 import { getCampaignAsync } from '../../../actions/campaignActions';
 
@@ -16,6 +16,9 @@ import {
   getClientId,
   clearCreditErrors,
 } from '../../../actions/credit.actions';
+import { STATIC_URL } from '../../../environmentVariables'
+
+const Background1 = STATIC_URL + 'images/background/1.png';
 
 const useStyles = makeStyles(() => ({
   creditPageContainer: {

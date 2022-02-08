@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Mic from './images/mic.png';
-import FacebookLogo from './images/icons/footer_socials_facebook.png';
-import InstagramLogo from './images/icons/footer_socials_instagram.png';
-import TwitterLogo from './images/icons/footer_socials_twitter.png';
-import LinkdinLogo from './images/icons/footer_socials_linked in.png';
-import YoutubeLogo from './images/icons/footer_socials_youtube.png';
-import CallUs from './images/icons/footer_call us.png';
-import EmailUs from './images/icons/footer_email us.png';
+import { STATIC_URL } from '../environmentVariables';
 import './css/bluetecfooter.css';
+const Mic = STATIC_URL + 'images/mic.png';
+const FacebookLogo = STATIC_URL + 'images/icons/footer_socials_facebook.png';
+const InstagramLogo = STATIC_URL + 'images/icons/footer_socials_instagram.png';
+const TwitterLogo = STATIC_URL + 'images/icons/footer_socials_twitter.png';
+const LinkdinLogo = STATIC_URL + 'images/icons/footer_socials_linked in.png';
+const YoutubeLogo = STATIC_URL + 'images/icons/footer_socials_youtube.png';
+const CallUs = STATIC_URL + 'images/icons/footer_call us.png';
+const EmailUs = STATIC_URL + 'images/icons/footer_email us.png';
 
 class BlueTecLandingFooter extends React.Component {
+  
   render() {
     return (
       <footer style={{ padding: '10px 40px', background: '#d9d9d9' }}>

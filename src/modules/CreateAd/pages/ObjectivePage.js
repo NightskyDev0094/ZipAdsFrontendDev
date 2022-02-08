@@ -15,12 +15,14 @@ import { useHistory } from 'react-router-dom';
 
 import { Input, InputMainLabel, InputSmallLabel } from '../../../sharedComponents/components';
 import StepProgress from '../components/StepProgress';
-import backgroundImage from '../../../BlueTecUIKit/images/background/3.png';
 import {
   ErrorHandler,
   ErrorFallBackPageWrapper as ErrorFallBackPage,
 } from '../components/ErrorBoundary.Component';
 import ReSubmitFormModal from '../components/ReSubmit.Form.Modal';
+import { STATIC_URL } from '../../../environmentVariables';
+
+const backgroundImage = STATIC_URL + 'images/background/3.png';
 
 const useStyles = makeStyles((theme) => ({
   page: {

@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import LibraryCheckmark from '../../../BlueTecUIKit/images/icons/green checkmark.png';
-import LibraryOpenBook from '../../../BlueTecUIKit/images/library_open book.png';
 import CreateCampaignButton from './CreateCampaignButton';
-import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
-import Library_2 from '../../../BlueTecUIKit/images/gallery/library_2.png';
-import Library_3 from '../../../BlueTecUIKit/images/gallery/library_3.png';
-import Library_4 from '../../../BlueTecUIKit/images/gallery/library_4.png';
-import Library_5 from '../../../BlueTecUIKit/images/gallery/library_5.png';
-import Library_6 from '../../../BlueTecUIKit/images/gallery/library_6.png';
+import { STATIC_URL } from '../../../environmentVariables';
+
+const LibraryCheckmark = STATIC_URL + 'images/icons/library_green checkmark.png';
+const LibraryOpenBook = STATIC_URL + 'images/library_open book.png';
+const Library_1 = STATIC_URL + 'images/gallery/library_1.png';
+const Library_2 = STATIC_URL + 'images/gallery/library_2.png';
+const Library_3 = STATIC_URL + 'images/gallery/library_3.png';
+const Library_4 = STATIC_URL + 'images/gallery/library_4.png';
+const Library_5 = STATIC_URL + 'images/gallery/library_5.png';
+const Library_6 = STATIC_URL + 'images/gallery/library_6.png';
 
 const useStyles = makeStyles((theme) => ({
   imageLibrary: {

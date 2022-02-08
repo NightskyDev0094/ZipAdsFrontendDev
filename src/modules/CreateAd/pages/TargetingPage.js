@@ -22,8 +22,9 @@ import {
 } from '../components/ErrorBoundary.Component';
 import StepperWrapper from '../components/StepperWrapper';
 import Shoutbox from '../components/Shoutbox';
-import alert from '../../../BlueTecUIKit/images/targeting.png';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
+import { STATIC_URL } from '../../../environmentVariables';
+const alert = STATIC_URL +  'images/targeting.png';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {

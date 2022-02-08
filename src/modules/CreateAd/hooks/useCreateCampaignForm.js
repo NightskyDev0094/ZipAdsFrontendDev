@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-// import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
-import Library_1 from '../../../BlueTecUIKit/images/gallery/library_1.png';
+import { STATIC_URL } from '../../../environmentVariables';
+// const Library_1 = STATIC_URL + 'images/gallery/library_1.png';
+const Library_1 = STATIC_URL + 'images/gallery/library_1.png';
 
 export const SOCIAL_NETWORK_TITLES = {
   FacebookAd: 'Facebook Ad',
