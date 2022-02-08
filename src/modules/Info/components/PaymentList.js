@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PaymentList = () => {
+const PaymentList = ({ addCardCallback }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -122,6 +122,7 @@ const PaymentList = () => {
       dataIndex: '',
       key: 'x',
       width: '90px',
+      fixed: 'right',
       render: (index) => (
         <CancelIcon
           onClick={() => {
@@ -164,10 +165,10 @@ const PaymentList = () => {
   };
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100">
       <div className={clsx(classes.paymentInfoContainer, classes.textStyle)}>
         <p className={classes.infoTitle}>Payment Portal</p>
-        <div className="payment-list" style={{ flex: 1, padding: '50px 0px 25px 0' }}>
+        <div className="payment-list" style={{ padding: '50px 0px 25px 0' }}>
           <Table
             dataSource={subscriptionData}
             columns={subscriptionColumns}
@@ -178,7 +179,6 @@ const PaymentList = () => {
         </div>
         <div
           style={{
-            flex: 1,
             display: 'flex',
             alignItems: 'flex-end',
             justifyContent: 'center',
@@ -193,6 +193,9 @@ const PaymentList = () => {
               minWidth: '120px',
               height: '55px',
               fontSize: '18px',
+            }}
+            onClick={() => {
+              addCardCallback(true);
             }}
           >
             Add New Card

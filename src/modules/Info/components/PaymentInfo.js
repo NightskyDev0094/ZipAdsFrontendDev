@@ -47,7 +47,7 @@ const PaymentInfo = () => {
   const [edit, setEdit] = useState(false);
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100" style={{padding: '60px 0px 80px 0'}}>
       <div className={clsx(classes.paymentInfoContainer, classes.textStyle)}>
         <p className={classes.infoTitle}>Make a Payment</p>
         <div className={classes.info}>

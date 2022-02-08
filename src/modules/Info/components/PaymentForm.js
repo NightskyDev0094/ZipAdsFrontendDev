@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PaymentForm = ({ paymentCallback }) => {
+const PaymentForm = ({ paymentCallback, addCardCallback }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [formState, setFormState] = React.useState({
@@ -58,24 +58,23 @@ const PaymentForm = ({ paymentCallback }) => {
   });
 
   return (
-    <div className="w-100 h-100 paymenForm">
+    <div className="w-100 paymenForm">
       <div className={clsx(classes.PaymentFormContainer, classes.textStyle)}>
         <p className={classes.infoTitle}>Payment Portal</p>
         <form
           name="contactForm"
           className="form-border d-flex flex-column"
-          style={{ flex: 1 }}
           onSubmit={(e) => {
             e.preventDefault();
             if (e.target.checkValidity()) {
               paymentCallback(formState.fields);
+              addCardCallback(false);
             }
           }}
         >
           <div className="field-set input-type">
             {/* <label>User Name:</label> */}
             <TextField
-              type="text"
               name="fullName"
               placeholder="First and Last Name"
               id="fullName"
@@ -84,7 +83,6 @@ const PaymentForm = ({ paymentCallback }) => {
               value={formState.fields.fullName}
               InputProps={{ disableUnderline: true }}
               onChange={(e) => {
-                if (e.target.value.includes(' ')) return;
                 setFormState({
                   ...formState,
                   fields: {
@@ -198,7 +196,7 @@ const PaymentForm = ({ paymentCallback }) => {
           <div
             id="submit"
             className="pull-left w-100 d-flex align-items-end justify-content-center"
-            style={{ flex: 1, padding: '25px 0' }}
+            style={{ padding: '25px 0' }}
           >
             <input
               style={{
@@ -218,8 +216,6 @@ const PaymentForm = ({ paymentCallback }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-});
+const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {
-})(PaymentForm);
+export default connect(mapStateToProps, {})(PaymentForm);

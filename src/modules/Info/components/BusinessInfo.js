@@ -136,23 +136,23 @@ const BusinessInfo = ({
             <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">Business Name:</p>
-                <p>{businessName}</p>
+                <p className={classes.formText}>{businessName}</p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Website:</p>
-                <p>{website}</p>
+                <p className={classes.formText}>{website}</p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Business Address:</p>
-                <p>{street}</p>
-                <p>{apartment}</p>
-                <p>{city}</p>
-                <p>{state}</p>
-                <p>{zip}</p>
+                <p className={classes.formText}>{street}</p>
+                <p className={classes.formText}>{apartment}</p>
+                <p className={classes.formText}>{city}</p>
+                <p className={classes.formText}>{state}</p>
+                <p className={classes.formText}>{zip}</p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Industry:</p>
-                <p>{industry}</p>
+                <p className={classes.formText}>{industry}</p>
               </div>
             </div>
             <div

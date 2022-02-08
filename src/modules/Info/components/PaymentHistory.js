@@ -117,9 +117,9 @@ const PaymentHistory = () => {
   ]);
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100" style={{marginBottom: '-20px'}}>
       <div className={clsx(classes.paymentInfoContainer, classes.textStyle)}>
-        <p className={classes.infoTitle}>Make a Payment</p>
+        <p className={classes.infoTitle}>Playment History</p>
         <div className='payment-history'>
           <Table
             pagination={false}

@@ -4,15 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
 import { getUser, updateUser } from '../../../actions/userActions';
-import {Input} from '@material-ui/core';
+import { Input } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   SignInInfoContainer: {
     margin: 'auto',
-    width: 'fit-content',
+    width: '100%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
   },
   textStyle: {
     fontSize: '25px',
@@ -71,25 +72,44 @@ const useStyles = makeStyles(() => ({
       },
     },
   },
+  formContainer: {
+    maxWidth: '800px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  InputItem: {
+    width: '100%',
+    padding: '14px 8px',
+    fontSize: '20px',
+    border: '2px solid #c7c7c7',
+    borderRadius: '6px',
+    outline: 'none',
+    ['& > input']: {
+      padding: '0 !important',
+    },
+  },
+  formText: {
+    height: '56px',
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
-const SignInInfo = ({
-  getUser,
-  updateUser,
-  user,
-  userLoading,
-}) => {
+const SignInInfo = ({ getUser, updateUser, user, userLoading }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
-  const [password, setPassword] = useState(false);
-  const [username, setUsername] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   useEffect(() => {
     // Get Contact Info values
     getUser();
   }, []);
   useEffect(() => {
     // Set Contact Info values
-    if(!userLoading){
+    if (!userLoading) {
       setSavedVals();
     }
   }, [user]);
@@ -100,8 +120,8 @@ const SignInInfo = ({
     formData.append('username', username);
     updateUser(formData);
     // Update form state
-    setEdit(false)
-  }
+    setEdit(false);
+  };
   const setSavedVals = () => {
     // if (user.campaign_type === 'Draft' || user.campaign_type === 'Template') {
     // setPassword(user.password || '');
@@ -110,85 +130,111 @@ const SignInInfo = ({
   };
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" style={{padding: '0px 20px'}}>
       <div className={clsx(classes.SignInInfoContainer, classes.textStyle)}>
-        <p className={classes.infoTitle}>
-          Sign-In Information
-        </p>
+        <p className={classes.infoTitle}>Sign-In Information</p>
         {edit === false ? (
-        <>
-        <div className={classes.info}>
-          <div>
-            <p className="font-weight-light m-0">Username:</p>
-            <p>{username}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Password:</p>
-            <p style={{ webkitTextSecurity: password ? 'initial' : 'disc' }}>{password}</p>
+          <div className={classes.formContainer}>
+            <div className={classes.info}>
+              <div>
+                <p className="font-weight-light m-0">Username:</p>
+                <p className={classes.formText}>{username}</p>
+              </div>
+              <div>
+                <p className="font-weight-light m-0">Password:</p>
+                <p className={classes.formText} style={{ webkitTextSecurity: isPassword ? 'initial' : 'disc' }}>{password}</p>
+                <div
+                  className={classes.passwordCheckBox}
+                  onClick={() => {
+                    setIsPassword(!isPassword);
+                  }}
+                >
+                  <input type="checkbox" checked={isPassword} />
+                  <p>Show Password</p>
+                </div>
+              </div>
+            </div>
             <div
-              className={classes.passwordCheckBox}
-              onClick={() => {
-                setPassword(!password);
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingBottom: '25px',
               }}
             >
-              <input
-                type="checkbox"
-                checked={password}
-              />
-              <p>Show Password</p>
+              <Button
+                className="text-light border-0"
+                style={{
+                  backgroundColor: '#00468f',
+                  borderRadius: '8px',
+                  width: '160px',
+                  height: '55px',
+                }}
+                onClick={(e) => setEdit(true)}
+              >
+                Edit
+              </Button>
             </div>
           </div>
-        </div>
-        <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          paddingBottom: '25px',
-        }}
-        >
-          <Button
-            className="text-light border-0"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '140px',
-              height: '55px',
-            }}
-            onClick={(e) => setEdit(true)}
-          >
-            Edit
-          </Button>
-        </div>
-        </>
         ) : (
-          <>
+          <div className={classes.formContainer}>
+            <div className={classes.info}>
               <div>
                 <p className="font-weight-light m-0">Username:</p>
                 <p>
-                <Input
-                  value={username}
-                  onChange={(e) =>
-                    setUsername(e.target.value)
-                  }
-                  placeholder="Username"
-                />
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Username"
+                  />
                 </p>
               </div>
               <div>
                 <p className="font-weight-light m-0">Password:</p>
-                <p>
+                <p style={{ webkitTextSecurity: isPassword ? 'initial' : 'disc' }}>
+                  <Input
+                    disableUnderline
+                    className={classes.InputItem}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                  />
+                </p>
+                <div
+                  className={classes.passwordCheckBox}
+                  onClick={() => {
+                    setIsPassword(!isPassword);
+                  }}
+                >
+                  <input type="checkbox" checked={isPassword} />
+                  <p>Show Password</p>
+                </div>
+              </div>
+            </div>
+            {/* <div>
+              <p className="font-weight-light m-0">Username:</p>
+              <p>
+                <Input
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Username"
+                />
+              </p>
+            </div>
+            <div>
+              <p className="font-weight-light m-0">Password:</p>
+              <p>
                 <Input
                   value={password}
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                 />
-                </p>
-              </div>
-              <div
+              </p>
+            </div> */}
+            <div
               style={{
                 flex: 1,
                 display: 'flex',
@@ -202,7 +248,7 @@ const SignInInfo = ({
                 style={{
                   backgroundColor: '#00468f',
                   borderRadius: '8px',
-                  width: '120px',
+                  width: '160px',
                   height: '55px',
                   fontSize: '18px',
                 }}
@@ -211,7 +257,7 @@ const SignInInfo = ({
                 Save Changes
               </Button>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
@@ -225,5 +271,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getUser,
-  updateUser
+  updateUser,
 })(SignInInfo);
