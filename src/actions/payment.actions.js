@@ -8,6 +8,7 @@ import {
   PAYMENT_ERROR,
   CLEAR_PAYMENTS_PURCHASE,
   CLEAR_PAYMENT_ERRORS,
+  SET_PAYMENTS_LOADING,
 } from './types';
 
 const token = localStorage.getItem('token');
@@ -111,3 +112,8 @@ export const clearPaymentSuccess = (dispatch) =>
 export const clearPaymentErrors = (dispatch) => {
   dispatch({ type: CLEAR_PAYMENT_ERRORS });
 };
+
+// Set Loading state
+export const setPaymentsLoading = () => ({
+  type: SET_PAYMENTS_LOADING,
+});

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, Switch, Button } from 'antd';
 import clsx from 'clsx';
-import { getSubscription, updateSubscription } from '../../../actions/subscriptionActions';
+import { getSubscription, updateSubscription, addSubscription } from '../../../actions/subscriptionActions';
 // import {Input, Switch} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {
   GET_CARDS,
-  SET_CARD_LOADING,
-  DELETE_CARD,
-  SAVE_CARD,
-  UPDATE_CARD,
+  SET_CARDS_LOADING,
+  DELETE_CARDS,
+  CREATE_CARDS,
+  UPDATE_CARDS,
   MAKE_CURRENT,
   GET_ERRORS,
 } from './types';
@@ -38,7 +38,7 @@ const config = {
 // };
 
 // Get Ads From Server
-export const getCard = () => (dispatch, getState) => {
+export const getCards = () => (dispatch, getState) => {
   setCardLoading();
   axios
     .get(`${SERVER_URL}/api/card/`, tokenConfig(getState))
@@ -77,7 +77,7 @@ export const deleteCard = (id) => (dispatch, getState) => {
     .then((res) => {
       // dispatch(createMessage({ deleteCard: "Ad Deleted" }));
       dispatch({
-        type: DELETE_CARD,
+        type: DELETE_CARDS,
         payload: id,
       });
     })
@@ -101,7 +101,7 @@ export const updateCard = (card, id) => async (dispatch, _) => {
     .then((res) => {
       // dispatch(createMessage({ updateCard: "Ad Updated" }));
       dispatch({
-        type: UPDATE_CARD,
+        type: UPDATE_CARDS,
         payload: res.data,
       });
     })
@@ -112,7 +112,7 @@ export const updateCard = (card, id) => async (dispatch, _) => {
 };
 
 // Post Add to API
-export const addCard = (Card) => async (dispatch, _) => {
+export const addCard = (card) => async (dispatch, _) => {
   setCardLoading();
   const token = localStorage.getItem('token');
   // console.log("ADDCard RUNNING!!!!")
@@ -126,7 +126,7 @@ export const addCard = (Card) => async (dispatch, _) => {
     .post(`${SERVER_URL}/api/card/`, card, config)
     .then((res) => {
       dispatch({
-        type: SAVE_CARD,
+        type: CREATE_CARDS,
         payload: res.data,
       });
     })
@@ -159,12 +159,8 @@ export const addCard = (Card) => async (dispatch, _) => {
 //     });
 // };
 
-export const makeCurrent = (payload) => ({
-  type: MAKE_CURRENT,
-  payload,
-});
 
 // Set Loading state
 export const setCardLoading = () => ({
-  type: SET_CARD_LOADING,
+  type: SET_CARDS_LOADING,
 });

@@ -7,6 +7,7 @@ import {
   CLEAR_ERRORS,
   CLEAR_PAYMENTS_PURCHASE,
   CLEAR_PAYMENT_ERRORS,
+  SET_PAYMENTS_LOADING
 } from '../actions/types';
 
 // Set Facebook feed ad state
@@ -15,6 +16,7 @@ const initialState = {
   userClientId: null,
   error: null,
   success: null,
+  cardsLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +24,8 @@ export default (state = initialState, action) => {
     case GET_PAYMENTS:
       return {
         ...initialState,
-        userPayments: action.payload
+        userPayments: action.payload,
+        cardsLoading: false,
       };
     case UPDATE_PAYMENTS:
       return {
@@ -56,6 +59,11 @@ export default (state = initialState, action) => {
         error: null,
         success: null
       };
+    case SET_PAYMENTS_LOADING:
+        return {
+          ...state,
+          paymentsLoading: true,
+        };
     default:
       return state;
   }

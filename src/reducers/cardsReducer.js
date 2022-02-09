@@ -2,19 +2,14 @@ import {
   GET_CARDS,
   UPDATE_CARDS,
   CREATE_CARDS,
-  GET_CLIENT_ID_FOR_CARDS,
-  CARD_ERROR,
-  CLEAR_ERRORS,
-  CLEAR_CARDS_PURCHASE,
-  CLEAR_CARD_ERRORS,
+  DELETE_CARDS,
+  SET_CARDS_LOADING,
 } from '../actions/types';
 
 // Set Facebook feed ad state
 const initialState = {
   userCards: [],
-  userClientId: null,
-  error: null,
-  success: null,
+  cardsLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +17,8 @@ export default (state = initialState, action) => {
     case GET_CARDS:
       return {
         ...initialState,
-        userCards: action.payload
+        userCards: action.payload,
+        cardsLoading: false,
       };
     case UPDATE_CARDS:
       return {
@@ -35,26 +31,10 @@ export default (state = initialState, action) => {
         userCards: [...state.userCards, action.payload],
         success: true,
       };
-    case GET_CLIENT_ID_FOR_CARDS:
+    case SET_CARDS_LOADING:
       return {
-        ...initialState,
-        userClientId: action.payload,
-      };
-    case CARD_ERROR:
-      return {
-        ...initialState,
-        error: action.payload,
-      };
-    case CLEAR_CARD_ERRORS:
-      return {
-        ...initialState,
-        error: null,
-      };
-    case CLEAR_CARDS_PURCHASE:
-      return {
-        ...initialState,
-        error: null,
-        success: null
+        ...state,
+        cardsLoading: true,
       };
     default:
       return state;

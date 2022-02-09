@@ -5,7 +5,9 @@ import PaymentList from './PaymentList';
 import PaymentForm from './PaymentForm';
 import PaymentInfo from './PaymentInfo';
 import PaymentHistory from './PaymentHistory';
-import { getBusinessInfo, updateBusinessInfo } from '../../../actions/businessInfoActions';
+import { getPaymentAmount, createPaymentAmount } from '../../../actions/payment.actions';
+import { getCards, addCard, deleteCard } from '../../../actions/cardActions';
+import { getSubscription, updateSubscription, addSubscription } from '../../../actions/subscriptionActions';
 
 const useStyles = makeStyles(() => ({
   PaymentPortalContainer: {
@@ -34,16 +36,30 @@ const useStyles = makeStyles(() => ({
 }));
 
 const PaymentPortal = ({
-  getBusinessInfo,
-  updateBusinessInfo,
-  businessInfo,
-  businessInfoLoading,
+  getPaymentAmount,
+  createPaymentAmount,
+  getCards,
+  addCard,
+  deleteCard,
+  cards,
+  cardsLoading,
+  payments,
+  paymentsLoading,
 }) => {
   const [paymentFields, setPaymentFields] = useState();
   const [edit, setEdit] = useState(false);
   const [editCard, setEditCard] = useState(false);
-  const [password, setPassword] = useState(false);
-  const [email, setEmail] = useState(false);
+  // Payment state
+  const [paymentData, setPaymentData] = useState([]);
+  const [stripeChargeId, setStripeChargeId] = useState(null);
+  const [paymentAmount, setPaymentAmount] = useState(null);
+  // card state
+  const [cardData, setCardData] = useState([]);
+  const [cardNumber, setCardNumber] = useState(null);
+  const [cardName, setCardName] = useState('');
+  const [cardExpDate, setCardExpDate] = useState('');
+  const [cardCVV, setCardCVV] = useState(null);
+
 
   const paymentCallback = useCallback((form) => {
     setPaymentFields(form);
@@ -53,50 +69,94 @@ const PaymentPortal = ({
     setEditCard(status);
   }, []);
   useEffect(() => {
-    // Get Contact Info values
-    getBusinessInfo();
+    // Get Payment and card values
+    getPaymentAmount();
+    getCards();
   }, []);
   useEffect(() => {
-    // Set Contact Info values
-    if (!businessInfoLoading) {
-      setSavedVals();
+    // Set Payment values
+    if (!paymentsLoading) {
+      setPayments();
     }
-  }, [businessInfo]);
+  }, [payments]);
+  useEffect(() => {
+    // Set Card values
+    if (!cardsLoading) {
+      setCards();
+    }
+  }, [cards]);
 
-  const submitSignInInfos = () => {
-    // Submit updated values to business info
+  const submitCardInfos = (card) => {
+    // Submit updated values to cards
     let formData = new FormData();
-    formData.append('email', email);
-    updateBusinessInfo(formData);
+    formData.append('number', cardNumber);
+    formData.append('name', cardName);
+    formData.append('expiration_date', cardExpDate);
+    addCard(formData);
     // Update form state
     setEdit(false);
   };
-  const setSavedVals = () => {
-    // if (businessInfo.campaign_type === 'Draft' || businessInfo.campaign_type === 'Template') {
-    setPassword(businessInfo?.password || '');
-    setEmail(businessInfo?.email || '');
-    // }
+  const submitPaymentInfos = (payment) => {
+    // Submit updated values to payments
+    let formData = new FormData();
+    formData.append('stripe_charge_id', stripeChargeId);
+    formData.append('amount', paymentAmount);
+    createPaymentAmount(formData);
+    // Update form state
+    setEdit(false);
+  };
+  const setCards = () => {
+    setCardData(cards || '');
+  };
+  const setPayments = () => {
+    setPaymentData(payments || '');
   };
 
   return (
     <div className="w-100 h-100">
       {!editCard ? (
-        <PaymentList addCardCallback={addCardCallback} />
+        <PaymentList 
+          addCardCallback={addCardCallback}
+          submitCardInfos={submitCardInfos}
+          cardData={cardData}
+          cardNumber={cardNumber}
+          cardName={cardName}
+          cardExpDate={cardExpDate}
+          cardCVV={cardCVV}
+          setCardNumber={setCardNumber}
+          setCardName={setCardName}
+          setCardExpDate={setCardExpDate}
+          setCardCVV={setCardCVV}
+        />
       ) : (
-        <PaymentForm paymentCallback={paymentCallback} addCardCallback={addCardCallback} />
+        <PaymentForm 
+          paymentCallback={paymentCallback}
+          addCardCallback={addCardCallback}
+          stripeChargeId={stripeChargeId}
+          paymentAmount={paymentAmount}
+          setStripeChargeId={setStripeChargeId}
+          setPaymentAmount={setPaymentAmount}
+        />
       )}
       <PaymentInfo />
-      <PaymentHistory />
+      <PaymentHistory
+        paymentData={paymentData}
+      />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  businessInfo: state.businessInfo.businessInfos[0],
-  businessInfoLoading: state.businessInfo.businessInfoLoading,
+  cards: state.cards.userCards,
+  cardsLoading: state.cards.cardsLoading,
+  payments: state.payments.userPayments,
+  paymentsLoading: state.payments.paymentsLoading,
 });
 
 export default connect(mapStateToProps, {
-  getBusinessInfo,
-  updateBusinessInfo,
+  getPaymentAmount,
+  createPaymentAmount,
+  getCards,
+  addCard,
+  deleteCard
 })(PaymentPortal);
