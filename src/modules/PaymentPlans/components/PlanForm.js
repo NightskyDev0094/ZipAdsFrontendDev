@@ -1,54 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Button, Typography } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
+import { CardElement, useElements, useStripe, PaymentElement, CardCvcElement, CardExpiryElement, CardNumberElement } from '@stripe/react-stripe-js';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import clsx from 'clsx';
+import '../../../index.css';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(() => ({
-  container: {
-    height: '150px',
+  PaymentFormContainer: {
+    margin: 'auto',
+    width: 'fit-content',
+    width: '100%',
+    height: '100%',
     display: 'flex',
-    justifyContent: 'center',
-    fontFamily: 'Silka',
     flexDirection: 'column',
   },
-  button: {
-    marginTop: '30px',
+  textStyle: {
+    fontSize: '25px',
+    fontWeight: '600',
+
+    '@media (max-width:718px)': {
+      fontSize: '20px',
+    },
   },
-  form: {
-    width: '100%',
-    height: '150px',
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    flexDirection: 'column',
-    fontFamily: 'Silka',
-  },
-  label: {
-    width: '50%',
-    display: 'flex !important',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontFamily: 'Silka',
-    '@media (max-width:700px)': {
-      display: 'flex !important',
-      flexDirection: 'column !important',
-      alignItems: 'flex-start !important'
-    }
-  },
-  title: {
-    borderBottom: '1px solid black',
-    fontFamily: 'Silka',
-    marginBottom: '30px'
-  },
-  root: {
-    margin: '50px 50px 0px 50px',
-  },
-  submitButton: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginTop: '30px',
+  infoTitle: {
+    color: '#00468f',
+    fontSize: '32px',
+    textAlign: 'center',
+    marginBottom: '20px',
+
+    '@media (max-width:576px)': {
+      fontSize: '24px',
+    },
   },
 }));
 
@@ -88,47 +73,63 @@ const PAYMENT_RESULT_STATUS = {
   ERROR: 'ERROR',
 };
 
-const CreditStripeComponent = ({
+
+const PlanForm = ({ 
   preExistingAmount,
   amountToPurchase,
-  createCreditAmount,
+  createPaymentAmount,
   getClientId,
   stripeCheckoutToken,
-  creditError,
+  paymentError,
   purchaseButtonDisabled,
-  updateCreditAmount,
-  clearCreditErrors,
-}) => {
+  updatePaymentAmount,
+  clearPaymentErrors,
+ }) => {
   const classes = useStyles();
+  const [edit, setEdit] = useState(false);
+  const [formState, setFormState] = React.useState({
+    isFormSubmitted: false,
+    fields: {
+      fullName: '',
+      cardNumber: '',
+      date: '',
+      CVCNumber: '',
+      zipCode: '',
+      fieldHasWhitepace: {
+        cardNumber: false,
+        date: false,
+        CVCNumber: false,
+        zipCode: false,
+      },
+    },
+  });
   const stripe = useStripe();
   const elements = useElements();
 
   const [stripeStatus, setStripeStatus] = useState(STRIPE_STATUS.UNSET);
   const [errorMessage, setErrorMessage] = useState(ERROR_MESSAGE.UNSET);
   const [paymentResultStatus, setPaymentResultStatus] = useState(PAYMENT_RESULT_STATUS.UNSET);
+  const [paypalOptions, setPaypalOptions] = useState({
+    "client-id": "test",
+    currency: "USD",
+    intent: "capture",
+    "data-client-token": "abc123xyz==",
+});
 
   const [name, setName] = useState('');
-
-  const combinePreExistingAmountToAmount = () => {
-    const [preExistinAmountParsed, amountParsed] = [
-      parseFloat(preExistingAmount),
-      parseFloat(amountToPurchase),
-    ];
-    return preExistinAmountParsed + amountParsed;
-  };
 
   const formatAmountForSubmisson = () => {
     const formData = new FormData();
     const intToFloat = (num, decPlaces) => num + '.' + Array(decPlaces + 1).join('0');
     try {
-      if(!preExistingAmount){
-        formData.append('amount', intToFloat(amountToPurchase, 2));
-        formData.append('pending', false);  
-      } else {
-        const budget = intToFloat((parseInt(amountToPurchase) + parseInt(preExistingAmount)), 2);
-        formData.append('amount', budget);
-        formData.append('pending', false);
-      }
+      // if(!preExistingAmount){
+      formData.append('amount', intToFloat(amountToPurchase, 2));
+      formData.append('pending', false);  
+      // } else {
+      //   const budget = intToFloat((parseInt(amountToPurchase) + parseInt(preExistingAmount)), 2);
+      //   formData.append('amount', budget);
+      //   formData.append('pending', false);
+      // }
     } catch (e) {
       setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
     }
@@ -139,7 +140,7 @@ const CreditStripeComponent = ({
    * This hook fetchs to payment id, to secure a checkout.
    * then sets the payment reulst status state hook.
    */
-  useEffect(() => {
+   useEffect(() => {
     try {
       if (stripeCheckoutToken) {
         const paymentClosure = async () => {
@@ -179,36 +180,36 @@ const CreditStripeComponent = ({
   }, [stripeCheckoutToken, stripeCheckoutToken?.client_secret]);
 
   /**
-   * Checks for a credit error or failure to process
-   * credit or debit card
+   * Checks for a Payment error or failure to process
+   * Payment or debit card
    */
   useEffect(() => {
-    if (creditError) {
+    if (paymentError) {
       setStripeStatus(STRIPE_STATUS.ERROR);
       setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
     }
-  }, [creditError]);
+  }, [paymentError]);
 
   /**
    * Check payment result and if so submit amount
    * and notify users, this hook is watching for the payment result
-   * It will then clear errors, and update credit amount or create a new amount
+   * It will then clear errors, and update payment amount or create a new amount
    */
   useEffect(() => {
     try {
       const submitOrUpdateClosure = async () => {
         if (paymentResultStatus === PAYMENT_RESULT_STATUS.SUCCEED) {
-          await clearCreditErrors();
-          if (preExistingAmount > 0) {
-            const combinedAmount = formatAmountForSubmisson();
-            //updateCreditAmount will chagne too
-            await createCreditAmount(combinedAmount);
-            setStripeStatus(STRIPE_STATUS.SUCCESS);
-          } else {
-            const amount = formatAmountForSubmisson();
-            await createCreditAmount(amount);
-            setStripeStatus(STRIPE_STATUS.SUCCESS);
-          }
+          await clearPaymentErrors();
+          // if (preExistingAmount > 0) {
+          //   const combinedAmount = formatAmountForSubmisson();
+          //   //updatePaymentAmount will chagne too
+          //   await createPaymentAmount(combinedAmount);
+          //   setStripeStatus(STRIPE_STATUS.SUCCESS);
+          // } else {
+          const amount = formatAmountForSubmisson();
+          await createPaymentAmount(amount);
+          setStripeStatus(STRIPE_STATUS.SUCCESS);
+          // }
         } else if (paymentResultStatus === PAYMENT_RESULT_STATUS.ERROR) {
           setStripeStatus(STRIPE_STATUS.ERROR);
           setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
@@ -235,7 +236,7 @@ const CreditStripeComponent = ({
         setErrorMessage(ERROR_MESSAGE.STRIPE_LOAD_FAILURE);
         return;
       } else {
-        await getClientId(amountToPurchase, preExistingAmount);
+        await getClientId(amountToPurchase, 0);
       }
     } catch (e) {
       setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
@@ -243,75 +244,47 @@ const CreditStripeComponent = ({
   };
 
   return (
-    <div className={classes.root}>
-      <Typography className={classes.title} variant="h6" component="h6">
-        Checkout
-      </Typography>
-      <div className={classes.container}>
-        <div className={classes.cartStatusContainer}>
-          {stripeStatus === STRIPE_STATUS.SUCCESS && (
-            <Alert severity="success">
-              You Successfully Purchased Credits!, Feel free to go to the next page.
-            </Alert>
-          )}
-          {stripeStatus === STRIPE_STATUS.LOADING && (
-            <Alert severity="info">Processing Card...</Alert>
-          )}
-          {stripeStatus === STRIPE_STATUS.ERROR && (
-            <Alert severity="error">An Error has occured: {errorMessage}</Alert>
-          )}
-        </div>
-        <form className={classes.form} onSubmit={handleSubmit} action="" method="post">
-          <label className={classes.label}>
-            Name on Card
-            <input
-              id="name"
-              required
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <CardElement />
-          <div className={classes.submitButton}>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              type="submit"
-              disabled={!stripe || purchaseButtonDisabled}
-            >
-              Purchase credits and continue
-            </Button>
+    <div style={{ width: '100%', height: 'calc(100vh - 298px)', padding: '20px', margin: 'auto' }}>
+      <div className={clsx(classes.PaymentFormContainer, classes.textStyle)}>
+        <p
+          className={classes.infoTitle}
+        >
+          Add a Card to Activate Your Free Trial
+        </p>
+          <div className="field-set input-type">
+            <PayPalScriptProvider options={paypalOptions}>
+                <PayPalButtons />
+            </PayPalScriptProvider>
+
           </div>
-        </form>
+
       </div>
     </div>
   );
 };
 
-CreditStripeComponent.propTypes = {
-  preExistingAmount: PropTypes.string,
+PlanForm.propTypes = {
+  // preExistingAmount: PropTypes.string,
   amountToPurchase: PropTypes.string,
-  createCreditAmount: PropTypes.func,
+  createPaymentAmount: PropTypes.func,
   getClientId: PropTypes.func,
   stripeCheckoutToken: PropTypes.string,
-  creditError: PropTypes.string,
-  purchaseButtonDisabled: PropTypes.bool,
-  updateCreditAmount: PropTypes.func,
-  clearCreditErrors: PropTypes.func
+  paymentError: PropTypes.string,
+  // purchaseButtonDisabled: PropTypes.bool,
+  updatePaymentAmount: PropTypes.func,
+  clearPaymentErrors: PropTypes.func
 };
 
-CreditStripeComponent.defaultProps = {
-  preExistingAmount: '0',
+PlanForm.defaultProps = {
+  // preExistingAmount: '0',
   amountToPurchase: '',
-  createCreditAmount: () => alert('createCreditAction not passed'),
+  createPaymentAmount: () => alert('createPaymentAction not passed'),
   getClientId: () => alert('client id not passed'),
   stripeCheckoutToken: '',
-  creditError: '',
-  purchaseButtonDisabled: true,
-  updateCreditAmount: () => alert('update credit amount not passed'),
-  clearCreditErrors: () => alert('clear credit errors')
+  paymentError: '',
+  // purchaseButtonDisabled: true,
+  updatePaymentAmount: () => alert('update Payment amount not passed'),
+  clearPaymentErrors: () => alert('clear Payment errors')
 };
 
-export default CreditStripeComponent;
+export default PlanForm;

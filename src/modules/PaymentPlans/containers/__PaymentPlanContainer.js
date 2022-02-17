@@ -29,43 +29,43 @@ const useStyles = makeStyles(() => ({
 const PaymentPlanContainer = (
   { currentCampaign, socialsToPost, getCampaignAsync, completeStep, ...props}
 ) => {
-  const getCampaignData = useCallback(async () => await getCampaignAsync());
-  const [amount, setAmount] = useState(0);
-  useEffect(() => {
-    getCampaignData();
-  }, []);
+  // const getCampaignData = useCallback(async () => await getCampaignAsync());
+  // const [amount, setAmount] = useState(0);
+  // useEffect(() => {
+  //   getCampaignData();
+  // }, []);
 
-  useEffect(() => {
-    let budgets = [];
-    if (!currentCampaign) return;
-    if (socialsToPost.includes('facebook feed ad')) {
-      budgets.push(
-        parseFloat(currentCampaign.facebook_feed_budget) * currentCampaign.fb_campaign_length
-      );
-    }
-    if (socialsToPost.includes('facebook display ad')) {
-      budgets.push(
-        parseFloat(currentCampaign.facebook_audience_budget) * currentCampaign.fb_campaign_length
-      );
-    }
-    if (socialsToPost.includes('instagram ad')) {
-      budgets.push(
-        parseFloat(currentCampaign.instagram_budget) * currentCampaign.fb_campaign_length
-      );
-    }
-    if (socialsToPost.includes('google search ad')) {
-      budgets.push(
-        parseFloat(currentCampaign.google_search_budget) * currentCampaign.ga_campaign_length
-      );
-    }
-    if (socialsToPost.includes('google display ad')) {
-      budgets.push(
-        parseFloat(currentCampaign.google_display_budget) * currentCampaign.ga_campaign_length
-      );
-    }
-    let budgetVal = budgets.reduce((a, b) => a + b, 0);
-    setAmount(budgetVal);
-  }, [currentCampaign]);
+  // useEffect(() => {
+  //   let budgets = [];
+  //   if (!currentCampaign) return;
+  //   if (socialsToPost.includes('facebook feed ad')) {
+  //     budgets.push(
+  //       parseFloat(currentCampaign.facebook_feed_budget) * currentCampaign.fb_campaign_length
+  //     );
+  //   }
+  //   if (socialsToPost.includes('facebook display ad')) {
+  //     budgets.push(
+  //       parseFloat(currentCampaign.facebook_audience_budget) * currentCampaign.fb_campaign_length
+  //     );
+  //   }
+  //   if (socialsToPost.includes('instagram ad')) {
+  //     budgets.push(
+  //       parseFloat(currentCampaign.instagram_budget) * currentCampaign.fb_campaign_length
+  //     );
+  //   }
+  //   if (socialsToPost.includes('google search ad')) {
+  //     budgets.push(
+  //       parseFloat(currentCampaign.google_search_budget) * currentCampaign.ga_campaign_length
+  //     );
+  //   }
+  //   if (socialsToPost.includes('google display ad')) {
+  //     budgets.push(
+  //       parseFloat(currentCampaign.google_display_budget) * currentCampaign.ga_campaign_length
+  //     );
+  //   }
+  //   let budgetVal = budgets.reduce((a, b) => a + b, 0);
+  //   setAmount(budgetVal);
+  // }, [currentCampaign]);
   const classes = useStyles();
   return (
     <div className={classes.paymentPlanPageContainer}>

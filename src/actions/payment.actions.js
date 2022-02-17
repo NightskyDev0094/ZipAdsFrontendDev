@@ -72,6 +72,23 @@ export const getPaymentAmount = async (dispatch) => {
     });
 };
 
+// Get Ads From Server
+export const getPayments = () => (dispatch, getState) => {
+  setPaymentsLoading();
+  axios
+    .get(`${SERVER_URL}/api/payments/`, config)
+    .then((res) => {
+      dispatch({
+        type: GET_PAYMENTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      //console.log('GET PAYMENT AMOUNT ERROR: ', err.message);
+      dispatch({ type: PAYMENT_ERROR, payload: err.message });
+    });
+};
+
 /*
     UPDATE Payment amount from server
 */

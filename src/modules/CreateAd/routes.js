@@ -13,7 +13,6 @@ import FacebookAdContainer from './containers/FacebookAdContainer';
 import FacebookFeedContainer from './containers/FacebookFeedContainer';
 import GoogleAdContainer from './containers/GoogleAdContainer';
 import SummaryContainer from './containers/SummaryContainer';
-import CreditsContainer from '../Credits/containers/CreditContainer';
 
 const CreateAdRoutes = () => (
   <Switch>
@@ -25,7 +24,6 @@ const CreateAdRoutes = () => (
     <Route exact path="/create/objective" component={ObjectiveContainer} />
     <Route exact path="/create/targeting" component={TargetingContainer} />
     <Route exact path="/create/expanded-targeting" component={ExpandedTargetingContainer} />
-    <Route exact path="/create/credits" component={CreditsContainer} />
     <Route exact path="/create/campaign" component={CreateCampaignContainer} />
     <Route exact path="/create" component={CreateCampaignContainer} />
     <Route exact path="/select-campaign" component={SelectCampaignContainer} />

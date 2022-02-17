@@ -41,58 +41,62 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PaymentList = ({ addCardCallback }) => {
+const CardList = ({ 
+  addCardCallback,
+  cardData,
+  setCardData 
+}) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [subscriptionData, setSubscriptionData] = useState([
-    {
-      key: '1',
-      card: 'AMEX',
-      ends_in: '5555',
-      expiration: 'Exp. 08/24',
-      status: true,
-    },
-    {
-      key: '2',
-      card: 'VISA',
-      ends_in: '0202',
-      expiration: 'Exp. 06/23',
-      status: false,
-    },
-    {
-      key: '3',
-      card: 'VISA',
-      ends_in: '3',
-      expiration: 'Exp. 06/23',
-      status: false,
-    },
-    {
-      key: '4',
-      card: 'VISA',
-      ends_in: '4',
-      expiration: 'Exp. 06/23',
-      status: false,
-    },
-  ]);
+  // const [cardData, setCardData] = useState([
+  //   {
+  //     key: '1',
+  //     card: 'AMEX',
+  //     ends_in: '5555',
+  //     expiration: 'Exp. 08/24',
+  //     status: true,
+  //   },
+  //   {
+  //     key: '2',
+  //     card: 'VISA',
+  //     ends_in: '0202',
+  //     expiration: 'Exp. 06/23',
+  //     status: false,
+  //   },
+  //   {
+  //     key: '3',
+  //     card: 'VISA',
+  //     ends_in: '3',
+  //     expiration: 'Exp. 06/23',
+  //     status: false,
+  //   },
+  //   {
+  //     key: '4',
+  //     card: 'VISA',
+  //     ends_in: '4',
+  //     expiration: 'Exp. 06/23',
+  //     status: false,
+  //   },
+  // ]);
 
   const subscriptionColumns = [
     {
       title: 'Card',
-      dataIndex: 'card',
-      key: 'card',
+      dataIndex: 'name',
+      key: 'name',
       width: '100px',
     },
     {
       title: 'Ends in',
-      dataIndex: 'ends_in',
-      key: 'ends_in',
+      dataIndex: 'last_four',
+      key: 'last_four',
       width: '100px',
     },
     {
       title: 'Expiration',
-      dataIndex: 'expiration',
-      key: 'expiration',
+      dataIndex: 'expiration_date',
+      key: 'expiration_date',
       width: '165px',
     },
     {
@@ -107,8 +111,8 @@ const PaymentList = ({ addCardCallback }) => {
           unCheckedChildren="OFF"
           checked={value}
           onChange={(checked) => {
-            setSubscriptionData(
-              subscriptionData.map((data) => {
+            setCardData(
+              cardData.map((data) => {
                 if (data.key == index.key) return { ...data, status: checked };
                 else return { ...data };
               })
@@ -127,10 +131,10 @@ const PaymentList = ({ addCardCallback }) => {
         <CancelIcon
           onClick={() => {
             let data = [];
-            for (let i = 0; i < subscriptionData.length; i++) {
-              if (subscriptionData[i].key != index.key) data.push(subscriptionData[i]);
+            for (let i = 0; i < cardData.length; i++) {
+              if (cardData[i].key != index.key) data.push(cardData[i]);
             }
-            setSubscriptionData(data);
+            setCardData(data);
           }}
           style={{
             display: 'block',
@@ -146,7 +150,7 @@ const PaymentList = ({ addCardCallback }) => {
 
   useEffect(() => {
     setSelectedRowKeys(
-      subscriptionData.map((data) => {
+      cardData.map((data) => {
         if (data.status) return data.key;
       })
     );
@@ -154,11 +158,11 @@ const PaymentList = ({ addCardCallback }) => {
 
   useEffect(() => {
     setSelectedRowKeys(
-      subscriptionData.map((data) => {
+      cardData.map((data) => {
         if (data.status) return data.key;
       })
     );
-  }, [subscriptionData]);
+  }, [cardData]);
 
   const rowSelection = {
     selectedRowKeys,
@@ -170,7 +174,7 @@ const PaymentList = ({ addCardCallback }) => {
         <p className={classes.infoTitle}>Payment Portal</p>
         <div className="payment-list" style={{ padding: '50px 0px 25px 0' }}>
           <Table
-            dataSource={subscriptionData}
+            dataSource={cardData}
             columns={subscriptionColumns}
             rowSelection={rowSelection}
             scroll={{ x: 210 }}
@@ -206,4 +210,4 @@ const PaymentList = ({ addCardCallback }) => {
   );
 };
 
-export default PaymentList;
+export default CardList;

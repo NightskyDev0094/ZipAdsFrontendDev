@@ -25,7 +25,7 @@ const config = {
 //   setCardLoading();
 //   console.log('Running get Cards');
 //   axios
-//     .get(`${SERVER_URL}/api/card/`, tokenConfig(getState))
+//     .get(`${SERVER_URL}/api/cards/`, tokenConfig(getState))
 //     .then((res) => {
 //       dispatch({
 //         type: GET_CARDS,
@@ -41,7 +41,7 @@ const config = {
 export const getCards = () => (dispatch, getState) => {
   setCardLoading();
   axios
-    .get(`${SERVER_URL}/api/card/`, tokenConfig(getState))
+    .get(`${SERVER_URL}/api/cards/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_CARDS,
@@ -55,7 +55,7 @@ export const getCards = () => (dispatch, getState) => {
 // Alternate Get Card that runs with mapDispatchToProps
 export const getCardAsync = async (dispatch) => {
   await axios
-    .get(`${SERVER_URL}/api/card/`, config)
+    .get(`${SERVER_URL}/api/cards/`, config)
     .then((res) => {
       dispatch({
         type: GET_CARDS,
@@ -73,7 +73,7 @@ export const getCardAsync = async (dispatch) => {
 export const deleteCard = (id) => (dispatch, getState) => {
   setCardLoading();
   axios
-    .delete(`${SERVER_URL}/api/card/${id}/`, tokenConfig(getState))
+    .delete(`${SERVER_URL}/api/cards/${id}/`, tokenConfig(getState))
     .then((res) => {
       // dispatch(createMessage({ deleteCard: "Ad Deleted" }));
       dispatch({
@@ -97,7 +97,7 @@ export const updateCard = (card, id) => async (dispatch, _) => {
     },
   };
   await axios
-    .put(`${SERVER_URL}/api/card/${id}/`, card, config)
+    .put(`${SERVER_URL}/api/cards/${id}/`, card, config)
     .then((res) => {
       // dispatch(createMessage({ updateCard: "Ad Updated" }));
       dispatch({
@@ -123,7 +123,7 @@ export const addCard = (card) => async (dispatch, _) => {
     },
   };
   await axios
-    .post(`${SERVER_URL}/api/card/`, card, config)
+    .post(`${SERVER_URL}/api/cards/`, card, config)
     .then((res) => {
       dispatch({
         type: CREATE_CARDS,
@@ -147,7 +147,7 @@ export const addCard = (card) => async (dispatch, _) => {
 //     },
 //   };
 //   axios
-//     .post(`${SERVER_URL}/api/card/`, card, config)
+//     .post(`${SERVER_URL}/api/cards/`, card, config)
 //     .then((res) => {
 //       dispatch({
 //         type: SAVE_CARD,

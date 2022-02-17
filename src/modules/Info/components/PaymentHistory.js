@@ -41,13 +41,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PaymentHistory = () => {
+const PaymentHistory = ({paymentData}) => {
   const classes = useStyles();
   const paymentColumns = [
     {
       title: 'No.',
-      dataIndex: 'key',
-      key: 'key',
+      dataIndex: 'id',
+      key: 'id',
       width: '65px',
     },
     {
@@ -64,8 +64,8 @@ const PaymentHistory = () => {
     },
     {
       title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
+      dataIndex: 'timestamp',
+      key: 'timestamp',
       width: '165px',
     },
     {
@@ -89,32 +89,32 @@ const PaymentHistory = () => {
       ),
     },
   ];
-  const [paymentData, setPaymentData] = useState([
-    {
-      key: '1',
-      item: 'Monthly Subscription',
-      amount: '$9.99',
-      date: 'Feb 17, 2022',
-    },
-    {
-      key: '2',
-      item: 'Monthly Subscription',
-      amount: '$9.99',
-      date: 'Feb 17, 2022',
-    },
-    {
-      key: '3',
-      item: 'Monthly Subscription',
-      amount: '$9.99',
-      date: 'Feb 17, 2022',
-    },
-    {
-      key: '4',
-      item: 'Monthly Subscription',
-      amount: '$9.99',
-      date: 'Feb 17, 2022',
-    },
-  ]);
+  // const [paymentData, setPaymentData] = useState([
+  //   {
+  //     key: '1',
+  //     item: 'Monthly Subscription',
+  //     amount: '$9.99',
+  //     date: 'Feb 17, 2022',
+  //   },
+  //   {
+  //     key: '2',
+  //     item: 'Monthly Subscription',
+  //     amount: '$9.99',
+  //     date: 'Feb 17, 2022',
+  //   },
+  //   {
+  //     key: '3',
+  //     item: 'Monthly Subscription',
+  //     amount: '$9.99',
+  //     date: 'Feb 17, 2022',
+  //   },
+  //   {
+  //     key: '4',
+  //     item: 'Monthly Subscription',
+  //     amount: '$9.99',
+  //     date: 'Feb 17, 2022',
+  //   },
+  // ]);
 
   return (
     <div className="w-100" style={{marginBottom: '-20px'}}>

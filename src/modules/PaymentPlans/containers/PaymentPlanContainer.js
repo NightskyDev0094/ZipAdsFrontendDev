@@ -1,9 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import PlanContainer from './PlanContainer';
-import PlanForm from './PlanForm';
+import PlanForm from '../components/PlanForm';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
+import {
+  getPaymentAmount,
+  updatePaymentAmount,
+  createPaymentAmount,
+  clearPaymentSuccess,
+  getClientId,
+  clearPaymentErrors,
+} from '../../../actions/payment.actions';
 
 const useStyles = makeStyles(() => ({
   paymentPlanPageContainer: {
@@ -13,7 +23,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PaymentPlanContainer = ({}) => {
+const PaymentPlanContainer = ({
+  amountToPurchase,
+  createPaymentAmount,
+  getClientId,
+  stripeCheckoutToken,
+  paymentError,
+  // purchaseButtonDisabled,
+  updatePaymentAmount,
+  clearPaymentErrors,
+}) => {
   const classes = useStyles();
   const plan = {
     basic: {
@@ -35,11 +54,12 @@ const PaymentPlanContainer = ({}) => {
       sub: 'Access to ALL Templates 2 Free Custom Ad Designs per Month',
     },
   };
-  const [paymenPlan, setPaymenPlan] = React.useState(null);
+  const [paymentPlan, setPaymentPlan] = React.useState(null);
   const [paymentFields, setPaymentFields] = React.useState();
+  const [amount, setAmount] = React.useState();
 
   const planCallback = React.useCallback((plan) => {
-    setPaymenPlan(plan);
+    setPaymentPlan(plan);
   });
   const paymentCallback = React.useCallback((form) => {
     setPaymentFields(form);
@@ -48,14 +68,46 @@ const PaymentPlanContainer = ({}) => {
 
   return (
     <div className={classes.paymentPlanPageContainer}>
-      {!paymenPlan ? (
+      {!paymentPlan ? (
         <PlanContainer planCallback={planCallback} />
       ) : (
-        <PlanForm paymentCallback={paymentCallback} />
+        <PlanForm 
+          paymentCallback={paymentCallback} 
+          amount={amount} 
+          paymentError={paymentError} 
+          clearPaymentErrors={clearPaymentErrors} 
+          createPaymentAmount={createPaymentAmount} 
+        />
       )}
       <BlueTecLandingFooter />
     </div>
   );
 };
 
-export default PaymentPlanContainer;
+PaymentPlanContainer.propTypes = {
+  campaignInfo: PropTypes.shape({}),
+};
+
+PaymentPlanContainer.defaultProps = {
+  campaignInfo: {},
+};
+
+const mapStateToProps = (state) => ({
+  campaignInfo: state.newAdInfo,
+  userPayments: state.payments.userPayments,
+  paymentsError: state.payments.error,
+  paymentsSuccess: state.payments.success,
+  currentCampaign: state.campaigns.current,
+  socialsToPost: state.newAdInfo.socialsToPost,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  createPaymentAmount: (amount) => createPaymentAmount(amount, dispatch),
+  updatePaymentAmount: (amount) => updatePaymentAmount(amount, dispatch),
+  getPaymentAmount: () => getPaymentAmount(dispatch),
+  getClientId: (amount, preExistingAmount) => getClientId(amount, preExistingAmount, dispatch),
+  clearPaymentSuccess,
+  clearPaymentErrors: () => clearPaymentErrors(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentPlanContainer);

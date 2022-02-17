@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PaymentForm = ({ paymentCallback, addCardCallback }) => {
+const AddCardForm = ({ paymentCallback, addCardCallback }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [formState, setFormState] = React.useState({
@@ -218,4 +218,4 @@ const PaymentForm = ({ paymentCallback, addCardCallback }) => {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {})(PaymentForm);
+export default connect(mapStateToProps, {})(AddCardForm);
