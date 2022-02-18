@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'antd';
 import clsx from 'clsx';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PAYPAL_OPTIONS } from '../../../environmentVariables.js';
 
 const useStyles = makeStyles(() => ({
   paymentInfoContainer: {
@@ -62,7 +64,10 @@ const PaymentInfo = () => {
             textAlign: 'center',
           }}
         >
-          <Button
+          <PayPalScriptProvider options={PAYPAL_OPTIONS}>
+              <PayPalButtons />
+          </PayPalScriptProvider>
+          {/* <Button
             className="border-0"
             style={{
               backgroundColor: '#4bf067',
@@ -73,7 +78,7 @@ const PaymentInfo = () => {
             }}
           >
             Submit
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

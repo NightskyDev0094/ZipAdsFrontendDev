@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
-import { CardElement, useElements, useStripe, PaymentElement, CardCvcElement, CardExpiryElement, CardNumberElement } from '@stripe/react-stripe-js';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PAYPAL_OPTIONS } from '../../../environmentVariables.js';
 import clsx from 'clsx';
 import '../../../index.css';
 import PropTypes from 'prop-types';
@@ -87,34 +87,10 @@ const PlanForm = ({
  }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
-  const [formState, setFormState] = React.useState({
-    isFormSubmitted: false,
-    fields: {
-      fullName: '',
-      cardNumber: '',
-      date: '',
-      CVCNumber: '',
-      zipCode: '',
-      fieldHasWhitepace: {
-        cardNumber: false,
-        date: false,
-        CVCNumber: false,
-        zipCode: false,
-      },
-    },
-  });
-  const stripe = useStripe();
-  const elements = useElements();
 
   const [stripeStatus, setStripeStatus] = useState(STRIPE_STATUS.UNSET);
   const [errorMessage, setErrorMessage] = useState(ERROR_MESSAGE.UNSET);
   const [paymentResultStatus, setPaymentResultStatus] = useState(PAYMENT_RESULT_STATUS.UNSET);
-  const [paypalOptions, setPaypalOptions] = useState({
-    "client-id": "test",
-    currency: "USD",
-    intent: "capture",
-    "data-client-token": "abc123xyz==",
-});
 
   const [name, setName] = useState('');
 
@@ -140,44 +116,44 @@ const PlanForm = ({
    * This hook fetchs to payment id, to secure a checkout.
    * then sets the payment reulst status state hook.
    */
-   useEffect(() => {
-    try {
-      if (stripeCheckoutToken) {
-        const paymentClosure = async () => {
-          if (!CardElement) {
-            setErrorMessage(ERROR_MESSAGE.CARD_ELEMENT_INVALID);
-            setStripeStatus(STRIPE_STATUS.ERROR);
-            return;
-          }
-          if (!stripe) {
-            setErrorMessage(ERROR_MESSAGE.CARD_ELEMENT_INVALID);
-            setStripeStatus(STRIPE_STATUS.ERROR);
-            return;
-          }
-          console.log(stripeCheckoutToken.client_secret)
-          const paymentResult = await stripe?.confirmCardPayment(
-            stripeCheckoutToken?.client_secret,
-            {
-              payment_method: {
-                card: elements.getElement(CardElement),
-                billing_details: {
-                  name: name,
-                },
-              },
-            }
-          );
-          if (paymentResult?.paymentIntent?.status === 'succeeded') {
-            setPaymentResultStatus(PAYMENT_RESULT_STATUS.SUCCEED);
-          } else {
-            setPaymentResultStatus(PAYMENT_RESULT_STATUS.ERROR);
-          }
-        };
-        paymentClosure();
-      }
-    } catch (e) {
-      setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
-    }
-  }, [stripeCheckoutToken, stripeCheckoutToken?.client_secret]);
+  //  useEffect(() => {
+  //   try {
+  //     if (stripeCheckoutToken) {
+  //       const paymentClosure = async () => {
+  //         if (!CardElement) {
+  //           setErrorMessage(ERROR_MESSAGE.CARD_ELEMENT_INVALID);
+  //           setStripeStatus(STRIPE_STATUS.ERROR);
+  //           return;
+  //         }
+  //         if (!stripe) {
+  //           setErrorMessage(ERROR_MESSAGE.CARD_ELEMENT_INVALID);
+  //           setStripeStatus(STRIPE_STATUS.ERROR);
+  //           return;
+  //         }
+  //         console.log(stripeCheckoutToken.client_secret)
+  //         const paymentResult = await stripe?.confirmCardPayment(
+  //           stripeCheckoutToken?.client_secret,
+  //           {
+  //             payment_method: {
+  //               card: elements.getElement(CardElement),
+  //               billing_details: {
+  //                 name: name,
+  //               },
+  //             },
+  //           }
+  //         );
+  //         if (paymentResult?.paymentIntent?.status === 'succeeded') {
+  //           setPaymentResultStatus(PAYMENT_RESULT_STATUS.SUCCEED);
+  //         } else {
+  //           setPaymentResultStatus(PAYMENT_RESULT_STATUS.ERROR);
+  //         }
+  //       };
+  //       paymentClosure();
+  //     }
+  //   } catch (e) {
+  //     setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
+  //   }
+  // }, [stripeCheckoutToken, stripeCheckoutToken?.client_secret]);
 
   /**
    * Checks for a Payment error or failure to process
@@ -227,20 +203,20 @@ const PlanForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     setPaymentResultStatus(PAYMENT_RESULT_STATUS.UNSET);
-    try {
-      setStripeStatus(STRIPE_STATUS.LOADING);
-      if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
-        setStripeStatus(STRIPE_STATUS.ERROR);
-        setErrorMessage(ERROR_MESSAGE.STRIPE_LOAD_FAILURE);
-        return;
-      } else {
-        await getClientId(amountToPurchase, 0);
-      }
-    } catch (e) {
-      setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
-    }
+    // try {
+    //   setStripeStatus(STRIPE_STATUS.LOADING);
+    //   if (!stripe || !elements) {
+    //     // Stripe.js has not loaded yet. Make sure to disable
+    //     // form submission until Stripe.js has loaded.
+    //     setStripeStatus(STRIPE_STATUS.ERROR);
+    //     setErrorMessage(ERROR_MESSAGE.STRIPE_LOAD_FAILURE);
+    //     return;
+    //   } else {
+    //     await getClientId(amountToPurchase, 0);
+    //   }
+    // } catch (e) {
+    //   setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
+    // }
   };
 
   return (
@@ -252,7 +228,7 @@ const PlanForm = ({
           Add a Card to Activate Your Free Trial
         </p>
           <div className="field-set input-type">
-            <PayPalScriptProvider options={paypalOptions}>
+            <PayPalScriptProvider options={PAYPAL_OPTIONS}>
                 <PayPalButtons />
             </PayPalScriptProvider>
 
