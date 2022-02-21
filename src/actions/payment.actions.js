@@ -92,9 +92,9 @@ export const getPayments = () => (dispatch, getState) => {
 /*
     UPDATE Payment amount from server
 */
-export const updatePaymentAmount = () => async (dispatch, getState) => {
+export const updatePaymentAmount = (id, amount) => async (dispatch, getState) => {
   axios
-    .put(`${SERVER_URL}/api/payments/`, config)
+    .put(`${SERVER_URL}/api/payments/${id}`, amount, config)
     .then((res) => {
       dispatch({ type: UPDATE_PAYMENTS, payload: res.data });
     })
@@ -109,7 +109,7 @@ export const updatePaymentAmount = () => async (dispatch, getState) => {
 /*
     CREATE Payment amount for User
 */
-export const createPaymentAmount = (amount, dispatch) => {
+export const createPaymentAmount = (amount) => async (dispatch, _) => {
   axios
     .post(`${SERVER_URL}/api/payments/`, amount, config)
     .then((res) => {
@@ -121,12 +121,12 @@ export const createPaymentAmount = (amount, dispatch) => {
     });
 };
 
-export const clearPaymentSuccess = (dispatch) =>
+export const clearPaymentSuccess = (dispatch, _) =>
   dispatch({
     type: CLEAR_PAYMENTS_PURCHASE,
   });
 
-export const clearPaymentErrors = (dispatch) => {
+export const clearPaymentErrors = (dispatch, _) => {
   dispatch({ type: CLEAR_PAYMENT_ERRORS });
 };
 

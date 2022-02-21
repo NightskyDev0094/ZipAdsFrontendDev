@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { PAYPAL_OPTIONS } from '../../../environmentVariables.js';
+import { PAYPAL_SUBSCRIPTION_OPTIONS } from '../../../environmentVariables.js';
 import clsx from 'clsx';
 import '../../../index.css';
 import PropTypes from 'prop-types';
@@ -228,7 +228,7 @@ const PlanForm = ({
           Add a Card to Activate Your Free Trial
         </p>
           <div className="field-set input-type">
-            <PayPalScriptProvider options={PAYPAL_OPTIONS}>
+            <PayPalScriptProvider options={PAYPAL_SUBSCRIPTION_OPTIONS}>
                 <PayPalButtons />
             </PayPalScriptProvider>
 

@@ -37,14 +37,22 @@ const PaymentPortal = ({
   createPaymentAmount,
   payments,
   paymentsLoading,
+  subscription,
+  subscriptionLoading,
+  getSubscription,
+  updateSubscription
 }) => {
   const [paymentFields, setPaymentFields] = useState();
   const [edit, setEdit] = useState(false);
   // const [editCard, setEditCard] = useState(false);
   // Payment state
   const [paymentData, setPaymentData] = useState([]);
-  const [stripeChargeId, setStripeChargeId] = useState(null);
-  const [paymentAmount, setPaymentAmount] = useState(null);
+  const [subscriptionData, setSubscriptionData] = useState([]);
+  const [paypalOrderId, setPaypalOrderId] = useState("");
+  const [paypalStatus, setPaypalStatus] = useState("");
+  const [paypalIntent, setPaypalIntent] = useState("");
+  const [paymentItem, setPaymentItem] = useState("Account Balance Payment");
+  const [paymentAmount, setPaymentAmount] = useState(0.00);
 
 
   const paymentCallback = useCallback((form) => {
@@ -55,33 +63,71 @@ const PaymentPortal = ({
     // Get Payment and card values
     getPayments();
     // getCards();
+    getSubscription();
   }, []);
+  useEffect(() => {
+    if(edit === false){
+      // Get Payment and card values
+      getPayments();
+    }
+  }, [edit]);
   useEffect(() => {
     // Set Payment values
     if (!paymentsLoading) {
       setPayments();
     }
   }, [payments]);
+  useEffect(() => {
+    // Set Payment values
+    if (subscriptionData.length >= 1) {
+      let activeSubscription = subscriptionData[subscriptionData.length - 1]
+      setPaymentAmount(activeSubscription.due_amount);
+      setPaymentItem(activeSubscription.plan);
+    }
+  }, [subscriptionData]);
+  useEffect(() => {
+    // Set Payment values
+    if (!subscriptionLoading) {
+      setSubscription();
+    }
+  }, [subscription]);
   const submitPaymentInfos = (payment) => {
     // Submit updated values to payments
     let formData = new FormData();
-    formData.append('stripe_charge_id', stripeChargeId);
+    formData.append('paypal_order_id', payment.id);
+    formData.append('paypal_status', payment.status);
+    formData.append('paypal_intent', payment.intent);
+    formData.append('item', paymentItem);
     formData.append('amount', paymentAmount);
+    console.log('paypal_order_id', payment.id);
+    console.log('paypal_status', payment.status);
+    console.log('paypal_intent', payment.intent);
+    console.log('item', paymentItem);
+    console.log('amount', paymentAmount);
     createPaymentAmount(formData);
     // Update form state
+    setPaypalOrderId(payment.id)
+    setPaypalStatus(payment.status)
+    setPaypalIntent(payment.intent)
     setEdit(false);
   };
   const setPayments = () => {
     setPaymentData(payments || '');
   };
+  const setSubscription = () => {
+    setSubscriptionData(subscription || '');
+  };
 
   return (
     <div className="w-100 h-100">
       <PaymentInfo
-        stripeChargeId={stripeChargeId}
+        paypalOrderId={paypalOrderId}
         paymentAmount={paymentAmount}
-        setStripeChargeId={setStripeChargeId}
+        setPaypalOrderId={setPaypalOrderId}
         setPaymentAmount={setPaymentAmount}
+        submitPaymentInfos={submitPaymentInfos}
+        paypalStatus={paypalStatus}
+        paypalIntent={paypalIntent}
       />
       <PaymentHistory
         paymentData={paymentData}
@@ -93,9 +139,13 @@ const PaymentPortal = ({
 const mapStateToProps = (state) => ({
   payments: state.payments.userPayments,
   paymentsLoading: state.payments.paymentsLoading,
+  subscription: state.subscriptions.userSubscription,
+  subscriptionLoading: state.subscriptions.subscriptionLoading,
 });
 
 export default connect(mapStateToProps, {
   getPayments,
-  createPaymentAmount
+  createPaymentAmount,
+  getSubscription,
+  updateSubscription
 })(PaymentPortal);
