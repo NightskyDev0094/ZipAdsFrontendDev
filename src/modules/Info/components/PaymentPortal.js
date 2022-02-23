@@ -69,6 +69,7 @@ const PaymentPortal = ({
     if(edit === false){
       // Get Payment and card values
       getPayments();
+      getSubscription();
     }
   }, [edit]);
   useEffect(() => {
@@ -79,7 +80,7 @@ const PaymentPortal = ({
   }, [payments]);
   useEffect(() => {
     // Set Payment values
-    if (subscriptionData.length >= 1) {
+    if (subscriptionData?.length >= 1) {
       let activeSubscription = subscriptionData[subscriptionData.length - 1]
       setPaymentAmount(activeSubscription.due_amount);
       setPaymentItem(activeSubscription.plan);
@@ -91,24 +92,38 @@ const PaymentPortal = ({
       setSubscription();
     }
   }, [subscription]);
-  const submitPaymentInfos = (payment) => {
+  const submitPaymentInfos = (orderId, payment) => {
     // Submit updated values to payments
     let formData = new FormData();
-    formData.append('paypal_order_id', payment.id);
+    formData.append('paypal_order_id', orderId);
     formData.append('paypal_status', payment.status);
+    formData.append('paypal_status_code', payment.status_code);
     formData.append('paypal_intent', payment.intent);
     formData.append('item', paymentItem);
     formData.append('amount', paymentAmount);
-    console.log('paypal_order_id', payment.id);
-    console.log('paypal_status', payment.status);
-    console.log('paypal_intent', payment.intent);
-    console.log('item', paymentItem);
-    console.log('amount', paymentAmount);
+    // console.log('paypal_order_id', payment.id);
+    // console.log('paypal_status', payment.status);
+    // console.log('paypal_intent', payment.intent);
+    // console.log('item', paymentItem);
+    // console.log('amount', paymentAmount);
     createPaymentAmount(formData);
     // Update form state
-    setPaypalOrderId(payment.id)
-    setPaypalStatus(payment.status)
-    setPaypalIntent(payment.intent)
+    // setPaypalOrderId(payment.id)
+    // setPaypalStatus(payment.status)
+    // setPaypalIntent(payment.intent)
+    let activeSubscription = subscriptionData[subscriptionData.length - 1]
+    let val = activeSubscription.due_amount - paymentAmount
+    if(val >= 0){
+      let formData = new FormData();
+      formData.append('due_amount', val);
+      updateSubscription(formData, activeSubscription.id)
+    } else if (val < 0){
+      let formData = new FormData();
+      let prepayVal = val * -1
+      formData.append('due_amount', 0.00);
+      formData.append('prepay_amount', prepayVal);
+      updateSubscription(formData, activeSubscription.id)
+    }
     setEdit(false);
   };
   const setPayments = () => {
@@ -139,7 +154,7 @@ const PaymentPortal = ({
 const mapStateToProps = (state) => ({
   payments: state.payments.userPayments,
   paymentsLoading: state.payments.paymentsLoading,
-  subscription: state.subscriptions.userSubscription,
+  subscription: state.subscriptions.subscriptions,
   subscriptionLoading: state.subscriptions.subscriptionLoading,
 });
 

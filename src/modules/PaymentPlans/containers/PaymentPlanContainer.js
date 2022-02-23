@@ -6,14 +6,8 @@ import PropTypes from 'prop-types';
 import PlanContainer from './PlanContainer';
 import PlanForm from '../components/PlanForm';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
-import {
-  getPaymentAmount,
-  updatePaymentAmount,
-  createPaymentAmount,
-  clearPaymentSuccess,
-  getClientId,
-  clearPaymentErrors,
-} from '../../../actions/payment.actions';
+import { createPaymentAmount } from '../../../actions/payment.actions';
+import { addSubscription } from '../../../actions/subscriptionActions';
 
 const useStyles = makeStyles(() => ({
   paymentPlanPageContainer: {
@@ -26,8 +20,7 @@ const useStyles = makeStyles(() => ({
 const PaymentPlanContainer = ({
   amountToPurchase,
   createPaymentAmount,
-  getClientId,
-  stripeCheckoutToken,
+  addSubscription,
   paymentError,
   // purchaseButtonDisabled,
   updatePaymentAmount,
@@ -54,17 +47,88 @@ const PaymentPlanContainer = ({
       sub: 'Access to ALL Templates 2 Free Custom Ad Designs per Month',
     },
   };
-  const [paymentPlan, setPaymentPlan] = React.useState(null);
-  const [paymentFields, setPaymentFields] = React.useState();
+  const [paymentPlan, setPaymentPlan] = React.useState('null');
   const [amount, setAmount] = React.useState();
+  const [paymentFields, setPaymentFields] = useState();
+  const [edit, setEdit] = useState(false);
+  // const [editCard, setEditCard] = useState(false);
+  // Payment state
+  const [subscriptionData, setSubscriptionData] = useState([]);
+  const [paypalOrderId, setPaypalOrderId] = useState("");
+  const [paypalStatus, setPaypalStatus] = useState("");
+  const [paypalIntent, setPaypalIntent] = useState("");
+  const [paymentItem, setPaymentItem] = useState("Account Balance Payment");
+  const [paymentAmount, setPaymentAmount] = useState(0.00);
 
-  const planCallback = React.useCallback((plan) => {
-    setPaymentPlan(plan);
-  });
-  const paymentCallback = React.useCallback((form) => {
-    setPaymentFields(form);
-    console.log(form);
+
+  useEffect(() => {
+    // getCards();
+    getSubscription();
   }, []);
+  useEffect(() => {
+    if(edit === false){
+      // Get Payment and card values
+      getSubscription();
+    }
+  }, [edit]);
+  useEffect(() => {
+    // Set Payment values
+    if (subscriptionData?.length >= 1) {
+      let activeSubscription = subscriptionData[subscriptionData.length - 1]
+      setPaymentItem(activeSubscription.plan);
+    }
+  }, [subscriptionData]);
+  useEffect(() => {
+    // Set Payment values
+    if (!subscriptionLoading) {
+      setSubscription();
+    }
+  }, [subscription]);
+  const submitPaymentInfos = (orderId, payment) => {
+    // Submit updated values to payments
+    let formData = new FormData();
+    formData.append('paypal_order_id', orderId);
+    formData.append('paypal_status', payment.status);
+    formData.append('paypal_status_code', payment.status_code);
+    formData.append('paypal_intent', payment.intent);
+    formData.append('item', plan);
+    formData.append('amount', amount);
+    // console.log('paypal_order_id', payment.id);
+    // console.log('paypal_status', payment.status);
+    // console.log('paypal_intent', payment.intent);
+    // console.log('item', paymentItem);
+    // console.log('amount', paymentAmount);
+    createPaymentAmount(formData);
+    // Update form state
+    // setPaypalOrderId(payment.id)
+    // setPaypalStatus(payment.status)
+    // setPaypalIntent(payment.intent)
+    let activeSubscription = subscriptionData[subscriptionData.length - 1]
+    let val = activeSubscription.due_amount - paymentAmount
+    if(val >= 0){
+      let formData = new FormData();
+      formData.append('due_amount', val);
+      updateSubscription(formData, activeSubscription.id)
+    } else if (val < 0){
+      let formData = new FormData();
+      let prepayVal = val * -1
+      formData.append('due_amount', 0.00);
+      formData.append('prepay_amount', prepayVal);
+      updateSubscription(formData, activeSubscription.id)
+    }
+    setEdit(false);
+  };
+  const setPayments = () => {
+    setPaymentData(payments || '');
+  };
+  const setSubscription = () => {
+    setSubscriptionData(subscription || '');
+  };
+
+  const setSelectedPlan = (plan, planAmount) => {
+    setPaymentPlan(plan);
+    setAmount(planAmount)
+  };
 
   return (
     <div className={classes.paymentPlanPageContainer}>
@@ -72,11 +136,11 @@ const PaymentPlanContainer = ({
         <PlanContainer planCallback={planCallback} />
       ) : (
         <PlanForm 
-          paymentCallback={paymentCallback} 
+          setSelectedPlan={setSelectedPlan} 
           amount={amount} 
           paymentError={paymentError} 
-          clearPaymentErrors={clearPaymentErrors} 
-          createPaymentAmount={createPaymentAmount} 
+          clearPaymentErrors={clearPaymentErrors}
+          submitPaymentInfos={submitPaymentInfos}
         />
       )}
       <BlueTecLandingFooter />
