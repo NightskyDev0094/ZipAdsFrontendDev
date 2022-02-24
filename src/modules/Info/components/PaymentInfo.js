@@ -89,7 +89,6 @@ const PaymentInfo = ({
                 onApprove={(data, actions) => {
                     return actions.order.capture().then((details) => {
                         let orderId = data.orderID
-                        console.log('PAYPAL ORDER DETAILS', details)
                         // setPaypalOrderId()
                         submitPaymentInfos(orderId, details);
                     });

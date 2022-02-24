@@ -7,7 +7,7 @@ import PlanContainer from './PlanContainer';
 import PlanForm from '../components/PlanForm';
 import BlueTecLandingFooter from '../../../BlueTecUIKit/BlueTecLandingFooter';
 import { createPaymentAmount } from '../../../actions/payment.actions';
-import { addSubscription } from '../../../actions/subscriptionActions';
+import { addSubscription, updateSubscription, getSubscription,  } from '../../../actions/subscriptionActions';
 
 const useStyles = makeStyles(() => ({
   paymentPlanPageContainer: {
@@ -18,40 +18,39 @@ const useStyles = makeStyles(() => ({
 }));
 
 const PaymentPlanContainer = ({
-  amountToPurchase,
   createPaymentAmount,
   addSubscription,
-  paymentError,
-  // purchaseButtonDisabled,
-  updatePaymentAmount,
-  clearPaymentErrors,
+  getSubscription,
+  updateSubscription,
+  subscription,
+  subscriptionLoading
 }) => {
   const classes = useStyles();
-  const plan = {
-    basic: {
-      bestSeller: false,
-      title: 'BASIC PLAN',
-      price: '9.99',
-      sub: 'Access to Limited Templates Custom Ad Designs for $15 Each',
-    },
-    advanced: {
-      bestSeller: true,
-      title: 'ADVANCED PLAN',
-      price: '19.99',
-      sub: 'Access to 100+ Templates 1 Free Custom Ad Design per Month',
-    },
-    preminum: {
-      bestSeller: false,
-      title: 'PREMINUM PLAN',
-      price: '39.99',
-      sub: 'Access to ALL Templates 2 Free Custom Ad Designs per Month',
-    },
-  };
-  const [paymentPlan, setPaymentPlan] = React.useState('null');
+  // const plan = {
+  //   basic: {
+  //     bestSeller: false,
+  //     title: 'BASIC PLAN',
+  //     price: '9.99',
+  //     sub: 'Access to Limited Templates Custom Ad Designs for $15 Each',
+  //   },
+  //   advanced: {
+  //     bestSeller: true,
+  //     title: 'ADVANCED PLAN',
+  //     price: '19.99',
+  //     sub: 'Access to 100+ Templates 1 Free Custom Ad Design per Month',
+  //   },
+  //   preminum: {
+  //     bestSeller: false,
+  //     title: 'PREMINUM PLAN',
+  //     price: '39.99',
+  //     sub: 'Access to ALL Templates 2 Free Custom Ad Designs per Month',
+  //   },
+  // };
+  const [planName, setPlanName] = React.useState('');
+  const [paymentPlan, setPaymentPlan] = React.useState('');
   const [amount, setAmount] = React.useState();
   const [paymentFields, setPaymentFields] = useState();
-  const [edit, setEdit] = useState(false);
-  // const [editCard, setEditCard] = useState(false);
+  const [checkout, setCheckout] = useState(false);
   // Payment state
   const [subscriptionData, setSubscriptionData] = useState([]);
   const [paypalOrderId, setPaypalOrderId] = useState("");
@@ -66,11 +65,11 @@ const PaymentPlanContainer = ({
     getSubscription();
   }, []);
   useEffect(() => {
-    if(edit === false){
+    if(checkout === false){
       // Get Payment and card values
       getSubscription();
     }
-  }, [edit]);
+  }, [checkout]);
   useEffect(() => {
     // Set Payment values
     if (subscriptionData?.length >= 1) {
@@ -91,13 +90,8 @@ const PaymentPlanContainer = ({
     formData.append('paypal_status', payment.status);
     formData.append('paypal_status_code', payment.status_code);
     formData.append('paypal_intent', payment.intent);
-    formData.append('item', plan);
+    formData.append('item', planName);
     formData.append('amount', amount);
-    // console.log('paypal_order_id', payment.id);
-    // console.log('paypal_status', payment.status);
-    // console.log('paypal_intent', payment.intent);
-    // console.log('item', paymentItem);
-    // console.log('amount', paymentAmount);
     createPaymentAmount(formData);
     // Update form state
     // setPaypalOrderId(payment.id)
@@ -116,30 +110,34 @@ const PaymentPlanContainer = ({
       formData.append('prepay_amount', prepayVal);
       updateSubscription(formData, activeSubscription.id)
     }
-    setEdit(false);
-  };
-  const setPayments = () => {
-    setPaymentData(payments || '');
+    setCheckout(false);
   };
   const setSubscription = () => {
     setSubscriptionData(subscription || '');
   };
 
   const setSelectedPlan = (plan, planAmount) => {
-    setPaymentPlan(plan);
-    setAmount(planAmount)
+    let amountVal = parseFloat(plan.price).toFixed(2)
+    setPaymentPlan(plan.planId);
+    setPlanName(plan.title)
+    setPaymentAmount(amountVal);
+    setCheckout(true);
   };
+
+  // const planCallback = useCallback((plan) => {
+  //   let amountVal = parseFloat(plan.price).toFixed(2)
+  //   setPaymentPlan(plan.planId);
+  //   setPaymentAmount(amountVal);
+  // });
 
   return (
     <div className={classes.paymentPlanPageContainer}>
-      {!paymentPlan ? (
-        <PlanContainer planCallback={planCallback} />
+      {!checkout ? (
+        <PlanContainer planCallback={setSelectedPlan} />
       ) : (
-        <PlanForm 
-          setSelectedPlan={setSelectedPlan} 
-          amount={amount} 
-          paymentError={paymentError} 
-          clearPaymentErrors={clearPaymentErrors}
+        <PlanForm
+          paymentPlan={paymentPlan}
+          amount={amount}
           submitPaymentInfos={submitPaymentInfos}
         />
       )}
@@ -157,21 +155,13 @@ PaymentPlanContainer.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  campaignInfo: state.newAdInfo,
-  userPayments: state.payments.userPayments,
-  paymentsError: state.payments.error,
-  paymentsSuccess: state.payments.success,
-  currentCampaign: state.campaigns.current,
-  socialsToPost: state.newAdInfo.socialsToPost,
+  subscription: state.subscriptions.subscriptions,
+  subscriptionLoading: state.subscriptions.subscriptionLoading,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  createPaymentAmount: (amount) => createPaymentAmount(amount, dispatch),
-  updatePaymentAmount: (amount) => updatePaymentAmount(amount, dispatch),
-  getPaymentAmount: () => getPaymentAmount(dispatch),
-  getClientId: (amount, preExistingAmount) => getClientId(amount, preExistingAmount, dispatch),
-  clearPaymentSuccess,
-  clearPaymentErrors: () => clearPaymentErrors(dispatch),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentPlanContainer);
+export default connect(mapStateToProps, {
+  getSubscription,
+  createPaymentAmount,
+  updateSubscription,
+})(PaymentPlanContainer);

@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from '@material-ui/core';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { PAYPAL_SUBSCRIPTION_OPTIONS } from '../../../environmentVariables.js';
 import clsx from 'clsx';
 import '../../../index.css';
-import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(() => ({
   PaymentFormContainer: {
@@ -37,80 +34,75 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ERROR_MESSAGE = {
-  UNSET: '',
-  CLIENT_ID_FAILURE: `
-  ClientID could not be created, please 
-  reload the page.
-`,
-  CARD_PROCESSING_FAILURE: `
-  Payment could not be processed, please use a
-  different card to checkout.
-`,
-  STRIPE_LOAD_FAILURE: `
-  An error has occurred: Stripe has not loaded, please
-  refresh page.
-`,
-  CARD_ELEMENT_INVALID: `
-  An error has occured: Card Element has not been loaded yet.
-  please refresh page
-`,
-  CODE_ERROR: `
-  An Error has occured, please refresh page
- `,
-};
+// const ERROR_MESSAGE = {
+//   UNSET: '',
+//   CLIENT_ID_FAILURE: `
+//   ClientID could not be created, please 
+//   reload the page.
+// `,
+//   CARD_PROCESSING_FAILURE: `
+//   Payment could not be processed, please use a
+//   different card to checkout.
+// `,
+//   STRIPE_LOAD_FAILURE: `
+//   An error has occurred: Stripe has not loaded, please
+//   refresh page.
+// `,
+//   CARD_ELEMENT_INVALID: `
+//   An error has occured: Card Element has not been loaded yet.
+//   please refresh page
+// `,
+//   CODE_ERROR: `
+//   An Error has occured, please refresh page
+//  `,
+// };
 
-const STRIPE_STATUS = {
-  LOADING: 'LOADING',
-  SUCCESS: 'SUCCESS',
-  UNSET: 'UNSET',
-  ERROR: 'ERROR',
-};
+// const STRIPE_STATUS = {
+//   LOADING: 'LOADING',
+//   SUCCESS: 'SUCCESS',
+//   UNSET: 'UNSET',
+//   ERROR: 'ERROR',
+// };
 
-const PAYMENT_RESULT_STATUS = {
-  UNSET: 'UNSET',
-  SUCCEED: 'SUCCEED',
-  ERROR: 'ERROR',
-};
+// const PAYMENT_RESULT_STATUS = {
+//   UNSET: 'UNSET',
+//   SUCCEED: 'SUCCEED',
+//   ERROR: 'ERROR',
+// };
 
 
-const PlanForm = ({ 
-  preExistingAmount,
+const PlanForm = ({
   amountToPurchase,
   createPaymentAmount,
-  getClientId,
-  stripeCheckoutToken,
-  paymentError,
-  purchaseButtonDisabled,
-  updatePaymentAmount,
-  clearPaymentErrors,
+  submitPaymentInfos,
+  paymentPlan
  }) => {
   const classes = useStyles();
-  const [edit, setEdit] = useState(false);
+  // const [edit, setEdit] = useState(false);
 
-  const [stripeStatus, setStripeStatus] = useState(STRIPE_STATUS.UNSET);
-  const [errorMessage, setErrorMessage] = useState(ERROR_MESSAGE.UNSET);
-  const [paymentResultStatus, setPaymentResultStatus] = useState(PAYMENT_RESULT_STATUS.UNSET);
+  // const [stripeStatus, setStripeStatus] = useState(STRIPE_STATUS.UNSET);
+  // const [errorMessage, setErrorMessage] = useState(ERROR_MESSAGE.UNSET);
+  // const [paymentResultStatus, setPaymentResultStatus] = useState(PAYMENT_RESULT_STATUS.UNSET);
 
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
 
-  const formatAmountForSubmisson = () => {
-    const formData = new FormData();
-    const intToFloat = (num, decPlaces) => num + '.' + Array(decPlaces + 1).join('0');
-    try {
-      // if(!preExistingAmount){
-      formData.append('amount', intToFloat(amountToPurchase, 2));
-      formData.append('pending', false);  
-      // } else {
-      //   const budget = intToFloat((parseInt(amountToPurchase) + parseInt(preExistingAmount)), 2);
-      //   formData.append('amount', budget);
-      //   formData.append('pending', false);
-      // }
-    } catch (e) {
-      setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
-    }
-    return formData;
-  };
+  // const formatAmountForSubmisson = () => {
+  //   const formData = new FormData();
+  //   const intToFloat = (num, decPlaces) => num + '.' + Array(decPlaces + 1).join('0');
+  //   try {
+  //     // if(!preExistingAmount){
+  //     formData.append('amount', intToFloat(amountToPurchase, 2));
+  //     formData.append('pending', false);  
+  //     // } else {
+  //     //   const budget = intToFloat((parseInt(amountToPurchase) + parseInt(preExistingAmount)), 2);
+  //     //   formData.append('amount', budget);
+  //     //   formData.append('pending', false);
+  //     // }
+  //   } catch (e) {
+  //     setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
+  //   }
+  //   return formData;
+  // };
 
   /**
    * This hook fetchs to payment id, to secure a checkout.
@@ -159,50 +151,50 @@ const PlanForm = ({
    * Checks for a Payment error or failure to process
    * Payment or debit card
    */
-  useEffect(() => {
-    if (paymentError) {
-      setStripeStatus(STRIPE_STATUS.ERROR);
-      setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
-    }
-  }, [paymentError]);
+  // useEffect(() => {
+  //   if (paymentError) {
+  //     setStripeStatus(STRIPE_STATUS.ERROR);
+  //     setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
+  //   }
+  // }, [paymentError]);
 
   /**
    * Check payment result and if so submit amount
    * and notify users, this hook is watching for the payment result
    * It will then clear errors, and update payment amount or create a new amount
    */
-  useEffect(() => {
-    try {
-      const submitOrUpdateClosure = async () => {
-        if (paymentResultStatus === PAYMENT_RESULT_STATUS.SUCCEED) {
-          await clearPaymentErrors();
-          // if (preExistingAmount > 0) {
-          //   const combinedAmount = formatAmountForSubmisson();
-          //   //updatePaymentAmount will chagne too
-          //   await createPaymentAmount(combinedAmount);
-          //   setStripeStatus(STRIPE_STATUS.SUCCESS);
-          // } else {
-          const amount = formatAmountForSubmisson();
-          await createPaymentAmount(amount);
-          setStripeStatus(STRIPE_STATUS.SUCCESS);
-          // }
-        } else if (paymentResultStatus === PAYMENT_RESULT_STATUS.ERROR) {
-          setStripeStatus(STRIPE_STATUS.ERROR);
-          setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
-        }
-      };
-      submitOrUpdateClosure();
-    } catch (e) {
-      setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
-    }
-  }, [paymentResultStatus]);
+  // useEffect(() => {
+  //   try {
+  //     const submitOrUpdateClosure = async () => {
+  //       if (paymentResultStatus === PAYMENT_RESULT_STATUS.SUCCEED) {
+  //         await clearPaymentErrors();
+  //         // if (preExistingAmount > 0) {
+  //         //   const combinedAmount = formatAmountForSubmisson();
+  //         //   //updatePaymentAmount will chagne too
+  //         //   await createPaymentAmount(combinedAmount);
+  //         //   setStripeStatus(STRIPE_STATUS.SUCCESS);
+  //         // } else {
+  //         const amount = formatAmountForSubmisson();
+  //         await createPaymentAmount(amount);
+  //         setStripeStatus(STRIPE_STATUS.SUCCESS);
+  //         // }
+  //       } else if (paymentResultStatus === PAYMENT_RESULT_STATUS.ERROR) {
+  //         setStripeStatus(STRIPE_STATUS.ERROR);
+  //         setErrorMessage(ERROR_MESSAGE.CARD_PROCESSING_FAILURE);
+  //       }
+  //     };
+  //     submitOrUpdateClosure();
+  //   } catch (e) {
+  //     setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
+  //   }
+  // }, [paymentResultStatus]);
 
   /**
    * main submission
    */
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setPaymentResultStatus(PAYMENT_RESULT_STATUS.UNSET);
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   setPaymentResultStatus(PAYMENT_RESULT_STATUS.UNSET);
     // try {
     //   setStripeStatus(STRIPE_STATUS.LOADING);
     //   if (!stripe || !elements) {
@@ -217,7 +209,7 @@ const PlanForm = ({
     // } catch (e) {
     //   setErrorMessage(ERROR_MESSAGE.CODE_ERROR);
     // }
-  };
+  // };
 
   return (
     <div style={{ width: '100%', height: 'calc(100vh - 298px)', padding: '20px', margin: 'auto' }}>
@@ -225,11 +217,25 @@ const PlanForm = ({
         <p
           className={classes.infoTitle}
         >
-          Add a Card to Activate Your Free Trial
+          Checkout with PayPal to start your free trial.
         </p>
           <div className="field-set input-type">
             <PayPalScriptProvider options={PAYPAL_SUBSCRIPTION_OPTIONS}>
-                <PayPalButtons />
+                <PayPalButtons
+                  createSubscription={(data, actions) => {
+                      return actions.subscription.create({
+                        'plan_id': paymentPlan
+                      });
+                    }
+                  }
+                  onApprove={(data, actions) => {
+                    return actions.order.capture().then((details) => {
+                        let orderId = data.orderID
+                        // setPaypalOrderId()
+                        submitPaymentInfos(orderId, details);
+                    });
+                }}
+                />
             </PayPalScriptProvider>
 
           </div>
@@ -239,28 +245,5 @@ const PlanForm = ({
   );
 };
 
-PlanForm.propTypes = {
-  // preExistingAmount: PropTypes.string,
-  amountToPurchase: PropTypes.string,
-  createPaymentAmount: PropTypes.func,
-  getClientId: PropTypes.func,
-  stripeCheckoutToken: PropTypes.string,
-  paymentError: PropTypes.string,
-  // purchaseButtonDisabled: PropTypes.bool,
-  updatePaymentAmount: PropTypes.func,
-  clearPaymentErrors: PropTypes.func
-};
-
-PlanForm.defaultProps = {
-  // preExistingAmount: '0',
-  amountToPurchase: '',
-  createPaymentAmount: () => alert('createPaymentAction not passed'),
-  getClientId: () => alert('client id not passed'),
-  stripeCheckoutToken: '',
-  paymentError: '',
-  // purchaseButtonDisabled: true,
-  updatePaymentAmount: () => alert('update Payment amount not passed'),
-  clearPaymentErrors: () => alert('clear Payment errors')
-};
 
 export default PlanForm;

@@ -5,6 +5,8 @@ import { Table, Switch, Button } from 'antd';
 import clsx from 'clsx';
 import { getSubscription, updateSubscription, addSubscription } from '../../../actions/subscriptionActions';
 // import {Input, Switch} from '@material-ui/core';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PAYPAL_SUBSCRIPTION_OPTIONS } from '../../../environmentVariables.js';
 
 const useStyles = makeStyles(() => ({
   SubscriptionContainer: {
@@ -54,50 +56,10 @@ const Subscription = ({
 
   const [edit, setEdit] = useState(false);
   const [plan, setPlan] = useState('');
+  const [subscriptionId, setSubscriptionId] = useState('');
   const [autoRenew, setAutoRenew] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [subscriptionData, setSubscriptionData] = useState([
-    {
-      key: '1',
-      start_date: 'Oct 17, 2021',
-      renewal_date: 'Feb 17, 2022',
-      plan: 'Basic',
-      price: '$9.99',
-      auto_renew: false,
-    },
-    {
-      key: '2',
-      start_date: 'Oct 17, 2021',
-      renewal_date: 'Feb 17, 2022',
-      plan: 'Basic',
-      price: '$9.99',
-      auto_renew: true,
-    },
-    {
-      key: '3',
-      start_date: 'Oct 17, 2021',
-      renewal_date: 'Feb 17, 2022',
-      plan: 'Basic',
-      price: '$9.99',
-      auto_renew: true,
-    },
-    {
-      key: '4',
-      start_date: 'Oct 17, 2021',
-      renewal_date: 'Feb 17, 2022',
-      plan: 'Basic',
-      price: '$9.99',
-      auto_renew: true,
-    },
-    {
-      key: '5',
-      start_date: 'Oct 17, 2021',
-      renewal_date: 'Feb 17, 2022',
-      plan: 'Basic',
-      price: '$9.99',
-      auto_renew: true,
-    },
-  ]);
+  const [subscriptionData, setSubscriptionData] = useState([]);
 
   const subscriptionColumns = [
     {
@@ -170,12 +132,19 @@ const Subscription = ({
     // Submit updated values to business info
     let formData = new FormData();
     formData.append('plan', plan);
+    updateSubscription(formData);
+    // Update form state
+    setEdit(false)
+  }
+  const toggleSubscription = (orderId, details) => {
+    // Submit updated values to business info
+    let formData = new FormData();
     formData.append('auto_renew', autoRenew);
-    if(!autoRenew) {
-      formData.append('auto_renew', 'false');
-    }else {
-      formData.append('auto_renew', 'true');
-    }
+    // if(!autoRenew) {
+    //   formData.append('auto_renew', 'false');
+    // }else {
+    //   formData.append('auto_renew', 'true');
+    // }
     updateSubscription(formData);
     // Update form state
     setEdit(false)
@@ -287,13 +256,33 @@ const Subscription = ({
                   </div>
                   <div>
                     <p className="font-weight-light m-0">Auto Renew:</p>
-                    <p>
+                    {/* <p>
                       OFF <Switch
                         onChange={(e) => {
                           setAutoRenew(!autoRenew)
                         }}
                       /> ON
-                    </p>
+                    </p> */}
+                    <PayPalScriptProvider options={PAYPAL_SUBSCRIPTION_OPTIONS}>
+                        <PayPalButtons
+                          createSubscription={(data, actions) => {
+                              return actions.subscription.revise(subscriptionId, {
+                                'shipping_amount': {
+                                  'currency_code': 'USD',
+                                  'value': '10.00'
+                                }
+                              });
+                            }
+                          }
+                          onApprove={(data, actions) => {
+                              return actions.order.capture().then((details) => {
+                                  let orderId = data.orderID
+                                  // setPaypalOrderId()
+                                  toggleSubscription(orderId, details);
+                              });
+                          }}
+                        />
+                    </PayPalScriptProvider>
                   </div>
                   <div
                   style={{

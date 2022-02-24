@@ -39,18 +39,21 @@ const PlanContainer = ({ planCallback }) => {
       title: 'BASIC PLAN',
       price: '9.99',
       sub: 'Access to Limited Templates Custom Ad Designs for $15 Each',
+      planId: 'P-1PU62009HG904811CMILOQAQ',
     },
     advanced: {
       bestSeller: true,
       title: 'ADVANCED PLAN',
       price: '19.99',
       sub: 'Access to 100+ Templates 1 Free Custom Ad Design per Month',
+      planId: 'P-1PU62009HG904811CMILOQAQ'
     },
     preminum: {
       bestSeller: false,
       title: 'PREMINUM PLAN',
       price: '39.99',
       sub: 'Access to ALL Templates 2 Free Custom Ad Designs per Month',
+      planId: 'P-1PU62009HG904811CMILOQAQ'
     },
   };
   return (
