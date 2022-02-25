@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 
 import PlanContainer from './PlanContainer';
 import PlanForm from '../components/PlanForm';
@@ -21,31 +22,11 @@ const PaymentPlanContainer = ({
   createPaymentAmount,
   addSubscription,
   getSubscription,
-  updateSubscription,
   subscription,
   subscriptionLoading
 }) => {
   const classes = useStyles();
-  // const plan = {
-  //   basic: {
-  //     bestSeller: false,
-  //     title: 'BASIC PLAN',
-  //     price: '9.99',
-  //     sub: 'Access to Limited Templates Custom Ad Designs for $15 Each',
-  //   },
-  //   advanced: {
-  //     bestSeller: true,
-  //     title: 'ADVANCED PLAN',
-  //     price: '19.99',
-  //     sub: 'Access to 100+ Templates 1 Free Custom Ad Design per Month',
-  //   },
-  //   preminum: {
-  //     bestSeller: false,
-  //     title: 'PREMINUM PLAN',
-  //     price: '39.99',
-  //     sub: 'Access to ALL Templates 2 Free Custom Ad Designs per Month',
-  //   },
-  // };
+  const history = useHistory();
   const [planName, setPlanName] = React.useState('');
   const [paymentPlan, setPaymentPlan] = React.useState('');
   const [amount, setAmount] = React.useState();
@@ -83,34 +64,27 @@ const PaymentPlanContainer = ({
       setSubscription();
     }
   }, [subscription]);
-  const submitPaymentInfos = (orderId, payment) => {
+  const submitPaymentInfos = (orderId, subscriptionId, payment) => {
     // Submit updated values to payments
     let formData = new FormData();
     formData.append('paypal_order_id', orderId);
     formData.append('paypal_status', payment.status);
-    formData.append('paypal_status_code', payment.status_code);
-    formData.append('paypal_intent', payment.intent);
     formData.append('item', planName);
-    formData.append('amount', amount);
+    formData.append('paypal_plan_id', paymentPlan);
+    formData.append('amount', paymentAmount);
     createPaymentAmount(formData);
     // Update form state
     // setPaypalOrderId(payment.id)
     // setPaypalStatus(payment.status)
     // setPaypalIntent(payment.intent)
-    let activeSubscription = subscriptionData[subscriptionData.length - 1]
-    let val = activeSubscription.due_amount - paymentAmount
-    if(val >= 0){
-      let formData = new FormData();
-      formData.append('due_amount', val);
-      updateSubscription(formData, activeSubscription.id)
-    } else if (val < 0){
-      let formData = new FormData();
-      let prepayVal = val * -1
-      formData.append('due_amount', 0.00);
-      formData.append('prepay_amount', prepayVal);
-      updateSubscription(formData, activeSubscription.id)
-    }
-    setCheckout(false);
+    let formDataSubscription = new FormData();
+    formDataSubscription.append('paypal_subscription_id', subscriptionId);
+    formDataSubscription.append('plan', planName);
+    formDataSubscription.append('paypal_plan_id', paymentPlan);
+    formDataSubscription.append('active', payment.status);
+    addSubscription(formDataSubscription)
+
+    history.push('/onboarding/2');
   };
   const setSubscription = () => {
     setSubscriptionData(subscription || '');
@@ -133,11 +107,10 @@ const PaymentPlanContainer = ({
   return (
     <div className={classes.paymentPlanPageContainer}>
       {!checkout ? (
-        <PlanContainer planCallback={setSelectedPlan} />
+        <PlanContainer setSelectedPlan={setSelectedPlan} />
       ) : (
         <PlanForm
           paymentPlan={paymentPlan}
-          amount={amount}
           submitPaymentInfos={submitPaymentInfos}
         />
       )}
@@ -162,6 +135,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getSubscription,
+  addSubscription,
   createPaymentAmount,
-  updateSubscription,
 })(PaymentPlanContainer);

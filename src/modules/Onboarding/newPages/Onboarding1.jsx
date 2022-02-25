@@ -132,7 +132,7 @@ function OnboardingPageOne({ addAddresses, addBusinessInfo }) {
     }
 
     addBusinessInfo(businessInfoFormData);
-    history.push('/onboarding/2');
+    history.push('/subscription-plan');
   };
 
   const IndustryOptions = [

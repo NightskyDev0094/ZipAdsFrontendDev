@@ -45,7 +45,7 @@ const useStyles = makeStyles((plan) => ({
   }),
 }));
 
-const PlanCard = ({ plan, planCallback }) => {
+const PlanCard = ({ plan, setSelectedPlan }) => {
   const classes = useStyles(plan);
 
   return (
@@ -74,7 +74,7 @@ const PlanCard = ({ plan, planCallback }) => {
         7 Day Free Trial
       </p>
       <p style={{ fontSize: '18px', fontFamily: 'sans-serif' }}>{plan.sub}</p>
-      <Button className={classes.buttonStyle} onClick={(e) => planCallback(plan)}>
+      <Button className={classes.buttonStyle} onClick={(e) => setSelectedPlan(plan)}>
         Start Free Trial
       </Button>
     </div>

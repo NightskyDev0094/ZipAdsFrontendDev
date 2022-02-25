@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButton } from "react-paypal-button-v2";
 import { PAYPAL_SUBSCRIPTION_OPTIONS } from '../../../environmentVariables.js';
 import clsx from 'clsx';
 import '../../../index.css';
@@ -223,16 +224,21 @@ const PlanForm = ({
             <PayPalScriptProvider options={PAYPAL_SUBSCRIPTION_OPTIONS}>
                 <PayPalButtons
                   createSubscription={(data, actions) => {
-                      return actions.subscription.create({
-                        'plan_id': paymentPlan
-                      });
-                    }
-                  }
+                    return actions.subscription.create({
+                      /* Creates the subscription */
+                      plan_id: paymentPlan
+                    });
+                  }}
+                  style={{
+                    label: "subscribe",
+                  }}
                   onApprove={(data, actions) => {
-                    return actions.order.capture().then((details) => {
+                    return actions.subscription.get().then((details) => {
+                        console.log("Subscription Success::::", details, data)
                         let orderId = data.orderID
+                        let subscriptionId = data.subscriptionID
                         // setPaypalOrderId()
-                        submitPaymentInfos(orderId, details);
+                        submitPaymentInfos(orderId, subscriptionId, details);
                     });
                 }}
                 />

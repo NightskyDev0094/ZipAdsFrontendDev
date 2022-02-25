@@ -12,7 +12,6 @@
   intent: "subscription",
   "disable-funding": "credit",
   vault: true
-  // "data-client-token": "abc123xyz==",
 },
  PAYPAL_PAYMENT_OPTIONS= {
   "client-id": "Adh0bup-e8bWSRZg8F-50TL1vOjqWOmYN8YEz2MsoEcBeMUdJ-eg58iHObqLhA_AED-TXgtGdq0QK17y",
@@ -20,7 +19,6 @@
   intent: "capture",
   "disable-funding": "credit",
   vault: true
-  // "data-client-token": "abc123xyz==",
 },
 // SERVER_URL = 'https://web-ads-dev-server.herokuapp.com',
 // SERVER_URL = 'https://webadsserver.herokuapp.com',

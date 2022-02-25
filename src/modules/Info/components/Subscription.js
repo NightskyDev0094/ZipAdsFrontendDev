@@ -57,6 +57,7 @@ const Subscription = ({
   const [edit, setEdit] = useState(false);
   const [plan, setPlan] = useState('');
   const [subscriptionId, setSubscriptionId] = useState('');
+  const [subscriptionReviseVal, setSubscriptionReviseVal] = useState('');
   const [autoRenew, setAutoRenew] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [subscriptionData, setSubscriptionData] = useState([]);
@@ -69,12 +70,6 @@ const Subscription = ({
       width: '165px',
     },
     {
-      title: 'Renewal Date',
-      dataIndex: 'renewal_date',
-      key: 'renewal_date',
-      width: '165px',
-    },
-    {
       title: 'Plan',
       dataIndex: 'plan',
       key: 'plan',
@@ -82,30 +77,35 @@ const Subscription = ({
     },
     {
       title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
+      dataIndex: 'monthly_amount',
+      key: 'monthly_amount',
       width: '90px',
     },
     {
       title: 'Auto-Renew',
-      dataIndex: 'auto_renew',
-      key: 'auto_renew',
+      dataIndex: 'active',
+      key: 'active',
       fixed: 'right',
       width: '150px',
       render: (value, index) => (
-        <Switch
-          checkedChildren="ON"
-          unCheckedChildren="OFF"
-          checked={value}
-          onChange={(checked) => {
-            setSubscriptionData(
-              subscriptionData.map((data) => {
-                if (data.key == index.key) return { ...data, auto_renew: checked };
-                else return { ...data };
-              })
-            );
-          }}
-        />
+        <PayPalScriptProvider options={PAYPAL_SUBSCRIPTION_OPTIONS}>
+            <PayPalButtons
+              createSubscription={(data, actions) => {
+                console.log("PAYPAL VARS!!!", subscriptionId, subscriptionReviseVal)
+                  return actions.subscription.revise(subscriptionId, {
+                    'status': subscriptionReviseVal
+                  });
+                }
+              }
+              onApprove={(data, actions) => {
+                  return actions.subscription.get().then((details) => {
+                      let orderId = data.orderID
+                      // setPaypalOrderId()
+                      toggleSubscription(orderId, details);
+                  });
+              }}
+            />
+        </PayPalScriptProvider>
       ),
     },
   ];
@@ -113,11 +113,9 @@ const Subscription = ({
   useEffect(() => {
     setSelectedRowKeys(
       subscriptionData.map((data) => {
-        if (data.auto_renew) return data.key;
+        if (data.active) return data.key;
       })
     );
-  }, []);
-  useEffect(() => {
     // Get Subscription Info values
     getSubscription();
   }, []);
@@ -139,12 +137,7 @@ const Subscription = ({
   const toggleSubscription = (orderId, details) => {
     // Submit updated values to business info
     let formData = new FormData();
-    formData.append('auto_renew', autoRenew);
-    // if(!autoRenew) {
-    //   formData.append('auto_renew', 'false');
-    // }else {
-    //   formData.append('auto_renew', 'true');
-    // }
+    formData.append('active', details.status);
     updateSubscription(formData);
     // Update form state
     setEdit(false)
@@ -152,16 +145,24 @@ const Subscription = ({
   const setSavedVals = () => {
     // if (subscription.campaign_type === 'Draft' || subscription.campaign_type === 'Template') {
     setPlan(subscription?.plan || '');
-    if(subscription?.auto_renew === 'false') {
+    setSubscriptionId(subscription?.paypal_subscription_id || '');
+    console.log("setSavedVals Running!!!", subscription?.paypal_subscription_id, subscriptionReviseVal)
+    if(subscription?.length >= 1) {
+      setSubscriptionData([subscription[subscription.length - 1]]);
+    }
+    
+    if(subscription?.active === 'SUSPENDED') {
       setAutoRenew(false);
-    }else if (subscription?.auto_renew === 'true') {
+      setSubscriptionReviseVal('ACTIVE');
+    }else if (subscription?.active === 'ACTIVE') {
       setAutoRenew(true);
+      setSubscriptionReviseVal('SUSPENDED');
     }
   };
   useEffect(() => {
     setSelectedRowKeys(
-      subscriptionData.map((data) => {
-        if (data.auto_renew) return data.key;
+      subscriptionData?.map((data) => {
+        if (data.active) return data.key;
       })
     );
   }, [subscriptionData]);
@@ -173,46 +174,17 @@ const Subscription = ({
   return (
     <div className="w-100 h-100 subscription">
       <div className={clsx(classes.SubscriptionContainer, classes.textStyle)}>
+        {edit === false ? (
+        <>
         <p className={classes.infoTitle}>Subscription Details</p>
-        {/* <Table
+        <div className={classes.info}>
+        <Table
           dataSource={subscriptionData}
           columns={subscriptionColumns}
           rowSelection={rowSelection}
           scroll={{ x: 210 }}
           pagination={{ pageSize: 3 }}
         />
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            paddingBottom: '25px',
-          }}
-        >
-          <Button
-            className="text-light border-0"
-            style={{
-              backgroundColor: '#00468f',
-              borderRadius: '8px',
-              width: '140px',
-              height: '55px',
-            }}
-          >
-            Edit
-          </Button>
-        </div> */}
-        {edit === false ? (
-        <>
-        <div className={classes.info}>
-          <div>
-            <p className="font-weight-light m-0">Plan:</p>
-            <p>{plan}</p>
-          </div>
-          <div>
-            <p className="font-weight-light m-0">Auto Renew:</p>
-            <p>{autoRenew}</p>
-          </div>
         </div>
         <div
           style={{
@@ -267,15 +239,12 @@ const Subscription = ({
                         <PayPalButtons
                           createSubscription={(data, actions) => {
                               return actions.subscription.revise(subscriptionId, {
-                                'shipping_amount': {
-                                  'currency_code': 'USD',
-                                  'value': '10.00'
-                                }
+                                'status': subscriptionReviseVal
                               });
                             }
                           }
                           onApprove={(data, actions) => {
-                              return actions.order.capture().then((details) => {
+                              return actions.subscription.get().then((details) => {
                                   let orderId = data.orderID
                                   // setPaypalOrderId()
                                   toggleSubscription(orderId, details);
@@ -315,7 +284,7 @@ const Subscription = ({
 };
 
 const mapStateToProps = (state) => ({
-  subscription: state.subscriptions.userSubscription,
+  subscription: state.subscriptions.subscriptions,
   subscriptionLoading: state.subscriptions.subscriptionLoading,
 });
 
