@@ -8,6 +8,7 @@ import {
   CLEAR_ERRORS
 } from '../actions/types';
 
+//
 // Set Facebook Ad account State
 const initialState = {
   adAccounts: [],
